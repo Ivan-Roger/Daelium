@@ -4,6 +4,7 @@
    *
    */
   class Profile {
+    private User $user;
     private Document[] $docs;
     private Article[] $articles;
 
