@@ -2,14 +2,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../view/bootstrap/css/bootstrap.css">
     <title>Dælium</title>
   </head>
   <body>
     <header class="page-header">
       <div id="top">
-        <h1>Dælium</h1>
-        <p>Le site des echanges musicaux</p>
+        <h1>Dælium <small>Le site des échanges musicaux</small></h1>
         <!-- Logo du site , tritre description -->
       </div>
       <div class="container-fluid">
@@ -53,7 +52,7 @@
               </ul>
             </li>
           </ul>
-          <form class="navbar-form navbar-right" method="get" action="#">
+          <form class="navbar-form navbar-right" method="GET" action="#">
             <div class="input-group">
               <input type="text" class="form-control" placeholder="Je cherche ...">
               <span class="input-group-btn">
@@ -64,6 +63,9 @@
         </nav>
       </div>
     </header>
+    <?php if (isset($data['alert'])) { ?>
+      <p class="alert alert-<?= $data['alert']['type'] ?> alert-dismissible"><span class="glyphicon glyphicon-<?= $data['alert']['icon'] ?>"></span> <?= $data['alert']['message'] ?> <button class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></p>
+    <?php } ?>
     <section class="container">
       <div class="jumbotron">
         <h1>Bienvenue !</h1>
@@ -78,7 +80,6 @@
         <p>Charle DURAND à rendu libre les inscription pour son evenement "Festival des eaux de la pluie". Vous pouvez maintenent rentre en contact avec lui afin d'y Inscrire un Artiste/Groupe .</p>
       </article>
       <article>
-        <img src="http://www.ac-grenoble.fr/ien.vienne1-2/spip/IMG/bmp_Image004.bmp" alt="Mountain View" style="height:100px;">
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
       </article>
       <article>
@@ -95,10 +96,10 @@
         <p>L'evenement Bringue a la mairie de Valence est suceptible d'interesser le Groupe/Artiste "Les Bleu" que vous gerez.</p>
       </article>
       <article>
-        <p>L'evenement Bringue a la mairie de Valence est suceptible d'interesser le Groupe/Artiste "Les Bleu" que vous gerez.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
       </article>
     </section>
-    <footer id="footer">
+    <footer id="footer" class="page-footer col-lg-12">
       <h2>Daelium</h2>
       <p>IUT2 UPMF, Place Doyen Gosse, 38000 Grenoble, Rhone-Alpes</p>
     </footer>

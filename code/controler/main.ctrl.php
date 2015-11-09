@@ -1,5 +1,9 @@
 <?php
   session_start();
 
-  include("../view/WIP.view.php");
+  $data['alert']['type'] = "danger";
+  $data['alert']['icon'] = "exclamation-sign";
+  $data['alert']['message'] = "Site en cours de construction ... Risques d'erreurs ><'";
+
+  include("../view/main.view.php");
 ?>

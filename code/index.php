@@ -1,3 +1,3 @@
 <?php
-header("Location:"."controler/connexion.ctrl.php");
+  header("Location:"."controler/main.ctrl.php");
 ?>
