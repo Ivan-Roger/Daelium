@@ -11,8 +11,7 @@
         <h1>Dælium <small>Le site des échanges musicaux</small></h1>
         <!-- Logo du site , tritre description -->
       </div>
-      <div class="container-fluid">
-        <nav class="nav navbar-default">
+        <nav class="nav navbar-default container-fluid">
           <div class="navbar-header">
             <img src="../view/img/D.png" alt="LogoSite" style="height:50px;">
           </div>
@@ -52,6 +51,7 @@
               </ul>
             </li>
           </ul>
+
           <form class="navbar-form navbar-right" method="GET" action="#">
             <div class="input-group">
               <input type="text" class="form-control" placeholder="Je cherche ...">
@@ -61,7 +61,6 @@
             </div>
           </form>
         </nav>
-      </div>
     </header>
     <?php if (isset($data['alert'])) { ?>
       <p class="alert alert-<?= $data['alert']['type'] ?> alert-dismissible"><span class="glyphicon glyphicon-<?= $data['alert']['icon'] ?>"></span> <?= $data['alert']['message'] ?> <button class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></p>
