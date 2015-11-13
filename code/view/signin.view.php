@@ -11,11 +11,11 @@
         <div class="card card-container">
 
             <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
-            <img id="profile-img" class="profile-img-card" src="../view/img/D.png" />
+            <img id="profile-img" class="profile-img-card" src="../data/img/D.png" />
             <p id="profile-name" class="profile-name-card">Bienvenue !</p>
-            <HR>
-            <p class="social" ><a href="#"><img src="https://developers.google.com/identity/images/btn_google_signin_light_normal_web.png" /></a></p>
-            <HR>
+            <hr/>
+            <p class="social" ><a href="#"><img src="../data/img/google_signIn.png" /></a></p>
+            <hr/>
             <form class="form-signin">
                 <span id="reauth-email" class="reauth-email"></span>
                 <input type="email" id="inputEmail" class="form-control" placeholder="Adresse mail" required autofocus>
@@ -30,13 +30,12 @@
             <a href="#" class="forgot-password">
                 Mot de passe oublié ?
             </a>
-          </br>
+            <br/>
             <a href="#" class="forgot-password">
                 Inscription
             </a>
         </div><!-- /card-container -->
     </div><!-- /container -->
-    <?php include("../view/include/footer.view.php"); ?>
     <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="../data/js/bootstrap.min.js"></script>
   </body>

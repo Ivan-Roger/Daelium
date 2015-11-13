@@ -36,7 +36,7 @@
             <ul class="dropdown-menu">
               <li><a href="#">Voir le profil</a></li>
               <li role="separator" class="divider"></li>
-              <li><a href="#"><span class="glyphicon glyphicon-off"></span> Déconnexion</a></li>
+              <li><a href="../view/nolog.view.php"><span class="glyphicon glyphicon-off"></span> Déconnexion</a></li>
             </ul>
           </li>
         </ul>

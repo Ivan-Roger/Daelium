@@ -8,7 +8,7 @@
 body, html {
     height: 100%;
     background-repeat: no-repeat;
-    background-image: url(../view/img/fotolia_musique.jpg);
+    background-image: url(../img/fotolia_musique.jpg);
     background-size: cover;
 }
 
