@@ -1,13 +1,12 @@
-<?php $data['page']="Home"; ?>
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../view/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../data/css/bootstrap.css">
     <title>Dælium</title>
   </head>
   <body>
-    <?php include("../view/header.view.php"); ?>
+    <?php include("../view/include/header.view.php"); ?>
     <section class="container">
       <div class="jumbotron">
         <h1>Bienvenue !</h1>
@@ -41,11 +40,8 @@
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
       </article>
     </section>
-    <footer id="footer" class="page-footer col-lg-12">
-      <h2>Daelium</h2>
-      <p>IUT2 UPMF, Place Doyen Gosse, 38000 Grenoble, Rhone-Alpes</p>
-    </footer>
+    <?php include("../view/include/footer.view.php"); ?>
     <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-    <script src="../view/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../data/js/bootstrap.min.js"></script>
   </body>
 </html>

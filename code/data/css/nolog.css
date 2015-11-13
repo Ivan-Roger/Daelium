@@ -5,6 +5,15 @@ body, html {
     background-size: cover;
 }
 
+#welcome-text {
+  margin-top: 50px;
+  background-color: rgba(200,200,200,0.4);
+  color: #222;
+}
+
+#welcome-text blockquote {
+  font-size: 25px;
+}
 
 .footer {
     position: absolute;

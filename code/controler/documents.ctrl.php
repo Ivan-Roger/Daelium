@@ -5,7 +5,7 @@
   $data['alert']['icon'] = "exclamation-sign";
   $data['alert']['message'] = "Site en cours de construction ... Risques d'erreurs ><'";
 
-  $data['page']="Home";
+  $data['page']="Documents";
 
-  include("../view/main.view.php");
+  include("../view/documents.view.php");
 ?>

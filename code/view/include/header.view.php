@@ -6,16 +6,16 @@
     </div>
       <nav class="nav navbar-default container-fluid">
         <div class="navbar-header">
-          <img src="../view/img/D.png" alt="LogoSite" style="height:50px;">
+          <img src="../data/img/D.png" alt="LogoSite" style="height:50px;">
         </div>
         <!-- Menu des differentes section du site  plus module de recherche-->
         <ul class="nav navbar-nav">
           <li<?php echo($data['page']=="Home"?" class='active'":"") ?>><a href="../controler/main.ctrl.php"><span class="glyphicon glyphicon-home"></span> Accueil</a></li>
-          <li<?php echo($data['page']=="Profile"?" class='active'":"") ?>><a href="#"><span class="glyphicon glyphicon-user"></span> Profil</a></li>
-          <li<?php echo($data['page']=="Documents"?" class='active'":"") ?>><a href="#"><span class="glyphicon glyphicon-file"></span> Documents</a></li>
+          <li<?php echo($data['page']=="Profile"?" class='active'":"") ?>><a href="../controler/profile.ctrl.php"><span class="glyphicon glyphicon-user"></span> Profil</a></li>
+          <li<?php echo($data['page']=="Documents"?" class='active'":"") ?>><a href="../controler/documents.ctrl.php"><span class="glyphicon glyphicon-file"></span> Documents</a></li>
           <li<?php echo($data['page']=="Agenda"?" class='active'":"") ?>><a href="../controler/agenda.ctrl.php"><span class="glyphicon glyphicon-calendar"></span> Agenda</a></li>
-          <li<?php echo($data['page']=="Messages"?" class='active'":"") ?>><a href="#"><span class="glyphicon glyphicon-envelope"></span> Messagerie</a></li>
-          <li<?php echo($data['page']=="List"?" class='active'":"") ?>><a href="#"><span class="glyphicon glyphicon-list-alt"></span> Annuaire</a></li>
+          <li<?php echo($data['page']=="Messages"?" class='active'":"") ?>><a href="../controler/messages.ctrl.php"><span class="glyphicon glyphicon-envelope"></span> Messagerie</a></li>
+          <li<?php echo($data['page']=="List"?" class='active'":"") ?>><a href="../controler/list.ctrl.php"><span class="glyphicon glyphicon-list-alt"></span> Annuaire</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <!-- Menu de l'uilisateur-->
@@ -34,13 +34,9 @@
           <li id="profile" class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> Compte <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
+              <li><a href="#">Voir le profil</a></li>
               <li role="separator" class="divider"></li>
-              <li><a href="#">Separated link</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a href="#">One more separated link</a></li>
+              <li><a href="#"><span class="glyphicon glyphicon-off"></span> Déconnexion</a></li>
             </ul>
           </li>
         </ul>

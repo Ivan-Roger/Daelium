@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <link rel="stylesheet" href="../view/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="../view/nolog.css"/>
+  <link rel="stylesheet" href="../data/css/bootstrap.css">
+    <link rel="stylesheet" href="../data/css/nolog.css"/>
   <title>Dælium</title>
 </head>
 <body>
@@ -18,8 +18,10 @@
           <button type="button" class="btn btn-warning">Je m'inscrit maintenent !</button>
     </form>
   </nav>
-
-  <div id="carousel-example-generic" class="carousel slide col-lg-6" data-ride="carousel">
+  <br/>
+  <br/>
+  <br/>
+  <div id="carousel-example-generic" class="carousel slide col-lg-6 col-lg-offset-3" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
       <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
@@ -52,11 +54,11 @@
       <span class="sr-only">Next</span>
     </a>
   </div>
-  <footer class="footer">
-    <h2>Daelium</h2>
-    <p>IUT2 UPMF, Place Doyen Gosse, 38000 Grenoble, Rhone-Alpes</p>
-  </footer>
+  <div id="welcome-text" class="col-lg-6 col-lg-offset-3">
+    <blockquote>Bienvenue sur Dælium, site en construction ...</blockquote>
+  </div>
+  <?php include("../view/include/footer.view.php"); ?>
   <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-  <script src="../view/bootstrap/js/bootstrap.min.js"></script>
+  <script src="../data/js/bootstrap.min.js"></script>
 </body>
 </html>

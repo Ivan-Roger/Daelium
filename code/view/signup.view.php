@@ -3,8 +3,8 @@
 <header>
   <meta charset="utf-8"/>
   <title>Daelium | Work in Progress</title>
-  <link rel="stylesheet" href="../view/bootstrap/css/bootstrap.min.css"/>
-  <link rel="stylesheet" href="../view/signin.css"/>
+  <link rel="stylesheet" href="../data/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="../data/css/signin.css"/>
 </header>
 <body>
   <div class="container">
@@ -28,8 +28,8 @@
             </form><!-- /form -->
         </div><!-- /card-container -->
     </div><!-- /container -->
-
-<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-<script src="../view/bootstrap/js/bootstrap.min.js"></script>
-</body>
+    <?php include("../view/include/footer.view.php"); ?>
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="../data/js/bootstrap.min.js"></script>
+  </body>
 </html>
