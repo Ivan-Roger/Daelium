@@ -1,3 +1,4 @@
+<?php $data['page']="Home"; ?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -6,65 +7,7 @@
     <title>Dælium</title>
   </head>
   <body>
-    <header class="page-header">
-      <div id="top">
-        <h1>Dælium <small>Le site des échanges musicaux</small></h1>
-        <!-- Logo du site , tritre description -->
-      </div>
-        <nav class="nav navbar-default container-fluid">
-          <div class="navbar-header">
-            <img src="../view/img/D.png" alt="LogoSite" style="height:50px;">
-          </div>
-          <!-- Menu des differentes section du site  plus module de recherche-->
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#"><span class="glyphicon glyphicon-home"></span> Accueil</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-user"></span> Profil</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-file"></span> Documents</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-calendar"></span> Agenda</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-envelope"></span> Messagerie</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-list-alt"></span> Annuaire</a></li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <!-- Menu de l'uilisateur-->
-            <li id="settings" class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-cog"></span> Paramétres <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#">Separated link</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#">One more separated link</a></li>
-              </ul>
-            </li>
-            <li id="profile" class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> Compte <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#">Separated link</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#">One more separated link</a></li>
-              </ul>
-            </li>
-          </ul>
-
-          <form class="navbar-form navbar-right" method="GET" action="#">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Je cherche ...">
-              <span class="input-group-btn">
-                <button class="btn btn-primary" type="button">Rechercher</button>
-              </span>
-            </div>
-          </form>
-        </nav>
-    </header>
-    <?php if (isset($data['alert'])) { ?>
-      <p class="alert alert-<?= $data['alert']['type'] ?> alert-dismissible"><span class="glyphicon glyphicon-<?= $data['alert']['icon'] ?>"></span> <?= $data['alert']['message'] ?> <button class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></p>
-    <?php } ?>
+    <?php include("../view/header.view.php"); ?>
     <section class="container">
       <div class="jumbotron">
         <h1>Bienvenue !</h1>
