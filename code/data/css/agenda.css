@@ -1,0 +1,16 @@
+tbody {
+  width: 100%;
+  max-height: 300px;
+  overflow: auto;
+}
+
+#calendar td:hover {
+  background-color: #E5E5E5;
+}
+#commingNext tr:hover td, #dayPlan tr:hover td {
+  background-color: #E5E5E5;
+}
+
+table tbody td.active {
+  background-color: #EEE;
+}
