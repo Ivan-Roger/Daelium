@@ -19,7 +19,7 @@
                     <span class='glyphicon glyphicon-arrow-left'></span>
                   </button>
                 </div>
-                <div class='col-md-6 col-xs-4'><strong id="calendarMonth">Novembre</strong></div>
+                <div class='col-md-6 col-xs-4'><strong id="calendarTitle"><?= $data['monthName'] ?> <?= $data['year'] ?></strong></div>
                 <div class='col-md-3 col-xs-4 '>
                   <button id="calendarNext" class='ajax-navigation btn btn-default btn-sm'>
                     <span class='glyphicon glyphicon-arrow-right'></span>
@@ -28,7 +28,7 @@
               </div>
             </div>
             <div class="panel-body  calendar" style="height:450px;">
-              <table id="calendar" class="table table-bordered col-lg-12 text-center" data-month="<?= $data['month'] ?>" data-year="<?= $data['year'] ?>">
+              <table id="calendar" class="table table-bordered col-lg-12 text-center" data-day="<?= $data['day'] ?>" data-month="<?= $data['month'] ?>" data-year="<?= $data['year'] ?>">
                 <colgroup>
                   <col class="col-lg-1" />
                   <col/>
@@ -43,16 +43,18 @@
                   <tr><th>Semaine</th><th>Lundi</th><th>Mardi</th><th>Mercredi</th><th>Jeudi</th><th>Vendredi</th><th>Samedi</th><th>Dimanche</th></tr>
                 </thead>
                 <tbody>
-                  <?php foreach($data['calendar'] as $week) { ?>
+                  <?php
+                  $today = (($data['date']['month']==$data['month'] && $data['date']['year']==$data['year'])?$data['date']['day']:null);
+                  foreach($data['calendar'] as $week) { ?>
                   <tr>
                     <th><?= $week['id'] ?></th>
-                    <td<?php echo(($week['days'][0]>0?($week['days'][0]==$data['today']?" class='info'>".$week['days'][0]:">".$week['days'][0]):" class='not-hover'>")); ?></td>
-                    <td<?php echo(($week['days'][1]>0?($week['days'][1]==$data['today']?" class='info'>".$week['days'][1]:">".$week['days'][1]):" class='not-hover'>")); ?></td>
-                    <td<?php echo(($week['days'][2]>0?($week['days'][2]==$data['today']?" class='info'>".$week['days'][2]:">".$week['days'][2]):" class='not-hover'>")); ?></td>
-                    <td<?php echo(($week['days'][3]>0?($week['days'][3]==$data['today']?" class='info'>".$week['days'][3]:">".$week['days'][3]):" class='not-hover'>")); ?></td>
-                    <td<?php echo(($week['days'][4]>0?($week['days'][4]==$data['today']?" class='info'>".$week['days'][4]:">".$week['days'][4]):" class='not-hover'>")); ?></td>
-                    <td<?php echo(($week['days'][5]>0?($week['days'][5]==$data['today']?" class='info'>".$week['days'][5]:">".$week['days'][5]):" class='not-hover'>")); ?></td>
-                    <td<?php echo(($week['days'][6]>0?($week['days'][6]==$data['today']?" class='info'>".$week['days'][6]:">".$week['days'][6]):" class='not-hover'>")); ?></td>
+                    <td<?php echo(($week['days'][0]>0?($week['days'][0]==$today?" class='info'>".$week['days'][0]:">".$week['days'][0]):" class='not-hover'>")); ?></td>
+                    <td<?php echo(($week['days'][1]>0?($week['days'][1]==$today?" class='info'>".$week['days'][1]:">".$week['days'][1]):" class='not-hover'>")); ?></td>
+                    <td<?php echo(($week['days'][2]>0?($week['days'][2]==$today?" class='info'>".$week['days'][2]:">".$week['days'][2]):" class='not-hover'>")); ?></td>
+                    <td<?php echo(($week['days'][3]>0?($week['days'][3]==$today?" class='info'>".$week['days'][3]:">".$week['days'][3]):" class='not-hover'>")); ?></td>
+                    <td<?php echo(($week['days'][4]>0?($week['days'][4]==$today?" class='info'>".$week['days'][4]:">".$week['days'][4]):" class='not-hover'>")); ?></td>
+                    <td<?php echo(($week['days'][5]>0?($week['days'][5]==$today?" class='info'>".$week['days'][5]:">".$week['days'][5]):" class='not-hover'>")); ?></td>
+                    <td<?php echo(($week['days'][6]>0?($week['days'][6]==$today?" class='info'>".$week['days'][6]:">".$week['days'][6]):" class='not-hover'>")); ?></td>
                   </tr>
                   <?php } ?>
                 </tbody>
@@ -92,7 +94,7 @@
                   </a>
                 </div>
                 <div class='col-md-6 col-xs-4'>
-                  <strong>Vendredi 13 Novembre</strong>
+                  <strong id="dayPlanTitle"><?= $data['wdayName'] ?> <?= $data['day'] ?> <?= $data['monthName'] ?></strong>
                 </div>
                 <div class='col-md-3 col-xs-4 '>
                   <a class='ajax-navigation btn btn-default btn-sm' href='#'>
@@ -229,5 +231,13 @@
     <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="../data/js/bootstrap.min.js"></script>
     <script src="../data/js/agenda.js"></script>
+    <script>
+      AgendaDate.set(
+        <?= $data['wday'] ?>,
+        <?= $data['day'] ?>,
+        <?= $data['month'] ?>,
+        <?= $data['year'] ?>
+      );
+    </script>
   </body>
 </html>

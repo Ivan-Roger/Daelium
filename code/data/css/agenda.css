@@ -1,3 +1,8 @@
+#calendar thead th {
+  text-align: center;
+  vertical-align: middle;
+}
+
 #calendar td {
   height: 50px;
   vertical-align: middle;
@@ -14,6 +19,10 @@
 
 #calendar .not-hover:hover{
   background-color: transparent;
+}
+
+#calendar .info:hover{
+  background-color: #B1D3E4;
 }
 
 #commingNext tr:hover td, #dayPlan tr:hover td {

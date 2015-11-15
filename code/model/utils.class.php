@@ -25,10 +25,7 @@
      } else {
        $length = 30;
      }
-     // wday par défaut : de 0(Dimanche) à 6(Samedi)
-     $wday = $date['wday']-1; // on décale : de -1(Dimanche) à 5(Samedi)
-     $wday = ($wday<0?6:$wday); // si c'est un dimanche (-1) alors 6 sinon on change pas
-
+     $wday = fr_wday($date['wday']); // conversion des jours de la semaine en FR
      $i=0;
      for ($l=0; $i<($length+$wday); $l++) {
        $res[$l]['id'] = date("W",$timestamp)+$l;
@@ -40,5 +37,12 @@
      }
 
      return $res;
+   }
+
+   function fr_wday($wday) {
+     // wday par défaut : de 0(Dimanche) à 6(Samedi)
+     $wday = $wday-1; // on décale : de -1(Dimanche) à 5(Samedi)
+     $wday = ($wday<0?6:$wday); // si c'est un dimanche (-1) alors 6 sinon on change pas
+     return $wday;
    }
 ?>
