@@ -3,10 +3,17 @@ tbody {
   max-height: 300px;
   overflow: auto;
 }
+#calendar td{
+  height: 50px;
+}
 
 #calendar td:hover {
   background-color: #E5E5E5;
 }
+#calendar .not-hover:hover{
+  background-color: transparent;
+}
+
 #commingNext tr:hover td, #dayPlan tr:hover td {
   background-color: #E5E5E5;
 }
