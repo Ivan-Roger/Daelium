@@ -1,0 +1,14 @@
+.table{
+  margin-bottom: 0px;
+}
+.panel-body {
+    padding: 0px;
+}
+
+#list .table td:hover{
+  background-color: #E5E5E5;
+}
+
+#boutons{
+  margin-bottom: 15px;
+}
