@@ -23,7 +23,7 @@
             <col/>
             <col/>
             <col/>
-            <col class="col-lg-1"/>
+            <col class="col-lg-2"/>
           </colgroup>
           <thead>
             <tr><th>Nom / Prenom</th><th>Mail</th><th>Telephone</th><th>Description</th><th>Notes</th><th>Actions</th></tr>
@@ -35,24 +35,23 @@
               <td>0600000000</td>
               <td>Organisateur du festival les rouge</td>
               <td>Serieux</td>
-              <td><table class="table table-bordered text-center">
-                <tr>
-                  <td><span class="glyphicon glyphicon-star-empty"></span></td>
-                  <td><span class="glyphicon glyphicon-envelope"></span></td>
-                  <td><span class="glyphicon glyphicon-user"></span></td>
-                  <td><span class="glyphicon glyphicon-pencil"></span></td>
-                  <td><span class="glyphicon glyphicon-trash"></span></td>
-                </tr>
-              </table></td>
-              <tr><th>Alphonse</th> <td>alphonse@gmail.com</td>  <td>0600000000</td>  <td>Booker des TheWorld</td> <td>De confiance</td><td><table class="table table-bordered text-center">
-                <tr>
-                  <td><span class="glyphicon glyphicon-star-empty"></span></td>
-                  <td><span class="glyphicon glyphicon-envelope"></span></td>
-                  <td><span class="glyphicon glyphicon-user"></span></td>
-                  <td><span class="glyphicon glyphicon-pencil"></span></td>
-                  <td><span class="glyphicon glyphicon-trash"></span></td>
-                </tr>
-              </table></td></tr>
+              <td>
+                <div class="btn-group" role="group" aria-label="...">
+                  <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-star-empty"></button>
+                  <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-envelope"></button>
+                  <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-user"></button>
+                  <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></button>
+                  <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash"></button>
+                </div>
+              </td>
+              <tr><th>Alphonse</th> <td>alphonse@gmail.com</td>  <td>0600000000</td>  <td>Booker des TheWorld</td> <td>De confiance</td><td>
+                <div class="btn-group" role="group" aria-label="...">
+                  <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-star-empty"></button>
+                  <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-envelope"></button>
+                  <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-user"></button>
+                  <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></button>
+                  <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash"></button>
+                </div></td></tr>
             </tobdy>
           </table>
         </div>
