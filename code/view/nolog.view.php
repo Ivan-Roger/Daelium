@@ -18,10 +18,7 @@
           <a href="signup.view.php" type="button" class="btn btn-warning">Je m'inscrit maintenent !</a>
       </form>
     </nav>
-    <br/>
-    <br/>
-    <br/>
-    <div id="carousel-example-generic" class="carousel slide col-lg-6 col-lg-offset-3" data-ride="carousel">
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
       <ol class="carousel-indicators">
         <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
@@ -31,15 +28,16 @@
       <!-- Wrapper for slides -->
       <div class="carousel-inner" role="listbox">
         <div class="item active">
-          <img src="http://wikipics.net/photos/20150125142221651988185.jpg" alt="...">
           <div class="carousel-caption">
-            Rien 1
+            <h1>Slide 1</h1>
+            <p>...</p>
           </div>
         </div>
         <div class="item">
-          <img src="http://wikipics.net/photos/20150125142221651988185.jpg" alt="...">
           <div class="carousel-caption">
-            Rien 2
+            <h1>Another example headline.</h1>
+            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+            <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
           </div>
         </div>
       </div>
@@ -54,9 +52,31 @@
         <span class="sr-only">Next</span>
       </a>
     </div>
-    <div id="welcome-text" class="col-lg-6 col-lg-offset-3">
-      <blockquote>Bienvenue sur Dælium, site en construction ...</blockquote>
+
+    <div class="container marketing">
+      <div class="row">
+              <div class="col-lg-4">
+                <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+                <h2>Heading</h2>
+                <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
+                <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+              </div><!-- /.col-lg-4 -->
+              <div class="col-lg-4">
+                <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+                <h2>Heading</h2>
+                <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
+                <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+              </div><!-- /.col-lg-4 -->
+              <div class="col-lg-4">
+                <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+                <h2>Heading</h2>
+                <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+                <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+              </div><!-- /.col-lg-4 -->
+            </div><!-- /.row -->
     </div>
+
+    <?php include("../view/include/footer.view.php"); ?>
     <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="../data/js/bootstrap.min.js"></script>
   </body>
