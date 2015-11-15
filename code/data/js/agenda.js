@@ -1,7 +1,7 @@
 $("#calendarPrev").click(function(){
-    console.log("Prev");
     var month = $("#calendar").attr("data-month")-1;
     var year = $("#calendar").attr("data-year");
+    console.log("Prev ("+month+","+year+")");
     $.ajax({url: "agenda.ctrl.php?ajax&month="+month+"&year="+year, success: function(result){
         //$("#div1").html(result);
         console.log("Result received !");
@@ -21,9 +21,10 @@ $("#calendarPrev").click(function(){
     }});
 });
 $("#calendarNext").click(function(){
-    console.log("Next");
-    var month = $("#calendar").attr("data-month")+1;
+    var month = $("#calendar").attr("data-month");
+    month++;
     var year = $("#calendar").attr("data-year");
+    console.log("Next ("+month+","+year+")");
     $.ajax({url: "agenda.ctrl.php?ajax&month="+month+"&year="+year, success: function(result){
         //$("#div1").html(result);
         console.log("Result received !");
