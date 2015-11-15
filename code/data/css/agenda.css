@@ -1,5 +1,11 @@
-#calendar td{
+#calendar td {
   height: 50px;
+  vertical-align: middle;
+}
+
+#calendar tbody th {
+  text-align: right;
+  vertical-align: middle;
 }
 
 #calendar td:hover {

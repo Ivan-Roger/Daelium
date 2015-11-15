@@ -25,6 +25,11 @@
       echo("\"calendar\": ");
       echo(json_encode($data['calendar'],JSON_PRETTY_PRINT));
       echo(",\n");
+      echo("\"date\": {\n");
+        echo("\t\"day\": ".date("j").",\n");
+        echo("\t\"month\": ".date("n").",\n");
+        echo("\t\"year\": ".date("Y")."\n");
+      echo("},\n");
       echo("\"monthName\":\"".$mois[$month-1]."\",\n");
       echo("\"month\":".$month.",\n");
       echo("\"year\":".$year."\n");

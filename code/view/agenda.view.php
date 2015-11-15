@@ -10,24 +10,24 @@
     <?php include("../view/include/header.view.php"); ?>
     <section class="col-lg-12">
       <div class="row">
-        <article class="col-lg-5 col-lg-offset-1">
+        <article id="calendarArticle" class="col-lg-5 col-lg-offset-1">
           <div class="panel panel-default">
             <div class="panel-heading text-center">
               <div class='row'>
-                  <div class='col-md-3 col-xs-4'>
-                    <button id="calendarPrev" class='ajax-navigation btn btn-default btn-sm'>
-                      <span class='glyphicon glyphicon-arrow-left'></span>
-                    </button>
-                  </div>
-                  <div class='col-md-6 col-xs-4'><strong id="calendarMonth">Novembre</strong></div>
-                  <div class='col-md-3 col-xs-4 '>
-                    <button id="calendarNext" class='ajax-navigation btn btn-default btn-sm'>
-                      <span class='glyphicon glyphicon-arrow-right'></span>
-                    </button>
-                  </div>
+                <div class='col-md-3 col-xs-4'>
+                  <button id="calendarPrev" class='ajax-navigation btn btn-default btn-sm'>
+                    <span class='glyphicon glyphicon-arrow-left'></span>
+                  </button>
+                </div>
+                <div class='col-md-6 col-xs-4'><strong id="calendarMonth">Novembre</strong></div>
+                <div class='col-md-3 col-xs-4 '>
+                  <button id="calendarNext" class='ajax-navigation btn btn-default btn-sm'>
+                    <span class='glyphicon glyphicon-arrow-right'></span>
+                  </button>
                 </div>
               </div>
-            <div class="panel-body  calendar">
+            </div>
+            <div class="panel-body  calendar" style="height:450px;">
               <table id="calendar" class="table table-bordered col-lg-12 text-center" data-month="<?= $data['month'] ?>" data-year="<?= $data['year'] ?>">
                 <colgroup>
                   <col class="col-lg-1" />
@@ -46,13 +46,13 @@
                   <?php foreach($data['calendar'] as $week) { ?>
                   <tr>
                     <th><?= $week['id'] ?></th>
-                    <td<?php echo(($week['days'][0]>0?($week['days'][0]==$data['today']?" class='active'>".$week['days'][0]:">".$week['days'][0]):" class='not-hover'>")); ?></td>
-                    <td<?php echo(($week['days'][1]>0?($week['days'][1]==$data['today']?" class='active'>".$week['days'][1]:">".$week['days'][1]):" class='not-hover'>")); ?></td>
-                    <td<?php echo(($week['days'][2]>0?($week['days'][2]==$data['today']?" class='active'>".$week['days'][2]:">".$week['days'][2]):" class='not-hover'>")); ?></td>
-                    <td<?php echo(($week['days'][3]>0?($week['days'][3]==$data['today']?" class='active'>".$week['days'][3]:">".$week['days'][3]):" class='not-hover'>")); ?></td>
-                    <td<?php echo(($week['days'][4]>0?($week['days'][4]==$data['today']?" class='active'>".$week['days'][4]:">".$week['days'][4]):" class='not-hover'>")); ?></td>
-                    <td<?php echo(($week['days'][5]>0?($week['days'][5]==$data['today']?" class='active'>".$week['days'][5]:">".$week['days'][5]):" class='not-hover'>")); ?></td>
-                    <td<?php echo(($week['days'][6]>0?($week['days'][6]==$data['today']?" class='active'>".$week['days'][6]:">".$week['days'][6]):" class='not-hover'>")); ?></td>
+                    <td<?php echo(($week['days'][0]>0?($week['days'][0]==$data['today']?" class='info'>".$week['days'][0]:">".$week['days'][0]):" class='not-hover'>")); ?></td>
+                    <td<?php echo(($week['days'][1]>0?($week['days'][1]==$data['today']?" class='info'>".$week['days'][1]:">".$week['days'][1]):" class='not-hover'>")); ?></td>
+                    <td<?php echo(($week['days'][2]>0?($week['days'][2]==$data['today']?" class='info'>".$week['days'][2]:">".$week['days'][2]):" class='not-hover'>")); ?></td>
+                    <td<?php echo(($week['days'][3]>0?($week['days'][3]==$data['today']?" class='info'>".$week['days'][3]:">".$week['days'][3]):" class='not-hover'>")); ?></td>
+                    <td<?php echo(($week['days'][4]>0?($week['days'][4]==$data['today']?" class='info'>".$week['days'][4]:">".$week['days'][4]):" class='not-hover'>")); ?></td>
+                    <td<?php echo(($week['days'][5]>0?($week['days'][5]==$data['today']?" class='info'>".$week['days'][5]:">".$week['days'][5]):" class='not-hover'>")); ?></td>
+                    <td<?php echo(($week['days'][6]>0?($week['days'][6]==$data['today']?" class='info'>".$week['days'][6]:">".$week['days'][6]):" class='not-hover'>")); ?></td>
                   </tr>
                   <?php } ?>
                 </tbody>
@@ -60,10 +60,10 @@
             </div>
           </div>
         </article>
-        <article class="col-lg-5">
+        <article class="col-lg-5" style="height:400px;">
           <div class="panel panel-default">
             <div class="panel-heading">Prochains événements</div>
-            <div class="panel-body evt" style="overflow:auto;height:360px;overflow-x: hidden;">
+            <div class="panel-body evt" style="overflow:auto;height:450px;overflow-x: hidden;">
               <table id="commingNext" class="table table-striped table-hover table-bordered col-lg-12">
                 <colgroup>
                   <col class="text-center col-lg-2" />
