@@ -18,6 +18,8 @@
   $data['monthName'] = $monthName;
   $year = (isset($_GET['year'])?$_GET['year']:date("Y")); // annee
   $data['year'] = $year;
+  $monthLength = getMonthLength($month,$year);
+  $data['mlength'] = $monthLength;
 
   $timestamp = mktime(0,0,0,$month,$day,$year); // timestamp du jour selectionné
 
@@ -40,8 +42,8 @@
       if(isset($_GET['calendar'])) {
       echo("\"calendar\": ");
       echo(json_encode($data['calendar'],JSON_PRETTY_PRINT));
-      echo(",\n");
-      }
+      echo("\n");
+    } else {
       echo("\"date\": {\n");
         echo("\t\"day\": ".date("j").",\n");
         echo("\t\"month\": ".date("n").",\n");
@@ -52,7 +54,9 @@
       echo("\"wday\":\"".$wday."\",\n");
       echo("\"monthName\":\"".$mois[$month-1]."\",\n");
       echo("\"month\":".$month.",\n");
-      echo("\"year\":".$year."\n");
+      echo("\"year\":".$year.",\n");
+      echo("\"monthLength\":".$monthLength."\n");
+    }
     echo("}");
   }
 ?>

@@ -89,17 +89,17 @@
             <div class="panel-heading text-center">
               <div class='row'>
                 <div class='col-md-3 col-xs-4'>
-                  <a class='ajax-navigation btn btn-default btn-sm' href='#'>
+                  <button id="dayPlanPrev" class='ajax-navigation btn btn-default btn-sm'>
                     <span class='glyphicon glyphicon-arrow-left'></span>
-                  </a>
+                  </button>
                 </div>
                 <div class='col-md-6 col-xs-4'>
                   <strong id="dayPlanTitle"><?= $data['wdayName'] ?> <?= $data['day'] ?> <?= $data['monthName'] ?></strong>
                 </div>
                 <div class='col-md-3 col-xs-4 '>
-                  <a class='ajax-navigation btn btn-default btn-sm' href='#'>
+                  <button id="dayPlanNext" class='ajax-navigation btn btn-default btn-sm'>
                     <span class='glyphicon glyphicon-arrow-right'></span>
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
@@ -236,7 +236,8 @@
         <?= $data['wday'] ?>,
         <?= $data['day'] ?>,
         <?= $data['month'] ?>,
-        <?= $data['year'] ?>
+        <?= $data['year'] ?>,
+        <?= $data['mlength'] ?>
       );
     </script>
   </body>

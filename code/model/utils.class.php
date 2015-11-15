@@ -16,15 +16,7 @@
    function calendar($timestamp=null) {
      $timestamp = ($timestamp!=null?$timestamp:mktime(0,0,0,date("n"),1,date("Y")));
      $date = getdate($timestamp);
-     $length=0;
-     if ($date['mon']==2) {
-       $bi = (($date['year']%4 == 0 && $date['year']%100 != 0) || ($date['year']%400 == 0));
-       $length = ( $bi ? 29 : 28 ); // annee bisextile si :    divisible par 4 et non par 100   /OU/   divisible par 400
-     } else if($date['mon']%2 == 0) {
-       $length = 31;
-     } else {
-       $length = 30;
-     }
+     $length=getMonthLength($date['mon'],$date['year']);
      $wday = fr_wday($date['wday']); // conversion des jours de la semaine en FR
      $i=0;
      for ($l=0; $i<($length+$wday); $l++) {
@@ -44,5 +36,17 @@
      $wday = $wday-1; // on décale : de -1(Dimanche) à 5(Samedi)
      $wday = ($wday<0?6:$wday); // si c'est un dimanche (-1) alors 6 sinon on change pas
      return $wday;
+   }
+
+   function getMonthLength($month,$year) {
+     if ($month==2) {
+       $bi = (($year%4 == 0 && $year%100 != 0) || ($year%400 == 0));
+       $length = ( $bi ? 29 : 28 ); // annee bisextile si :    divisible par 4 et non par 100   /OU/   divisible par 400
+     } else if($month%2 == 0) {
+       $length = 31;
+     } else {
+       $length = 30;
+     }
+     return $length;
    }
 ?>

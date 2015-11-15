@@ -11,7 +11,8 @@ function updateCalendar() {
           var day = res.calendar[l].days[c];
           var flags = " class=\"";
           flags += (day<1?" not-hover":""); // ne se grise pas au survol quand la case est vide
-          flags += ((day==res.date.day && AgendaDate.getMonth()==res.date.month && AgendaDate.getYear()==res.date.year)?" info":""); // case du jour grisée
+          var d = new Date();
+          flags += ((AgendaDate.getDay()==day && AgendaDate.getMonth()==d.getMonth()+1 && AgendaDate.getYear()==d.getFullYear())?" info":""); // case du jour grisée
           flags += "\"";
           $("#calendar tbody tr:nth-child("+(l+1)+")").append($("<td"+(flags!=""?flags:"")+">").html((day>0?day:"")));
         }
@@ -22,15 +23,17 @@ function updateCalendar() {
   var AgendaDate = {
     jours: ["Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi","Dimanche"],
     mois: ["Janvier","Fevrier","Mars","Avril","Mai","Juin","Juillet","Aout","Septembre","Octobre","Novembre","Decembre"],
-    set(wday,day,month,year) {
+    set(wday,day,month,year,mlength) {
       $("#calendar").attr("data-wday",wday);
       $("#calendar").attr("data-day",day);
       $("#calendar").attr("data-month",month);
       $("#calendar").attr("data-year",year);
+      $("#calendar").attr("data-mlength",mlength);
       this.update();
     },
     update() {
       $.ajax({url: "agenda.ctrl.php?ajax&day="+AgendaDate.getDay()+"&month="+AgendaDate.getMonth()+"&year="+AgendaDate.getYear(), success: function(res){
+        $("#calendar").attr("data-mlength",res.monthLength);
         $("#calendar").attr("data-wday",res.wday);
         $("#dayPlanTitle").html(AgendaDate.getDayName()+" "+AgendaDate.getDay()+" "+AgendaDate.getMonthName());
         updateCalendar();
@@ -71,6 +74,23 @@ function updateCalendar() {
           $("#calendar").attr("data-month",this.getMonth()+1);
         console.log("Next");
         this.update();
+    },
+    prevDay() {
+        if (this.getMonth()==12) {
+          $("#calendar").attr("data-month",1);
+        } else
+          $("#calendar").attr("data-month",this.getMonth()+1);
+        console.log("Next");
+        this.update();
+    },
+    nextDay() {
+        if (this.getMonth()==12) {
+          $("#calendar").attr("data-month",1);
+          $("#calendar").attr("data-year",this.getYear()+1);
+        } else
+          $("#calendar").attr("data-month",this.getMonth()+1);
+        console.log("Next");
+        this.update();
     }
   }
 
@@ -80,3 +100,11 @@ function updateCalendar() {
   $("#calendarNext").click(function(){
     AgendaDate.nextMonth();
   });
+  /*
+  $("#dayPlanPrev").click(function(){
+    AgendaDate.prevDay();
+  });
+  $("#dayPlanNext").click(function(){
+    AgendaDate.nextDay();
+  });
+  */
