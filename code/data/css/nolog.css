@@ -1,8 +1,5 @@
 body, html {
-      /*height: 100%;
-    background-repeat: no-repeat;
-    background-image: url(../view/img/fotolia_musique.jpg);
-    background-size: cover;*/
+  height: 100%;
 }
 
 #welcome-text {
@@ -22,10 +19,22 @@ footer {
     background-color: #f5f5f5;
 }
 
+.carousel {
+  height: calc(100% - 50px);
+  /*margin-bottom: 60px;*/
+}
+
+.carousel-inner {
+  height: calc(100%);
+}
 
 .carousel-inner > .item{
-  height: 500px;
+  height: 100%;
   background-color: #727272;
+  /**/
+  background-image: url(../img/fotolia_musique.jpg);
+  background-size: cover;
+  background-position: center;/**/
   /*background: -webkit-linear-gradient(left,#727272,#B6B6B6,#727272);*/
   /* For Opera 11.1 to 12.0 */
   /*background: -o-linear-gradient(left,#727272,#B6B6B6,#727272);*/
@@ -34,11 +43,75 @@ footer {
   /* Standard syntax */
 /*background: linear-gradient(to right, #727272,#B6B6B6,#727272);*/
 }
-.carousel{
-margin-bottom: 60px;
+
+.btn-down {
+  height: 50px;
+  width: 100%;
+  background-color: #CCC;
+}
+
+.btn-down:hover {
+  background: linear-gradient(to left,#999,#AAA,#CCC,#AAA,#999);
+}
+
+.btn-down a {
+  color: #333;
+  text-shadow: 1px 0px #555;
+  padding-top: 5px;
+  font-size: 25px;
+  width: 100%;
+  height: 100%;
+  display: block;
+  text-align: center;
+}
+
+.btn-down a:hover {
+  text-decoration: none;
+  text-shadow: none;
+}
+
+.btn-down a:focus {
+  text-decoration: none;
 }
 
 .marketing .col-lg-4 {
-    margin-bottom: 20px;
-    text-align: center;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.marketing .img-circle {
+  height: 140px;
+  width: 140px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 30px;
+  background-color: #454545;
+}
+
+span.icon-img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+  height: 70%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+span.icon-img.icon-tools2 {
+  background-image: url(../img/icons/tools-2_64px.png);
+}
+
+span.icon-img.icon-gift {
+  background-image: url(../img/icons/gift_64px.png);
+}
+
+span.icon-img.icon-adjustments {
+  background-image: url(../img/icons/adjustments_64px.png);
+}
+
+/* Not working ><' */
+.marketing caption.on-pic {
+  position: relative;
+  bottom: 250px;
 }
