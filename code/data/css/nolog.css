@@ -2,16 +2,6 @@ body, html {
   height: 100%;
 }
 
-#welcome-text {
-  margin-top: 50px;
-  background-color: rgba(200,200,200,0.4);
-  color: #222;
-}
-
-#welcome-text blockquote {
-  font-size: 25px;
-}
-
 footer {
     position: absolute;
     bottom: 0px;
@@ -74,9 +64,20 @@ footer {
   text-decoration: none;
 }
 
-.marketing .col-lg-4 {
+#navbar {
+  z-index: 100;
+  width: 100%;
+  height: 50px;
+}
+
+#navbarOrg {
+  height: 0px;
+  overflow: hidden;
+}
+
+.marketing {
+  padding-top: 50px;
   margin-bottom: 20px;
-  text-align: center;
 }
 
 .marketing .img-circle {
@@ -108,10 +109,4 @@ span.icon-img.icon-gift {
 
 span.icon-img.icon-adjustments {
   background-image: url(../img/icons/adjustments_64px.png);
-}
-
-/* Not working ><' */
-.marketing caption.on-pic {
-  position: relative;
-  bottom: 250px;
 }
