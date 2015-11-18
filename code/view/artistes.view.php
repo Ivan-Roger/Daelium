@@ -23,6 +23,7 @@
         <a href="#" class="thumbnail">
           <img src="../data/users/users1/coverartistes/toy.jpg" alt="...">
         </a>
+        lol
         </div>
 
     </div>
