@@ -1,6 +1,6 @@
 # Daelium
 
-Pour partager des infos etc ... -> **[Wiki](https://github.com/Ivan-Roger/Daelium/wiki)**
+Pour plus d'infos : -> **[Wiki](https://github.com/Ivan-Roger/Daelium/wiki)**
 
 ## Infos générales :
 
@@ -8,22 +8,19 @@ Pour partager des infos etc ... -> **[Wiki](https://github.com/Ivan-Roger/Daeliu
 - **Itération 2** : Au boulot !!! (rendu le 23 novembre)
 - **Itération 3** : Rendu le 8 janvier
 
-## To do list :
+## Dossiers ##
 
-**Dossier** : (cf. Matthieu) voir sur le [Drive](https://drive.google.com/drive/folders/0B8FNnn9e9RjAemg4TGNnbXY3RTQ)
+* UML - Tout ce qui concerne la conception
+* doc - Documentation sur les differents points du projet
+* code - Code du site etc ...
 
-Tout le monde doit connaitre le dossier et le fonctionement / choix techniques !
+## Contributeurs ##
 
-- ...
+* Florian INARD (Chef de projet)
+* Mathias NOVEL
+* Maxime GERMAIN
+* Matthieu VIVIER
+* Etienne BARBIER
+* Ivan ROGER
 
-
-**Vues** :
-
-- Accueil (Suggestion et News, se mettre d'accord)
-- Profil (TOUT)
-- Documents  (TOUT)
-- Messagerie (Look + recherche)
-- Annuaire (Tab pour séléctionner par type + recherche) 
-- Mes artistes (Presque TOUT)
-- Mes evenements (TOUT -> Liste des evenements d'une personnes + création)
-- Agenda (fixer le titre des collones dans les tableaux)
+## [To do list](https://github.com/Ivan-Roger/Daelium/wiki#to-do-list-)
