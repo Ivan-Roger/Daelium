@@ -1,5 +1,7 @@
 # Daelium
 
+Pour partager des infos etc ... -> **[Wiki](https://github.com/Ivan-Roger/Daelium/wiki)**
+
 ## Infos générales :
 
 - **Itération 1** : Ok
