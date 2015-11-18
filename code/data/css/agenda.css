@@ -32,3 +32,13 @@
 table tbody td.active {
   background-color: #EEE;
 }
+
+#sanspadding .table{
+  margin-bottom: 0px;
+}
+#sanspadding {
+    padding: 0px;
+}
+#sanspadding .table tbody:last-child{
+  border-bottom: 1px solid #ddd;
+}

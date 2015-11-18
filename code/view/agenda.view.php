@@ -27,7 +27,7 @@
                 </div>
               </div>
             </div>
-            <div class="panel-body  calendar" style="height:450px;">
+            <div id="sanspadding"class="panel-body table-responsive calendar" style="height:450px;">
               <table id="calendar" class="table table-bordered col-lg-12 text-center" data-day="<?= $data['day'] ?>" data-month="<?= $data['month'] ?>" data-year="<?= $data['year'] ?>">
                 <colgroup>
                   <col class="col-lg-1" />
@@ -65,7 +65,7 @@
         <article class="col-lg-5" style="height:400px;">
           <div class="panel panel-default">
             <div class="panel-heading">Prochains événements</div>
-            <div class="panel-body evt" style="overflow:auto;height:450px;overflow-x: hidden;">
+            <div id="sanspadding" class="panel-body table-responsive evt" style="overflow:auto;height:450px;overflow-x: hidden;">
               <table id="commingNext" class="table table-striped table-hover table-bordered col-lg-12">
                 <colgroup>
                   <col class="text-center col-lg-2" />
@@ -103,7 +103,7 @@
                 </div>
               </div>
             </div>
-            <div class="panel-body" style="overflow:auto;height:605px;overflow-x: hidden;">
+            <div id="sanspadding" class="panel-body table-responsive" style="overflow:auto;height:605px;overflow-x: hidden;">
               <table id="dayPlan" class="table table-hover table-striped table-bordered col-lg-12">
                 <thead>
                   <tr><th class="col-lg-1 text-right">Heure</th><th class="col-lg-11">Evenements</th></tr>
