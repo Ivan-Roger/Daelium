@@ -1,0 +1,9 @@
+#list{
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+
+tbody > tr:first-of-type > td{
+  border-top: 0px solid ;
+}
