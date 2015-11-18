@@ -16,6 +16,8 @@
           <li<?php echo($data['page']=="Agenda"?" class='active'":"") ?>><a href="../controler/agenda.ctrl.php"><span class="glyphicon glyphicon-calendar"></span> Agenda</a></li>
           <li<?php echo($data['page']=="Messages"?" class='active'":"") ?>><a href="../controler/messages.ctrl.php"><span class="glyphicon glyphicon-envelope"></span> Messagerie</a></li>
           <li<?php echo($data['page']=="List"?" class='active'":"") ?>><a href="../controler/list.ctrl.php"><span class="glyphicon glyphicon-list-alt"></span> Annuaire</a></li>
+          <li<?php echo($data['page']=="Artistes"?" class='active'":"") ?>><a href="../controler/artistes.ctrl.php"><span class="glyphicon glyphicon-music"></span> Mes artistes</a></li>
+          <li<?php echo($data['page']=="Evenements"?" class='active'":"") ?>><a href="../controler/evenements.ctrl.php"><span class="glyphicon glyphicon-folder-open"></span> Mes evenements</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <!-- Menu de l'uilisateur-->
