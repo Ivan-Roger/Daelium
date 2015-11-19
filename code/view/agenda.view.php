@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../data/css/bootstrap.css">
     <link rel="stylesheet" href="../data/css/agenda.css">
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <title>Dælium - Agenda</title>
   </head>
   <body>
@@ -133,17 +134,17 @@
                 <div class="form-inline">
                   <label class="col-lg-2" for="eventBeginingDate">Début</label>
                   <div class="col-lg-4 input-group">
-                    <input id="eventBeginingDate" name="eventBeginingDate" class="form-control" placeholder="Date" readonly/>
+                    <input id="eventBeginingDate" name="eventBeginingDate" class="form-control" placeholder="Date"/>
                     <!-- je sugere ici de faire un type date -->
-                    <div class="input-group-btn">
-                      <button class="btn btn-default"><span class="glyphicon glyphicon-calendar"></span></button>
+                    <div class="input-group-addon">
+                      <span class="glyphicon glyphicon-calendar"></span>
                     </div>
                   </div>
                   <div class="col-lg-4 input-group">
                     <input id="eventBeginingHour" name="eventBeginingFour" class="form-control" placeholder="Heure" readonly/>
                     <!-- je sugere ici de faire un type time -->
-                    <div class="input-group-btn">
-                      <button class="btn btn-default"><span class="glyphicon glyphicon-time"></span></button>
+                    <div class="input-group-addon">
+                      <span class="glyphicon glyphicon-time"></span>
                     </div>
                   </div>
                 </div>
@@ -152,15 +153,15 @@
                 <div class="form-inline">
                   <label class="col-lg-2" for="eventEndingDate">Fin</label>
                   <div class="col-lg-4 input-group">
-                    <input id="eventEndingDate" name="eventEndingDate" class="form-control" placeholder="Date" readonly/>
-                    <div class="input-group-btn">
-                      <button class="btn btn-default"><span class="glyphicon glyphicon-calendar"></span></button>
+                    <input id="eventEndingDate" name="eventEndingDate" class="form-control" placeholder="Date"/>
+                    <div class="input-group-addon">
+                      <span class="glyphicon glyphicon-calendar"></span>
                     </div>
                   </div>
                   <div class="col-lg-4 input-group">
                     <input id="eventEndingHour" name="eventEndingFour" class="form-control" placeholder="Heure" readonly/>
-                    <div class="input-group-btn">
-                      <button class="btn btn-default"><span class="glyphicon glyphicon-time"></span></button>
+                    <div class="input-group-addon">
+                      <span class="glyphicon glyphicon-time"></span>
                     </div>
                   </div>
                 </div>
@@ -229,9 +230,12 @@
     </section>
     <?php include("../view/include/footer.view.php"); ?>
     <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <script src="../data/js/bootstrap.min.js"></script>
     <script src="../data/js/agenda.js"></script>
     <script>
+      $("#eventBeginingDate").datepicker();
+      $("#eventEndingDate").datepicker();
       AgendaDate.set(
         <?= $data['wday'] ?>,
         <?= $data['day'] ?>,

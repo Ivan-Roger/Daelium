@@ -1,5 +1,3 @@
-<a href="../controler/<?php echo basename($_SERVER['PHP_SELF']); ?>?type=booker">booker </a>
-<a href="../controler/<?php echo basename($_SERVER['PHP_SELF']); ?>?type=organisateur">organisateur</a>
   <header class="page-header">
     <div id="top">
       <h1>Dælium <small>Le site des échanges musicaux</small></h1>
@@ -11,27 +9,25 @@
         </div>
         <!-- Menu des differentes section du site  plus module de recherche-->
         <ul class="nav navbar-nav">
-          <li<?php echo($data['page']=="Home"?" class='active'":"") ?>><a href="../controler/main.ctrl.php"><span class="glyphicon glyphicon-home"></span> Accueil</a></li>
+          <li<?php echo($data['page']=="Main"?" class='active'":"") ?>><a href="../controler/main.ctrl.php"><span class="glyphicon glyphicon-home"></span> Accueil</a></li>
           <li<?php echo($data['page']=="Profile"?" class='active'":"") ?>><a href="../controler/profile.ctrl.php"><span class="glyphicon glyphicon-user"></span> Profil</a></li>
           <li<?php echo($data['page']=="Documents"?" class='active'":"") ?>><a href="../controler/documents.ctrl.php"><span class="glyphicon glyphicon-file"></span> Documents</a></li>
           <li<?php echo($data['page']=="Agenda"?" class='active'":"") ?>><a href="../controler/agenda.ctrl.php"><span class="glyphicon glyphicon-calendar"></span> Agenda</a></li>
           <li<?php echo($data['page']=="Messages"?" class='active'":"") ?>><a href="../controler/messages.ctrl.php"><span class="glyphicon glyphicon-envelope"></span> Messagerie</a></li>
           <li<?php echo($data['page']=="List"?" class='active'":"") ?>><a href="../controler/list.ctrl.php"><span class="glyphicon glyphicon-list-alt"></span> Annuaire</a></li>
-<?php if((isset($_GET["type"]) && $_GET["type"] == "booker") || ! isset($_GET["type"])){ ?>
-          <li<?php echo($data['page']=="Artistes"?" class='active'":"") ?>><a href="../controler/artistes.ctrl.php"><span class="glyphicon glyphicon-music"></span> Mes artistes</a></li>
-<?php }
-if(isset($_GET["type"]) && $_GET["type"] == "organisateur"){ ?>
-          <li<?php echo($data['page']=="Evenements"?" class='active'":"") ?>><a href="../controler/evenements.ctrl.php"><span class="glyphicon glyphicon-folder-open"></span> Mes evenements</a></li>
-<?php }?>
+          <?php if($data["type"] == "booker") { ?>
+            <li<?php echo($data['page']=="Artistes"?" class='active'":"") ?>><a href="../controler/artistes.ctrl.php"><span class="glyphicon glyphicon-music"></span> Mes artistes</a></li>
+          <?php } else { ?>
+            <li<?php echo($data['page']=="Evenements"?" class='active'":"") ?>><a href="../controler/evenements.ctrl.php"><span class="glyphicon glyphicon-folder-open"></span> Mes evenements</a></li>
+          <?php }?>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <!-- Menu de l'uilisateur-->
           <li id="settings" class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-cog"></span> Paramétres <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
+              <li><a href="../controler/main.ctrl.php?type=booker&next=<?= $data['page'] ?>">Booker</a></li>
+              <li><a href="../controler/main.ctrl.php?type=organisateur&next=<?= $data['page'] ?>">Organisateur</a></li>
               <li role="separator" class="divider"></li>
               <li><a href="#">Separated link</a></li>
               <li role="separator" class="divider"></li>
@@ -41,7 +37,7 @@ if(isset($_GET["type"]) && $_GET["type"] == "organisateur"){ ?>
           <li id="profile" class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> Compte <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="#">Voir le profil</a></li>
+              <li><a href="../controler/profile.ctrl.php">Voir le profil</a></li>
               <li role="separator" class="divider"></li>
               <li><a href="../view/nolog.view.php"><span class="glyphicon glyphicon-off"></span> Déconnexion</a></li>
             </ul>

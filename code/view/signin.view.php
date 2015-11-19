@@ -16,7 +16,7 @@
             <hr/>
             <p class="social" ><a href="#"><img src="../data/img/google_signIn.png" /></a></p>
             <hr/>
-            <form class="form-signin">
+            <form class="form-signin" method="POST" action="../controler/connexion.ctrl.php">
                 <span id="reauth-email" class="reauth-email"></span>
                 <input type="email" id="inputEmail" class="form-control" placeholder="Adresse mail" required autofocus>
                 <input type="password" id="inputPassword" class="form-control" placeholder="Mot de passe" required>

@@ -7,5 +7,10 @@
 
   $data['page']="List";
 
+  if (isset($_SESSION['userType']))
+    $data['type'] = $_SESSION['userType'];
+  else
+    $data['type'] = "Booker";
+
   include("../view/list.view.php");
 ?>

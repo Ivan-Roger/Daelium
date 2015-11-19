@@ -4,6 +4,11 @@
   $jours = array("Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi","Dimanche");
   $mois = array("Janvier","Fevrier","Mars","Avril","Mai","Juin","Juillet","Aout","Septembre","Octobre","Novembre","Decembre");
 
+  if (isset($_SESSION['userType']))
+    $data['type'] = $_SESSION['userType'];
+  else
+    $data['type'] = "Booker";
+
   $data['alert']['type'] = "danger";
   $data['alert']['icon'] = "exclamation-sign";
   $data['alert']['message'] = "Site en cours de construction ... Risques d'erreurs ><'";
@@ -36,7 +41,7 @@
 
   if (!isset($_GET['ajax'])) // affichage normal
     include("../view/agenda.view.php");
-  else { // retour en JSON pour les requetes AJAX
+  else { // retour en JSON pour les requetes AJAX (a supprimer ici et traduire coté client (JS))
     header("Content-Type:"."application/json");
     echo("{\n");
       if(isset($_GET['calendar'])) {

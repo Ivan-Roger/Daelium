@@ -8,6 +8,7 @@
   <body>
     <?php include("../view/include/header.view.php"); ?>
     <section class="col-lg-12">
+      <h1>A FAIRE !!!</h1>
       <p>Mes evenements ...</p>
     </section>
     <?php include("../view/include/footer.view.php"); ?>

@@ -7,5 +7,10 @@
 
   $data['page']="Artistes";
 
+  if (isset($_SESSION['userType']))
+    $data['type'] = $_SESSION['userType'];
+  else
+    $data['type'] = "Booker";
+
   include("../view/artistes.view.php");
 ?>

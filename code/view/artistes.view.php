@@ -9,23 +9,22 @@
   <?php include("../view/include/header.view.php"); ?>
   <section class="col-lg-offset-1 col-lg-10">
     <div class="row">
-      <div class="col-xs-6 col-md-3">
-        <a href="#" class="thumbnail">
-          <img src="../data/users/users1/coverartistes/doogg.jpg" alt="...">
-        </a>
+      <h1>A FAIRE !!!</h1>
+      <div class="col-xs-1">
+          <a href="#" class="thumbnail">
+            <img src="../data/users/icons/User_64.png" alt="...">
+          </a>
         </div>
-        <div class="col-xs-6 col-md-3">
-        <a href="#" class="thumbnail">
-          <img src="../data/users/users1/coverartistes/mgims.jpg" alt="...">
-        </a>
+        <div class="col-xs-1">
+          <a href="#" class="thumbnail">
+            <img src="../data/users/icons/User_64.png" alt="...">
+          </a>
         </div>
-        <div class="col-xs-6 col-md-3">
-        <a href="#" class="thumbnail">
-          <img src="../data/users/users1/coverartistes/toy.jpg" alt="...">
-        </a>
-        lol3
+        <div class="col-xs-1">
+          <a href="#" class="thumbnail">
+            <img src="../data/users/icons/toy.jpg" alt="...">
+          </a>
         </div>
-
     </div>
   </section>
   <?php include("../view/include/footer.view.php"); ?>

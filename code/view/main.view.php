@@ -9,7 +9,7 @@
     <?php include("../view/include/header.view.php"); ?>
     <section class="container">
       <div class="jumbotron">
-        <h1>Bienvenue !</h1>
+        <h1>Bienvenue ! A FAIRE !!!</h1>
         <p>Bienvenue sur Dælium, le site est actuellement en construction ...</p>
         <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
       </div>

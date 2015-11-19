@@ -1,8 +1,6 @@
 <?php
   session_start();
 
-  if (isset($_SESSION['user']))
-    header("Location:"."..");
-
-  include("../view/WIP.view.php");
+  //if (isset($_SESSION['user']))
+    header("Location:"."../controler/main.ctrl.php");
 ?>
