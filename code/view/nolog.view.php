@@ -20,7 +20,7 @@
           <!--<img src="../data/img/fotolia_musique.jpg" style="position: relative; bottom: 500px;"/>-->
           <div class="carousel-caption">
             <h1>Bienvenue sur <b>Dælium</b></h1>
-            <p>Bienvenue sur le site de gestion musical.</p>
+            <p>Bienvenue sur le site de gestion musical. Oui je vais mettre la barre en haut !</p>
           </div>
         </div>
         <div class="slide-full item">
