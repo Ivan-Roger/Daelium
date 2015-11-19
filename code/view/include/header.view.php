@@ -1,4 +1,5 @@
-
+<a href="../controler/<?php echo basename($_SERVER['PHP_SELF']); ?>?type=booker">booker </a>
+<a href="../controler/<?php echo basename($_SERVER['PHP_SELF']); ?>?type=organisateur">organisateur</a>
   <header class="page-header">
     <div id="top">
       <h1>Dælium <small>Le site des échanges musicaux</small></h1>
@@ -16,8 +17,12 @@
           <li<?php echo($data['page']=="Agenda"?" class='active'":"") ?>><a href="../controler/agenda.ctrl.php"><span class="glyphicon glyphicon-calendar"></span> Agenda</a></li>
           <li<?php echo($data['page']=="Messages"?" class='active'":"") ?>><a href="../controler/messages.ctrl.php"><span class="glyphicon glyphicon-envelope"></span> Messagerie</a></li>
           <li<?php echo($data['page']=="List"?" class='active'":"") ?>><a href="../controler/list.ctrl.php"><span class="glyphicon glyphicon-list-alt"></span> Annuaire</a></li>
+<?php if((isset($_GET["type"]) && $_GET["type"] == "booker") || ! isset($_GET["type"])){ ?>
           <li<?php echo($data['page']=="Artistes"?" class='active'":"") ?>><a href="../controler/artistes.ctrl.php"><span class="glyphicon glyphicon-music"></span> Mes artistes</a></li>
+<?php }
+if(isset($_GET["type"]) && $_GET["type"] == "organisateur"){ ?>
           <li<?php echo($data['page']=="Evenements"?" class='active'":"") ?>><a href="../controler/evenements.ctrl.php"><span class="glyphicon glyphicon-folder-open"></span> Mes evenements</a></li>
+<?php }?>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <!-- Menu de l'uilisateur-->
