@@ -49,4 +49,11 @@
      }
      return $length;
    }
+
+   function newAlert($message,$type="info",$icon="") {
+     $data['type'] = $type;
+     $data['icon'] = $icon;
+     $data['message'] = $message;
+     return $data;
+   }
 ?>

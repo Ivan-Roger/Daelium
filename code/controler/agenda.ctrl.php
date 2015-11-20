@@ -9,9 +9,7 @@
   else
     $data['type'] = "Booker";
 
-  $data['alert']['type'] = "danger";
-  $data['alert']['icon'] = "exclamation-sign";
-  $data['alert']['message'] = "Site en cours de construction ... Risques d'erreurs ><'";
+  $data['alert'][] = newAlert("Site en cours de construction ... Risques d'erreurs ><'","danger","exclamation-sign");
 
   $data['page']="Agenda";
 
