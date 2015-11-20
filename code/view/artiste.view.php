@@ -4,14 +4,32 @@
   <meta charset="utf-8" />
   <link rel="stylesheet" href="../data/css/bootstrap.css">
   <link rel="stylesheet" href="../data/css/artistes.css">
-  <title>Dælium - Artiste - <?= $data["artiste"]?></title>
+  <title>Dælium - Artiste - <?= $data["artiste"]['nomscene']?></title>
 </head>
 <body>
   <?php include("../view/include/header.view.php"); ?>
   <section class="col-lg-offset-1 col-lg-10">
     <?php if($data["vue"] == "fiche"){ ?>
-      <h1>Fiche de <?= $data["artiste"] ?></h1>
 
+      <h2><?= $data["artiste"]['prenom'].'  '.$data["artiste"]['nom'] ?></h2><br>
+      <p>Nom de scene <?= $data["artiste"]['nomscene'] ?></p><br>
+      <p>Né le <?= $data["artiste"]['dateNaissance'] ?></p><br>
+      <p>Téléphone <?= $data["artiste"]['telephone'] ?></p><br>
+      <p>Adresse <?= $data["artiste"]['adresse'] ?></p><br>
+      <p>Paiement par
+      <?php if (isset($data["IBAN"])) { ?>
+        virement IBAN : <?php $data["artiste"]["IBAN"] ?></p>
+      <?php } else if (isset($data["ordre"])) { ?>
+        chèque à l'ordre : <?php $data["artiste"]["ordre"] ?></p>
+      <?php } else { ?>
+        espèce</p>
+      <?php } ?>
+      <br>
+
+      <a class ="btn btn-primary" href="#"> Voir fiche </a>
+      <a class ="btn btn-warning" href="#"> Modifier </a>
+      <a class ="btn btn-danger" href="#"> Suprimer </a>
+      <a class ="btn btn-default" href="../controler/artistes.ctrl.php"> Retour </a>
 
 
 

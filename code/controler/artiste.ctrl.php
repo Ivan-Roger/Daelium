@@ -1,5 +1,6 @@
 <?php
   session_start();
+  //include_once("../model/Artist.class.php");
 
   $data['alert']['type'] = "danger";
   $data['alert']['icon'] = "exclamation-sign";
@@ -8,8 +9,29 @@
   $data['page']="Artiste";
 
   if(isset($_GET['artiste'])){
-    $data['artiste'] =$_GET['artiste'];
+    //$artiste = new Artist($_GET['artiste']);
+
+    $data['artiste']['nomscene'] ="Le petit père des peuples";
+    $data['artiste']['prenom'] = "Joseph";
+    $data['artiste']['nom'] = "Staline";
+    $data['artiste']['dateNaissance'] = "18 décembre 1878";
+    $data['artiste']['Email'] = "JoJoLaFripouille@URSS.net";
+    $data['artiste']['telephone'] = "04 78 90 26 54";
+    $data['artiste']['adresse'] = "55° 45′ 09″ Nord 37° 37′ 02″ Est";
+    $data['artiste']['paiement'] = "Espece";
+    $data['artiste']['IBAN'] = NULL;
+    $data['artiste']['ordre'] = NULL;
+
     $data['vue']="fiche";
+
+
+
+
+
+
+
+
+
     //envoi les donner pour un artiste
   }elseif(isset($_GET['action']) && $_GET['action']=="new"){
     $data['artiste'] = "new";
