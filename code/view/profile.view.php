@@ -10,9 +10,9 @@
     <section class="col-lg-12">
 
       <h1> Informations personnelles : </h1>
-      <div class="col-sm-2">
-        <img src="../data/img/Avatar.jpg" alt="Image de Profil">
-      </div>
+      <div class="row"><div class="col-sm-2 col-sm-offset-1">
+        <img src="../data/users/icons/User_64.png" alt="Image de Profil">
+      </div></div>
 
       <form class="form-horizontal">
 
