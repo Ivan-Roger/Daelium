@@ -41,7 +41,7 @@
               <div class="carousel-caption">
                 <h1>Another example headline.</h1>
                 <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                <p><a class="btn btn-lg btn-primary" href="#navbar" role="button">Learn more</a></p>
+                <p><a id="sliderButton" class="btn btn-lg btn-primary" href="#navbar" role="button">Je veux en savoir plus !</a></p>
               </div>
             </div>
           </div>
@@ -58,7 +58,7 @@
         </div>
       </div>
       <div class="btn-down container-fluid">
-        <a href="#contentAnchor" class="">Lire ...</a>
+        <a href="#navbar" class="">Lire ...</a>
       </div>
     </div>
 
@@ -110,7 +110,7 @@
     <?php include("../view/include/footer.view.php"); ?>
     <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="../data/js/bootstrap.min.js"></script>
-    <script src="../data/js/jquery.parallax.min.js"></script>
+    <script src="../data/js/jquery.scrollTo.min.js"></script>
     <script src="../data/js/nolog.js"></script>
   </body>
 </html>

@@ -1,9 +1,9 @@
-  <header class="page-header">
+  <header class="page-header" style="margin: 0px; border: none;">
     <div id="top">
-      <h1>Dælium <small>Le site des échanges musicaux</small></h1>
+      <!--<h1>Dælium <small>Le site des échanges musicaux</small></h1>
       <!-- Logo du site , tritre description -->
     </div>
-      <nav class="nav navbar-default container-fluid">
+      <nav class="nav navbar-default container-fluid" style="height: 50px; position: fixed; width: 100%; z-index: 20;">
         <div class="navbar-header">
           <img src="../data/img/D.png" alt="LogoSite" style="height:50px;">
         </div>
@@ -66,6 +66,7 @@
         </form>
       </nav>
   </header>
+  <div style="height:50px;"></div>
   <?php foreach ($data['alert'] as $alert) { ?>
     <p class="alert alert-<?= $alert['type'] ?> alert-dismissible"><span class="glyphicon glyphicon-<?= $alert['icon'] ?>"></span> <?= $alert['message'] ?> <button class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></p>
   <?php } ?>

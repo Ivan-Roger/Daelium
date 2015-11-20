@@ -12,4 +12,7 @@ function attachNavbar() {
   }
 }
 
-$("#carousel").parallax({xparralax: false});
+//$("#carousel").parallax({xparralax: false});
+$("#sliderButton, .btn-down").click(function() {
+  $.scrollTo('#contentAnchor',400);
+});

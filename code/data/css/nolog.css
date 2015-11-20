@@ -95,6 +95,10 @@ nav {
   background-color: #454545;
 }
 
+.marketing .img-circle:hover {
+  box-shadow: 0px 0px 3px 3px #959595;
+}
+
 span.icon-img {
   display: block;
   margin-left: auto;

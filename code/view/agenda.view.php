@@ -104,15 +104,15 @@
                 </div>
               </div>
             </div>
-            <div id="sanspadding" class="panel-body table-responsive" style="overflow:auto;height:605px;overflow-x: hidden;">
+            <div id="sanspadding" class="panel-body table-responsive" style="height:605px;">
               <table id="dayPlan" class="table table-hover table-striped table-bordered col-lg-12">
                 <thead>
                   <tr><th class="col-lg-1 text-right">Heure</th><th class="col-lg-11">Evenements</th></tr>
                 </thead>
-                <tbody>
+                <tbody class="overflow:auto;overflow-x: hidden;">
                   <?php for($i=1 ; $i<=24 ; $i++){ ?>
                     <tr><td class="text-center" ><?= $i ?>h</td><td></td></tr>
-                    <?php } ?>
+                  <?php } ?>
                 </tbody>
               </table>
             </div>

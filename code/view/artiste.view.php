@@ -61,7 +61,7 @@
 
         <label class="col-md-2" for="name">Image de couverture</label>
         <div class="col-md-10">
-          <input type="file" id="num" name="name" class="form-control" value="1"/>
+          <input type="file" id="num" name="name" class="" value="1"/>
         </div>
       </div>
     </div>

@@ -28,7 +28,7 @@
           <tr class="info"><td>Henri</td><td>Festival du lac</td><td>7 Nov</td></tr>
           <tr class="info"><td>Louise</td><td>Préparation scène</td><td>24 Sep</td></tr>
           <tr class="info"><td>Jean</td><td>Bonjour</td><td>11 Sep</td></tr>
-          <tr class="active"><td>Laurianne</td><td>Annulation</td><td>5 Sep</td></tr>
+          <tr class="warning"><td>Laurianne</td><td>Annulation</td><td>5 Sep</td></tr>
           <tr><td>Marie</td><td>Achat</td><td>1 Sep</td></tr>
         </tobdy>
         </table>
