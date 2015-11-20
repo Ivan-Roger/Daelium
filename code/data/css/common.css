@@ -1,0 +1,51 @@
+header.page-header {
+  padding: 0px;
+}
+
+header > nav {
+  height: 50px;
+  position: fixed;
+  width: 100%;
+  z-index: 20;
+}
+
+.alerts {
+  padding-top: 20px;
+  width: 100%;
+  z-index: 20;
+  position: fixed;
+}
+
+.alerts .alert {
+  width: 50px;
+  height: 53px;
+  overflow: hidden;
+  border-left: none;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
+.alerts .alert > span.text, .alerts .alert > button {
+  display: none;
+}
+
+.alerts .alert:hover {
+  width: 100%;
+  border-left: none;
+  border-radius: 0px;
+  border-right: none;
+}
+
+.alerts .alert:hover > span.text, .alerts .alert:hover > button {
+  display: inline;
+}
+
+.full {
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+}
+
+.glyphicon {
+  margin-right: 7px;
+}

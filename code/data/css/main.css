@@ -1,0 +1,14 @@
+#welcome {
+  box-shadow: 0px 0px 0px #FFF, 0px -3px 3px #858585 inset;
+}
+
+.page-content {
+  padding-top: 20px;
+  background-color: #FFF;
+  z-index: 1;
+  width: 100%;
+}
+
+.carousel-inner .item {
+  height: 400px;
+}
