@@ -12,4 +12,4 @@ function attachNavbar() {
   }
 }
 
-$("#")
+$("#carousel").parallax({xparralax: false});

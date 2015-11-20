@@ -1,10 +1,9 @@
 <?php
   session_start();
   //include_once("../model/Artist.class.php");
+  require_once("../model/utils.class.php");
 
-  $data['alert']['type'] = "danger";
-  $data['alert']['icon'] = "exclamation-sign";
-  $data['alert']['message'] = "Site en cours de construction ... Risques d'erreurs ><'";
+  $data['alert'][] = newAlert("Site en cours de construction ... Risques d'erreurs ><'","danger","exclamation-sign");
 
   $data['page']="Artiste";
 

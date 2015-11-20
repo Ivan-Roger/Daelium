@@ -7,7 +7,7 @@
     <title>Dælium</title>
   </head>
   <body><!-- onscroll="attachNavbar()" -->
-    <div id="Welcome-page">
+    <div id="welcome-page">
       <nav id="navbar" class="container-fluid nav navbar-default">
         <div class="navbar-header">
           <img src="../data/img/D.png" alt="LogoSite" style="height:50px;"/>
@@ -19,7 +19,7 @@
             <a href="signup.view.php" type="button" class="btn btn-warning">Je m'inscrit maintenant !</a>
         </form>
       </nav>
-      <div class="carousel">
+      <div id="carousel">
         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
           <!-- Indicators -->
           <ol class="carousel-indicators">
@@ -58,11 +58,11 @@
         </div>
       </div>
       <div class="btn-down container-fluid">
-        <a href="#navbar" class="">Lire ...</a>
+        <a href="#contentAnchor" class="">Lire ...</a>
       </div>
     </div>
 
-    <div id="navbarOrg">.</div>
+    <div id="contentAnchor">.</div>
 
     <div class="container marketing">
       <div class="row">
@@ -110,7 +110,7 @@
     <?php include("../view/include/footer.view.php"); ?>
     <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="../data/js/bootstrap.min.js"></script>
-    <script src="../data/js/jquery.parralax.min.js"></script>
+    <script src="../data/js/jquery.parallax.min.js"></script>
     <script src="../data/js/nolog.js"></script>
   </body>
 </html>

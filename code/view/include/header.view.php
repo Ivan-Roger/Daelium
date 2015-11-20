@@ -26,8 +26,20 @@
           <li id="settings" class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-cog"></span> Paramétres <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="../controler/main.ctrl.php?type=booker&next=<?= $data['page'] ?>">Booker</a></li>
-              <li><a href="../controler/main.ctrl.php?type=organisateur&next=<?= $data['page'] ?>">Organisateur</a></li>
+              <li>
+                <?php if($data["type"]=="booker") { ?>
+                  <p class="colsm-12"><span class="glyphicon glyphicon-ok"></span> Booker</p>
+                <?php } else { ?>
+                  <a href="../controler/main.ctrl.php?type=booker">Booker</a>
+                <?php } ?>
+              </li>
+              <li>
+                <?php if($data["type"]=="organisateur") { ?>
+                  <p class="colsm-12"><span class="glyphicon glyphicon-ok"></span> Organisateur</p>
+                <?php } else { ?>
+                  <a href="../controler/main.ctrl.php?type=organisateur">Organisateur</a>
+                <?php } ?>
+              </li>
               <li role="separator" class="divider"></li>
               <li><a href="#">Separated link</a></li>
               <li role="separator" class="divider"></li>
@@ -54,6 +66,6 @@
         </form>
       </nav>
   </header>
-  <?php if (isset($data['alert'])) { ?>
-    <p class="alert alert-<?= $data['alert']['type'] ?> alert-dismissible"><span class="glyphicon glyphicon-<?= $data['alert']['icon'] ?>"></span> <?= $data['alert']['message'] ?> <button class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></p>
+  <?php foreach ($data['alert'] as $alert) { ?>
+    <p class="alert alert-<?= $alert['type'] ?> alert-dismissible"><span class="glyphicon glyphicon-<?= $alert['icon'] ?>"></span> <?= $alert['message'] ?> <button class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></p>
   <?php } ?>

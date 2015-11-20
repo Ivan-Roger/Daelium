@@ -15,13 +15,17 @@ nav {
   left: 0px;
 }
 
-.welcome-page {
+#welcome-page {
   padding-top: 50px;
   height: 100%;
 }
 
-.carousel {
+#carousel {
   height: calc(100% - 50px);
+}
+
+.carousel {
+  height: 100%;
 }
 
 .carousel-inner {
