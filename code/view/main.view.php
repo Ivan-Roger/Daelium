@@ -14,7 +14,7 @@
         <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
       </div>
     </section>
-    <section class="col-sm-10">
+    <section class="col-sm-offset-1 col-sm-8">
       <!-- Alertes et information pour l'utilisateur -->
       <article>
         <img src="http://www.ac-grenoble.fr/ien.vienne1-2/spip/IMG/bmp_Image004.bmp" alt="Mountain View" style="height:100px;">
