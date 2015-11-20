@@ -6,60 +6,63 @@
     <link rel="stylesheet" href="../data/css/nolog.css"/>
     <title>Dælium</title>
   </head>
-  <body onscroll="attachNavbar()">
-    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-      <!-- Indicators -->
-      <ol class="carousel-indicators">
-        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-      </ol>
-
-      <!-- Wrapper for slides -->
-      <div class="carousel-inner" role="listbox">
-        <div class="slide-full item active">
-          <!--<img src="../data/img/fotolia_musique.jpg" style="position: relative; bottom: 500px;"/>-->
-          <div class="carousel-caption">
-            <h1>Bienvenue sur <b>Dælium</b></h1>
-            <p>Bienvenue sur le site de gestion musical. Oui je vais mettre la barre en haut !</p>
-          </div>
+  <body><!-- onscroll="attachNavbar()" -->
+    <div id="Welcome-page">
+      <nav id="navbar" class="container-fluid nav navbar-default">
+        <div class="navbar-header">
+          <img src="../data/img/D.png" alt="LogoSite" style="height:50px;"/>
         </div>
-        <div class="slide-full item">
-          <!--<img src="../data/img/fotolia_musique.jpg" style="position: relative; bottom: 500px;"/>-->
-          <div class="carousel-caption">
-            <h1>Another example headline.</h1>
-            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-            <p><a class="btn btn-lg btn-primary" href="#navbar" role="button">Learn more</a></p>
+        <!-- Menu des differentes section du site  plus module de recherche-->
+        <form class="navbar-form navbar-right" method="GET" action="#">
+          <!-- Menu de l'uilisateur-->
+            <a href="signin.view.php" type="button" class="btn btn-primary">Se connecter</a>
+            <a href="signup.view.php" type="button" class="btn btn-warning">Je m'inscrit maintenant !</a>
+        </form>
+      </nav>
+      <div class="carousel">
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+          <!-- Indicators -->
+          <ol class="carousel-indicators">
+            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+          </ol>
+
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner" role="listbox">
+            <div class="slide-full item active">
+              <!--<img src="../data/img/fotolia_musique.jpg" style="position: relative; bottom: 500px;"/>-->
+              <div class="carousel-caption">
+                <h1>Bienvenue sur <b>Dælium</b></h1>
+                <p>Bienvenue sur le site de gestion musical. Oui je vais mettre la barre en haut !</p>
+              </div>
+            </div>
+            <div class="slide-full item">
+              <!--<img src="../data/img/fotolia_musique.jpg" style="position: relative; bottom: 500px;"/>-->
+              <div class="carousel-caption">
+                <h1>Another example headline.</h1>
+                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                <p><a class="btn btn-lg btn-primary" href="#navbar" role="button">Learn more</a></p>
+              </div>
+            </div>
           </div>
+
+          <!-- Controls -->
+          <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
         </div>
       </div>
-
-      <!-- Controls -->
-      <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
-    </div>
-
-    <div class="btn-down container-fluid">
-      <a href="#navbar" class="">Lire ...</a>
+      <div class="btn-down container-fluid">
+        <a href="#navbar" class="">Lire ...</a>
+      </div>
     </div>
 
     <div id="navbarOrg">.</div>
-    <nav id="navbar" class="container-fluid nav navbar-default">
-      <div class="navbar-header">
-        <img src="../data/img/D.png" alt="LogoSite" style="height:50px;"/>
-      </div>
-      <!-- Menu des differentes section du site  plus module de recherche-->
-      <form class="navbar-form navbar-right" method="GET" action="#">
-        <!-- Menu de l'uilisateur-->
-          <a href="signin.view.php" type="button" class="btn btn-primary">Se connecter</a>
-          <a href="signup.view.php" type="button" class="btn btn-warning">Je m'inscrit maintenant !</a>
-      </form>
-    </nav>
 
     <div class="container marketing">
       <div class="row">
@@ -107,6 +110,7 @@
     <?php include("../view/include/footer.view.php"); ?>
     <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="../data/js/bootstrap.min.js"></script>
+    <script src="../data/js/jquery.parralax.min.js"></script>
     <script src="../data/js/nolog.js"></script>
   </body>
 </html>
