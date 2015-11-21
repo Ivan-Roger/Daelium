@@ -5,6 +5,7 @@
   <link rel="stylesheet" href="../data/css/bootstrap.css">
   <link rel="stylesheet" href="../data/css/artiste.css">
   <link rel="stylesheet" href="../data/css/common.css">
+  <link rel="icon" type="image/png" href="../data/img/D.png" />
   <title>Dælium - Artiste - <?= $data["artistegroupe"]['nomscene']?></title>
 </head>
 <body>

@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="../data/css/bootstrap.css">
     <link rel="stylesheet" href="../data/css/common.css">
     <link rel="stylesheet" href="../data/css/messages.css">
+    <link rel="icon" type="image/png" href="../data/img/D.png" />
     <title>Dælium - Messagerie</title>
   </head>
   <body>
@@ -101,7 +102,7 @@
               <div class="col-lg-10">
                 <textarea class="form-control">Rédigez votre réponse ici ...</textarea>
               </div>
-              <div class="col-lg-2">
+              <div class="col-lg-2 btn-group-vertical">
                 <button class="btn btn-primary btn-lg full">Envoyer</button>
                 <button class="btn btn-default full">Ouvrir l'éditeur</button>
               </div>
