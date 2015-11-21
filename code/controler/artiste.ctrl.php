@@ -34,9 +34,9 @@
     $data['artiste']['email'][1] = "JoJoLaFripouille@URSS.net";
     $data['artiste']['telephone'][1] = "04 78 90 26 54";
     $data['artiste']['adresse'][1] = "55° 45′ 09″ Nord 37° 37′ 02″ Est";
-    $data['artiste']['paiement'][1] = "Virement";
+    $data['artiste']['paiement'][1] = "Cheque";
     $data['artiste']['IBAN'][1] = NULL;
-    $data['artiste']['ordre'][1] = NULL;
+    $data['artiste']['ordre'][1] = "Un ordre";
 
 
 

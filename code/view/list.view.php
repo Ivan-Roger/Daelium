@@ -9,11 +9,11 @@
 </head>
 <body>
   <?php include("../view/include/header.view.php"); ?>
-  <section id="boutons" class="col-lg-offset-1 col-lg-10 ">
+  <section>
+  <article id="boutons" class="col-lg-offset-1 col-lg-10 ">
     <button class="btn btn-primary pull-right" type="submit">Ajouter un Contact</button>
-  </section>
-
-  <section class="col-lg-offset-1 col-lg-10 ">
+  </article>
+  <article class="col-lg-offset-1 col-lg-10 ">
     <div class="panel panel-warning">
       <div class="panel-heading"><strong>Contacts Favoris</strong></div>
       <div class="panel-body table-responsive">
@@ -57,8 +57,8 @@
           </table>
         </div>
       </div>
-    </section>
-  <section class="col-lg-offset-1 col-lg-10 ">
+    </article>
+  <article class="col-lg-offset-1 col-lg-10 ">
     <div class="panel panel-default">
       <div class="panel-heading"><strong>Tout les contacts</strong></div>
       <div class="panel-body table-responsive">
@@ -103,7 +103,8 @@
           </table>
         </div>
       </div>
-    </section>
+    </article>
+  </section>
     <?php include("../view/include/footer.view.php"); ?>
     <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="../data/js/bootstrap.min.js"></script>
