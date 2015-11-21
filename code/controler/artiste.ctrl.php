@@ -5,29 +5,38 @@
 
   $data['alert'][] = newAlert("Site en cours de construction ... Risques d'erreurs ><'","danger","exclamation-sign");
 
-  $data['page']="Artiste";
+  $data['page']="Artistes";
 
-  if(isset($_GET['artiste'])){
+  if(isset($_GET['artiste']) && $_GET['artiste'] != ""){
     //$artiste = new Artist($_GET['artiste']);
 
-    $data['artiste']['nomscene'] ="Le petit père des peuples";
-    $data['artiste']['prenom'] = "Joseph";
-    $data['artiste']['nom'] = "Staline";
-    $data['artiste']['dateNaissance'] = "18 décembre 1878";
-    $data['artiste']['Email'] = "JoJoLaFripouille@URSS.net";
-    $data['artiste']['telephone'] = "04 78 90 26 54";
-    $data['artiste']['adresse'] = "55° 45′ 09″ Nord 37° 37′ 02″ Est";
-    $data['artiste']['paiement'] = "Espece";
-    $data['artiste']['IBAN'] = NULL;
-    $data['artiste']['ordre'] = NULL;
 
     $data['vue']="fiche";
 
+    $data['artistegroupe']['nomscene'] ="Le petit père des peuples";
+    $data['artistegroupe']['type']='Groupe';
+    $data['artistegroupe']['nb']=2;
 
 
+    $data['artiste']['prenom'][0] = "Joseph";
+    $data['artiste']['nom'][0] = "Staline";
+    $data['artiste']['dateNaissance'][0] = "18 décembre 1878";
+    $data['artiste']['email'][0] = "JoJoLaFripouille@URSS.net";
+    $data['artiste']['telephone'][0] = "04 78 90 26 54";
+    $data['artiste']['adresse'][0] = "55° 45′ 09″ Nord 37° 37′ 02″ Est";
+    $data['artiste']['paiement'][0] = "Virement";
+    $data['artiste']['IBAN'][0] = NULL;
+    $data['artiste']['ordre'][0] = NULL;
 
-
-
+    $data['artiste']['prenom'][1] = "Adolph";
+    $data['artiste']['nom'][1] = "Hitler";
+    $data['artiste']['dateNaissance'][1] = "30 janvier 1933";
+    $data['artiste']['email'][1] = "JoJoLaFripouille@URSS.net";
+    $data['artiste']['telephone'][1] = "04 78 90 26 54";
+    $data['artiste']['adresse'][1] = "55° 45′ 09″ Nord 37° 37′ 02″ Est";
+    $data['artiste']['paiement'][1] = "Virement";
+    $data['artiste']['IBAN'][1] = NULL;
+    $data['artiste']['ordre'][1] = NULL;
 
 
 
@@ -38,7 +47,7 @@
     //envoi un formulaire pour cree un artiste
   }else{
     //Afficher 404 not found
-    $data['artiste'] = "Il doit y avoir une Erreur";
+    $data['artistegroupe']['nomscene'] = "Il doit y avoir une Erreur";
     $data['vue']="404";
   }
 
