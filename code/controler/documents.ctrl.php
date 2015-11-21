@@ -1,15 +1,7 @@
 <?php
   session_start();
   require_once("../model/utils.class.php");
-
-  $data['alert'][] = newAlert("Site en cours de construction ... Risques d'erreurs ><'","danger","exclamation-sign");
-
-  $data['page']="Documents";
-
-  if (isset($_SESSION['userType']))
-    $data['type'] = $_SESSION['userType'];
-  else
-    $data['type'] = "Booker";
+  $data = initPage("Documents");
 
   include("../view/documents.view.php");
 ?>

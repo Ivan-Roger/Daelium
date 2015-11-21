@@ -12,7 +12,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href=".."><img src="../data/img/D.png"/>Daelium</a>
+          <a class="navbar-brand" href=".."><img src="../data/img/D.png"/><span class="text">Daelium</span></a>
         </div>
         <!--
         <div class="navbar-header">
@@ -47,6 +47,15 @@
               </form>
             </li>
             <!-- Menu de l'uilisateur-->
+            <li id="notifs" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-bell"></span><sup><span class="badge badge-sm">3</span></sup></a>
+              <ul class="dropdown-menu">
+                <li><b>Notifications</b></li>
+                <li class="bg-info"><a href="#">Invitation</a></li>
+                <li class="bg-info"><a href="#">Invitation</a></li>
+                <li class="bg-info"><a href="#">Invitation</a></li>
+              </ul>
+            </li>
             <li id="settings" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-cog"></span><span class="text">Paramétres <span class="caret"></span></span></a>
               <ul class="dropdown-menu">
@@ -83,7 +92,7 @@
       </nav>
       <div class="alerts">
       <?php foreach ($data['alert'] as $alert) { ?>
-        <p class="alert alert-<?= $alert['type'] ?> alert-dismissible"><span class="glyphicon glyphicon-<?= $alert['icon'] ?>"></span><span class="text"><?= $alert['message'] ?></span><button class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></p>
+        <p class="alert alert-<?= $alert['type'] ?> alert-dismissible fade in"><span class="glyphicon glyphicon-<?= $alert['icon'] ?>"></span><span class="text"><?= $alert['message'] ?></span><button class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></p>
       <?php } ?>
       </div>
     </header>

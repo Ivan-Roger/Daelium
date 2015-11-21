@@ -1,17 +1,9 @@
 <?php
   session_start();
   require_once("../model/utils.class.php");
+  $data = initPage("Agenda");
   $jours = array("Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi","Dimanche");
   $mois = array("Janvier","Fevrier","Mars","Avril","Mai","Juin","Juillet","Aout","Septembre","Octobre","Novembre","Decembre");
-
-  if (isset($_SESSION['userType']))
-    $data['type'] = $_SESSION['userType'];
-  else
-    $data['type'] = "Booker";
-
-  $data['alert'][] = newAlert("Site en cours de construction ... Risques d'erreurs ><'","danger","exclamation-sign");
-
-  $data['page']="Agenda";
 
   $day = (isset($_GET['day'])?$_GET['day']:date("j")); // jour
   $data['day'] = $day;

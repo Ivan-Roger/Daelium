@@ -23,7 +23,10 @@ header nav .navbar-brand {
   }
 }
 
-@media (max-width: 1500px) and (min-width: 768px) {
+@media (max-width: 1540px) and (min-width: 768px) {
+  header nav .navbar-brand .text {
+    display: none;
+  }
   header nav .navbar-right .text {
     display: none;
   }
@@ -40,6 +43,10 @@ header nav .navbar-brand img {
 .container-fluid > .navbar-collapse {
   margin-left: 0px;
   overflow-x: hidden;
+}
+
+nav #notifs li b {
+  margin-left: 5px;
 }
 
 .alerts {
@@ -80,6 +87,18 @@ header nav .navbar-brand img {
   margin-right: 7px;
 }
 
+.glyphicon.no-margin {
+  margin-right: 0px;
+}
+
+.no-padding {
+  padding: 0px;
+}
+
 footer {
   background-color: #FFF;
+}
+
+input[type="file"] button {
+  height: 10px;
 }

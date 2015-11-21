@@ -3,6 +3,20 @@
    *    Utils    *
    ***************/
 
+   function initPage($page,$alerts=null) {
+     $data['page']=$page;
+     $data['alert']=array();
+     if ($alerts!=null)
+       $data['alert'] = array_merge($data['alert'],$alerts);
+
+     if (isset($_SESSION['userType']))
+       $data['type'] = $_SESSION['userType'];
+     else
+       $data['type'] = "booker";
+
+     return $data;
+   }
+
    function randomId($n = 20) {
      // $n : longueur de la chaine d'ID.
      $chars = "abcdefghijqlmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-.*#"; // les differents charactères possibles

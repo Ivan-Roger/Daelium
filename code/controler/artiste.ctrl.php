@@ -2,10 +2,7 @@
   session_start();
   //include_once("../model/Artist.class.php");
   require_once("../model/utils.class.php");
-
-  $data['alert'][] = newAlert("Site en cours de construction ... Risques d'erreurs ><'","danger","exclamation-sign");
-
-  $data['page']="Artistes";
+  $data = initPage("Artistes");
 
   if(isset($_GET['artiste']) && $_GET['artiste'] != ""){
     //$artiste = new Artist($_GET['artiste']);
@@ -41,7 +38,7 @@
 
 
     //envoi les donner pour un artiste
-  } elseif(isset($_GET['action']) && $_GET['action']=="new") {
+  } elseif (isset($_GET['action']) && $_GET['action']=="new") {
     $data['artiste']['nomscene'] = "new";
     $data['vue']="form";
     //envoi un formulaire pour cree un artiste
@@ -51,10 +48,6 @@
     $data['vue']="404";
   }
 
-  if (isset($_SESSION['userType']))
-    $data['type'] = $_SESSION['userType'];
-  else
-    $data['type'] = "Booker";
 
   include("../view/artiste.view.php");
 ?>

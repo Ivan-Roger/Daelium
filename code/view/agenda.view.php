@@ -29,7 +29,7 @@
                 </div>
               </div>
             </div>
-            <div id="sanspadding"class="panel-body table-responsive calendar" style="height:450px;">
+            <div class="panel-body table-responsive calendar no-padding" style="height:450px;">
               <table id="calendar" class="table table-bordered col-lg-12 text-center" data-day="<?= $data['day'] ?>" data-month="<?= $data['month'] ?>" data-year="<?= $data['year'] ?>">
                 <colgroup>
                   <col class="col-lg-1" />

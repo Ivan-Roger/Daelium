@@ -58,7 +58,7 @@
         </div>
       </div>
       <div class="btn-down container-fluid">
-        <a href="#navbar" class="">Lire ...</a>
+        <a href="#navbar">Lire ...</a>
       </div>
     </div>
 
