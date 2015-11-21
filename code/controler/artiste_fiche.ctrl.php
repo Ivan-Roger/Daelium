@@ -6,5 +6,10 @@
 
   $data['artistegroupe']['nomscene'] ="Le petit père des peuples";
 
+  <!--
+fg
+
+  ->
+
   include("../view/artiste_fiche.view.php");
 ?>
