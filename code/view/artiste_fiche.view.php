@@ -43,38 +43,65 @@
           <div class="panel-body">
             <div class="form-group">
               <label class="control-label col-sm-3" for="rs">Panneau Reseaux sociaux :</label>
-              <div class="col-sm-2">
-                <input type="checkbox" name="rsa" value="rsa"> Actif
+              <div class="col-sm-2 btn-group" data-toggle="buttons" id="fonction">
+                <label class="btn btn-default active">
+                  <input type="radio" name="rsa" id="option1" value="on" checked > Actif
+                </label>
+                <label class="btn btn-default">
+                  <input type="radio" name="rsa" id="option2" value="off" > Inactif
+                </label>
               </div>
               <label class="control-label col-sm-2" for="rsp">Position :</label>
-              <div class="col-sm-5">
-                <INPUT type="radio" name="rsp" value="haut"> En haut de la page
-                <INPUT type="radio" name="rsp" value="bas"> En bas de la page
+              <div class="col-sm-4 btn-group" data-toggle="buttons" id="fonction">
+                <label class="btn btn-default active">
+                  <input type="radio" name="rsp" id="option1" value="haut" > En haut de la page
+                </label>
+                <label class="btn btn-default">
+                  <input type="radio" name="rsp" id="option2" value="bas" checked> En bas de la page
+                </label>
               </div>
             </div>
             <hr>
             <div class="form-group">
               <label class="control-label col-sm-3" for="lec">Panneau Lecteur :</label>
-              <div class="col-sm-2">
-                <input type="checkbox" name="leca" value="leca"> Actif
-              </div>
+                <div class="col-sm-2 btn-group" data-toggle="buttons" id="fonction">
+                  <label class="btn btn-default active">
+                    <input type="radio" name="leca" id="option1" value="on" checked > Actif
+                  </label>
+                  <label class="btn btn-default">
+                    <input type="radio" name="leca" id="option2" value="off" > Inactif
+                  </label>
+                </div>
                 <label class="control-label col-sm-2" for="lecp">Position :</label>
-              <div class="col-sm-4">
-                <INPUT type="radio" name="lecp" value="haut"> En haut de la page
-                <INPUT type="radio" name="lecp" value="bas"> En bas de la page
-              </div>
+                <div class="col-sm-4 btn-group" data-toggle="buttons" id="fonction">
+                  <label class="btn btn-default active">
+                    <input type="radio" name="lecp" id="option1" value="haut" > En haut de la page
+                  </label>
+                  <label class="btn btn-default">
+                    <input type="radio" name="lecp" id="option2" value="bas" checked> En bas de la page
+                  </label>
+                </div>
             </div>
             <hr>
             <div class="form-group">
               <label class="control-label col-sm-3" for="conc">Panneau Concert passé/futur :</label>
-              <div class="col-sm-2">
-                <input type="checkbox" name="conca" value="conca"> Actif
+              <div class="col-sm-2 btn-group" data-toggle="buttons" id="fonction">
+                <label class="btn btn-default active">
+                  <input type="radio" name="conca" id="option1" value="on" checked > Actif
+                </label>
+                <label class="btn btn-default">
+                  <input type="radio" name="conca" id="option2" value="off" > Inactif
+                </label>
               </div>
                 <label class="control-label col-sm-2" for="concp">Position :</label>
-              <div class="col-sm-5">
-                <INPUT type="radio" name="concp" value="haut"> En haut de la page
-                <INPUT type="radio" name="concp" value="bas"> En bas de la page
-              </div>
+                <div class="col-sm-4 btn-group" data-toggle="buttons" id="fonction">
+                  <label class="btn btn-default active">
+                    <input type="radio" name="concp" id="option1" value="haut" > En haut de la page
+                  </label>
+                  <label class="btn btn-default">
+                    <input type="radio" name="concp" id="option2" value="bas" checked> En bas de la page
+                  </label>
+                </div>
             </div>
           </div>
         </div>
@@ -89,8 +116,13 @@
               <div class="col-sm-8">
                 <input type="text" id="face" name="face" class="form-control" />
               </div>
-              <div class="col-sm-2">
-                <input type="checkbox" name="facea" value="facea"> Actif
+              <div class="col-sm-2 btn-group" data-toggle="buttons" id="fonction">
+                <label class="btn btn-default active">
+                  <input type="radio" name="facea" id="option1" value="on" checked > Actif
+                </label>
+                <label class="btn btn-default">
+                  <input type="radio" name="facea" id="option2" value="off" > Inactif
+                </label>
               </div>
             </div>
 
@@ -99,8 +131,13 @@
               <div class="col-sm-8">
                 <input type="text" id="gg" name="gg" class="form-control" />
               </div>
-              <div class="col-sm-2">
-                <input type="checkbox" name="gga" value="gga"> Actif
+              <div class="col-sm-2 btn-group" data-toggle="buttons" id="fonction">
+                <label class="btn btn-default active">
+                  <input type="radio" name="gga" id="option1" value="on" checked > Actif
+                </label>
+                <label class="btn btn-default">
+                  <input type="radio" name="gga" id="option2" value="off" > Inactif
+                </label>
               </div>
             </div>
 
@@ -110,8 +147,13 @@
               <div class="col-sm-8">
                 <input type="text" id="sc" name="sc" class="form-control" />
               </div>
-              <div class="col-sm-2">
-                <input type="checkbox" name="sca" value="sca"> Actif
+              <div class="col-sm-2 btn-group" data-toggle="buttons" id="fonction">
+                <label class="btn btn-default active">
+                  <input type="radio" name="sca" id="option1" value="on" checked > Actif
+                </label>
+                <label class="btn btn-default">
+                  <input type="radio" name="sca" id="option2" value="off" > Inactif
+                </label>
               </div>
             </div>
           </div>
