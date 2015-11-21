@@ -3,14 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <link rel="stylesheet" href="../data/css/bootstrap.css">
-<<<<<<< HEAD
   <link rel="stylesheet" href="../data/css/artiste.css">
-  <title>Dælium - Artiste - <?= $data["artistegroupe"]['nomscene']?></title>
-=======
   <link rel="stylesheet" href="../data/css/common.css">
-  <link rel="stylesheet" href="../data/css/artistes.css">
-  <title>Dælium - Artiste - <?= $data["artiste"]['nomscene']?></title>
->>>>>>> origin/master
+  <title>Dælium - Artiste - <?= $data["artistegroupe"]['nomscene']?></title>
 </head>
 <body>
   <?php include("../view/include/header.view.php"); ?>
