@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <link rel="stylesheet" href="../data/css/bootstrap.css">
+  <link rel="stylesheet" href="../data/css/common.css">
   <link rel="stylesheet" href="../data/css/list.css">
   <title>Dælium - Annuaire</title>
 </head>
