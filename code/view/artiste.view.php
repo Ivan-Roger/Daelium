@@ -13,7 +13,7 @@
   <section class="col-lg-offset-1 col-lg-10">
     <?php if($data["vue"] == "fiche"){ ?>
       <div>
-      <h1>Fiche de "<?= $data["artistegroupe"]['nomscene']?>"</h1>
+      <h1><?= $data["artistegroupe"]['nomscene']?></h1>
       <div>
       <a class ="btn btn-default" href="../controler/artistes.ctrl.php"> Retour </a>
       <a class ="btn btn-primary" href="../controler/artiste_fiche.ctrl.php?artiste=<?= $data["artistegroupe"]['nomscene']?>"> Voir fiche </a>
