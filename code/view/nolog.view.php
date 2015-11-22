@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../data/css/bootstrap.css">
     <link rel="stylesheet" href="../data/css/nolog.css"/>
+    <link rel="icon" type="image/png" href="../data/img/D.png" />
     <title>Dælium</title>
   </head>
   <body><!-- onscroll="attachNavbar()" -->

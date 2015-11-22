@@ -5,6 +5,7 @@
   <title>Daelium | Work in Progress</title>
   <link rel="stylesheet" href="../data/css/bootstrap.min.css"/>
   <link rel="stylesheet" href="../data/css/signup.css"/>
+  <link rel="icon" type="image/png" href="../data/img/D.png" />
 </header>
 <body>
   <div class="container">

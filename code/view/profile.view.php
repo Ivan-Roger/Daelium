@@ -4,103 +4,78 @@
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../data/css/bootstrap.css">
     <link rel="stylesheet" href="../data/css/common.css">
+    <link rel="stylesheet" href="../data/css/profile.css">
     <link rel="icon" type="image/png" href="../data/img/D.png" />
     <title>Dælium - Profil</title>
   </head>
   <body>
     <?php include("../view/include/header.view.php"); ?>
-    <section class="col-lg-12">
-
-      <h1> Informations personnelles : </h1>
-      <div class="row"><div class="col-sm-2 col-sm-offset-1">
-        <img src="../data/users/icons/User_64.png" alt="Image de Profil">
-      </div></div>
-
-      <form class="form-horizontal">
-
-        <div class="form-group">
+    <div class="heading full">
+      <img class="wall-pic" src="../data/img/fotolia_musique.jpg"/>
+      <div class="userInfo col-lg-10 col-lg-offset-1">
+        <div class="col-sm-1 text-right"><img src="../data/users/icons/User_64.png" alt="Image de Profil"></div>
+        <h3 class="col-sm-9">Marc Dupuis</h3>
+        <div class="controls col-sm-2 text-right">
+          <a class="btn btn-primary" href="#">Editer</a>
+        </div>
+      </div>
+    </div>
+    <section class="col-lg-10 col-lg-offset-1">
+      <article class="col-lg-6 infoProfile">
+        <div class="well">
+          <h4>Contact</h4>
           <div class="row">
-          <label for="Nom" class="col-sm-1 control-label">Nom</label>
-            <div class="col-sm-2">
-              <input type="text" class="form-control" id="Nom" placeholder="Nom">
-            </div>
-            <div class="col-sm-2">
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox"> Public
-                </label>
-              </div>
-            </div>
+            <span class="col-sm-4 text-right">Mail du compte</span><b class="col-sm-8 text-left" id="mailAccount">marc.dupuis@gmail.com</b>
+          </div>
+          <div class="row">
+            <span class="col-sm-4 text-right">Mail de contact</span><b class="col-sm-8 text-left" id="mailAccount">m.dupuis@les-petits-gars.fr</b>
+          </div>
+          <div class="row">
+            <span class="col-sm-4 text-right">Numéro de mobile</span><b class="col-sm-8 text-left" id="mailAccount">06 04 12 53 52</b>
+          </div>
+          <div class="row">
+            <span class="col-sm-4 text-right">Numéro professionel</span><b class="col-sm-8 text-left" id="mailAccount">04 95 63 21 14</b>
           </div>
         </div>
-
-        <div class="form-group">
+        <div class="well">
+          <h4>Position</h4>
           <div class="row">
-          <label for="Prenom" class="col-sm-1 control-label">Prénom</label>
-            <div class="col-sm-2">
-              <input type="text" class="form-control" id="Prenom" placeholder="Prénom">
-            </div>
-            <div class="col-sm-2">
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox"> Public
-                </label>
-              </div>
-            </div>
+            <span class="col-sm-4 text-right">Adresse</span><b class="col-sm-8 text-left" id="adress">2 Place Doyen Gosse<br/>38000 Grenoble</b>
+          </div>
+          <div class="row">
+            <span class="col-sm-4 text-right">Plan</span>
+            <a href="https://www.google.fr/maps/place/2+Place+Doyen+Gosse,+38000+Grenoble/@45.1919241,5.717596,18z/data=!4m2!3m1!1s0x478af4872c0a703f:0x6503d8b580fceb38" target="_blank">
+              Voir sur gogle maps
+            </a>
           </div>
         </div>
-
-        <div class="form-group">
-          <div class="row">
-          <label for="EmailPerso" class="col-sm-1 control-label">Email du compte</label>
-            <div class="col-sm-2">
-              <input type="email" class="form-control" id="EmailPerso" placeholder="Ex: prenom.nom@domaine.com">
-            </div>
-            <div class="col-sm-2">
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox"> Public
-                </label>
+      </article>
+      <article class="col-lg-6">
+        <div class="col-lg-12 well">
+          <h4>Mes groupes : </h4>
+          <ul class="groups list-group">
+            <li class="list-group-item">
+              <span class="group-name col-sm-10">En march</span>
+              <div class="col-sm-2">
+                <a class="btn btn-default" href="artiste_fiche.ctrl.php?artiste=En marche">Voir fiche</a>
               </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <div class="row">
-          <label for="EmailPro" class="col-sm-1 control-label">Email de contact</label>
-            <div class="col-sm-2">
-              <input type="email" class="form-control" id="EmailPro" placeholder="Ex: prenom.nom@domaine.com">
-            </div>
-            <div class="col-sm-2">
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox"> Public
-                </label>
+            </li>
+            <li class="list-group-item">
+              <span class="group-name col-sm-10">Batoucada</span>
+              <div class="col-sm-2">
+                <a class="btn btn-default" href="artiste_fiche.ctrl.php?artiste=En marche">Voir fiche</a>
               </div>
-            </div>
-          </div>
+            </li>
+          </ul>
         </div>
-
-        <div class="form-group">
-          <div class="row">
-          <label for="TelPro" class="col-sm-1 control-label">Numero de télephone professionnel</label>
-            <div class="col-sm-2">
-              <input type="tel" class="form-control" id="TelPro" placeholder="Format: XX XX XX XX XX ou XXXXXXXX">
-            </div>
-            <div class="col-sm-2">
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox"> Public
-                </label>
-              </div>
-            </div>
-          </div>
+        <div class="userDesc col-lg-12 well">
+          <h4>Description</h4>
+          <textarea class="form-control" readonly>
+            Je suis Booker depuis 2002 dans l'association Les petits gars à Grenoble. Toujours disponible ...
+Je m'occupe actuellement de deux groupes : Le petit père des peuples et Batoucada
+Pour me contacter utilisez l'adresse de contact.</textarea>
         </div>
-
-</form>
-
-
+      </article>
     </section>
     <?php include("../view/include/footer.view.php"); ?>
     <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>

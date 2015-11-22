@@ -22,7 +22,7 @@
                     <span class='glyphicon glyphicon-arrow-left'></span>
                   </button>
                 </div>
-                <div class='col-md-6 col-xs-4'><strong id="calendarTitle"><?= $data['monthName'] ?> <?= $data['year'] ?></strong></div>
+                <div class='col-md-6 col-xs-4'><h4 id="calendarTitle"><?= $data['monthName'] ?> <?= $data['year'] ?></h4></div>
                 <div class='col-md-3 col-xs-4 '>
                   <button id="calendarNext" class='ajax-navigation btn btn-default btn-sm'>
                     <span class='glyphicon glyphicon-arrow-right'></span>
@@ -67,8 +67,8 @@
         </article>
         <article class="col-lg-5" style="height:400px;">
           <div class="panel panel-default">
-            <div class="panel-heading">Prochains événements</div>
-            <div id="sanspadding" class="panel-body table-responsive evt" style="overflow:auto;height:450px;overflow-x: hidden;">
+            <div class="panel-heading"><h4>Prochains événements</h4></div>
+            <div class="panel-body table-responsive evt no-padding" style="overflow:auto;height:450px;overflow-x: hidden;">
               <table id="commingNext" class="table table-striped table-hover table-bordered col-lg-12">
                 <colgroup>
                   <col class="text-center col-lg-2" />
@@ -97,7 +97,7 @@
                   </button>
                 </div>
                 <div class='col-md-6 col-xs-4'>
-                  <strong id="dayPlanTitle"><?= $data['wdayName'] ?> <?= $data['day'] ?> <?= $data['monthName'] ?></strong>
+                  <h4 id="dayPlanTitle"><?= $data['wdayName'] ?> <?= $data['day'] ?> <?= $data['monthName'] ?></h4>
                 </div>
                 <div class='col-md-3 col-xs-4 '>
                   <button id="dayPlanNext" class='ajax-navigation btn btn-default btn-sm'>
@@ -106,7 +106,7 @@
                 </div>
               </div>
             </div>
-            <div id="sanspadding" class="panel-body table-responsive" style="height:605px;">
+            <div class="panel-body table-responsive no-padding" style="height:605px;">
               <table id="dayPlan" class="table table-hover table-striped table-bordered col-lg-12">
                 <thead>
                   <tr><th class="col-lg-1 text-right">Heure</th><th class="col-lg-11">Evenements</th></tr>
