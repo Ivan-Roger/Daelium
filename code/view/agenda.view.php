@@ -71,8 +71,8 @@
             <div id="sanspadding" class="panel-body table-responsive evt" style="overflow:auto;height:450px;overflow-x: hidden;">
               <table id="commingNext" class="table table-striped table-hover table-bordered col-lg-12">
                 <colgroup>
-                  <col class="text-center col-lg-2" />
-                  <col class="col-lg-10"/>
+                  <col class="text-center col-lg-3" />
+                  <col class="col-lg-9"/>
                 </colgroup>
                 <thead>
                   <tr><th>Date / Heure</th> <th>Evenements</th></tr>
