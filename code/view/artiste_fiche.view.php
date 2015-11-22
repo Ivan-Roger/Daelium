@@ -37,10 +37,14 @@
   <?php if($data["action"] == "edit") { ?>
 
     <form class="form-horizontal" role="form">
-      <div class="pull-right">
-      <INPUT class ="btn btn-warning" TYPE="reset" NAME="nom" VALUE="Annuler">
-      <INPUT class ="btn btn-primary" TYPE="submit" NAME="nom" VALUE="Enregister">
-      </div>
+      <h2 >Fiche de "<?= $data["artistegroupe"]['nomscene']?>"</h2>
+      <article class="col-lg-offset-2 col-lg-10">
+        <div class="navbar navbar-form navbar-right">
+          <a class ="btn btn-default" href="../controler/artiste.ctrl.php?artiste=<?= $data["artistegroupe"]['nomscene']?>"> Retour </a>
+          <INPUT class ="btn btn-warning" TYPE="reset" NAME="nom" VALUE="Annuler">
+          <INPUT class ="btn btn-primary" TYPE="submit" NAME="nom" VALUE="Enregister">
+        </div>
+      </article>
       <div class="col-lg-12">
         <div class="panel panel-default">
           <div class="panel-heading">Elements/Position</div>
@@ -257,25 +261,43 @@
 
     <?php }else if($data["action"] == "view") { ?>
       <div class="panel panel-default">
-        <div class="panel-heading"><h2><?= $data["artistegroupe"]['nomscene']?></h2><a class ="btn btn-primary" href="../controler/artiste_fiche.ctrl.php?artiste=<?= $data["artistegroupe"]['nomscene']?>&action=edit"> Modifier la fiche </a></div>
+        <div class="panel-heading"><h2 ><?= $data["artistegroupe"]['nomscene']?></h2><a class ="btn btn-primary" href="../controler/artiste_fiche.ctrl.php?artiste=<?= $data["artistegroupe"]['nomscene']?>&action=edit"> Modifier la fiche </a></div>
         <div class="panel-body">
           <img src="https://cdn2.artstation.com/p/assets/images/images/001/023/866/large/samma-van-klaarbergen-patrick-watson2.jpg?1438415706" />
 
           <h3>BIO</h3>
-          <p>Passionné de musiques et d'instruments au plus jeune age, Benjamin Nectoux explore l'univers de l'electro pour composer des morceaux aux mélanges traditionnels et instrumentales. Deyosan, c'est le plaisir de mélanger les rythmes et les sons, préparer une mixture à la recherche de sensations musicales. C'est bien un collectif qui se construit au fil des rencontres artistiques : sitar, n'goni, chant, clarinette, violon... croisent leur chemins, se quittent, se retrouvent le temps d'un morceau.<p>
+          <p>Dumque ibi diu moratur commeatus opperiens, quorum translationem ex Aquitania verni imbres solito crebriores prohibebant auctique torrentes, Herculanus advenit protector domesticus, Hermogenis ex magistro equitum filius, apud Constantinopolim, ut supra rettulimus, populari quondam turbela discerpti. quo verissime referente quae Gallus egerat, damnis super praeteritis maerens et futurorum timore suspensus angorem animi quam diu potuit emendabat.
+
+Hinc ille commotus ut iniusta perferens et indigna praefecti custodiam protectoribus mandaverat fidis. quo conperto Montius tunc quaestor acer quidem sed ad lenitatem propensior, consulens in commune advocatos palatinarum primos scholarum adlocutus est mollius docens nec decere haec fieri nec prodesse addensque vocis obiurgatorio sonu quod si id placeret, post statuas Constantii deiectas super adimenda vita praefecto conveniet securius cogitari.
+
+Quam ob rem cave Catoni anteponas ne istum quidem ipsum, quem Apollo, ut ais, sapientissimum iudicavit; huius enim facta, illius dicta laudantur. De me autem, ut iam cum utroque vestrum loquar, sic habetote.
+
+Metuentes igitur idem latrones Lycaoniam magna parte campestrem cum se inpares nostris fore congressione stataria documentis frequentibus scirent, tramitibus deviis petivere Pamphyliam diu quidem intactam sed timore populationum et caedium, milite per omnia diffuso propinqua, magnis undique praesidiis conmunitam.
+
+Postremo ad id indignitatis est ventum, ut cum peregrini ob formidatam haut ita dudum alimentorum inopiam pellerentur ab urbe praecipites, sectatoribus disciplinarum liberalium inpendio paucis sine respiratione ulla extrusis, tenerentur minimarum adseclae veri, quique id simularunt ad tempus, et tria milia saltatricum ne interpellata quidem cum choris totidemque remanerent magistris.<p>
             <h3>Album Hon Hop (2013)</h3>
-            <p> C'est à travers le métissage, le mélange des esthétiques, des instruments, des influences, des voix que Deyosan a construit cet album. L'expérience Hon Hop ("mixture" en vietnamien), compositions électroniques rythmés à d'autres plus immersives et prenantes, invite le public et l'auditeur au voyage et à la découverte.
+            <p> Dumque ibi diu moratur commeatus opperiens, quorum translationem ex Aquitania verni imbres solito crebriores prohibebant auctique torrentes, Herculanus advenit protector domesticus, Hermogenis ex magistro equitum filius, apud Constantinopolim, ut supra rettulimus, populari quondam turbela discerpti. quo verissime referente quae Gallus egerat, damnis super praeteritis maerens et futurorum timore suspensus angorem animi quam diu potuit emendabat.
+
+Hinc ille commotus ut iniusta perferens et indigna praefecti custodiam protectoribus mandaverat fidis. quo conperto Montius tunc quaestor acer quidem sed ad lenitatem propensior, consulens in commune advocatos palatinarum primos scholarum adlocutus est mollius docens nec decere haec fieri nec prodesse addensque vocis obiurgatorio sonu quod si id placeret, post statuas Constantii deiectas super adimenda vita praefecto conveniet securius cogitari.
+
+Quam ob rem cave Catoni anteponas ne istum quidem ipsum, quem Apollo, ut ais, sapientissimum iudicavit; huius enim facta, illius dicta laudantur. De me autem, ut iam cum utroque vestrum loquar, sic habetote.
+
+Metuentes igitur idem latrones Lycaoniam magna parte campestrem cum se inpares nostris fore congressione stataria documentis frequentibus scirent, tramitibus deviis petivere Pamphyliam diu quidem intactam sed timore populationum et caedium, milite per omnia diffuso propinqua, magnis undique praesidiis conmunitam.
+
+Postremo ad id indignitatis est ventum, ut cum peregrini ob formidatam haut ita dudum alimentorum inopiam pellerentur ab urbe praecipites, sectatoribus disciplinarum liberalium inpendio paucis sine respiratione ulla extrusis, tenerentur minimarum adseclae veri, quique id simularunt ad tempus, et tria milia saltatricum ne interpellata quidem cum choris totidemque remanerent magistris.
             </p>
             <h3>LINE UP</h3>
-            <p>Sitar/Machine, Chant N'Goni, Didgeridoo, Violon, Clarinette...</p>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/T4_iS3vdUTA" frameborder="0" allowfullscreen></iframe>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/T4_iS3vdUTA" frameborder="0" allowfullscreen></iframe>
+            <p>Habens perpendiculum exaedificavit Octaviani sibi Herodes Ascalonem abundans quam ad egregias Caesaream Herodes cedentem aemulas: honorem est vicissim Gazam magna.</p>
+            <iframe width="420" height="315" src="https://www.youtube.com/embed/ZLwWzNrdkTg" frameborder="0" allowfullscreen></iframe>
+            <iframe width="420" height="315" src="https://www.youtube.com/embed/ZLwWzNrdkTg" frameborder="0" allowfullscreen></iframe>
           </div>
         </div>
         <div class="col-lg-4">
           <div class="panel panel-default">
             <div class="panel-heading">Player</div>
+
             <div class="panel-body">
+              <iframe width="100%" height="300" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/231318729&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>
             </div>
           </div>
         </div>
@@ -283,13 +305,31 @@
           <div class="panel panel-default">
             <div class="panel-heading">Reseaux sociaux</div>
             <div class="panel-body">
+              <iframe allowtransparency="true" scrolling="no" frameborder="no" src="https://w.soundcloud.com/icon/?url=http%3A%2F%2Fsoundcloud.com%2Fetienne-barbier&color=orange_transparent&size=48" style="width: 48px; height: 48px;"></iframe>
+              <script src="https://apis.google.com/js/platform.js" async defer></script>
+              <g:plusone></g:plusone>
+              <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count"></div>
             </div>
           </div>
         </div>
         <div class="col-lg-4">
           <div class="panel panel-default">
             <div class="panel-heading"><?= $data["artistegroupe"]['nomscene']?> en concert</div>
+              <h4>Futur</h4>
+                <ul>
+                  <li>15 Janvier a Marseille</li>
+                  <li>18Janvier a Paris</li>
+                  <li>20 Janvier a Grenoble</li>
+                  <li>15 Fevrier a Lyon</li>
+                </ul>
+              <h4>Passé</h4>
             <div class="panel-body">
+              <ul>
+                <li>05 Novembre a Tours</li>
+                <li>06 Novembre a Brest</li>
+                <li>17 Septembre a Lille</li>
+                <li>26 Aout a Bordeau</li>
+              </ul>
             </div>
           </div>
         </div>
@@ -301,5 +341,13 @@
         <?php include("../view/include/footer.view.php"); ?>
         <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
         <script src="../data/js/bootstrap.min.js"></script>
+        <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.5";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
       </body>
       </html>

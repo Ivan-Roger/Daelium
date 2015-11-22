@@ -39,3 +39,10 @@ table tbody td.active {
 #calendarArticle .panel-body .table tbody:last-child {
   border-bottom: 1px solid #ddd;
 }
+#sanspadding{
+  padding: 0px;
+}
+
+#sanspadding table{
+  border-bottom: 1px solid #ddd;
+}
