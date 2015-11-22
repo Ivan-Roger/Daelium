@@ -11,6 +11,17 @@
   <body>
     <?php include("../view/include/header.view.php"); ?>
     <section>
+      <article class="col-lg-offset-1 col-lg-10">
+        <div class="navbar navbar-form navbar-right">
+          <div class="input-group">
+            <input type="text" class="form-control"/>
+            <div class="input-group-btn">
+              <a href="#" class="btn btn-default">Rechercher</a>
+            </div>
+          </div>
+          <button class="btn btn-primary" type="submit">Nouveau message</button>
+        </div>
+      </article>
       <div class="col-lg-offset-1 col-lg-4">
         <ul class="nav nav-tabs" role="tablist">
           <li role="presentation" class="active"><a href="#inbox" aria-controls="inbox" role="tab" data-toggle="tab">Receptions <span class="badge info">5</span></a></li>

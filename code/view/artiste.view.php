@@ -12,17 +12,19 @@
   <?php include("../view/include/header.view.php"); ?>
   <section class="col-lg-offset-1 col-lg-10">
     <?php if($data["vue"] == "fiche"){ ?>
-      <h1>Fiche <?= $data["artistegroupe"]['nomscene']?></h1>
-      <a class ="btn btn-primary" href="../controler/artiste_fiche.ctrl.php?artiste=<?= $data["artistegroupe"]['nomscene']?>"> Voir fiche </a>
+      <div>
+      <h1>Fiche de "<?= $data["artistegroupe"]['nomscene']?>"</h1>
+      <div>
       <a class ="btn btn-default" href="../controler/artistes.ctrl.php"> Retour </a>
-    </br>
-
-  </br>
+      <a class ="btn btn-primary" href="../controler/artiste_fiche.ctrl.php?artiste=<?= $data["artistegroupe"]['nomscene']?>"> Voir fiche </a>
+      <a class ="btn btn-warning" href="../controler/artiste_fiche.ctrl.php?artiste=<?= $data["artistegroupe"]['nomscene']?>&action=edit"> Modifier fiche </a>
+      </div>
+    </div>
   <div class="panel panel-default">
     <div class="panel-body">
       <table class="table">
         <colgroup>
-          <col/>
+          <col class="col-lg-8"/>
           <col/>
         </colgroup>
         <tbody>
@@ -33,7 +35,7 @@
             <th>Nombre de membres :</th><td><?= $data['artistegroupe']['nb']?> </td>
           </tr>
           <tr>
-            <th>Image de couverture :</th><td>A mettre</td>
+            <th>Image de couverture :</th><td>Choisir une image ou l'importer</td>
           </tr>
         </tbody>
       </table>
@@ -91,7 +93,7 @@
                       </tr>
                       <?php } else if($data['artiste']['paiement'][$i] == "Cheque"){  ?>
                         <tr>
-                          <th>Ordre du cheque :</th><td>A mettre</td>
+                          <th>Ordre du cheque :</th><td><?= $data['artiste']['ordre'][$i] ?></td>
                         </tr>
                         <?php } ?>
                       </tbody>
