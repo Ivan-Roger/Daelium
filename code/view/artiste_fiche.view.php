@@ -35,15 +35,19 @@
   -->
 
   <?php if($data["action"] == "edit") { ?>
-    <form class="form-horizontal" role="form">
 
+    <form class="form-horizontal" role="form">
+      <div class="pull-right">
+      <INPUT class ="btn btn-warning" TYPE="reset" NAME="nom" VALUE="Annuler">
+      <INPUT class ="btn btn-primary" TYPE="submit" NAME="nom" VALUE="Enregister">
+      </div>
       <div class="col-lg-12">
         <div class="panel panel-default">
           <div class="panel-heading">Elements/Position</div>
           <div class="panel-body">
             <div class="form-group">
               <label class="control-label col-sm-3" for="rs">Panneau Reseaux sociaux :</label>
-              <div class="col-sm-2 btn-group" data-toggle="buttons" id="fonction">
+              <div class="col-sm-3 btn-group" data-toggle="buttons" id="fonction">
                 <label class="btn btn-default active">
                   <input type="radio" name="rsa" id="option1" value="on" checked > Actif
                 </label>
@@ -53,10 +57,10 @@
               </div>
               <label class="control-label col-sm-2" for="rsp">Position :</label>
               <div class="col-sm-4 btn-group" data-toggle="buttons" id="fonction">
-                <label class="btn btn-default active">
+                <label class="btn btn-default ">
                   <input type="radio" name="rsp" id="option1" value="haut" > En haut de la page
                 </label>
-                <label class="btn btn-default">
+                <label class="btn btn-default active">
                   <input type="radio" name="rsp" id="option2" value="bas" checked> En bas de la page
                 </label>
               </div>
@@ -64,7 +68,7 @@
             <hr>
             <div class="form-group">
               <label class="control-label col-sm-3" for="lec">Panneau Lecteur :</label>
-                <div class="col-sm-2 btn-group" data-toggle="buttons" id="fonction">
+                <div class="col-sm-3 btn-group" data-toggle="buttons" id="fonction">
                   <label class="btn btn-default active">
                     <input type="radio" name="leca" id="option1" value="on" checked > Actif
                   </label>
@@ -74,10 +78,10 @@
                 </div>
                 <label class="control-label col-sm-2" for="lecp">Position :</label>
                 <div class="col-sm-4 btn-group" data-toggle="buttons" id="fonction">
-                  <label class="btn btn-default active">
+                  <label class="btn btn-default ">
                     <input type="radio" name="lecp" id="option1" value="haut" > En haut de la page
                   </label>
-                  <label class="btn btn-default">
+                  <label class="btn btn-default active">
                     <input type="radio" name="lecp" id="option2" value="bas" checked> En bas de la page
                   </label>
                 </div>
@@ -85,24 +89,78 @@
             <hr>
             <div class="form-group">
               <label class="control-label col-sm-3" for="conc">Panneau Concert passé/futur :</label>
-              <div class="col-sm-2 btn-group" data-toggle="buttons" id="fonction">
+              <div class="col-sm-3 btn-group" data-toggle="buttons" id="fonction">
                 <label class="btn btn-default active">
-                  <input type="radio" name="conca" id="option1" value="on" checked > Actif
+                  <input type="radio" name="conc" id="option1" value="on" checked > Actif
                 </label>
-                <label class="btn btn-default">
-                  <input type="radio" name="conca" id="option2" value="off" > Inactif
+                <label class="btn btn-default ">
+                  <input type="radio" name="conc" id="option2" value="off" > Inactif
                 </label>
               </div>
                 <label class="control-label col-sm-2" for="concp">Position :</label>
                 <div class="col-sm-4 btn-group" data-toggle="buttons" id="fonction">
-                  <label class="btn btn-default active">
+                  <label class="btn btn-default ">
                     <input type="radio" name="concp" id="option1" value="haut" > En haut de la page
                   </label>
-                  <label class="btn btn-default">
+                  <label class="btn btn-default active">
                     <input type="radio" name="concp" id="option2" value="bas" checked> En bas de la page
                   </label>
                 </div>
             </div>
+            <hr>
+            <div class="form-group">
+              <label class="control-label col-sm-3" for="imgc">Image de couverture :</label>
+              <div class="col-sm-3 btn-group" data-toggle="buttons" id="fonction">
+                <label class="btn btn-default active">
+                  <input type="radio" name="imgc" id="option1" value="on" checked > Actif
+                </label>
+                <label class="btn btn-default ">
+                  <input type="radio" name="imgc" id="option2" value="off" > Inactif
+                </label>
+              </div>
+                <label class="control-label col-sm-2" for="imgp">Position :</label>
+                <div class="col-sm-4 btn-group" data-toggle="buttons" id="fonction">
+                  <label class="btn btn-default active">
+                    <input type="radio" name="imgp" id="option1" value="haut" checked> En haut de la page
+                  </label>
+                  <label class="btn btn-default ">
+                    <input type="radio" name="imgp" id="option2" value="bas" > En bas de la page
+                  </label>
+                </div>
+            </div>
+            <hr>
+            <div class="form-group">
+              <label class="control-label col-sm-3" for="ft">Lien vers fiche technique :</label>
+              <div class="col-sm-3 btn-group" data-toggle="buttons" id="fonction">
+                <label class="btn btn-default active">
+                  <input type="radio" name="ft" id="option1" value="on" checked > Public
+                </label>
+                <label class="btn btn-default">
+                  <input type="radio" name="ft" id="option1" value="on"> Inscrit sur le site
+                </label>
+                <label class="btn btn-default ">
+                  <input type="radio" name="ft" id="option2" value="off" > Inactif
+                </label>
+              </div>
+                <label class="control-label col-sm-2" for="ftp">Position :</label>
+                <div class="col-sm-4 btn-group" data-toggle="buttons" id="fonction">
+                  <label class="btn btn-default ">
+                    <input type="radio" name="ftp" id="option1" value="haut" > En haut de la page
+                  </label>
+                  <label class="btn btn-default active">
+                    <input type="radio" name="ftp" id="option2" value="bas" checked> En bas de la page
+                  </label>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">Image de couverture</div>
+          <div class="panel-body">
+            Choisir un fichier ou l'envoyer
           </div>
         </div>
       </div>
@@ -118,10 +176,25 @@
               </div>
               <div class="col-sm-2 btn-group" data-toggle="buttons" id="fonction">
                 <label class="btn btn-default active">
-                  <input type="radio" name="facea" id="option1" value="on" checked > Actif
+                  <input type="radio" name="facea" id="option1" value="on" checked="checked" > Actif
                 </label>
                 <label class="btn btn-default">
                   <input type="radio" name="facea" id="option2" value="off" > Inactif
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label col-sm-2" for="twt">Twitter :</label>
+              <div class="col-sm-8">
+                <input type="text" id="face" name="twt" class="form-control" />
+              </div>
+              <div class="col-sm-2 btn-group" data-toggle="buttons" id="fonction">
+                <label class="btn btn-default active">
+                  <input type="radio" name="twta" id="option1" value="on" checked="checked" > Actif
+                </label>
+                <label class="btn btn-default">
+                  <input type="radio" name="twta" id="option2" value="off" > Inactif
                 </label>
               </div>
             </div>
@@ -133,7 +206,7 @@
               </div>
               <div class="col-sm-2 btn-group" data-toggle="buttons" id="fonction">
                 <label class="btn btn-default active">
-                  <input type="radio" name="gga" id="option1" value="on" checked > Actif
+                  <input type="radio" name="gga" id="option1" value="on" checked="checked" > Actif
                 </label>
                 <label class="btn btn-default">
                   <input type="radio" name="gga" id="option2" value="off" > Inactif
@@ -149,7 +222,7 @@
               </div>
               <div class="col-sm-2 btn-group" data-toggle="buttons" id="fonction">
                 <label class="btn btn-default active">
-                  <input type="radio" name="sca" id="option1" value="on" checked > Actif
+                  <input type="radio" name="sca" id="option1" value="on" checked="checked" > Actif
                 </label>
                 <label class="btn btn-default">
                   <input type="radio" name="sca" id="option2" value="off" > Inactif
