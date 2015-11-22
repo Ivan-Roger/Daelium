@@ -87,12 +87,18 @@ nav {
 }
 
 .marketing .img-circle {
-  height: 140px;
-  width: 140px;
+  margin: 5px;
+  padding: 20px;
+  height: 100px;
+  width: 100px;
   margin-left: auto;
   margin-right: auto;
-  padding-top: 30px;
-  background-color: #454545;
+  background-color: #353535;
+}
+
+.marketing .img-circle.large {
+  height: 120px;
+  width: 120px;
 }
 
 .marketing .img-circle:hover {
@@ -100,13 +106,28 @@ nav {
 }
 
 span.icon-img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 70%;
-  height: 70%;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  width: 100%;
+  height: 100%;
   background-repeat: no-repeat;
   background-position: center;
+  background-size: contain;
+}
+
+.marketing .img-circle {
+  color: #DDD;
+  font-size: 30px;
+}
+
+.media-object {
+  padding-left: 10px;
+}
+
+span.icon-img.small {
+  width: 40%;
+  height: 40%;
 }
 
 span.icon-img.icon-tools2 {
@@ -119,4 +140,8 @@ span.icon-img.icon-gift {
 
 span.icon-img.icon-adjustments {
   background-image: url(../img/icons/adjustments_64px.png);
+}
+
+.row {
+  margin-bottom: 50px;
 }

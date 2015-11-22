@@ -91,8 +91,8 @@
         </div>
       </nav>
       <div class="alerts">
-      <?php foreach ($data['alert'] as $key => $alert) { ?>
-        <p id="alert<?= $key ?>" class="alert alert-<?= $alert['type'] ?> alert-dismissible fade in" ondblclick="$('#alert<?= $key ?>').alert('close')"><span class="glyphicon glyphicon-<?= $alert['icon'] ?>"></span><span class="text"><?= $alert['message'] ?></span><button class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></p>
+      <?php foreach ($data['alert'] as $alert) { ?>
+        <p class="alert alert-<?= $alert['type'] ?> alert-dismissible fade in"><span class="glyphicon glyphicon-<?= $alert['icon'] ?>"></span><span class="text"><?= $alert['message'] ?></span><button class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></p>
       <?php } ?>
       </div>
     </header>

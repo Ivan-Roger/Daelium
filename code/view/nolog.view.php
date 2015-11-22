@@ -7,7 +7,7 @@
     <link rel="icon" type="image/png" href="../data/img/D.png" />
     <title>Dælium</title>
   </head>
-  <body><!-- onscroll="attachNavbar()" -->
+  <body onscroll="scroll()"><!-- onscroll="attachNavbar()" -->
     <div id="welcome-page">
       <nav id="navbar" class="container-fluid nav navbar-default">
         <div class="navbar-header">
@@ -73,27 +73,79 @@
       </div>
       <div class="row">
         <div class="col-lg-4 text-center">
-          <div class="img-circle"><span class="icon-img icon-gift"></span></div>
+          <a href="#">
+            <div class="img-circle"><span class="icon-img icon-gift"></span></div>
+          </a>
           <h2>Gratuit</h2>
           <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
           <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4 text-center">
-          <div class="img-circle"><span class="icon-img icon-tools2"></span></div>
+          <a href="#">
+            <div class="img-circle"><span class="icon-img icon-tools2"></span></div>
+          </a>
           <h2>Innovant</h2>
           <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
           <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4 text-center">
-          <div class="img-circle"><span class="icon-img icon-adjustments"></span></div>
+          <a href="#">
+            <div class="img-circle"><span class="icon-img icon-adjustments"></span></div>
+          </a>
           <h2>Adaptable</h2>
           <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
           <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
       </div><!-- /.row -->
+      <div id="troops" class="row">
+        <div id="troop_1" class="col-lg-4 text-center" style="display: none;">
+          <h2 class="text-left">En marche</h2>
+          <p>Le cébébre groupe En marche fait parti de notre projet, alors vous aussi rejoignez la communauté. Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod.</p>
+        </div><!-- /.col-lg-4 -->
+        <div id="troop_2" class="col-lg-4 text-center" style="display: none;">
+          <h2 class="text-left">Batoucada</h2>
+          <p>La Batoucada soutient notre site. Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+        </div><!-- /.col-lg-4 -->
+        <div id="troop_3" class="col-lg-4 text-center" style="display: none;">
+          <h2 class="text-left">Berlondon</h2>
+          <p>Le groupe Berlino-Londonnien est membre de Dælium depuis déjà 5 ans. Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod.</p>
+        </div><!-- /.col-lg-4 -->
+      </div><!-- /.row -->
+      <div id="counters" class="row">
+        <div id="counter_1" class="col-lg-4 text-center" style="display: none;">
+          <div class="media">
+            <div class="media-left media-middle">
+              <div class="media-object img-circle large"><span class="counter" data-from="0" data-to="6" data-speed="1500">0</span><br/><span class="icon-img small icon-gift"></span></div>
+            </div>
+            <div class="media-body">
+              <h2 class="media-heading">Developpeurs</h2>
+            </div>
+          </div>
+        </div><!-- /.col-lg-4 -->
+        <div id="counter_2" class="col-lg-4 text-center" style="display: none;">
+          <div class="media">
+            <div class="media-left media-middle">
+              <div class="media-object img-circle large"><span class="counter" data-from="0" data-to="250" data-speed="1500">0</span><br/><span class="icon-img small icon-gift"></span></div>
+            </div>
+            <div class="media-body">
+              <h2 class="media-heading">Je sais pas quoi</h2>
+            </div>
+          </div>
+        </div><!-- /.col-lg-4 -->
+        <div id="counter_3" class="col-lg-4 text-center" style="display: none;">
+          <div class="media">
+            <div class="media-left media-middle">
+              <div class="media-object img-circle large"><span class="counter" data-from="0" data-to="380" data-speed="1500">0</span><br/><span class="icon-img small icon-gift"></span></div>
+            </div>
+            <div class="media-body">
+              <h2 class="media-heading">Utilisateurs</h2>
+            </div>
+          </div>
+        </div><!-- /.col-lg-4 -->
+      </div><!-- /.row -->
       <div class="row">
         <div class="col-lg-8">
-          <h2>Rejoindre Daelium</h2>
+          <h2>Rejoindre Dælium</h2>
           <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rhoncus vulputate tellus, eget ornare nibh eleifend sed. Etiam efficitur nisi sit amet laoreet efficitur. Maecenas sit amet scelerisque erat, sit amet facilisis erat. Praesent facilisis, elit sed posuere faucibus, risus eros pulvinar ex, nec ornare sapien enim id nulla.</p>
           <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
