@@ -39,7 +39,7 @@
 
     //envoi les donner pour un artiste
   } elseif (isset($_GET['action']) && $_GET['action']=="new") {
-    $data['artiste']['nomscene'] = "new";
+    $data['artistegroupe']['nomscene'] = "new";
     $data['vue']="form";
     //envoi un formulaire pour cree un artiste
   }else{

@@ -6,18 +6,18 @@
 
 
   $data["action"] = "";
-  if(isset($_GET["artiste"]) && isset($_GET["action"]) ){
-    $data["action"] = $_GET["action"];
-    $data['artistegroupe']['nomscene'] ="En Marche";
-
-
-  }else if(isset($_GET["artiste"])){
-    $data["action"] = "view";
-    $data['artistegroupe']['nomscene'] ="En Marche";
-  }else{
-    $data['artistegroupe']['nomscene'] ="404";
+  if (isset($_GET["artiste"]) && isset($_GET["action"]) && $_GET['action']=="edit") {
+    $data['artistegroupe']['nomscene']= "En Marche";
+    include("../view/artiste_fiche_edit.view.php");
+  } else if(isset($_GET["artiste"])) {
+    $data['artistegroupe']['nomscene']= "En Marche";
+    include("../view/artiste_fiche.view.php");
+  } else {
+    $data['code']=404;
+    $data['message'] = "Le groupe que vous cherchez n'existe pas ou plus !";
+    include("../view/error.view.php");
   }
 
 
-  include("../view/artiste_fiche.view.php");
+
 ?>
