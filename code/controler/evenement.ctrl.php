@@ -71,6 +71,6 @@
     $data['error']['back'] = "../controler/evenements.ctrl.php";
     $data['error']['message'] = "Vous vous etes perdu ...";
     $data['page'] = "Error";
-    include("../view/error.php");
+    include("../view/error.view.php");
   }
 ?>

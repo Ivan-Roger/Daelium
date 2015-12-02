@@ -36,10 +36,10 @@
       <form class="form-horizontal" role="form">
         <h2>Fiche de "<?= $data["artistegroupe"]['nomscene']?>"</h2>
         <article class="col-lg-offset-2 col-lg-10">
-          <div class="navbar navbar-form navbar-right">
-            <a class ="btn btn-default" href="../controler/artiste.ctrl.php?artiste=<?= $data["artistegroupe"]['nomscene']?>"> Retour </a>
-            <INPUT class ="btn btn-warning" TYPE="reset" NAME="nom" VALUE="Annuler">
-            <INPUT class ="btn btn-primary" TYPE="submit" NAME="nom" VALUE="Enregister">
+          <div class="navbar navbar-right">
+            <a class ="btn btn-default" href="../controler/artiste_fiche.ctrl.php?artiste=<?= $data['artistegroupe']['nomscene']?>"> Retour </a>
+            <input class ="btn btn-warning" type="reset" name="nom" value="Annuler">
+            <input class ="btn btn-primary" type="submit" name="nom" value="Enregister">
           </div>
         </article>
         <div class="col-lg-12">
