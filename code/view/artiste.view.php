@@ -143,7 +143,7 @@
                         <div class="form-group">
                           <label class="control-label col-sm-4" for="img">Image de couverture :</label>
                           <div class="col-sm-8">
-                            <input type="file" id="img" name="img" class="form-control"/>
+                            <input type="file" id="img" name="img"/>
                           </div>
                         </div>
                       </div>

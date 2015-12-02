@@ -12,24 +12,20 @@
     <?php include("../view/include/header.view.php"); ?>
     <section class="col-lg-offset-1 col-lg-10">
       <div class="row">
-        <div  class="col-xs-2">
-            <a href="../controler/evenement.ctrl.php?evenement=" id="pic" class="thumbnail">
-              <img class="category-banner img-responsive" src="../data/img/icons/calendar_64px.png" alt="...">
-              <div class="OverlayText">Evenement 1</div>
-            </a>
-          </div>
+        <?php foreach($data['evenements'] as $evt) { ?>
           <div class="col-xs-2">
-            <a href="../controler/evenement.ctrl.php?evenement=Bilbao_BBK_live" id="pic" class="thumbnail">
-              <img class="category-banner img-responsive" src="../data/users/icons/bilbao-logo.jpg" alt="...">
-              <div class="OverlayText">Bilbao BBK Live</div>
+            <a href="../controler/evenement.ctrl.php?id=<?= $evt['id'] ?>" id="pic" class="thumbnail">
+              <img class="category-banner img-responsive" src="<?= $evt['img'] ?>" alt="...">
+              <div class="OverlayText"><?= $evt['name'] ?></div>
             </a>
           </div>
-          <div  class="col-xs-2">
-            <a href="../controler/evenement.ctrl.php?action=new" id="pic" class="thumbnail">
-              <img class="category-banner img-responsive" src="../data/img/icons/plus.png" alt="...">
-              <div class="OverlayText ">Ajouter un evenement</div>
-            </a>
-          </div>
+        <?php } ?>
+        <div  class="col-xs-2">
+          <a href="../controler/evenement.ctrl.php?action=new" id="pic" class="thumbnail">
+            <img class="category-banner img-responsive" src="../data/img/icons/plus.png" alt="...">
+            <div class="OverlayText ">Ajouter un evenement</div>
+          </a>
+        </div>
       </div>
     </section>
     <?php include("../view/include/footer.view.php"); ?>

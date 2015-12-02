@@ -115,27 +115,27 @@
         <div id="counter_1" class="col-lg-4 text-center" style="display: none;">
           <div class="media">
             <div class="media-left media-middle">
-              <div class="media-object img-circle large"><span class="counter" data-from="0" data-to="6" data-speed="1500">0</span><br/><span class="icon-img small icon-gift"></span></div>
+              <div class="media-object img-circle large"><span class="counter" data-from="0" data-to="124" data-speed="1500">0</span><br/><span class="icon-img small icon-briefcase"></span></div>
             </div>
             <div class="media-body">
-              <h2 class="media-heading">Developpeurs</h2>
+              <h2 class="media-heading">Organisateurs</h2>
             </div>
           </div>
         </div><!-- /.col-lg-4 -->
         <div id="counter_2" class="col-lg-4 text-center" style="display: none;">
           <div class="media">
             <div class="media-left media-middle">
-              <div class="media-object img-circle large"><span class="counter" data-from="0" data-to="250" data-speed="1500">0</span><br/><span class="icon-img small icon-gift"></span></div>
+              <div class="media-object img-circle large"><span class="counter" data-from="0" data-to="256" data-speed="1500">0</span><br/><span class="icon-img small icon-megaphone"></span></div>
             </div>
             <div class="media-body">
-              <h2 class="media-heading">Je sais pas quoi</h2>
+              <h2 class="media-heading">Bookers</h2>
             </div>
           </div>
         </div><!-- /.col-lg-4 -->
         <div id="counter_3" class="col-lg-4 text-center" style="display: none;">
           <div class="media">
             <div class="media-left media-middle">
-              <div class="media-object img-circle large"><span class="counter" data-from="0" data-to="380" data-speed="1500">0</span><br/><span class="icon-img small icon-gift"></span></div>
+              <div class="media-object img-circle large"><span class="counter" data-from="0" data-to="380" data-speed="1500">0</span><br/><span class="icon-img small icon-happy"></span></div>
             </div>
             <div class="media-body">
               <h2 class="media-heading">Utilisateurs</h2>

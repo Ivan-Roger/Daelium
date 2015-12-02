@@ -26,7 +26,7 @@
         </div>
         <div  class="col-xs-2">
           <a href="../controler/artiste.ctrl.php?artiste=Groupe3" id="pic" class="thumbnail">
-            <img class="category-banner img-responsive" src="../data/users/icons/toy.jpg" alt="...">
+            <img class="category-banner img-responsive" src="../data/users/icons/User_64.png" alt="...">
             <div class="OverlayText ">Groupe 3</div>
           </a>
         </div>

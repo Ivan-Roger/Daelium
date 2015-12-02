@@ -142,6 +142,18 @@ span.icon-img.icon-adjustments {
   background-image: url(../img/icons/adjustments_64px.png);
 }
 
+span.icon-img.icon-briefcase {
+  background-image: url(../img/icons/briefcase_64px.png);
+}
+
+span.icon-img.icon-happy {
+  background-image: url(../img/icons/happy_64px.png);
+}
+
+span.icon-img.icon-megaphone {
+  background-image: url(../img/icons/megaphone_64px.png);
+}
+
 .row {
   margin-bottom: 50px;
 }

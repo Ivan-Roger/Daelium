@@ -24,7 +24,7 @@
             <!-- trouver image -->
             <img src="https://cdn2.artstation.com/p/assets/images/images/001/023/866/large/samma-van-klaarbergen-patrick-watson2.jpg?1438415706" alt="Erreur chargement image" style="position: relative; bottom: 80%;" />
             <div class="carousel-caption">
-              <h1>Bienvenue ! A FAIRE !!!</h1>
+              <h1>Bienvenue !</h1>
               <p>Bienvenue sur Dælium, le site est actuellement en construction ...</p>
             </div>
           </div>

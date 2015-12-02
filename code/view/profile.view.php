@@ -55,7 +55,7 @@
           <h4>Mes groupes : </h4>
           <ul class="groups list-group">
             <li class="list-group-item">
-              <span class="group-name col-sm-10">En march</span>
+              <span class="group-name col-sm-10">En marche</span>
               <div class="col-sm-2">
                 <a class="btn btn-default" href="artiste_fiche.ctrl.php?artiste=En marche">Voir fiche</a>
               </div>
@@ -72,7 +72,7 @@
           <h4>Description</h4>
           <textarea class="form-control" readonly>
             Je suis Booker depuis 2002 dans l'association Les petits gars à Grenoble. Toujours disponible ...
-Je m'occupe actuellement de deux groupes : Le petit père des peuples et Batoucada
+Je m'occupe actuellement de deux groupes : En marche et Batoucada
 Pour me contacter utilisez l'adresse de contact.</textarea>
         </div>
       </article>
