@@ -67,6 +67,14 @@
     $album['date'] = "2015";
     $data['albums'][] = $album;
 
+    $lineUp['nom'] = "Hello";
+    $lineUp['url'] = "https://www.youtube.com/embed/YQHsXMglC9A?feature=player_detailpage";
+    $data['lineUp'][] = $lineUp;
+
+    $lineUp['nom'] = "Overwerk";
+    $lineUp['url'] = "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/231318729&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true";
+    $data['lineUp'][] = $lineUp;
+
     //envoie les données pour un artiste
     include("../view/groupe.view.php");
   } elseif (isset($_GET['action']) && $_GET['action']=="new") {

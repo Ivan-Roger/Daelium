@@ -79,19 +79,19 @@ Postremo ad id indignitatis est ventum, ut cum peregrini ob formidatam haut ita 
             <?php } ?>
           </div>
         </div>
-        <div class="col-lg-12 well">
+        <div class="col-lg-12 well" id="lineUp">
           <h4>Line up : </h4>
           <p>Habens perpendiculum exaedificavit Octaviani sibi Herodes Ascalonem abundans quam ad egregias Caesaream Herodes cedentem aemulas: honorem est vicissim Gazam magna.</p>
-          <div>
-            <div class="col-xs-2">
+          <div class="frames">
+            <div id="frameList" class="col-xs-3">
               <ul class="nav nav-pills nav-stacked">
-                <li class="active"><a href="#" class="btn btn-default">Hello</a></li>
-                <li><a href="#" class="btn btn-default">Hello</a></li>
-                <li><a href="#" class="btn btn-default">Hello</a></li>
+                <?php foreach($data['lineUp'] as $key => $lineUp) { ?>
+                <li <?php echo($key==0?"class='active'":"");?>><a class="btn btn-default" data-url="<?= $lineUp['url'] ?>"><?= $lineUp['nom'] ?></a></li>
+                <?php } ?>
               </ul>
             </div>
-            <div id="videoContent" class="col-md-10" style="width: 420px; height: 215px;">
-              <iframe width="100%" height="100%" src="https://www.youtube.com/embed/YQHsXMglC9A?feature=player_detailpage" frameborder="0" allowfullscreen></iframe>
+            <div class="col-md-9" style="width: 420px; height: 215px;">
+              <iframe id="frameContent" width="100%" height="100%" src="https://www.youtube.com/embed/YQHsXMglC9A?feature=player_detailpage" frameborder="0" allowfullscreen></iframe>
             </div>
           </div>
         </div>
@@ -100,5 +100,6 @@ Postremo ad id indignitatis est ventum, ut cum peregrini ob formidatam haut ita 
     <?php include("../view/include/footer.view.php"); ?>
     <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="../data/js/bootstrap.min.js"></script>
+    <script src="../data/js/groupe.js"></script>
   </body>
 </html>

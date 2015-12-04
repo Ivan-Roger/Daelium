@@ -1,14 +1,14 @@
 <?php
+  require_once("../data/config.php");
   require_once("utils.class.php");
   require_once("exceptions.class.php");
 
   class DAO {
     private $db;
-    private $user;
 
     function __construct() {
       try {
-        $this->db = new PDO("")
+        $this->db = new PDO("pgsql:host=".$ADRESS_BD.";port=".$PORT_BD.";dbname=".$NAME_BD.";user=".$USER_BD.";password=".$PASSWORD_BD);
       } catch (PDOException $e) {
         die("Error, Connexion a la DB impossible : ".$e->getMessage());
       }
@@ -16,22 +16,8 @@
 
     // ===================== Utilisateur =====================
 
-    function readUser($login) {
-      $sql = "SELECT * FROM Users WHERE login = ?"; // requête
-      $req = $this->db->prepare($sql);
-      $params = array( // paramétres
-        $login // le nom d'utilisateur
-      );
-      $res = $req->execute($params);
-      if ($res === FALSE) {
-        die("readUser : Requête impossible !"); // erreur dans la requête
-      }
-      $res = $req->fetchAll(PDO::FETCH_CLASS,"User");
-      return (isset($res[0])?$res[0]:null); // retourne le premier resultat s'il existe, sinon null
-    }
-
     function readUserById($id) {
-      $sql = "SELECT * FROM Users WHERE id = ?"; // requête
+      $sql = "SELECT * FROM Utilisateur WHERE idUtilisateur = ?"; // requête
       $req = $this->db->prepare($sql);
       $params = array( // paramétres
         $id // l'id de l'utilisateur
@@ -45,7 +31,7 @@
     }
 
     function readUserByEmail($email) {
-      $sql = "SELECT * FROM Users WHERE email = ?"; // requête
+      $sql = "SELECT * FROM Users WHERE emailCompte = ?"; // requête
       $req = $this->db->prepare($sql);
       $params = array( // paramétres
         $email // l'email de l'utilisateur
