@@ -5,8 +5,8 @@ Pour plus d'infos : -> **[Wiki](https://github.com/Ivan-Roger/Daelium/wiki)**
 ## Infos générales :
 
 - **Itération 1** : Ok
-- **Itération 2** : Au boulot !!! (rendu le 23 novembre)
-- **Itération 3** : Rendu le 8 janvier
+- **Itération 2** : Ok
+- **Itération 3** : Allez, il y a du boulot !!! (Rendu le 8 janvier)
 
 ## Dossiers ##
 
