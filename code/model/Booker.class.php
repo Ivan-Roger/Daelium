@@ -1,9 +1,11 @@
 <?php
-  class Booker {
-    private User $user;
+  require_once('Utilisateur.class.php')
 
-    function __construct() {
+  class Booker extends Utilisateur {
+    private $idBooker;
 
+    function __construct($id = NULL) {
+      $this->idBooker = $id;
     }
   }
 ?>
