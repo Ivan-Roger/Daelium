@@ -16,14 +16,14 @@
         <div class="groupPic col-sm-1 text-right"><img src="../data/img/icons/Group_64px.png" alt="Image de Profil"></div>
         <h3 class="col-sm-9"><?= $data['groupe']['nom'] ?></h3>
         <div class="controls col-sm-2 text-right">
-          <a class="btn btn-primary" href="#">Editer</a>
+          <a class="btn btn-primary" href="../controler/groupe.ctrl.php?id=<?= $data['groupe']['id'] ?>&action=edit">Editer</a>
         </div>
       </div>
     </div>
     <section class="col-lg-10 col-lg-offset-1">
       <article class="col-lg-6 infoProfile">
         <div class="well">
-          <h4>Informations générales</h4>
+          <h4>Informations générales :</h4>
           <div class="row">
             <span class="col-sm-4 text-right">Booker en charge</span><b class="col-sm-8 text-left" id="mailAccount">Jean-Louis Dupond</b>
           </div>
@@ -32,32 +32,45 @@
           </div>
         </div>
         <div class="well">
-          <h4>Position</h4>
-          <div class="row">
-            <span class="col-sm-4 text-right">Adresse</span><b class="col-sm-8 text-left" id="adress">2 Place Doyen Gosse<br/>38000 Grenoble</b>
-          </div>
-          <div class="row">
-            <span class="col-sm-4 text-right">Plan</span>
-            <a href="https://www.google.fr/maps/place/2+Place+Doyen+Gosse,+38000+Grenoble/@45.1919241,5.717596,18z/data=!4m2!3m1!1s0x478af4872c0a703f:0x6503d8b580fceb38" target="_blank">
-              Voir sur gogle maps
-            </a>
+          <h4>Biographie :</h4>
+          <p>Dumque ibi diu moratur commeatus opperiens, quorum translationem ex Aquitania verni imbres solito crebriores prohibebant auctique torrentes, Herculanus advenit protector domesticus, Hermogenis ex magistro equitum filius, apud Constantinopolim, ut supra rettulimus, populari quondam turbela discerpti. quo verissime referente quae Gallus egerat, damnis super praeteritis maerens et futurorum timore suspensus angorem animi quam diu potuit emendabat.<br/>
+Hinc ille commotus ut iniusta perferens et indigna praefecti custodiam protectoribus mandaverat fidis. quo conperto Montius tunc quaestor acer quidem sed ad lenitatem propensior, consulens in commune advocatos palatinarum primos scholarum adlocutus est mollius docens nec decere haec fieri nec prodesse addensque vocis obiurgatorio sonu quod si id placeret, post statuas Constantii deiectas super adimenda vita praefecto conveniet securius cogitari.<br/>
+Quam ob rem cave Catoni anteponas ne istum quidem ipsum, quem Apollo, ut ais, sapientissimum iudicavit; huius enim facta, illius dicta laudantur. De me autem, ut iam cum utroque vestrum loquar, sic habetote.<br/>
+Metuentes igitur idem latrones Lycaoniam magna parte campestrem cum se inpares nostris fore congressione stataria documentis frequentibus scirent, tramitibus deviis petivere Pamphyliam diu quidem intactam sed timore populationum et caedium, milite per omnia diffuso propinqua, magnis undique praesidiis conmunitam.<br/>
+Postremo ad id indignitatis est ventum, ut cum peregrini ob formidatam haut ita dudum alimentorum inopiam pellerentur ab urbe praecipites, sectatoribus disciplinarum liberalium inpendio paucis sine respiratione ulla extrusis, tenerentur minimarum adseclae veri, quique id simularunt ad tempus, et tria milia saltatricum ne interpellata quidem cum choris totidemque remanerent magistris.</p>
+        </div>
+        <div class="well">
+          <h4>Albums :</h4>
+          <div>
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+              <?php foreach($data['albums'] as $key => $album) { ?>
+              <li role="presentation" <?php echo($key==0?"class='active'":"") ?>><a href="#album<?= $key ?>" aria-controls="album<?= $key ?>" role="tab" data-toggle="tab"><?= $album['nom'] ?></a></li>
+              <?php } ?>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+              <?php foreach($data['albums'] as $key => $album) { ?>
+              <div role="tabpanel" class="tab-pane <?php echo($key==0?"active":"") ?>" id="album<?= $key ?>">...</div>
+              <?php } ?>
+            </div>
           </div>
         </div>
       </article>
       <article class="col-lg-6">
         <div class="col-lg-12 well">
           <h4>Artistes : </h4>
-          <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
+          <div class="panel-group" id="accordion" role="tablist">
             <?php foreach($data['artistes'] as $key => $art) { ?>
               <div class="panel panel-default">
                 <div class="panel-heading" role="tab" id="headingArtist<?= $key ?>">
                   <h4 class="panel-title">
-                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseArtist<?= $key ?>" aria-expanded="false" aria-controls="collapseArtist<?= $key ?>">
+                    <a  class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseArtist<?= $key ?>" aria-expanded="false" aria-controls="collapseArtist<?= $key ?>">
                       <?= $art['prenom'] ?> <?= $art['nom'] ?>
                     </a>
                   </h4>
                 </div>
-                <div id="collapseArtist<?= $key ?>" class="panel-collapse collapse in" aria-expanded="false" role="tabpanel" aria-labelledby="headingArtist<?= $key ?>">
+                <div id="collapseArtist<?= $key ?>" class="panel-collapse collapse" aria-expanded="false" role="tabpanel" aria-labelledby="headingArtist<?= $key ?>">
                   <div class="panel-body">
                     Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
                   </div>
@@ -66,12 +79,21 @@
             <?php } ?>
           </div>
         </div>
-        <div class="groupDesc col-lg-12 well">
-          <h4>Description</h4>
-          <textarea class="form-control" readonly>
-            Je suis Booker depuis 2002 dans l'association Les petits gars à Grenoble. Toujours disponible ...
-Je m'occupe actuellement de deux groupes : En marche et Batoucada
-Pour me contacter utilisez l'adresse de contact.</textarea>
+        <div class="col-lg-12 well">
+          <h4>Line up : </h4>
+          <p>Habens perpendiculum exaedificavit Octaviani sibi Herodes Ascalonem abundans quam ad egregias Caesaream Herodes cedentem aemulas: honorem est vicissim Gazam magna.</p>
+          <div>
+            <div class="col-xs-2">
+              <ul class="nav nav-pills nav-stacked">
+                <li class="active"><a href="#" class="btn btn-default">Hello</a></li>
+                <li><a href="#" class="btn btn-default">Hello</a></li>
+                <li><a href="#" class="btn btn-default">Hello</a></li>
+              </ul>
+            </div>
+            <div id="videoContent" class="col-md-10" style="width: 420px; height: 215px;">
+              <iframe width="100%" height="100%" src="https://www.youtube.com/embed/YQHsXMglC9A?feature=player_detailpage" frameborder="0" allowfullscreen></iframe>
+            </div>
+          </div>
         </div>
       </article>
     </section>

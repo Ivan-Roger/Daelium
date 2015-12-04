@@ -95,6 +95,11 @@ nav #notifs li b {
   padding: 0px;
 }
 
+.centered {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 footer {
   background-color: #FFF;
 }

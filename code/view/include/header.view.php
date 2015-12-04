@@ -21,7 +21,7 @@
           <li<?php echo($data['page']=="Messages"?" class='active'":"") ?>><a href="../controler/messages.ctrl.php"><span class="glyphicon glyphicon-envelope"></span>Messagerie</a></li>
           <li<?php echo($data['page']=="List"?" class='active'":"") ?>><a href="../controler/list.ctrl.php"><span class="glyphicon glyphicon-list-alt"></span>Annuaire</a></li>
           <?php if($data["type"] == "booker") { ?>
-            <li<?php echo($data['page']=="Groups"?" class='active'":"") ?>><a href="../controler/groups.ctrl.php"><span class="glyphicon glyphicon-music"></span>Groupes</a></li>
+            <li<?php echo($data['page']=="Groups"?" class='active'":"") ?>><a href="../controler/groupes.ctrl.php"><span class="glyphicon glyphicon-music"></span>Groupes</a></li>
           <?php } else { ?>
             <li<?php echo($data['page']=="Events"?" class='active'":"") ?>><a href="../controler/events.ctrl.php"><span class="glyphicon glyphicon-folder-open"></span>Evenements</a></li>
           <?php }?>
