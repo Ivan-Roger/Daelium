@@ -2,7 +2,7 @@
   session_start();
   //include_once("../model/Artist.class.php");
   require_once("../model/utils.class.php");
-  $data = initPage("Evenements");
+  $data = initPage("Events");
 
   if (isset($_GET['id']) && $_GET['id'] != "") {
     // Recupérer les données depuis la BD avec l'id ($_GET['id'])

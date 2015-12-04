@@ -1,7 +1,7 @@
 <?php
   session_start();
   require_once("../model/utils.class.php");
-  $data = initPage("Evenements");
+  $data = initPage("Events");
 
   // Recupérer les données depuis la BD
   $evt['id'] = "fhdg8x5x8bncx5";

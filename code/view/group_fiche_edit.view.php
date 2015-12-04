@@ -5,7 +5,8 @@
   <link rel="stylesheet" href="../data/css/bootstrap.css">
   <link rel="stylesheet" href="../data/css/artiste_fiche.css">
   <link rel="stylesheet" href="../data/css/common.css">
-  <title>Dælium - Artiste - <?= $data["artistegroupe"]['nomscene']?> - Edition</title>
+  <link rel="icon" type="image/png" href="../data/img/D.png" />
+  <title>Dælium - Artiste - <?= $data['group']['name']?> - Edition</title>
 </head>
 <body>
   <!-- Cette page est acessible par tout les Organisateur et Non inscrit , Cependant le booker a possibiliter de modifier la page -->
@@ -34,10 +35,10 @@
     position du module en haut, en bas.
     -->
       <form class="form-horizontal" role="form">
-        <h2>Fiche de "<?= $data["artistegroupe"]['nomscene']?>"</h2>
+          <h2>Fiche de "<?= $data["group"]['name']?>"</h2>
         <article class="col-lg-offset-2 col-lg-10">
           <div class="navbar navbar-right">
-            <a class ="btn btn-default" href="../controler/artiste_fiche.ctrl.php?artiste=<?= $data['artistegroupe']['nomscene']?>"> Retour </a>
+            <a class ="btn btn-default" href="../controler/group_fiche.ctrl.php?id=<?= $data['group']['id']?>"> Retour </a>
             <input class ="btn btn-warning" type="reset" name="nom" value="Annuler">
             <input class ="btn btn-primary" type="submit" name="nom" value="Enregister">
           </div>

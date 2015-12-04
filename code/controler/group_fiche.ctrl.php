@@ -1,17 +1,18 @@
 <?php
   session_start();
-  //include_once("../model/Artist.class.php");
   require_once("../model/utils.class.php");
-  $data = initPage("Artistes");
+  $data = initPage("Groups");
 
 
   $data["action"] = "";
   if (isset($_GET["id"]) && isset($_GET["action"]) && $_GET['action']=="edit") {
-    $data['artistegroupe']['nomscene']= "En Marche";
-    include("../view/artiste_fiche_edit.view.php");
+    $data['group']['id']= $_GET['id'];
+    $data['group']['name']= "En Marche";
+    include("../view/group_fiche_edit.view.php");
   } else if(isset($_GET["id"])) {
-    $data['artistegroupe']['nomscene']= "En Marche";
-    include("../view/artiste_fiche.view.php");
+    $data['group']['id']= $_GET['id'];
+    $data['group']['name']= "En Marche";
+    include("../view/group_fiche.view.php");
   } else {
     $data['error']['title'] = "Groupe Inconnu";
     $data['error']['back'] = "../controler/main.ctrl.php";

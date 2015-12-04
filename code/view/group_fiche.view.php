@@ -5,7 +5,8 @@
   <link rel="stylesheet" href="../data/css/bootstrap.css">
   <link rel="stylesheet" href="../data/css/artiste_fiche.css">
   <link rel="stylesheet" href="../data/css/common.css">
-  <title>Dælium - Artiste - <?= $data["artistegroupe"]['nomscene']?></title>
+  <link rel="icon" type="image/png" href="../data/img/D.png" />
+  <title>Dælium - Artiste - <?= $data['group']['name']?></title>
 </head>
 <body>
   <!-- Cette page est acessible par tout les Organisateur et Non inscrit , Cependant le booker a possibiliter de modifier la page -->
@@ -34,7 +35,7 @@
     position du module en haut, en bas.
   -->
       <div class="panel panel-default">
-        <div class="panel-heading"><h2 ><?= $data["artistegroupe"]['nomscene']?></h2><a class ="btn btn-primary" href="../controler/artiste_fiche.ctrl.php?artiste=<?= $data["artistegroupe"]['nomscene']?>&action=edit"> Modifier la fiche </a></div>
+        <div class="panel-heading"><h2 ><?= $data['group']['name']?></h2><a class ="btn btn-primary" href="../controler/group_fiche.ctrl.php?id=<?= $data['group']['id']?>&action=edit"> Modifier la fiche </a></div>
         <div class="panel-body">
           <img src="https://cdn2.artstation.com/p/assets/images/images/001/023/866/large/samma-van-klaarbergen-patrick-watson2.jpg?1438415706" />
 
@@ -87,7 +88,7 @@ Postremo ad id indignitatis est ventum, ut cum peregrini ob formidatam haut ita 
         </div>
         <div class="col-lg-4">
           <div class="panel panel-default">
-            <div class="panel-heading"><?= $data["artistegroupe"]['nomscene']?> en concert</div>
+            <div class="panel-heading"><?= $data["group"]['name']?> en concert</div>
               <h4>Futur</h4>
                 <ul>
                   <li>15 Janvier a Marseille</li>
