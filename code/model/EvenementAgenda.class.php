@@ -3,11 +3,11 @@
   class EvenementAgenda {
     private Agenda $parent;
 	private $nom;
-	private $dateDebut;
-	private $heureDebut;
-	private $dateFin;
-	private $heureFin;
-	private $lieu;
+	private $dateDebut;  // Type date ?
+	private $heureDebut; // Type date ?
+	private $dateFin;	 // Type heure ?
+	private $heureFin;	 // Type heure ?
+	private Lieu $lieu;
 	private Personne[] $participants;
 	private $rappels // Tableau des rappels donnés par l'utilisateur
 	// /!\ FAIRE UNE CLASSE /!\ avec le nom du champ ajouté, son type etc...
