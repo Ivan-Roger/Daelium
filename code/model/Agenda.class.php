@@ -1,15 +1,14 @@
 <?php
   class Agenda {
-    private User $user;
-    private AgendaEvent[] $events;
-
+    private Utilisateur $utilisateur;
+    private EvenementAgenda[] $evenements;
     // Constructeur
-    function __construct($user=NULL, $events=NULL) { // A vroi si bonne écriture pour $events
-      if (!isset($this->user)) {
-        $this->user = $user;
+    function __construct($utilisateur=NULL, $evenements=NULL) { // A voir si bonne écriture pour $evenements
+      if (!isset($this->utilisateur)) {
+        $this->utilisateur = $utilisateur;
       }
-      if ($events != NULL) {
-        $this->events = $events;
+      if ($evenements != NULL) {
+        $this->evenements = $evenements;
       }
     }
     
@@ -17,13 +16,13 @@
   //        Fonctions getter
   // ********************************
   // getter de l'utilisateur à qui appartient l'agenda
-  function getUser() {
-    return $this->user;
+  function getUtilisateur() {
+    return $this->utilisateur;
   }
     
   // getter de la liste des évènements 
-  function getEvents() {
-    return $this->events;
+  function getEvenements() {
+    return $this->evenements;
   }
     
   }
