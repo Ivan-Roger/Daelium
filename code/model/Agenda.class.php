@@ -1,11 +1,11 @@
 <?php
   class Agenda {
-    private Utilisateur $utilisateur;
+    private Utilisateur $proprietaire;
     private EvenementAgenda[] $evenements;
     // Constructeur
-    function __construct($utilisateur=NULL, $evenements=NULL) { // A voir si bonne écriture pour $evenements
-      if (!isset($this->utilisateur)) {
-        $this->utilisateur = $utilisateur;
+    function __construct($proprietaire=NULL, $evenements=NULL) { // A voir si bonne écriture pour $evenements
+      if (!isset($this->proprietaire)) {
+        $this->proprietaire = $proprietaire;
       }
       if ($evenements != NULL) {
         $this->evenements = $evenements;
