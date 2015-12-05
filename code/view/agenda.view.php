@@ -19,13 +19,13 @@
               <div class='row'>
                 <div class='col-md-3 col-xs-4'>
                   <button id="calendarPrev" class='ajax-navigation btn btn-default btn-sm'>
-                    <span class='glyphicon glyphicon-arrow-left'></span>
+                    <span class='glyphicon glyphicon-arrow-left no-margin'></span>
                   </button>
                 </div>
                 <div class='col-md-6 col-xs-4'><h4 id="calendarTitle"><?= $data['monthName'] ?> <?= $data['year'] ?></h4></div>
                 <div class='col-md-3 col-xs-4 '>
                   <button id="calendarNext" class='ajax-navigation btn btn-default btn-sm'>
-                    <span class='glyphicon glyphicon-arrow-right'></span>
+                    <span class='glyphicon glyphicon-arrow-right no-margin'></span>
                   </button>
                 </div>
               </div>
@@ -49,15 +49,28 @@
                   <?php
                   $today = (($data['date']['month']==$data['month'] && $data['date']['year']==$data['year'])?$data['date']['day']:null);
                   foreach($data['calendar'] as $week) { ?>
-                  <tr>
+                  <tr data-week="<?= $week['id'] ?>">
                     <th><?= $week['id'] ?></th>
-                    <td<?php echo(($week['days'][0]>0?($week['days'][0]==$today?" class='info'>".$week['days'][0]:">".$week['days'][0]):" class='not-hover'>")); ?></td>
-                    <td<?php echo(($week['days'][1]>0?($week['days'][1]==$today?" class='info'>".$week['days'][1]:">".$week['days'][1]):" class='not-hover'>")); ?></td>
-                    <td<?php echo(($week['days'][2]>0?($week['days'][2]==$today?" class='info'>".$week['days'][2]:">".$week['days'][2]):" class='not-hover'>")); ?></td>
-                    <td<?php echo(($week['days'][3]>0?($week['days'][3]==$today?" class='info'>".$week['days'][3]:">".$week['days'][3]):" class='not-hover'>")); ?></td>
-                    <td<?php echo(($week['days'][4]>0?($week['days'][4]==$today?" class='info'>".$week['days'][4]:">".$week['days'][4]):" class='not-hover'>")); ?></td>
-                    <td<?php echo(($week['days'][5]>0?($week['days'][5]==$today?" class='info'>".$week['days'][5]:">".$week['days'][5]):" class='not-hover'>")); ?></td>
-                    <td<?php echo(($week['days'][6]>0?($week['days'][6]==$today?" class='info'>".$week['days'][6]:">".$week['days'][6]):" class='not-hover'>")); ?></td>
+                    <td data-day="<?= $week['days'][0] ?>" class="<?php echo($week['days'][0]<=0?"not-hover ":""); ?><?php echo($week['days'][0]==$today?"info ":""); ?>">
+                      <?= $week['days'][0] ?>
+                    </td>
+                    <td data-day="<?= $week['days'][1] ?>" class="<?php echo($week['days'][1]<=0?"not-hover ":""); ?><?php echo($week['days'][1]==$today?"info ":""); ?>">
+                      <?= $week['days'][1] ?></td>
+                    <td data-day="<?= $week['days'][2] ?>" class="<?php echo($week['days'][2]<=0?"not-hover ":""); ?><?php echo($week['days'][2]==$today?"info ":""); ?>">
+                      <?= $week['days'][2] ?>
+                    </td>
+                    <td data-day="<?= $week['days'][3] ?>" class="<?php echo($week['days'][3]<=0?"not-hover ":""); ?><?php echo($week['days'][3]==$today?"info ":""); ?>">
+                      <?= $week['days'][3] ?>
+                    </td>
+                    <td data-day="<?= $week['days'][4] ?>" class="<?php echo($week['days'][4]<=0?"not-hover ":""); ?><?php echo($week['days'][4]==$today?"info ":""); ?>">
+                      <?= $week['days'][4] ?>
+                    </td>
+                    <td data-day="<?= $week['days'][5] ?>" class="<?php echo($week['days'][5]<=0?"not-hover ":""); ?><?php echo($week['days'][5]==$today?"info ":""); ?>">
+                      <?= $week['days'][5] ?>
+                    </td>
+                    <td data-day="<?= $week['days'][6] ?>" class="<?php echo($week['days'][6]<=0?"not-hover ":""); ?><?php echo($week['days'][6]==$today?"info ":""); ?>">
+                      <?= $week['days'][6] ?>
+                    </td>
                   </tr>
                   <?php } ?>
                 </tbody>
@@ -93,7 +106,7 @@
               <div class='row'>
                 <div class='col-md-3 col-xs-4'>
                   <button id="dayPlanPrev" class='ajax-navigation btn btn-default btn-sm'>
-                    <span class='glyphicon glyphicon-arrow-left'></span>
+                    <span class='glyphicon glyphicon-arrow-left no-margin'></span>
                   </button>
                 </div>
                 <div class='col-md-6 col-xs-4'>
@@ -101,7 +114,7 @@
                 </div>
                 <div class='col-md-3 col-xs-4 '>
                   <button id="dayPlanNext" class='ajax-navigation btn btn-default btn-sm'>
-                    <span class='glyphicon glyphicon-arrow-right'></span>
+                    <span class='glyphicon glyphicon-arrow-right no-margin'></span>
                   </button>
                 </div>
               </div>
@@ -126,7 +139,7 @@
               <div class="input-group">
                 <input name="eventname" class="form-control input-lg" value="Nouvel évènement">
                 <div class="input-group-btn">
-                  <button class="btn btn-lg btn-default"><span class="glyphicon glyphicon-share"></span></button>
+                  <button class="btn btn-lg btn-default"><span class="glyphicon glyphicon-share no-margin"></span></button>
                 </div>
               </div>
             </div>
@@ -139,14 +152,14 @@
                     <input id="eventBeginingDate" name="eventBeginingDate" class="form-control" placeholder="Date"/>
                     <!-- je sugere ici de faire un type date -->
                     <div class="input-group-addon">
-                      <span class="glyphicon glyphicon-calendar"></span>
+                      <span class="glyphicon glyphicon-calendar no-margin"></span>
                     </div>
                   </div>
                   <div class="col-lg-4 input-group">
                     <input id="eventBeginingHour" name="eventBeginingFour" class="form-control" placeholder="Heure" readonly/>
                     <!-- je sugere ici de faire un type time -->
                     <div class="input-group-addon">
-                      <span class="glyphicon glyphicon-time"></span>
+                      <span class="glyphicon glyphicon-time no-margin"></span>
                     </div>
                   </div>
                 </div>
@@ -157,13 +170,13 @@
                   <div class="col-lg-4 input-group">
                     <input id="eventEndingDate" name="eventEndingDate" class="form-control" placeholder="Date"/>
                     <div class="input-group-addon">
-                      <span class="glyphicon glyphicon-calendar"></span>
+                      <span class="glyphicon glyphicon-calendar no-margin"></span>
                     </div>
                   </div>
                   <div class="col-lg-4 input-group">
                     <input id="eventEndingHour" name="eventEndingFour" class="form-control" placeholder="Heure" readonly/>
                     <div class="input-group-addon">
-                      <span class="glyphicon glyphicon-time"></span>
+                      <span class="glyphicon glyphicon-time no-margin"></span>
                     </div>
                   </div>
                 </div>
@@ -183,7 +196,7 @@
                   <div class="col-lg-9 input-group">
                     <input class="form-control" type="text" name="eventPlace" id="eventPlace" placeholder="Lieu"/>
                     <div class="input-group-btn">
-                      <button class="btn btn-default"><span class="glyphicon glyphicon-flag"></span></button>
+                      <button class="btn btn-default"><span class="glyphicon glyphicon-flag no-margin"></span></button>
                     </div>
                   </div>
                 </div>
@@ -193,7 +206,7 @@
                   <div class="col-lg-9 input-group">
                     <input class="form-control" type="text" name="eventParticipants" id="eventParticipants" placeholder="Participants"/>
                     <div class="input-group-btn">
-                      <button class="btn btn-default"><span class="glyphicon glyphicon-book"></span></button>
+                      <button class="btn btn-default"><span class="glyphicon glyphicon-book no-margin"></span></button>
                     </div>
                   </div>
                 </div>
@@ -231,7 +244,7 @@
       </div>
     </section>
     <?php include("../view/include/footer.view.php"); ?>
-    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="../data/js/jQuery.min.js"></script>
     <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <script src="../data/js/bootstrap.min.js"></script>
     <script src="../data/js/agenda.js"></script>

@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="../data/css/artiste.css">
   <link rel="stylesheet" href="../data/css/common.css">
   <link rel="icon" type="image/png" href="../data/img/D.png" />
-  <title>Dælium - Artiste - <?= $data['group']['name']?></title>
+  <title>Dælium - Artiste - <?= $data['groupe']['nom']?></title>
 </head>
 <body>
   <?php include("../view/include/header.view.php"); ?>
@@ -15,7 +15,7 @@
       <h1>Nouvel Artiste/Groupe</h1>
       <article class="col-lg-offset-2 col-lg-10">
         <div class="navbar navbar-right">
-          <a class ="btn btn-default" href="../controler/groups.ctrl.php"> Retour </a>
+          <a class ="btn btn-default" href="../controler/groupes.ctrl.php"> Retour </a>
           <a class ="btn btn-warning" href="#" > Annuler </a>
           <a class ="btn btn-primary" href="#" > Enregistrer </a>
         </div>
@@ -226,7 +226,7 @@
     </form>
   </section>
   <?php include("../view/include/footer.view.php"); ?>
-  <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script src="../data/js/jQuery.min.js"></script>
   <script src="../data/js/bootstrap.min.js"></script>
 </body>
 </html>

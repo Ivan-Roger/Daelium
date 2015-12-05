@@ -25,6 +25,23 @@
   background-color: #B1D3E4;
 }
 
+#calendar .selected {
+  box-shadow: 0px 0px 5px #B5B5B5 inset;
+  background-color: #E5E5E5;
+}
+
+#calendar .selected:hover {
+  background-color: #EFEFEF;
+}
+
+#calendar .info.selected{
+  background-color: #D9EDF7;
+}
+
+#calendar .info.selected:hover {
+  background-color: #B1D3E4;
+}
+
 #commingNext tr:hover td, #dayPlan tr:hover td {
   background-color: #E5E5E5;
 }

@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="../data/css/artiste_fiche.css">
   <link rel="stylesheet" href="../data/css/common.css">
   <link rel="icon" type="image/png" href="../data/img/D.png" />
-  <title>Dælium - Artiste - <?= $data['group']['name']?> - Edition</title>
+  <title>Dælium - Artiste - <?= $data['groupe']['nom']?> - Edition</title>
 </head>
 <body>
   <!-- Cette page est acessible par tout les Organisateur et Non inscrit , Cependant le booker a possibiliter de modifier la page -->
@@ -35,10 +35,10 @@
     position du module en haut, en bas.
     -->
       <form class="form-horizontal" role="form">
-          <h2>Fiche de "<?= $data["group"]['name']?>"</h2>
+          <h2>Fiche de "<?= $data["groupe"]['nom']?>"</h2>
         <article class="col-lg-offset-2 col-lg-10">
           <div class="navbar navbar-right">
-            <a class ="btn btn-default" href="../controler/group_fiche.ctrl.php?id=<?= $data['group']['id']?>"> Retour </a>
+            <a class ="btn btn-default" href="../controler/groupe_fiche.ctrl.php?id=<?= $data['groupe']['id']?>"> Retour </a>
             <input class ="btn btn-warning" type="reset" name="nom" value="Annuler">
             <input class ="btn btn-primary" type="submit" name="nom" value="Enregister">
           </div>
@@ -253,7 +253,7 @@
       </form>
     </section>
     <?php include("../view/include/footer.view.php"); ?>
-    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="../data/js/jQuery.min.js"></script>
     <script src="../data/js/bootstrap.min.js"></script>
     <div id="fb-root"></div>
     <script>

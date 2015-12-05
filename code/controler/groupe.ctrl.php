@@ -4,9 +4,9 @@
   $data = initPage("Groups");
 
   if (isset($_GET['id']) && $_GET['id'] != "" && isset($_GET['action']) && $_GET['action']=="edit") {
-    $data['group']['id']="kfpb5gso63w7s2l";
-    $data['group']['name'] ="En Marche";
-    $data['group']['nb']=2;
+    $data['groupe']['id']="kfpb5gso63w7s2l";
+    $data['groupe']['nom'] ="En Marche";
+    $data['groupe']['nb']=2;
 
     $art['prenom'] = "Marc";
     $art['nom'] = "Dupond";
@@ -30,7 +30,7 @@
     $art['ordre'] = "Mr Laurent Dupuis";
     $data['artistes'][] = $art;
     //envoie un formulaire pour créer un artiste
-    include("../view/group_edit.view.php");
+    include("../view/groupe_edit.view.php");
   } else if(isset($_GET['id']) && $_GET['id'] != ""){
 
     $data['groupe']['id']=$_GET['id'];
@@ -59,28 +59,12 @@
     $art['ordre'] = "Mr Laurent Dupuis";
     $data['artistes'][] = $art;
 
-    $album['nom'] = "Hon Hop";
-    $album['date'] = "2013";
-    $data['albums'][] = $album;
-
-    $album['nom'] = "Ping Pong";
-    $album['date'] = "2015";
-    $data['albums'][] = $album;
-
-    $lineUp['nom'] = "Hello";
-    $lineUp['url'] = "https://www.youtube.com/embed/YQHsXMglC9A?feature=player_detailpage";
-    $data['lineUp'][] = $lineUp;
-
-    $lineUp['nom'] = "Overwerk";
-    $lineUp['url'] = "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/231318729&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true";
-    $data['lineUp'][] = $lineUp;
-
     //envoie les données pour un artiste
     include("../view/groupe.view.php");
   } elseif (isset($_GET['action']) && $_GET['action']=="new") {
-    $data['group']['name'] = "Nouveau Groupe";
+    $data['groupe']['nom'] = "Nouveau Groupe";
     //envoie un formulaire pour créer un artiste
-    include("../view/group_edit.view.php");
+    include("../view/groupe_edit.view.php");
   } else {
     $data['error']['title'] = "Artiste Inconnu";
     $data['error']['back'] = "../controler/artistes.ctrl.php";

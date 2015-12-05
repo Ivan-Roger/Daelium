@@ -23,7 +23,7 @@
           <?php if($data["type"] == "booker") { ?>
             <li<?php echo($data['page']=="Groups"?" class='active'":"") ?>><a href="../controler/groupes.ctrl.php"><span class="glyphicon glyphicon-music"></span>Groupes</a></li>
           <?php } else { ?>
-            <li<?php echo($data['page']=="Events"?" class='active'":"") ?>><a href="../controler/events.ctrl.php"><span class="glyphicon glyphicon-folder-open"></span>Evenements</a></li>
+            <li<?php echo($data['page']=="Events"?" class='active'":"") ?>><a href="../controler/evenements.ctrl.php"><span class="glyphicon glyphicon-folder-open"></span>Evenements</a></li>
           <?php }?>
         </ul>
         <ul class="nav navbar-nav navbar-right">

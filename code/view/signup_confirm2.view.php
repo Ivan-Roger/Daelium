@@ -30,7 +30,7 @@
       </div><!-- /card-container -->
     </div><!-- /container -->
     <?php include("../view/include/footer.view.php"); ?>
-    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="../data/js/jQuery.min.js"></script>
         <script src="../data/js/bootstrap.min.js"></script>
   </body>
 
