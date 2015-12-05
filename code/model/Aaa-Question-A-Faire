@@ -1,3 +1,8 @@
 ****************Agenda******************
 • Est-ce qu'il ne faudrait pas faire plusieurs listes d'évènements pour éviter des recherches trop longues ?
     Par exemple une liste des évènements à venir et une pour les évènements à venir
+
+**************EvenementAgenda***********
+• Est-ce qu'il existe un type date et un type heure en PHP ?
+• Faire une classe pour les plus qu'un utilisateur peut ajouter ?
+    Pour avoir le type de données dans ce champ etc...
