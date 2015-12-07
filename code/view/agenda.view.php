@@ -51,24 +51,24 @@
                   foreach($data['calendar'] as $week) { ?>
                   <tr data-week="<?= $week['id'] ?>">
                     <th><?= $week['id'] ?></th>
-                    <td data-day="<?= $week['days'][0] ?>" class="<?php echo($week['days'][0]<=0?"not-hover ":""); ?><?php echo($week['days'][0]==$today?"info ":""); ?>">
+                    <td data-day="<?= $week['days'][0] ?>" class="<?php echo($week['days'][0]<=0?"not-hover ":"day "); ?><?php echo($week['days'][0]==$today?"info ":""); ?>">
                       <?= $week['days'][0] ?>
                     </td>
-                    <td data-day="<?= $week['days'][1] ?>" class="<?php echo($week['days'][1]<=0?"not-hover ":""); ?><?php echo($week['days'][1]==$today?"info ":""); ?>">
+                    <td data-day="<?= $week['days'][1] ?>" class="<?php echo($week['days'][1]<=0?"not-hover ":"day "); ?><?php echo($week['days'][1]==$today?"info ":""); ?>">
                       <?= $week['days'][1] ?></td>
-                    <td data-day="<?= $week['days'][2] ?>" class="<?php echo($week['days'][2]<=0?"not-hover ":""); ?><?php echo($week['days'][2]==$today?"info ":""); ?>">
+                    <td data-day="<?= $week['days'][2] ?>" class="<?php echo($week['days'][2]<=0?"not-hover ":"day "); ?><?php echo($week['days'][2]==$today?"info ":""); ?>">
                       <?= $week['days'][2] ?>
                     </td>
-                    <td data-day="<?= $week['days'][3] ?>" class="<?php echo($week['days'][3]<=0?"not-hover ":""); ?><?php echo($week['days'][3]==$today?"info ":""); ?>">
+                    <td data-day="<?= $week['days'][3] ?>" class="<?php echo($week['days'][3]<=0?"not-hover ":"day "); ?><?php echo($week['days'][3]==$today?"info ":""); ?>">
                       <?= $week['days'][3] ?>
                     </td>
-                    <td data-day="<?= $week['days'][4] ?>" class="<?php echo($week['days'][4]<=0?"not-hover ":""); ?><?php echo($week['days'][4]==$today?"info ":""); ?>">
+                    <td data-day="<?= $week['days'][4] ?>" class="<?php echo($week['days'][4]<=0?"not-hover ":"day "); ?><?php echo($week['days'][4]==$today?"info ":""); ?>">
                       <?= $week['days'][4] ?>
                     </td>
-                    <td data-day="<?= $week['days'][5] ?>" class="<?php echo($week['days'][5]<=0?"not-hover ":""); ?><?php echo($week['days'][5]==$today?"info ":""); ?>">
+                    <td data-day="<?= $week['days'][5] ?>" class="<?php echo($week['days'][5]<=0?"not-hover ":"day "); ?><?php echo($week['days'][5]==$today?"info ":""); ?>">
                       <?= $week['days'][5] ?>
                     </td>
-                    <td data-day="<?= $week['days'][6] ?>" class="<?php echo($week['days'][6]<=0?"not-hover ":""); ?><?php echo($week['days'][6]==$today?"info ":""); ?>">
+                    <td data-day="<?= $week['days'][6] ?>" class="<?php echo($week['days'][6]<=0?"not-hover ":"day "); ?><?php echo($week['days'][6]==$today?"info ":""); ?>">
                       <?= $week['days'][6] ?>
                     </td>
                   </tr>

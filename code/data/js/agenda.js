@@ -6,8 +6,9 @@ function frDays(day) {
   return day;
 }
 
-function updateCalendar() {
+function updateCalendar(func) {
   $("#calendarTitle").html(AgendaDate.getMonthName()+" "+AgendaDate.getYear());
+  $("#dayPlanTitle").html(AgendaDate.getDayName()+" "+AgendaDate.getDay()+" "+AgendaDate.getMonthName());
   $.ajax({url: "agenda.ctrl.php?ajax&calendar&month="+AgendaDate.getMonth()+"&year="+AgendaDate.getYear(), success: function(res){
       console.log("Update calendar !");
       console.log(res);
@@ -18,17 +19,20 @@ function updateCalendar() {
         for (var c=0; c<res.calendar[l].days.length; c++) {
           var day = res.calendar[l].days[c];
           var flags = " class=\"";
-          flags += (day<1?" not-hover":""); // ne se grise pas au survol quand la case est vide
+          flags += (day<1?" not-hover":" day"); // ne se grise pas au survol quand la case est vide
           var d = new Date();
           flags += ((AgendaDate.getDay()==day)?" selected":""); // case du selectionnée bleue
-          flags += ((day==frDays(d.getDay()) && AgendaDate.getMonth()==d.getMonth()+1 && AgendaDate.getYear()==d.getFullYear())?" info":""); // case du jour
+          flags += ((day==d.getDate() && AgendaDate.getMonth()==d.getMonth()+1 && AgendaDate.getYear()==d.getFullYear())?" info":""); // case du jour
           flags += "\" data-day=\"";
           flags += day;
           flags += "\"";
           $("#calendar tbody tr:nth-child("+(l+1)+")").append($("<td"+(flags!=""?flags:"")+">").html((day>0?day:"")));
         }
       }
-      $("#calendar tbody td[class!='not-hover']").click(clickSetDay);
+      $("#calendar tbody td[class~='day']").click(clickSetDay);
+      if (func!=null) {
+        func();
+      }
   }});
 }
 
@@ -47,9 +51,9 @@ function updateCalendar() {
       $.ajax({url: "agenda.ctrl.php?ajax&day="+AgendaDate.getDay()+"&month="+AgendaDate.getMonth()+"&year="+AgendaDate.getYear(), success: function(res){
         $("#calendar").attr("data-mlength",res.monthLength);
         $("#calendar").attr("data-wday",res.wday);
+        $("#calendarTitle").html(AgendaDate.getMonthName()+" "+AgendaDate.getYear());
         $("#dayPlanTitle").html(AgendaDate.getDayName()+" "+AgendaDate.getDay()+" "+AgendaDate.getMonthName());
-        if (func!=null) func();
-        updateCalendar();
+        updateCalendar(func);
       }});
     },
     getDay() {
@@ -74,53 +78,56 @@ function updateCalendar() {
       return $("#calendar").attr("data-mlength")*1;
     },
     prevMonth() {
+      $("#calendar").attr("data-day",1);
+      if (this.getMonth()==1) {
+        $("#calendar").attr("data-month",12);
+        $("#calendar").attr("data-year",this.getYear()-1);
+      } else
+        $("#calendar").attr("data-month",this.getMonth()-1);
+      console.log("Prev");
+      this.update();
+    },
+    nextMonth() {
+      $("#calendar").attr("data-day",1);
+      if (this.getMonth()==12) {
+        $("#calendar").attr("data-month",1);
+        $("#calendar").attr("data-year",this.getYear()+1);
+      } else
+        $("#calendar").attr("data-month",this.getMonth()+1);
+      console.log("Next");
+      this.update();
+    },
+    prevDay() {
+      if (this.getDay()==1) {
         if (this.getMonth()==1) {
           $("#calendar").attr("data-month",12);
           $("#calendar").attr("data-year",this.getYear()-1);
-        } else
+        } else {
           $("#calendar").attr("data-month",this.getMonth()-1);
-        console.log("Prev");
+        }
+        this.update(function () {
+          $("#calendar").attr("data-day",AgendaDate.getMonthLength());
+          updateCalendar();
+        });
+      } else {
+        $("#calendar").attr("data-day",this.getDay()-1);
         this.update();
+      }
+      console.log("Next");
     },
-    nextMonth() {
+    nextDay() {
+      if (this.getDay()==this.getMonthLength()) {
+        $("#calendar").attr("data-day",1);
         if (this.getMonth()==12) {
           $("#calendar").attr("data-month",1);
           $("#calendar").attr("data-year",this.getYear()+1);
-        } else
-          $("#calendar").attr("data-month",this.getMonth()+1);
-        console.log("Next");
-        this.update();
-    },
-    prevDay() {
-        if (this.getDay()==1) {
-          if (this.getMonth()==1) {
-            $("#calendar").attr("data-month",12);
-            $("#calendar").attr("data-year",this.getYear()-1);
-          } else {
-            $("#calendar").attr("data-month",this.getMonth()-1);
-          }
-          this.update(function () {
-            $("#calendar").attr("data-day",AgendaDate.getMonthLength());
-          });
         } else {
-          $("#calendar").attr("data-day",this.getDay()-1);
-          this.update();
+          $("#calendar").attr("data-month",this.getMonth()+1);
         }
-        console.log("Next");
-    },
-    nextDay() {
-        if (this.getDay()==this.getMonthLength()) {
-          $("#calendar").attr("data-day",1);
-          if (this.getMonth()==12) {
-            $("#calendar").attr("data-month",1);
-            $("#calendar").attr("data-year",this.getYear()+1);
-          } else {
-            $("#calendar").attr("data-month",this.getMonth()+1);
-          }
-        } else
-          $("#calendar").attr("data-day",this.getDay()+1);
-        console.log("Next");
-        this.update();
+      } else
+        $("#calendar").attr("data-day",this.getDay()+1);
+      console.log("Next");
+      this.update();
     },
     setDay(day) {
       $("#calendar").attr("data-day",day);
@@ -129,23 +136,28 @@ function updateCalendar() {
     }
   }
 
-  $("#calendarPrev").click(function(){
-    AgendaDate.prevMonth();
-  });
-  $("#calendarNext").click(function(){
-    AgendaDate.nextMonth();
-  });
-
-  $("#dayPlanPrev").click(function(){
-    AgendaDate.prevDay();
-  });
-  $("#dayPlanNext").click(function(){
-    AgendaDate.nextDay();
-  });
-
   function clickSetDay(e) {
     AgendaDate.setDay(e.currentTarget.dataset.day);
-    $("#calendar tbody td[class!='not-hover']").click(clickSetDay);
+    $("#calendar tbody td[class~='day']").click(clickSetDay);
   }
 
-  $("#calendar tbody td[class!='not-hover']").click(clickSetDay);
+  function init() {
+    $("#calendarPrev").click(function(){
+      AgendaDate.prevMonth();
+    });
+    $("#calendarNext").click(function(){
+      AgendaDate.nextMonth();
+    });
+
+    $("#dayPlanPrev").click(function(){
+      AgendaDate.prevDay();
+    });
+    $("#dayPlanNext").click(function(){
+      AgendaDate.nextDay();
+    });
+
+    $("#calendar tbody td[class~='day']").click(clickSetDay);
+  }
+
+
+init();
