@@ -35,12 +35,12 @@ CREATE TABLE Artiste (
   FOREIGN KEY (idArtiste) references Personne(idPersonne)
 );
 
-CREATE TABLE Booker (
+CREATE TABLE Booker (-- N'est pas necessaire
   idBooker BIGINT PRIMARY KEY,
   FOREIGN KEY (idBooker) references Utilisateur(idUtilisateur)
 );
 
-CREATE TABLE Organisateur (
+CREATE TABLE Organisateur (-- N'est pas necessaire
   idOrganisateur BIGINT PRIMARY KEY,
   FOREIGN KEY (idOrganisateur) references Utilisateur(idUtilisateur)
 );
@@ -94,7 +94,7 @@ CREATE TABLE Manifestation (
 CREATE TABLE Groupe (
   idGroupe          SERIAL PRIMARY KEY,
   nom               VARCHAR(255) NOT NULL,
-  nbMembre          integer NOT NULL,
+  nbMembre          integer NOT NULL, -- N'est pas necessaire
   email             VARCHAR(255),
   lienImageOfficiel VARCHAR(255),
   facebook          VARCHAR(255),
@@ -107,7 +107,7 @@ CREATE TABLE Groupe (
   FOREIGN KEY (adresse) references Lieu(idLieu)
 );
 
-CREATE TABLE Genre (
+CREATE TABLE Genre ( -- Posibiliter de mettre un fichier a la place
   nomg  VARCHAR(255) PRIMARY KEY
 );
 
@@ -117,19 +117,20 @@ CREATE TABLE Document (
   nom             VARCHAR(255) NOT NULL,
   dateCreation    DATE,
   datemodif       DATE,
-  emplacement     integer,
+  emplacement     varchar(255),
   FOREIGN KEY (idUtilisateur) references Utilisateur(idUtilisateur)
 );
 
 CREATE TABLE Evenement (
   idEvene       SERIAL PRIMARY KEY,
+  nom           VARCHAR(255),
   datedebut     DATE NOT NULL,
   datefin       DATE NOT NULL,
   heuredebut    TIME(6) NOT NULL,
   heurefin      TIME(6) NOT NULL,
   description   VARCHAR(255),
   lieu          integer references Lieu(idLieu),
-  createur      integer references Utilisateur(idUtilisateur)
+  createur      integer NOT NULL references Utilisateur(idUtilisateur)
 );
 
 CREATE TABLE Contact_Evenement (
@@ -148,6 +149,7 @@ CREATE TABLE Tag (
 CREATE TABLE Creneau (
   idManif         BIGINT,
   idGroupe        BIGINT,
+  dateC           DATE,
   heureDebut      TIME(6),
   heureFin        TIME(6),
   heureDebutTest  TIME(6),
@@ -191,6 +193,7 @@ CREATE TABLE Message (
   expediteur BIGINT,
   receveur  BIGINT,
   etat integer,
+  nom varchar(255),
   contenu varchar(255),
   dateenvoi DATE,
   FOREIGN KEY (receveur) references Utilisateur(idUtilisateur),
