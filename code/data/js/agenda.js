@@ -8,7 +8,6 @@ function frDays(day) {
 
 function updateCalendar(func) {
   $("#calendarTitle").html(AgendaDate.getMonthName()+" "+AgendaDate.getYear());
-  $("#dayPlanTitle").html(AgendaDate.getDayName()+" "+AgendaDate.getDay()+" "+AgendaDate.getMonthName());
   $.ajax({url: "agenda.ctrl.php?ajax&calendar&month="+AgendaDate.getMonth()+"&year="+AgendaDate.getYear(), success: function(res){
       console.log("Update calendar !");
       console.log(res);
@@ -36,6 +35,54 @@ function updateCalendar(func) {
   }});
 }
 
+function updateCommingNext(func) {
+  $.ajax({url: "agenda.ctrl.php?ajax&events", success: function(res){
+    console.log("Update Comming Next !");
+    console.log(res);
+    $("#commingNext tbody").html("");
+    for (var d in res.events) {
+      for (var h in res.events[d]) {
+        for (var e in res.events[d][h]) {
+          $("#commingNext tbody").append("<tr>");
+          $("#commingNext tbody tr:last-child").append($("<td class=\"date\" data-date=\""+d+"\">").html(d));
+          if (h=="day") {
+            $("#commingNext tbody tr:last-child").append($("<td class=\"hour empty\" data-hour=\""+h+"\">").html("Toute la journée"));
+            console.log("Day");
+          } else
+            $("#commingNext tbody tr:last-child").append($("<td class=\"hour\" data-hour=\""+h+"\">").html(h));
+          $("#commingNext tbody tr:last-child").append($("<td>").html(res.events[d][h][e].name));
+
+          // DEBUG
+          console.log("Evenement : ("+d+" "+h+") : "+res.events[d][h][e].name);
+        }
+      }
+    }
+    if (func!=null) {
+      func();
+    }
+  }});
+}
+
+function updateDayPlan(func) {
+  $("#dayPlanTitle").html(AgendaDate.getDayName()+" "+AgendaDate.getDay()+" "+AgendaDate.getMonthName());
+  $.ajax({url: "agenda.ctrl.php?ajax&events&day="+AgendaDate.getDay()+"&month="+AgendaDate.getMonth()+"&year="+AgendaDate.getYear(), success: function(res) {
+    console.log("Update Day Plan !");
+    console.log(res);
+    for (var h in res.events[AgendaDate.getDate()]) {
+      var hour = h.split("h")[0]*1;
+      for (var e in res.events[AgendaDate.getDate()][h]) {
+        $("#dayPlan tbody tr[data-hour=\""+hour+"\"] td.content").html(res.events[AgendaDate.getDate()][h][e].name);
+
+        // DEBUG
+        console.log("Evenement : ("+AgendaDate.getDate()+" "+h+") : "+res.events[AgendaDate.getDate()][h][e].name);
+      }
+    }
+    if (func!=null) {
+      func();
+    }
+  }});
+}
+
   var AgendaDate = {
     jours: ["Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi","Dimanche"],
     mois: ["Janvier","Fevrier","Mars","Avril","Mai","Juin","Juillet","Aout","Septembre","Octobre","Novembre","Decembre"],
@@ -53,8 +100,13 @@ function updateCalendar(func) {
         $("#calendar").attr("data-wday",res.wday);
         $("#calendarTitle").html(AgendaDate.getMonthName()+" "+AgendaDate.getYear());
         $("#dayPlanTitle").html(AgendaDate.getDayName()+" "+AgendaDate.getDay()+" "+AgendaDate.getMonthName());
-        updateCalendar(func);
+        updateCalendar((function () {
+          updateDayPlan(func);
+        }));
       }});
+    },
+    getDate() {
+      return AgendaDate.getDay()+"/"+AgendaDate.getMonth()+"/"+AgendaDate.getYear();
     },
     getDay() {
       return $("#calendar").attr("data-day")*1;
@@ -108,6 +160,7 @@ function updateCalendar(func) {
         this.update(function () {
           $("#calendar").attr("data-day",AgendaDate.getMonthLength());
           updateCalendar();
+          updateDayPlan();
         });
       } else {
         $("#calendar").attr("data-day",this.getDay()-1);
@@ -142,6 +195,8 @@ function updateCalendar(func) {
   }
 
   function init() {
+    updateCommingNext();
+
     $("#calendarPrev").click(function(){
       AgendaDate.prevMonth();
     });

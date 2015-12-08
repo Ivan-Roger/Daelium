@@ -63,3 +63,11 @@ table tbody td.active {
 #sanspadding table{
   border-bottom: 1px solid #ddd;
 }
+
+#commingNext thead th {
+  text-align: center;
+}
+
+#commingNext td.hour, td.date {
+  text-align: center;
+}

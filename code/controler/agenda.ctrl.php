@@ -28,15 +28,27 @@
   $data['date']['month'] = date("n");
   $data['date']['year'] = date("Y");
 
+  $evt['name'] = "RDV Marc-Henri";
+  $data['events']['18/12/2015']['09h45'][]=$evt;
+
+  $evt['name'] = "Noël";
+  $data['events']['24/12/2015']['day'][]=$evt;
+
+  asort($data['events']);
+
 
   if (!isset($_GET['ajax'])) // affichage normal
     include("../view/agenda.view.php");
-  else { // retour en JSON pour les requetes AJAX (a supprimer ici et traduire coté client (JS))
+  else { // retour en JSON pour les requetes AJAX
     header("Content-Type:"."application/json");
     echo("{\n");
       if(isset($_GET['calendar'])) {
       echo("\"calendar\": ");
       echo(json_encode($data['calendar'],JSON_PRETTY_PRINT));
+      echo("\n");
+    } else if (isset($_GET['events'])) {
+      echo("\"events\": ");
+      echo(json_encode($data['events'],JSON_PRETTY_PRINT));
       echo("\n");
     } else {
       echo("\"date\": {\n");

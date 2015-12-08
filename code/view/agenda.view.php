@@ -84,15 +84,14 @@
             <div class="panel-body table-responsive evt no-padding" style="overflow:auto;height:450px;overflow-x: hidden;">
               <table id="commingNext" class="table table-striped table-hover table-bordered col-lg-12">
                 <colgroup>
+                  <col class="text-center col-lg-2" />
                   <col class="text-center col-lg-3" />
-                  <col class="col-lg-9"/>
+                  <col class="col-lg-7"/>
                 </colgroup>
                 <thead>
-                  <tr><th>Date / Heure</th> <th>Evenements</th></tr>
+                  <tr><th>Date</th> <th>Heure</th> <th>Evenements</th></tr>
                 </thead>
                 <tbody>
-                  <tr><td>14/11/2015</td> <td>Création agenda</td></tr>
-                  <tr><td>24/11/2015</td> <td>Rendez-vous Dælium</td></tr>
                 </tbody>
               </table>
             </div>
@@ -126,7 +125,7 @@
                 </thead>
                 <tbody class="overflow:auto;overflow-x: hidden;">
                   <?php for($i=1 ; $i<=24 ; $i++){ ?>
-                    <tr><td class="text-center" ><?= $i ?>h</td><td></td></tr>
+                    <tr data-hour="<?= $i ?>"><td class="text-center" ><?= $i ?>h</td><td class="content"></td></tr>
                   <?php } ?>
                 </tbody>
               </table>
