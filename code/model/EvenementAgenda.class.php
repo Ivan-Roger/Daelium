@@ -1,5 +1,4 @@
 <?php
-	//Penser à renomer le fichier
   class EvenementAgenda {
     private Agenda $parent;
 	private $nom;
