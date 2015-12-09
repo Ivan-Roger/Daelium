@@ -25,6 +25,7 @@
           <?php } else { ?>
             <li<?php echo($data['page']=="Events"?" class='active'":"") ?>><a href="../controler/evenements.ctrl.php"><span class="glyphicon glyphicon-folder-open"></span>Evenements</a></li>
           <?php }?>
+          <li<?php echo($data['page']=="Negociations"?" class='active'":"") ?>><a href="../controler/negociations.ctrl.php"><span class="glyphicon glyphicon-list-alt"></span>Negociations</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li>
