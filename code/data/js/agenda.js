@@ -68,11 +68,16 @@ function updateDayPlan(func) {
   $.ajax({url: "agenda.ctrl.php?ajax&events&day="+AgendaDate.getDay()+"&month="+AgendaDate.getMonth()+"&year="+AgendaDate.getYear(), success: function(res) {
     console.log("Update Day Plan !");
     console.log(res);
+    for (var i=1; i<=24; i++) {
+      $("#dayPlan tbody tr[data-hour=\""+i+"\"] td.content").html("");
+    }
     for (var h in res.events[AgendaDate.getDate()]) {
       var hour = h.split("h")[0]*1;
       for (var e in res.events[AgendaDate.getDate()][h]) {
-        $("#dayPlan tbody tr[data-hour=\""+hour+"\"] td.content").html(res.events[AgendaDate.getDate()][h][e].name);
+        $("#dayPlan tbody tr[data-hour=\""+hour+"\"] td.content").append($("<span class=\"evenement\" data-url=\""+(res.events[AgendaDate.getDate()][h][e].id)+"\">").html(res.events[AgendaDate.getDate()][h][e].name));
+        $("#dayPlan tbody tr[data-hour=\""+hour+"\"] td.content span.evenement:last-child").click(function (e) {
 
+        });
         // DEBUG
         console.log("Evenement : ("+AgendaDate.getDate()+" "+h+") : "+res.events[AgendaDate.getDate()][h][e].name);
       }
@@ -104,6 +109,12 @@ function updateDayPlan(func) {
           updateDayPlan(func);
         }));
       }});
+    },
+    setDate(day,month,year) {
+      $("#calendar").attr("data-day",day);
+      $("#calendar").attr("data-month",month);
+      $("#calendar").attr("data-year",year);
+      this.update();
     },
     getDate() {
       return AgendaDate.getDay()+"/"+AgendaDate.getMonth()+"/"+AgendaDate.getYear();
@@ -196,6 +207,11 @@ function updateDayPlan(func) {
 
   function init() {
     updateCommingNext();
+
+    $("#calendarResetToday").click(function(){
+      var d = new Date();
+      AgendaDate.setDate(d.getDate(),d.getMonth()+1,d.getFullYear());
+    });
 
     $("#calendarPrev").click(function(){
       AgendaDate.prevMonth();

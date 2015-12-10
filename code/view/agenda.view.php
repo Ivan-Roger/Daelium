@@ -13,7 +13,7 @@
     <?php include("../view/include/header.view.php"); ?>
     <section class="col-lg-12">
       <div class="row">
-        <article id="calendarArticle" class="col-lg-5 col-lg-offset-1">
+        <article id="calendarArticle" class="col-lg-5 col-lg-offset-1"> <!-- =============================================== Calendar =============================================== -->
           <div class="panel panel-default">
             <div class="panel-heading text-center">
               <div class='row'>
@@ -75,10 +75,11 @@
                   <?php } ?>
                 </tbody>
               </table>
+              <button id="calendarResetToday" class="btn btn-default"><span class="glyphicon glyphicon-time"></span>Aujourd'hui</button>
             </div>
           </div>
         </article>
-        <article class="col-lg-5" style="height:400px;">
+        <article class="col-lg-5" style="height:400px;"> <!-- =============================================== Comming Next =============================================== -->
           <div class="panel panel-default">
             <div class="panel-heading"><h4>Prochains événements</h4></div>
             <div class="panel-body table-responsive evt no-padding" style="overflow:auto;height:450px;overflow-x: hidden;">
@@ -89,7 +90,7 @@
                   <col class="col-lg-7"/>
                 </colgroup>
                 <thead>
-                  <tr><th>Date</th> <th>Heure</th> <th>Evenements</th></tr>
+                  <tr><th>Date</th> <th>Heure</th> <th>Evenement</th></tr>
                 </thead>
                 <tbody>
                 </tbody>
@@ -99,7 +100,7 @@
         </article>
       </div>
       <div class="row">
-        <article class="col-lg-5 col-lg-offset-1">
+        <article class="col-lg-5 col-lg-offset-1"> <!-- =============================================== Day Plan =============================================== -->
           <div class="panel panel-default">
             <div class="panel-heading text-center">
               <div class='row'>
@@ -118,21 +119,20 @@
                 </div>
               </div>
             </div>
-            <div class="panel-body table-responsive no-padding" style="height:605px;">
-              <table id="dayPlan" class="table table-hover table-striped table-bordered col-lg-12">
-                <thead>
-                  <tr><th class="col-lg-1 text-right">Heure</th><th class="col-lg-11">Evenements</th></tr>
-                </thead>
-                <tbody class="overflow:auto;overflow-x: hidden;">
+            <div class="panel-body table-responsive no-padding">
+              <div id="dayPlan" class="col-lg-12">
+                <div class="dayPlanTableHead"><table class="table table-bordered col-lg-12">
+                  <tr><th>Heure</th><th>Evenements</th></tr>
+                </table></div>
+                <div class="dayPlanTable"><table class="table table-striped table-bordered col-lg-12">
                   <?php for($i=1 ; $i<=24 ; $i++){ ?>
                     <tr data-hour="<?= $i ?>"><td class="text-center" ><?= $i ?>h</td><td class="content"></td></tr>
                   <?php } ?>
-                </tbody>
-              </table>
+                </table></div>
             </div>
           </div>
         </article>
-        <article class="col-lg-5">
+        <article class="col-lg-5"> <!-- =============================================== Event Form =============================================== -->
           <div class="panel panel-default">
             <div class="panel-heading">
               <div class="input-group">

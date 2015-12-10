@@ -28,14 +28,23 @@
   $data['date']['month'] = date("n");
   $data['date']['year'] = date("Y");
 
+  $evt['id'] = randomId();
+  $evt['name'] = "RDV Jean-Louis";
+  $evt['day'] = "18/12/2015";
+  $evt['hour'] = "09h15";
+  $data['events'][$evt['id']]=$evt;
+
+  $evt['id'] = randomId();
   $evt['name'] = "RDV Marc-Henri";
-  $data['events']['18/12/2015']['09h45'][]=$evt;
+  $evt['day'] = "18/12/2015";
+  $evt['hour'] = "09h45";
+  $data['events'][$evt['id']]=$evt;
 
+  $evt['id'] = randomId();
   $evt['name'] = "Noël";
-  $data['events']['24/12/2015']['day'][]=$evt;
-
-  asort($data['events']);
-
+  $evt['day'] = "24/12/2015";
+  $evt['hour'] = "day";
+  $data['events'][$evt['id']]=$evt;
 
   if (!isset($_GET['ajax'])) // affichage normal
     include("../view/agenda.view.php");
@@ -50,6 +59,8 @@
       echo("\"events\": ");
       echo(json_encode($data['events'],JSON_PRETTY_PRINT));
       echo("\n");
+    } else if (isset($_GET['event']) && isset($_GET['id'])) {
+
     } else {
       echo("\"date\": {\n");
         echo("\t\"day\": ".date("j").",\n");
