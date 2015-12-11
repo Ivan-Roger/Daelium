@@ -11,106 +11,142 @@ class Lieu {
   private $latitude;
   private $longitude;
 
-  function __construct($idLieu, $nom, $description, $pays, $region, $ville, $codePostal, $adresse, $latitude, $longitude) {
-    $this->idLieu = $idLieu;
-    $this->nom = $nom;
-    $this->description = $description;
-    $this->pays = $pays;
-    $this->region = $region;
-    $this->ville = $ville;
-    $this->codePostal = $codePostal;
-    $this->adresse = $adresse;
-    $this->latitude = $latitude;
-    $this->longitude = $longitude;
+  function __construct($idLieu = NULL, $nom = NULL, $description = NULL, $pays = NULL, $region = NULL, $ville = NULL, $codePostal = NULL, $adresse = NULL, $latitude = NULL, $longitude = NULL) {
+    if (!isset($this->idLieu)) {
+        $this->idLieu = $idLieu;
+    }
+    if ($nom != NULL) {
+        $this->nom = $nom;
+    }
+    if ($description != NULL) {
+        $this->description = $description;
+    }
+    if ($pays != NULL) {
+        $this->pays = $pays;
+    }
+    if ($region != NULL) {
+        $this->region = $region;
+    }
+    if ($ville != NULL) {
+        $this->ville = $ville;
+    }
+    if ($codePostal != NULL) {
+        $this->codePostal = $codePostal;
+    }
+    if ($adresse != NULL) {
+        $this->adresse = $adresse;
+    }
+    if ($latitude != NULL) {
+        $this->latitude = $latitude;
+    }
+    if ($longitude != NULL) {
+        $this->longitude = $longitude;
+    }
   }
 
 
-  //////////////////////
-  //      GETTER
-  //////////////////////
-  public function IdLieu() {
+  // ********************************
+  //        Fonctions getter
+  // ********************************
+  // getter de l'id du lieu
+  public function getIdLieu() {
     return $this->idLieu;
   }
 
-  public function Nom() {
+  // getter du nom du lieu
+  public function getNom() {
     return $this->nom;
   }
 
-  public function Description() {
+  // getter de la description du lieu
+  public function getDescription() {
     return $this->description;
   }
 
-  public function Pays() {
+  // getter du pays du lieu
+  public function getPays() {
     return $this->pays;
   }
 
-  public function Region() {
+  // getter de la région du lieu
+  public function getRegion() {
     return $this->region;
   }
 
-  public function Ville() {
+  // getter de la ville du lieu
+  public function getVille() {
     return $this->ville;
   }
 
-  public function CodePostal() {
+  // getter du code postal du lieu
+  public function getCodePostal() {
     return $this->codePostal;
   }
 
-  public function Adresse() {
+  // getter de l'adresse du lieu
+  public function getAdresse() {
     return $this->adresse;
   }
 
-  public function Latitude() {
+  // getter de la latitude du lieu
+  public function getLatitude() {
     return $this->latitude;
   }
 
-  public function Longitude() {
+  // getter de la longitude du lieu
+  public function getLongitude() {
     return $this->longitude;
   }
 
-  //////////////////////
-  //      SETTER
-  //////////////////////
-  public function Nom($nom) {
+  // ********************************
+  //        Fonctions setter
+  // ********************************
+
+  // setter du nom du lieu
+  public function setNom($nom) {
     $this->nom = $nom;
   }
 
-  public function Description($description) {
+  // setter de la description du lieu
+  public function setDescription($description) {
     $this->description = $description;
   }
 
-  public function Pays($pays) {
+  // setter du pays du lieu
+  public function setPays($pays) {
     $this->pays = $pays;
   }
 
-  public function Region($region) {
+  // setter de la région du lieu
+  public function setRegion($region) {
     $this->region = $region;
   }
 
-  public function Ville($ville) {
+  // setter de la ville du lieu
+  public function setVille($ville) {
     $this->ville = $ville;
   }
 
-  public function CodePostal($codePostal) {
+  // setter du code postal du lieu
+  public function setCodePostal($codePostal) {
     $this->codePostal = $codePostal;
   }
 
-  public function Adresse($adresse) {
+  // setter de l'adresse du lieu
+  public function setAdresse($adresse) {
     $this->adresse = $adresse;
   }
 
-  public function Latitude($latitude) {
+  // setter de la latitude du lieu
+  public function setLatitude($latitude) {
     $this->latitude = $latitude;
   }
 
-  public function Longitude($longitude) {
+  // setter de la longitude du lieu
+  public function setLongitude($longitude) {
     $this->longitude = $longitude;
   }
 
-  //////////////////////
-  //      METHODES
-  //////////////////////
-
-  }
+}
 
 ?>

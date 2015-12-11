@@ -1,5 +1,6 @@
 <?php
   class EvenementAgenda {
+    private $idEvenement;
     private Utilisateur $proprietaire;
     private $nom;
     private $dateDebut;
@@ -12,8 +13,11 @@
     // /!\ FAIRE UNE CLASSE /!\ avec le nom du champ ajouté, son type etc...
     private $plus // Tableau des champs ajoutés par l'utilisateur
 
-    function __construct($proprietaire = NULL, $nom = NULL, $dateDebut = NULL, $heureDebut = NULL, 
+    function __construct($idEvenement = NULL, $proprietaire = NULL, $nom = NULL, $dateDebut = NULL, $heureDebut = NULL,
                          $dateFin = NULL, $heureFin = NULL, $lieu = NULL, $participants = NULL, $rappels = NULL, $plus = NULL) {
+      if (!isset($this->idEvenement)) {
+        $this->idEvenement = $idEvenement;
+      }
       // Peut être faire une exception si le propriétaire est NULL
       if (!isset($this->proprietaire)) {
         $this->proprietaire = $proprietaire;
@@ -50,7 +54,12 @@
 	// ********************************
 	//        Fonctions getter
 	// ********************************
-        // getter du propriétaire de l'évènement
+  // getter du propriétaire de l'évènement
+  function getIdEvenement() {
+      return $this->idEvenement;
+  }
+
+  // getter du propriétaire de l'évènement
 	function getProprietaire() {
             return $this->proprietaire;
 	}

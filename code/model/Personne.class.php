@@ -7,7 +7,7 @@
 	private $tel;
 	private Lieu $adresse;
 
-    function __construct($idPersonne=NULL, $nom=NULL, $prenom=NULL, $emailcontact=NULL, $tel=NULL, $adresse=NULL) {
+    function __construct($idPersonne = NULL, $nom = NULL, $prenom = NULL, $emailcontact = NULL, $tel = NULL, $adresse = NULL) {
       if (!isset($this->idPersonne)) {
           $this->idPersonne = $idPersonne;
       }
