@@ -10,9 +10,12 @@
 <body>
   <?php include("../view/include/header.view.php"); ?>
   <section>
+    <article class="col-lg-offset-1 col-lg-11">
 
       <h1>Les chamions au Festival des Rouges</h1>
       <h2>Etat de la negociation : En Cours</h2>
+    </article>
+
 
     <article class="col-lg-offset-1 col-lg-3">
       <div class="info">
@@ -26,7 +29,59 @@
               <p>Manifestation : <a href="" type="button" class="btn btn-default">Voir Fiche</a> </p>
               <p>Booker : <a href="" type="button" class="btn btn-default">Voir Fiche</a></p>
               <p>Organisateur : <a href="" type="button" class="btn btn-default">Voir Fiche</a></p>
-              <p>Dates : </p>
+              <p>Dates : 01/02/2016 <p>
+
+
+            </div>
+          </div>
+      </div>
+    </article>
+    <article class=" col-lg-4">
+      <div class="info">
+
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4>Documents</h4>
+            </div>
+            <div class="panel-body">
+
+
+
+            </div>
+          </div>
+      </div>
+    </article>
+
+    <article class=" col-lg-3">
+      <div class="info">
+
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4>Actions</h4>
+            </div>
+            <div class="panel-body">
+              <button type="button" class="btn btn-danger">Refuser la proposition</button></br>
+              <button type="button" class="btn btn-warning">Negocier la proposition</button></br>
+              <button type="button" class="btn btn-default">Relancer la proposition</button></br>
+              <button type="button" class="btn btn-primary">Accepter la proposition</button></br>
+              <button type="button" class="btn btn-default">Créer la facture</button>
+
+
+
+            </div>
+          </div>
+      </div>
+    </article>
+
+    <article class="col-lg-offset-1 col-lg-10">
+      <div class="info">
+
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4>Historique</h4>
+            </div>
+            <div class="panel-body">
+...
 
 
             </div>
@@ -37,7 +92,7 @@
       <article class="message col-lg-offset-1 col-lg-10">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h4>Messagerie Direct</h4>
+            <h4>Messagerie Directe</h4>
           </div>
           <div class="panel-body">
 

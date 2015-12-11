@@ -7,14 +7,15 @@
     private $heureDebut;
     private $dateFin;
     private $heureFin;
+    private $description;
     private Lieu $lieu;
     private Personne[] $participants;
     private $rappels // Tableau des rappels donnés par l'utilisateur
     // /!\ FAIRE UNE CLASSE /!\ avec le nom du champ ajouté, son type etc...
-    private $plus // Tableau des champs ajoutés par l'utilisateur
+    private $champsSupplementaires // Tableau des champs ajoutés par l'utilisateur
 
     function __construct($idEvenement = NULL, $proprietaire = NULL, $nom = NULL, $dateDebut = NULL, $heureDebut = NULL,
-                         $dateFin = NULL, $heureFin = NULL, $lieu = NULL, $participants = NULL, $rappels = NULL, $plus = NULL) {
+                         $dateFin = NULL, $heureFin = NULL, $description = NULL, $lieu = NULL, $participants = NULL, $rappels = NULL, $champsSupplementaires = NULL) {
       if (!isset($this->idEvenement)) {
         $this->idEvenement = $idEvenement;
       }
@@ -37,6 +38,9 @@
       if ($heureFin != NULL) {
           $this->heureFin = $heureFin;
       }
+      if ($description != NULL) {
+          $this->description = $description;
+      }
       if ($lieu != NULL) {
           $this->lieu = $lieu;
       }
@@ -46,8 +50,8 @@
       if ($rappels != NULL) {
           $this->rappels = $rappels;
       }
-      if ($plus != NULL) {
-          $this->plus = $plus;
+      if ($champsSupplementaires != NULL) {
+          $this->champsSupplementaires = $champsSupplementaires;
       }
     }
 
@@ -74,7 +78,7 @@
             return $this->dateDebut;
 	}
 
-	// getter de la l'heure de début de l'évènement
+	// getter de l'heure de début de l'évènement
 	function getHeureDebut() {
             return $this->heureDebut;
 	}
@@ -84,9 +88,14 @@
             return $this->dateFin;
 	}
 
-	// getter de la l'heure de fin de l'évènement
+	// getter de l'heure de fin de l'évènement
 	function getHeureFin() {
             return $this->heureFin;
+	}
+
+  // getter de la description de l'évènement
+	function getDescription() {
+            return $this->description;
 	}
 
 	// getter du lieu de l'évènement
@@ -104,9 +113,9 @@
             return $this->rappels;
 	}
 
-	// getter des plus(champs ajoutés par l'utilisateur) de l'évènement
-	function getPlus() {
-            return $this->plus;
+	// getter des champs supplementaires, ajoutés par l'utilisateur, de l'évènement
+	function getchampsSupplementaires() {
+            return $this->champsSupplementaires;
 	}
 
 
@@ -139,6 +148,11 @@
             $this->heureFin = $heureFin;
 	}
 
+  // setter de la description de l'évènement
+	function getSescription($description) {
+          $this->description = $description;
+	}
+
 	// setter du lieu de l'évènement
 	function setLieu($lieu) {
             $this->lieu = $lieu;
@@ -155,8 +169,8 @@
 	}
 
 	// ajoute un champ supplémentaire à l'évènement
-	function addPlus($champ, $valeur) {
-            $this->plus[$champ] = $valeur;
+	function addchampsSupplementaires($champ, $valeur) {
+            $this->champsSupplementaires[$champ] = $valeur;
 	}
 
         // ajoute un participant à l'évènement
@@ -174,8 +188,8 @@
 	}
 
 	// supprime un champ supplémentaire à l'évènement
-	function supprPlus($champ) {
-            unset($this->plus[$champ]);
+	function supprchampsSupplementaires($champ) {
+            unset($this->champsSupplementaires[$champ]);
 	}
 
         // supprime un participant à l'évènement
@@ -193,8 +207,8 @@
 	}
 
 	// supprime tous les champs supplémentaires liés à l'évènement
-	function clearPlus($champ) {
-            $this->plus = NULL;
+	function clearchampsSupplementaires($champ) {
+            $this->champsSupplementaires = NULL;
 	}
 
         // supprime tous les participants liés à l'évènement
