@@ -71,7 +71,9 @@
       echo(json_encode($data['events'],JSON_PRETTY_PRINT));
       echo("\n");
     } else if (isset($_GET['event']) && isset($_GET['id'])) {
-
+      echo("\"event\": ");
+      echo(json_encode($data['event'],JSON_PRETTY_PRINT));
+      echo("\n");
     } else {
       echo("\"date\": {\n");
         echo("\t\"day\": ".date("j").",\n");
