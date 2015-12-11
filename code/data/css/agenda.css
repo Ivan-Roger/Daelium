@@ -74,11 +74,11 @@ table tbody td.active {
 }
 
 #dayPlan .dayPlanTableHead th:first-child {
-  width: 10%;
+  width: 90px;
 }
 
 #dayPlan .dayPlanTableHead th:last-child {
-  width: 90%;
+  width: calc(100% - 90px);
 }
 
 #dayPlan table {
@@ -93,18 +93,18 @@ table tbody td.active {
 }
 
 #dayPlan table td.text-center {
-  width: 10%;
+  width: 90px;
 }
 
 #dayPlan table td.content {
-  width: 90%;
+  width: calc(100% - 90px);
 }
 
 #dayPlan table td:hover, #dayPlan table th:hover {
   background-color: transparent;
 }
 
-#dayPlan div.dayPlanTable td.content span.evenement {
+#dayPlan td.content span.evenement {
   margin-right: 5px;
   padding: 3px;
   border: 1px solid #E0E0E0;
@@ -112,6 +112,6 @@ table tbody td.active {
   background-color: #FFF;
 }
 
-#dayPlan div.dayPlanTable td.content span.evenement:hover {
+#dayPlan td.content span.evenement:hover {
   box-shadow: 0px 0px 2px 1px #66AFE9;
 }

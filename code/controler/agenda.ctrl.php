@@ -28,19 +28,19 @@
   $data['date']['month'] = date("n");
   $data['date']['year'] = date("Y");
 
-  $evt['id'] = randomId();
+  $evt['id'] = 2;
   $evt['name'] = "RDV Jean-Louis";
   $evt['day'] = "18/12/2015";
   $evt['hour'] = "09h15";
   $data['events'][$evt['id']]=$evt;
 
-  $evt['id'] = randomId();
+  $evt['id'] = 1;
   $evt['name'] = "RDV Marc-Henri";
   $evt['day'] = "18/12/2015";
   $evt['hour'] = "09h45";
   $data['events'][$evt['id']]=$evt;
 
-  $evt['id'] = randomId();
+  $evt['id'] = 3;
   $evt['name'] = "Noël";
   $evt['day'] = "24/12/2015";
   $evt['hour'] = "day";
