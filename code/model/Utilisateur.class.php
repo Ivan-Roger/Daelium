@@ -3,9 +3,9 @@ require_once('Personne.Class.php');
 
   class Utilisateur extends Personne {
     private $idUtilisateur;
-    private $login
-    private $emailCompte
-    private $mdp // peut être à enlever ?
+    private $login;
+    private $emailCompte;
+    private $mdp; // peut être à enlever ?
 
 
     private function __construct($id = NULL,$log = NULL, $mail = NULL, $mdp = NULL) {
@@ -13,7 +13,6 @@ require_once('Personne.Class.php');
       $this->login = $log;
       $this->emailCompte = $mail;
       $this->mdp = $mdp;
-      $this->
     }
 
     //////////////////////
