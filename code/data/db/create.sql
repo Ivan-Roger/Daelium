@@ -85,7 +85,7 @@ CREATE TABLE Manifestation (
   facebook          VARCHAR(255),
   google            VARCHAR(255),
   twitter           VARCHAR(255),
-  fichecom          VARCHAR(255),
+  ficheCom          VARCHAR(255),
   createur          BIGINT,
   lieu              BIGINT,
   FOREIGN KEY (createur) references Organisateur(idOrganisateur),
@@ -103,7 +103,7 @@ CREATE TABLE Groupe (
   twitter           VARCHAR(255),
   soundcloud        VARCHAR(255),
   lecteur           VARCHAR(255),
-  fichecom          VARCHAR(255),
+  ficheCom          VARCHAR(255),
   adresse           BIGINT,
   FOREIGN KEY (adresse) references Lieu(idLieu)
 );
