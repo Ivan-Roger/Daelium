@@ -17,13 +17,17 @@ header nav .navbar-brand {
   margin-right: 5px;
 }
 
+header nav .navbar-left li {
+  border-right: 1px solid #DDD;
+}
+
 @media (max-width: 767px) {
   header nav .navbar-brand {
     margin-left: 15px;
   }
 }
 
-@media (max-width: 1540px) and (min-width: 768px) {
+@media (max-width: 1650px) and (min-width: 768px) {
   header nav .navbar-brand .text {
     display: none;
   }
@@ -32,6 +36,16 @@ header nav .navbar-brand {
   }
   header nav .navbar-right a.dropdown-toggle {
     padding-right: 0px;
+  }
+}
+
+@media (max-width: 1390px) and (min-width: 1085px) {
+  header nav .navbar-left li span.text {
+    display: none;
+  }
+
+  header nav .navbar-left li:hover span.text, header nav .navbar-nav li.active span.text {
+    display: inline-block;;
   }
 }
 

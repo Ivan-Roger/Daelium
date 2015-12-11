@@ -13,24 +13,27 @@
 
       <div class="collapse navbar-collapse" id="navbar-collapse">
         <!-- Menu des differentes section du site  plus module de recherche-->
-        <ul class="nav navbar-nav">
-          <li<?php echo($data['page']=="Main"?" class='active'":"") ?>><a href="../controler/main.ctrl.php"><span class="glyphicon glyphicon-home"></span>Accueil</a></li>
-          <li<?php echo($data['page']=="Profile"?" class='active'":"") ?>><a href="../controler/profile.ctrl.php"><span class="glyphicon glyphicon-user"></span>Profil</a></li>
-          <li<?php echo($data['page']=="Documents"?" class='active'":"") ?>><a href="../controler/documents.ctrl.php"><span class="glyphicon glyphicon-file"></span>Documents</a></li>
-          <li<?php echo($data['page']=="Agenda"?" class='active'":"") ?>><a href="../controler/agenda.ctrl.php"><span class="glyphicon glyphicon-calendar"></span>Agenda</a></li>
-          <li<?php echo($data['page']=="Messages"?" class='active'":"") ?>><a href="../controler/messages.ctrl.php"><span class="glyphicon glyphicon-envelope"></span>Messagerie</a></li>
-          <li<?php echo($data['page']=="List"?" class='active'":"") ?>><a href="../controler/list.ctrl.php"><span class="glyphicon glyphicon-list-alt"></span>Annuaire</a></li>
+        <ul class="nav navbar-nav navbar-left">
+          <li<?php echo($data['page']=="Main"?" class='active'":"") ?>><a href="../controler/main.ctrl.php"><span class="glyphicon glyphicon-home"></span><span class="text">Accueil</span></a></li>
+          <li<?php echo($data['page']=="Profile"?" class='active'":"") ?>><a href="../controler/profile.ctrl.php"><span class="glyphicon glyphicon-user"></span><span class="text">Profil</span></a></li>
+          <li<?php echo($data['page']=="Documents"?" class='active'":"") ?>><a href="../controler/documents.ctrl.php"><span class="glyphicon glyphicon-file"></span><span class="text">Documents</span></a></li>
+          <li<?php echo($data['page']=="Agenda"?" class='active'":"") ?>><a href="../controler/agenda.ctrl.php"><span class="glyphicon glyphicon-calendar"></span><span class="text">Agenda</span></a></li>
+          <li<?php echo($data['page']=="Messages"?" class='active'":"") ?>><a href="../controler/messages.ctrl.php"><span class="glyphicon glyphicon-envelope"></span><span class="text">Messagerie</span></a></li>
+          <li<?php echo($data['page']=="List"?" class='active'":"") ?>><a href="../controler/list.ctrl.php"><span class="glyphicon glyphicon-list-alt"></span><span class="text">Annuaire</span></a></li>
           <?php if($data["type"] == "booker") { ?>
-            <li<?php echo($data['page']=="Groups"?" class='active'":"") ?>><a href="../controler/groupes.ctrl.php"><span class="glyphicon glyphicon-music"></span>Groupes</a></li>
+            <li<?php echo($data['page']=="Groups"?" class='active'":"") ?>><a href="../controler/groupes.ctrl.php"><span class="glyphicon glyphicon-music"></span><span class="text">Groupes</span></a></li>
           <?php } else { ?>
-            <li<?php echo($data['page']=="Events"?" class='active'":"") ?>><a href="../controler/evenements.ctrl.php"><span class="glyphicon glyphicon-folder-open"></span>Evenements</a></li>
+            <li<?php echo($data['page']=="Events"?" class='active'":"") ?>><a href="../controler/evenements.ctrl.php"><span class="glyphicon glyphicon-folder-open"></span><span class="text">Evenements</span></a></li>
           <?php }?>
-          <li<?php echo($data['page']=="Negociations"?" class='active'":"") ?>><a href="../controler/negociations.ctrl.php"><span class="glyphicon glyphicon-list-alt"></span>Negociations</a></li>
+          <li<?php echo($data['page']=="Negociations"?" class='active'":"") ?>><a href="../controler/negociations.ctrl.php"><span class="glyphicon glyphicon-list-alt"></span><span class="text">Negociations</span></a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li>
             <form class="navbar-form navbar-right" method="GET" action="#">
-              <div class="input-group">
+              <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                Button with data-target
+              </button>
+              <div class="input-group" id="searchBar">
                 <input type="text" class="form-control" placeholder="Je cherche ...">
                 <span class="input-group-btn">
                   <button class="btn btn-primary" type="button">Rechercher</button>
