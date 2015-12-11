@@ -1,6 +1,6 @@
 CREATE TABLE lieu (
   idLieu        SERIAL PRIMARY KEY,
-  nom           VARCHAR(255) NOT NULL,
+  noml          VARCHAR(255) NOT NULL,
   description   VARCHAR(1000),
   pays          VARCHAR(255),
   region        VARCHAR(255),
@@ -12,7 +12,7 @@ CREATE TABLE lieu (
 );
 CREATE TABLE Personne (
   idPersonne     SERIAL PRIMARY KEY,
-  nom            VARCHAR (255) NOT NULL,
+  nomp            VARCHAR (255) NOT NULL,
   prenom         VARCHAR (255),
   emailcontact   VARCHAR (255) NOT NULL,
   tel            numeric(10),
@@ -94,8 +94,7 @@ CREATE TABLE Manifestation (
 
 CREATE TABLE Groupe (
   idGroupe          SERIAL PRIMARY KEY,
-  nom               VARCHAR(255) NOT NULL,
-  nbMembre          integer NOT NULL, -- N'est pas necessaire
+  nomg              VARCHAR(255) NOT NULL,
   email             VARCHAR(255),
   lienImageOfficiel VARCHAR(255),
   facebook          VARCHAR(255),
