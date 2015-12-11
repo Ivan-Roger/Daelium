@@ -28,6 +28,7 @@
   $data['date']['month'] = date("n");
   $data['date']['year'] = date("Y");
 
+  $data['events'] = Array();
   if (isset($_GET['events']) || $day==18) {
     $evt['id'] = 2;
     $evt['name'] = "RDV Jean-Louis";
@@ -48,6 +49,14 @@
     $evt['hour'] = "day";
     $data['events'][$evt['id']]=$evt;
   }
+  if (isset($_GET['events']) || $day==31) {
+    $evt['id'] = 0;
+    $evt['name'] = "Nouvel An";
+    $evt['day'] = "31/12/2015";
+    $evt['hour'] = "24h00";
+    $data['events'][$evt['id']]=$evt;
+  }
+
   if (!isset($_GET['ajax'])) // affichage normal
     include("../view/agenda.view.php");
   else { // retour en JSON pour les requetes AJAX

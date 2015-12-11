@@ -32,7 +32,9 @@ function updateCalendar(func) {
       if (func!=null) {
         func();
       }
-  }});
+    }, error: function(a, b, c) {
+      console.warn("AJAX Error: couldn't update Calendar (\""+b+"\")");
+    }});
 }
 
 function updateCommingNext(func) {
@@ -56,6 +58,8 @@ function updateCommingNext(func) {
     if (func!=null) {
       func();
     }
+  }, error: function(a, b, c) {
+    console.warn("AJAX Error: couldn't update Comming Next (\""+b+"\")");
   }});
 }
 
@@ -81,6 +85,8 @@ function updateDayPlan(func) {
     if (func!=null) {
       func();
     }
+  }, error: function(a, b ,c) {
+    console.warn("AJAX Error: couldn't update Day Plan (\""+b+"\")");
   }});
 }
 
