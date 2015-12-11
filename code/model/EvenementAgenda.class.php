@@ -12,9 +12,9 @@
     // /!\ FAIRE UNE CLASSE /!\ avec le nom du champ ajouté, son type etc...
     private $plus // Tableau des champs ajoutés par l'utilisateur
 
-    function __construct($proprietaire=NULL, $nom=NULL, $dateDebut=NULL, $heureDebut=NULL, 
-						 $dateFin=NULL, $heureFin=NULL, $lieu=NULL, $participants=NULL, $rappels=NULL, $plus=NULL) {
-      // Peut être faire une exception si le parent est NULL
+    function __construct($proprietaire = NULL, $nom = NULL, $dateDebut = NULL, $heureDebut = NULL, 
+                         $dateFin = NULL, $heureFin = NULL, $lieu = NULL, $participants = NULL, $rappels = NULL, $plus = NULL) {
+      // Peut être faire une exception si le propriétaire est NULL
       if (!isset($this->proprietaire)) {
         $this->proprietaire = $proprietaire;
       }	  
