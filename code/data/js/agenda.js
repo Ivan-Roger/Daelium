@@ -61,7 +61,7 @@ function updateCommingNext(func) {
 
 function updateDayPlan(func) {
   $("#dayPlanTitle").html(AgendaDate.getDayName()+" "+AgendaDate.getDay()+" "+AgendaDate.getMonthName());
-  $.ajax({url: "agenda.ctrl.php?ajax&events&day="+AgendaDate.getDay()+"&month="+AgendaDate.getMonth()+"&year="+AgendaDate.getYear(), success: function(res) {
+  $.ajax({url: "agenda.ctrl.php?ajax&events-day&day="+AgendaDate.getDay()+"&month="+AgendaDate.getMonth()+"&year="+AgendaDate.getYear(), success: function(res) {
     console.log("Update Day Plan !");
     console.log(res);
     $("#dayPlan tr[data-hour=\"day\"] td.content").html("");
@@ -70,14 +70,13 @@ function updateDayPlan(func) {
     }
     for (var id in res.events) {
       var hour = res.events[id].hour.split("h")[0];
-      if (res.events[id].day==AgendaDate.getDate()) {
-        $("#dayPlan tr[data-hour=\""+hour+"\"] td.content").append($("<span class=\"evenement\" data-id=\""+id+"\">").html(res.events[id].name));
-        $("#dayPlan tr[data-hour=\""+hour+"\"] td.content span.evenement:last-child").click(function (e) {
-          console.log("Open event "+$(e.currentTarget).data().id);
-        });
-        // DEBUG
-        console.log("Evenement : ("+AgendaDate.getDate()+" "+res.events[id].hour+") : "+res.events[id].name);
-      }
+      hour = (hour>0?hour*1:hour);
+      $("#dayPlan tr[data-hour=\""+hour+"\"] td.content").append($("<span class=\"evenement\" data-id=\""+id+"\">").html(res.events[id].name));
+      $("#dayPlan tr[data-hour=\""+hour+"\"] td.content span.evenement:last-child").click(function (e) {
+        console.log("Open event "+$(e.currentTarget).data().id);
+      });
+      // DEBUG
+      console.log("Evenement : ("+AgendaDate.getDate()+" "+res.events[id].hour+") : "+res.events[id].name);
     }
     if (func!=null) {
       func();
