@@ -1,6 +1,6 @@
 CREATE TABLE lieu (
   idLieu        SERIAL PRIMARY KEY,
-  nom           VARCHAR(255) NOT NULL,
+  noml          VARCHAR(255) NOT NULL,
   description   VARCHAR(1000),
   pays          VARCHAR(255),
   region        VARCHAR(255),
@@ -12,7 +12,7 @@ CREATE TABLE lieu (
 );
 CREATE TABLE Personne (
   idPersonne     SERIAL PRIMARY KEY,
-  nom            VARCHAR (255) NOT NULL,
+  nomp            VARCHAR (255) NOT NULL,
   prenom         VARCHAR (255),
   emailcontact   VARCHAR (255) NOT NULL,
   tel            numeric(10),
@@ -24,6 +24,7 @@ CREATE TABLE Utilisateur (
   idUtilisateur SERIAL PRIMARY KEY,
   emailCompte VARCHAR(255) NOT NULL,
   mdp VARCHAR(255) NOT NULL
+  FOREIGN KEY (idUtilisateur) references Personne(idPersonne)
 );
 
 CREATE TABLE Artiste (
@@ -35,12 +36,12 @@ CREATE TABLE Artiste (
   FOREIGN KEY (idArtiste) references Personne(idPersonne)
 );
 
-CREATE TABLE Booker (-- N'est pas necessaire
+CREATE TABLE Booker (
   idBooker BIGINT PRIMARY KEY,
   FOREIGN KEY (idBooker) references Utilisateur(idUtilisateur)
 );
 
-CREATE TABLE Organisateur (-- N'est pas necessaire
+CREATE TABLE Organisateur (
   idOrganisateur BIGINT PRIMARY KEY,
   FOREIGN KEY (idOrganisateur) references Utilisateur(idUtilisateur)
 );
@@ -84,7 +85,7 @@ CREATE TABLE Manifestation (
   facebook          VARCHAR(255),
   google            VARCHAR(255),
   twitter           VARCHAR(255),
-  fichecom          VARCHAR(255),
+  ficheCom          VARCHAR(255),
   createur          BIGINT,
   lieu              BIGINT,
   FOREIGN KEY (createur) references Organisateur(idOrganisateur),
@@ -93,8 +94,7 @@ CREATE TABLE Manifestation (
 
 CREATE TABLE Groupe (
   idGroupe          SERIAL PRIMARY KEY,
-  nom               VARCHAR(255) NOT NULL,
-  nbMembre          integer NOT NULL, -- N'est pas necessaire
+  nomg              VARCHAR(255) NOT NULL,
   email             VARCHAR(255),
   lienImageOfficiel VARCHAR(255),
   facebook          VARCHAR(255),
@@ -102,13 +102,9 @@ CREATE TABLE Groupe (
   twitter           VARCHAR(255),
   soundcloud        VARCHAR(255),
   lecteur           VARCHAR(255),
-  fichecom          VARCHAR(255),
+  ficheCom          VARCHAR(255),
   adresse           BIGINT,
   FOREIGN KEY (adresse) references Lieu(idLieu)
-);
-
-CREATE TABLE Genre ( -- Posibiliter de mettre un fichier a la place
-  nomg  VARCHAR(255) PRIMARY KEY
 );
 
 CREATE TABLE Document (
@@ -141,10 +137,6 @@ CREATE TABLE Contact_Evenement (
   FOREIGN KEY (idContact,Proprietaire) references Contact(idContact,Proprietaire)
 );
 
-CREATE TABLE Tag (
-  nomt VARCHAR(255) PRIMARY KEY
-);
-
 
 CREATE TABLE Creneau (
   idManif         BIGINT,
@@ -167,13 +159,14 @@ CREATE TABLE Groupe_Artiste (
   FOREIGN KEY (idArtiste) references Artiste(idArtiste)
 );
 
-CREATE TABLE Negociation ( -- Le Quaduor est unique
+CREATE TABLE Negociation ( 
   idNegociation SERIAL PRIMARY KEY,
   idBooker BIGINT,
   idManif BIGINT,
   idGroupe BIGINT,
   idOrganisateur BIGINT,
   etat integer,
+  Unique (idBooker,idManif,idGroupe,idOrganisateur),
   FOREIGN KEY (idBooker) references Booker(idBooker),
   FOREIGN KEY (idManif) references Manifestation(idManif),
   FOREIGN KEY (idGroupe) references Groupe(idGroupe),

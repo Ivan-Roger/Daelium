@@ -123,6 +123,7 @@
               <div id="dayPlan" class="col-lg-12">
                 <div class="dayPlanTableHead"><table class="table table-bordered col-lg-12">
                   <tr><th>Heure</th><th>Evenements</th></tr>
+                  <tr data-hour="day"><td class="text-center">Journée</td><td class="content"></td></tr>
                 </table></div>
                 <div class="dayPlanTable"><table class="table table-striped table-bordered col-lg-12">
                   <?php for($i=1 ; $i<=24 ; $i++){ ?>

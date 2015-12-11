@@ -32,7 +32,9 @@ function updateCalendar(func) {
       if (func!=null) {
         func();
       }
-  }});
+    }, error: function(a, b, c) {
+      console.warn("AJAX Error: couldn't update Calendar (\""+b+"\")");
+    }});
 }
 
 function updateCommingNext(func) {
@@ -40,51 +42,51 @@ function updateCommingNext(func) {
     console.log("Update Comming Next !");
     console.log(res);
     $("#commingNext tbody").html("");
-    for (var d in res.events) {
-      for (var h in res.events[d]) {
-        for (var e in res.events[d][h]) {
-          $("#commingNext tbody").append("<tr>");
-          $("#commingNext tbody tr:last-child").append($("<td class=\"date\" data-date=\""+d+"\">").html(d));
-          if (h=="day") {
-            $("#commingNext tbody tr:last-child").append($("<td class=\"hour empty\" data-hour=\""+h+"\">").html("Toute la journée"));
-            console.log("Day");
-          } else
-            $("#commingNext tbody tr:last-child").append($("<td class=\"hour\" data-hour=\""+h+"\">").html(h));
-          $("#commingNext tbody tr:last-child").append($("<td>").html(res.events[d][h][e].name));
+    for (var id in res.events) {
+      $("#commingNext tbody").append("<tr>");
+      $("#commingNext tbody tr:last-child").append($("<td class=\"date\" data-date=\""+res.events[id].day+"\">").html(res.events[id].day));
+      if (res.events[id].hour=="day") {
+        $("#commingNext tbody tr:last-child").append($("<td class=\"hour empty\" data-hour=\""+res.events[id].hour+"\">").html("Toute la journée"));
+        console.log("Day");
+      } else
+        $("#commingNext tbody tr:last-child").append($("<td class=\"hour\" data-hour=\""+res.events[id].hour+"\">").html(res.events[id].hour));
+      $("#commingNext tbody tr:last-child").append($("<td>").html(res.events[id].name));
 
-          // DEBUG
-          console.log("Evenement : ("+d+" "+h+") : "+res.events[d][h][e].name);
-        }
-      }
+      // DEBUG
+      console.log("Evenement : ("+res.events[id].day+" "+res.events[id].hour+") : "+res.events[id].name);
     }
     if (func!=null) {
       func();
     }
+  }, error: function(a, b, c) {
+    console.warn("AJAX Error: couldn't update Comming Next (\""+b+"\")");
   }});
 }
 
 function updateDayPlan(func) {
   $("#dayPlanTitle").html(AgendaDate.getDayName()+" "+AgendaDate.getDay()+" "+AgendaDate.getMonthName());
-  $.ajax({url: "agenda.ctrl.php?ajax&events&day="+AgendaDate.getDay()+"&month="+AgendaDate.getMonth()+"&year="+AgendaDate.getYear(), success: function(res) {
+  $.ajax({url: "agenda.ctrl.php?ajax&events-day&day="+AgendaDate.getDay()+"&month="+AgendaDate.getMonth()+"&year="+AgendaDate.getYear(), success: function(res) {
     console.log("Update Day Plan !");
     console.log(res);
+    $("#dayPlan tr[data-hour=\"day\"] td.content").html("");
     for (var i=1; i<=24; i++) {
-      $("#dayPlan tbody tr[data-hour=\""+i+"\"] td.content").html("");
+      $("#dayPlan tr[data-hour=\""+i+"\"] td.content").html("");
     }
-    for (var h in res.events[AgendaDate.getDate()]) {
-      var hour = h.split("h")[0]*1;
-      for (var e in res.events[AgendaDate.getDate()][h]) {
-        $("#dayPlan tbody tr[data-hour=\""+hour+"\"] td.content").append($("<span class=\"evenement\" data-url=\""+(res.events[AgendaDate.getDate()][h][e].id)+"\">").html(res.events[AgendaDate.getDate()][h][e].name));
-        $("#dayPlan tbody tr[data-hour=\""+hour+"\"] td.content span.evenement:last-child").click(function (e) {
-
-        });
-        // DEBUG
-        console.log("Evenement : ("+AgendaDate.getDate()+" "+h+") : "+res.events[AgendaDate.getDate()][h][e].name);
-      }
+    for (var id in res.events) {
+      var hour = res.events[id].hour.split("h")[0];
+      hour = (hour>0?hour*1:hour);
+      $("#dayPlan tr[data-hour=\""+hour+"\"] td.content").append($("<span class=\"evenement\" data-id=\""+id+"\">").html(res.events[id].name));
+      $("#dayPlan tr[data-hour=\""+hour+"\"] td.content span.evenement:last-child").click(function (e) {
+        console.log("Open event "+$(e.currentTarget).data().id);
+      });
+      // DEBUG
+      console.log("Evenement : ("+AgendaDate.getDate()+" "+res.events[id].hour+") : "+res.events[id].name);
     }
     if (func!=null) {
       func();
     }
+  }, error: function(a, b ,c) {
+    console.warn("AJAX Error: couldn't update Day Plan (\""+b+"\")");
   }});
 }
 

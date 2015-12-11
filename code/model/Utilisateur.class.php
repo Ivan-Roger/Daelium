@@ -2,57 +2,55 @@
 require_once('Personne.Class.php');
 
   class Utilisateur extends Personne {
-    private $idUtilisateur;
-    private $login
-    private $emailCompte
-    private $mdp // peut être à enlever ?
+    private $idUtilisateur; 
+    private $emailCompte;
+    private $mdp; // mot de passe de l'utilisateur
 
 
-    private function __construct($id = NULL,$log = NULL, $mail = NULL, $mdp = NULL) {
-      $this->idUtilisateur =$id;
-      $this->login = $log;
-      $this->emailCompte = $mail;
-      $this->mdp = $mdp;
-      $this->
+    private function __construct($idUtilisateur = NULL, $emailCompte = NULL, $mdp = NULL) {
+      if (!isset($this->idUtilisateur)) {
+        $this->idUtilisateur = $idUtilisateur;
+      }
+      if ($emailCompte != NULL) {
+          $this->emailCompte = $emailCompte;
+      }
+      if ($mdp != NULL) {
+          $this->mdp = $mdp;
+      }
+      
     }
 
-    //////////////////////
-    //      GETTER
-    //////////////////////
-    function idUtilisateur() {
+    // ********************************
+    //        Fonctions getter
+    // ********************************
+    // getter de l'id de l'utilisateur
+    function getIdUtilisateur() {
       return $this->idUtilisateur;
     }
 
-    function login() {
-      return $this->login;
-    }
-
-    function email() {
+    // getter de l'adresse mail de l'utilisateur
+    function getEmailCompte() {
       return $this->emailCompte;
     }
 
-    function mdp() {
+    // setter du mot de passe de l'utilisateur
+    function getMdp() {
       return $this->mdp;
     }
 
-    //////////////////////
-    //      SETTER
-    //////////////////////
-    function login($log) {
-      $this->login = $log;
+    // ********************************
+    //        Fonctions setter
+    // ********************************
+    // getter de l'adresse mail de l'utilisateur
+    function setEmailCompte($emailCompte) {
+      $this->emailCompte = $emailCompte;
     }
 
-    function email($mail) {
-      $this->email = $mail;
-    }
-
-    function mdp($mdp) {
+    // setter du mot de passe de l'utilisateur
+    function setMdp($mdp) {
       $this->mdp = $mdp;
     }
 
-    //////////////////////
-    //      METHODES
-    //////////////////////
 
 
 
