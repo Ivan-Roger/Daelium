@@ -2,15 +2,13 @@
 require_once('Personne.Class.php');
 
   class Utilisateur extends Personne {
-    private $idUtilisateur;
-    private $login;
+    private $idUtilisateur; 
     private $emailCompte;
-    private $mdp; // peut être à enlever ?
+    private $mdp; // mot de passe de l'utilisateur
 
 
-    private function __construct($id = NULL,$log = NULL, $mail = NULL, $mdp = NULL) {
+    private function __construct($idUtilisateur = NULL, $emailCompte = NULL, $mdp = NULL) {
       $this->idUtilisateur =$id;
-      $this->login = $log;
       $this->emailCompte = $mail;
       $this->mdp = $mdp;
     }
@@ -20,10 +18,6 @@ require_once('Personne.Class.php');
     //////////////////////
     function idUtilisateur() {
       return $this->idUtilisateur;
-    }
-
-    function login() {
-      return $this->login;
     }
 
     function email() {

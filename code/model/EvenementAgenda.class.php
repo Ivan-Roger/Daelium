@@ -1,6 +1,6 @@
 <?php
   class EvenementAgenda {
-    private Agenda $parent;
+    private Utilisateur $proprietaire;
     private $nom;
     private $dateDebut;
     private $heureDebut;
@@ -12,11 +12,11 @@
     // /!\ FAIRE UNE CLASSE /!\ avec le nom du champ ajouté, son type etc...
     private $plus // Tableau des champs ajoutés par l'utilisateur
 
-    function __construct($parent=NULL, $nom=NULL, $dateDebut=NULL, $heureDebut=NULL, 
+    function __construct($proprietaire=NULL, $nom=NULL, $dateDebut=NULL, $heureDebut=NULL, 
 						 $dateFin=NULL, $heureFin=NULL, $lieu=NULL, $participants=NULL, $rappels=NULL, $plus=NULL) {
       // Peut être faire une exception si le parent est NULL
-      if (!isset($this->parent)) {
-        $this->parent = $parent;
+      if (!isset($this->proprietaire)) {
+        $this->proprietaire = $proprietaire;
       }	  
       if ($nom != NULL) {
           $this->nom = $nom;
@@ -50,6 +50,11 @@
 	// ********************************
 	//        Fonctions getter
 	// ********************************
+        // getter du propriétaire de l'évènement
+	function getProprietaire() {
+            return $this->proprietaire;
+	}   
+        
 	// getter du nom de l'évènement
 	function getNom() {
             return $this->nom;
@@ -101,33 +106,33 @@
 	//        Fonctions setter
 	// ********************************
         // setter du nom de l'évènement
-	function setNom() {
-            return $this->nom;
+	function setNom($nom) {
+            $this->nom = $nom;
 	}
 	
 	// setter de la date de début de l'évènement
-	function setDateDebut() {
-            return $this->dateDebut;
+	function setDateDebut($dateDebut) {
+            $this->dateDebut = $dateDebut;
 	}
 	
 	// setter de la l'heure de début de l'évènement
-	function setHeureDebut() {
-            return $this->heureDebut;
+	function setHeureDebut($heureDebut) {
+            $this->heureDebut = $heureDebut;
 	}
 	
 	// setter de la date de fin de l'évènement
-	function setDateFin() {
-            return $this->dateFin;
+	function setDateFin($dateFin) {
+            $this->dateFin = $dateFin;
 	}
 	
 	// setter de la l'heure de fin de l'évènement
-	function setHeureFin() {
-            return $this->heureFin;
+	function setHeureFin($heureFin) {
+            $this->heureFin = $heureFin;
 	}
 	
 	// setter du lieu de l'évènement
-	function setLieu() {
-            return $this->lieu;
+	function setLieu($lieu) {
+            $this->lieu = $lieu;
 	}
 	
 	
