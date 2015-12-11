@@ -28,23 +28,34 @@
   $data['date']['month'] = date("n");
   $data['date']['year'] = date("Y");
 
-  $evt['id'] = 2;
-  $evt['name'] = "RDV Jean-Louis";
-  $evt['day'] = "18/12/2015";
-  $evt['hour'] = "09h15";
-  $data['events'][$evt['id']]=$evt;
+  $data['events'] = Array();
+  if (isset($_GET['events']) || $day==18) {
+    $evt['id'] = 2;
+    $evt['name'] = "RDV Jean-Louis";
+    $evt['day'] = "18/12/2015";
+    $evt['hour'] = "09h15";
+    $data['events'][$evt['id']]=$evt;
 
-  $evt['id'] = 1;
-  $evt['name'] = "RDV Marc-Henri";
-  $evt['day'] = "18/12/2015";
-  $evt['hour'] = "09h45";
-  $data['events'][$evt['id']]=$evt;
-
-  $evt['id'] = 3;
-  $evt['name'] = "Noël";
-  $evt['day'] = "24/12/2015";
-  $evt['hour'] = "day";
-  $data['events'][$evt['id']]=$evt;
+    $evt['id'] = 1;
+    $evt['name'] = "RDV Marc-Henri";
+    $evt['day'] = "18/12/2015";
+    $evt['hour'] = "09h45";
+    $data['events'][$evt['id']]=$evt;
+  }
+  if (isset($_GET['events']) || $day==25) {
+    $evt['id'] = 3;
+    $evt['name'] = "Noël";
+    $evt['day'] = "25/12/2015";
+    $evt['hour'] = "day";
+    $data['events'][$evt['id']]=$evt;
+  }
+  if (isset($_GET['events']) || $day==31) {
+    $evt['id'] = 0;
+    $evt['name'] = "Nouvel An";
+    $evt['day'] = "31/12/2015";
+    $evt['hour'] = "24h00";
+    $data['events'][$evt['id']]=$evt;
+  }
 
   if (!isset($_GET['ajax'])) // affichage normal
     include("../view/agenda.view.php");
@@ -55,7 +66,7 @@
       echo("\"calendar\": ");
       echo(json_encode($data['calendar'],JSON_PRETTY_PRINT));
       echo("\n");
-    } else if (isset($_GET['events'])) {
+    } else if (isset($_GET['events']) || isset($_GET['events-day'])) {
       echo("\"events\": ");
       echo(json_encode($data['events'],JSON_PRETTY_PRINT));
       echo("\n");

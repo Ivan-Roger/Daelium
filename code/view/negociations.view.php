@@ -4,7 +4,6 @@
   <meta charset="utf-8" />
   <link rel="stylesheet" href="../data/css/bootstrap.css">
   <link rel="stylesheet" href="../data/css/common.css">
-  <link rel="stylesheet" href="../data/css/list.css">
   <link rel="icon" type="image/png" href="../data/img/D.png" />
   <title>Dælium - Annuaire</title>
 </head>
@@ -36,7 +35,7 @@
                 <td>En cours</td>
                 <td>
                   <div class="btn-group" role="group" aria-label="...">
-                    <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-option-horizontal no-margin"></button>
+                    <a href="../controler/negociation.ctrl.php" type="button" class="btn btn-default"><span class="glyphicon glyphicon-option-horizontal no-margin"></span></a>
                     <a href="" type="button" class="btn btn-default"><span class="glyphicon glyphicon-repeat no-margin"></a>
                     <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash no-margin"></button>
                   </div>
