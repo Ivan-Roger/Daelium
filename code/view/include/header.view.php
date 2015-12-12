@@ -30,14 +30,14 @@
         <ul class="nav navbar-nav navbar-right">
           <li>
             <form class="navbar-form navbar-right" method="GET" action="#">
-              <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                Button with data-target
-              </button>
-              <div class="input-group" id="searchBar">
-                <input type="text" class="form-control" placeholder="Je cherche ...">
-                <span class="input-group-btn">
-                  <button class="btn btn-primary" type="button">Rechercher</button>
-                </span>
+              <a class="btn btn-default" role="button" data-toggle="collapse" href="#searchBarCollapse" aria-expanded="false" aria-controls="searchBarCollapse"><span class="glyphicon glyphicon-search no-margin"></span></a>
+              <div class="collapse" id="searchBarCollapse">
+                <div class="input-group collapse collapsed" id="searchBar">
+                  <input type="text" class="form-control" placeholder="Je cherche ...">
+                  <span class="input-group-btn">
+                    <button class="btn btn-primary" type="button">Rechercher</button>
+                  </span>
+                </div>
               </div>
             </form>
           </li>
