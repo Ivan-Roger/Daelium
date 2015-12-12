@@ -131,7 +131,7 @@ CREATE TABLE Evenement (
 
 CREATE TABLE Contact_Evenement (
   idEvene BIGINT references Evenement(idEvene),
-  Proprietaire  BIGINT,
+  contactProprietaire  BIGINT,
   idContact     integer,
   PRIMARY KEY(idEvene,Proprietaire,idContact),
   FOREIGN KEY (idContact,Proprietaire) references Contact(idContact,Proprietaire)
@@ -159,7 +159,7 @@ CREATE TABLE Groupe_Artiste (
   FOREIGN KEY (idArtiste) references Artiste(idArtiste)
 );
 
-CREATE TABLE Negociation ( 
+CREATE TABLE Negociation (
   idNegociation SERIAL PRIMARY KEY,
   idBooker BIGINT,
   idManif BIGINT,

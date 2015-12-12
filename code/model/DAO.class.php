@@ -44,7 +44,7 @@
       return (isset($res[0])?$res[0]:null); // retourne le premier resultat s'il existe, sinon null
     }
 
-    // vérif or not vérif this is the question (si la personne est déjà présente)
+    // vérif or not vérif this->db is the question (si la personne est déjà présente)
     function createPersonne($personne) {
         $sql = "INSERT INTO Personne(nomp,prenom,tel,emailContact) VALUES (?,?,?,?)";
         $req = $this->db->prepare($sql);
@@ -63,7 +63,7 @@
     }
 
     function updatePersonne($personne) {
-      $p = $this->readPersonneById($personne->idUtilisateur);
+      $p = $this->db->readPersonneById($personne->idUtilisateur);
       if ($p != null) {
         $sql = "UPDATE Personne set (nomp, prenom, tel, emailContact, adresse) = (?,?,?,?,?) where id = ?";
         $req = $this->db->prepare($sql);
@@ -115,8 +115,8 @@
     }
 
     function createUtilisateur($utilisateur) { // peut etre mettre une personne en paramettre
-      $e = $this->readUserByEmail($utilisateur->email);
-      if ($e == null) {
+      $u = $this->db->readUserByEmail($utilisateur->email);
+      if ($u == null) {
         $sql = "INSERT INTO Users(emailCompte,mdp) VALUES (?,?)";
         $req = $this->db->prepare($sql);
         $params = array(
@@ -135,7 +135,7 @@
 
     // aussi la PERSONNE
     function updateUtilisateur($utilisateur) {
-      $u = $this->readPersonneById($utilisateur->idUtilisateur);
+      $u = $this->db->readUserByEmail($utilisateur->email);
       if ($u != null) {
         $sql = "UPDATE Utilisateur (emailCompte,mdp) = (?,?) where idUtilisateur = ?";
         $req = $this->db->prepare($sql);
@@ -172,7 +172,7 @@
 
 
   function createBooker($booker) {
-    $b = $this->readBookerById($booker->idBooker);
+    $b = $this->db->readBookerById($booker->idBooker);
     if ($b == null) {
       $sql = "INSERT INTO Booker(idBooker) VALUES (?)";
       $req = $this->db->prepare($sql);
@@ -206,7 +206,7 @@
 
 
   function createOrganisateur($organisateur) {
-    $o = $this->readBookerById($organisateur->$idOrganisateur);
+    $o = $this->db->readBookerById($organisateur->$idOrganisateur);
     if ($o == null) {
       $sql = "INSERT INTO $organisateur(idOrganisateur) VALUES (?)";
       $req = $this->db->prepare($sql);
@@ -257,7 +257,7 @@
   }
 
   function createGroupe($groupe) {
-    $g = $this->readGroupeById($groupe->idGroupe); // ou un readGroupeByMail je sais pas
+    $g = $this->db->readGroupeById($groupe->idGroupe); // ou un readGroupeByMail je sais pas
     if ($g == null) {
       $sql = "INSERT INTO Groupe(nomg,lienImageOfficiel,facebook,google,twitter,lecteur,soundcloud,ficheCom,adresse) VALUES (?,?,?,?,?,?,?,?,?)";
       $req = $this->db->prepare($sql);
@@ -283,7 +283,7 @@
   }
 
   function updateGroupe($groupe) {
-    $g = $this->readGroupeById($groupe->idGroupe);
+    $g = $this->db->readGroupeById($groupe->idGroupe);
     if ($g != null) {
       $sql = "UPDATE Groupe(nomg,lienImageOfficiel,facebook,google,twitter,lecteur,soundcloud,ficheCom,adresse) = (?,?,?,?,?,?,?,?,?) where idGroupe = ?";
       $req = $this->db->prepare($sql);
@@ -328,7 +328,7 @@
   }
 
   function createArtiste($artiste) {
-    $a = $this->readArtisteById($artiste->idArtiste);
+    $a = $this->db->readArtisteById($artiste->idArtiste);
     if ($a == null) {
       $sql = "INSERT INTO Artiste(dateNaissance, paiement, rib, ordreCheque) VALUES (?,?,?,?)";
       $req = $this->db->prepare($sql);
@@ -349,7 +349,7 @@
   }
 
   function updateArtiste($artiste) {
-    $a = $this->readArtisteById($utilisateur->idUtilisateur);
+    $a = $this->db->readArtisteById($utilisateur->idUtilisateur);
     if ($a != null) {
       $sql = "UPDATE Artiste(dateNaissance, paiement, rib, ordreCheque) = (?,?,?,?) where idArtiste = ?";
       $req = $this->db->prepare($sql);
@@ -431,7 +431,7 @@
   }
 
   function createLieu($lieu) {
-    $l = $this->readLieuById($lieu->idLieu);
+    $l = $this->db->readLieuById($lieu->idLieu);
     if ($l == null) {
       $sql = "INSERT INTO Lieu(noml,description,pays,region,ville,codePostal,adresse,latitude,longitude) VALUES (?,?,?,?,?,?,?,?,?)";
       $req = $this->db->prepare($sql);
@@ -457,7 +457,7 @@
   }
 
   function updateLieu($lieu) {
-    $l = $this->readLieuById($lieu->idLieu);
+    $l = $this->db->readLieuById($lieu->idLieu);
     if ($l != null) {
       $sql = "UPDATE Lieu(noml,description,pays,region,ville,codePostal,adresse,latitude,longitude) = (?,?,?,?,?,?,?,?,?) where idLieu = ?";
       $req = $this->db->prepare($sql);
@@ -516,7 +516,7 @@
   }
 
   function createManifestation($manifestation) {
-    $m = $this->readUserByEmail($manifestation->idManif);
+    $m = $this->db->readUserByEmail($manifestation->idManif);
     if ($m == null) {
       $sql = "INSERT INTO Manifestation(type,description,datedebut,datefin,prixPublic,lienImageOfficiel,facebook,google,twitter,ficheCom,createur,lieu) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
       $req = $this->db->prepare($sql);
@@ -545,7 +545,7 @@
   }
 
   function updateManifestation($manifestation) {
-    $m = $this->readUserByEmail($manifestation->idManif);
+    $m = $this->db->readUserByEmail($manifestation->idManif);
     if ($m != null) {
       $sql = "UPDATE Manifestation(type,description,datedebut,datefin,prixPublic,lienImageOfficiel,facebook,google,twitter,ficheCom,createur,lieu) = (?,?,?,?,?,?,?,?,?,?,?,?) where idManif = ?";
       $req = $this->db->prepare($sql);
@@ -578,118 +578,444 @@
 
   //Document(idDoc,idUtilisateur,nom,dateCreation,dateModif,emplacement)
   function readDocumentById($idDoc) {
-
+    $sql = "SELECT * FROM Document WHERE idDoc = ?"; // requête
+    $req = $this->db->prepare($sql);
+    $params = array( // paramétres
+      $idDoc // l'id de l'utilisateur
+    );
+    $res = $req->execute($params);
+    if ($res === FALSE) {
+      die("readDocumentById : Requête impossible !"); // erreur dans la requête
+    }
+    $res = $req->fetchAll(PDO::FETCH_CLASS,"Document");
+    return (isset($res[0])?$res[0]:null); // retourne le premier resultat s'il existe, sinon null
   }
 
-  function readDocumentByUtilisateur($idUtilisateur) {
-
-  }
 
   function createDocument($document) {
-
+    $d = $this->db->readDocumentById($document->idDoc);
+    if ($d == null) {
+      $sql = "INSERT INTO Document(idUtilisateur,nom,dateCreation,dateModif,emplacement) VALUES (?,?,?,?,?)";
+      $req = $this->db->prepare($sql);
+      $params = array(
+        $document->idUtilisateur,
+        $document->nom,
+        $document->dateCreation,
+        $document->dateModif,
+        $document->emplacement
+      );
+      $res = $req->execute($params);
+      if ($res === FALSE) {
+        die("createDocument : Requête impossible !");
+      }
+      return $this->db->readUserById($document->idDoc);
+    } else {
+      throw DAOUserException("Document déjà présent dans la base (l'id en tous cas)");
+    }
   }
 
 
   function updateDocument($document) {
-
+    $d = $this->db->readDocumentById($document->idDoc);
+    if ($d != null) {
+      $sql = "UPDATE Document(idUtilisateur,nom,dateCreation,dateModif,emplacement) = (?,?,?,?,?) where idDoc= ?";
+      $req = $this->db->prepare($sql);
+      $params = array(
+        $document->idUtilisateur,
+        $document->nom,
+        $document->dateCreation,
+        $document->dateModif,
+        $document->emplacement,
+        $document->idDoc
+      );
+      $res = $req->execute($params);
+      if ($res === FALSE) {
+        die("updateDocument : Requête impossible !");
+      }
+      return $this->db->readDocumentById($document->idDoc);
+    } else {
+      throw DAOUserException("Document non présent dans la base de données !");
+    }
   }
 
   // ===================== Evenenement =====================
 
   //Evenenement(idEvene,dateDebut,dateFin,heureDebut,heureFin,description,Lieu,createur)
   function readEvenenementById($idEvene) {
-
+    $sql = "SELECT * FROM Evenenement WHERE idEvene = ?"; // requête
+    $req = $this->db->prepare($sql);
+    $params = array( // paramétres
+      $idEvene // l'id de l'utilisateur
+    );
+    $res = $req->execute($params);
+    if ($res === FALSE) {
+      die("readEvenenementById : Requête impossible !"); // erreur dans la requête
+    }
+    $res = $req->fetchAll(PDO::FETCH_CLASS,"Evenenement");
+    return (isset($res[0])?$res[0]:null);
   }
 
   function readEvenenementByLieu($idLieu) {
-
+    $sql = "SELECT * FROM Evenenement WHERE idLieu = ?"; // requête
+    $req = $this->db->prepare($sql);
+    $params = array( // paramétres
+      $idLieu // l'id de l'utilisateur
+    );
+    $res = $req->execute($params);
+    if ($res === FALSE) {
+      die("readEvenenementByLieu : Requête impossible !"); // erreur dans la requête
+    }
+    $res = $req->fetchAll(PDO::FETCH_CLASS,"Evenenement");
+    return (isset($res[0])?$res:null);
   }
 
   function readEvenenementByCreateur($idCreateur) {
-
+    $sql = "SELECT * FROM Evenenement WHERE idCreateur = ?"; // requête
+    $req = $this->db->prepare($sql);
+    $params = array( // paramétres
+      $idCreateur // l'id de l'utilisateur
+    );
+    $res = $req->execute($params);
+    if ($res === FALSE) {
+      die("readEvenenementByCreateur : Requête impossible !"); // erreur dans la requête
+    }
+    $res = $req->fetchAll(PDO::FETCH_CLASS,"Evenenement");
+    return (isset($res[0])?$res:null);
   }
 
   function createEvenenement($evenenement) {
-
+    $e = $this->db->readEvenenementById($evenenement->idEvene);
+    if ($e == null) {
+      $sql = "INSERT INTO Evenenement(dateDebut,dateFin,heureDebut,heureFin,description,Lieu,createur) VALUES (?,?,?,?,?,?,?)";
+      $req = $this->db->prepare($sql);
+      $params = array(
+        $evenenement->dateDebut,
+        $evenenement->dateFin,
+        $evenenement->heureDebut,
+        $evenenement->heureFin,
+        $evenenement->description,
+        $evenenement->Lieu,
+        $evenenement->createur
+      );
+      $res = $req->execute($params);
+      if ($res === FALSE) {
+        die("createEvenenement : Requête impossible !");
+      }
+      return $this->db->readUserById($evenenement->idEvene);
+    } else {
+      throw DAOUserException("Evenenement déjà présent dans la base (l'id en tous cas)");
+    }
   }
 
   function updateEvenenement($evenenement) {
-
+    $e = $this->db->readEvenenementById($evenenement->idEvene);
+    if ($e != null) {
+      $sql = "UPDATE Evenenement(dateDebut,dateFin,heureDebut,heureFin,description,Lieu,createur) = (?,?,?,?,?,?,?) where idEvene = ?";
+      $req = $this->db->prepare($sql);
+      $params = array(
+        $evenenement->dateDebut,
+        $evenenement->dateFin,
+        $evenenement->heureDebut,
+        $evenenement->heureFin,
+        $evenenement->description,
+        $evenenement->Lieu,
+        $evenenement->createur,
+        $evenenement->idEvene
+      );
+      $res = $req->execute($params);
+      if ($res === FALSE) {
+        die("updateEvenenement : Requête impossible !");
+      }
+      return $this->db->readEvenenementById($evenenement->idEvene);
+    } else {
+      throw DAOUserException("Evenement non présent dans la base de données !");
+    }
   }
 
   // ===================== Contact =====================
 
   //Contact(idContact,proprietaire,notes)
-  function readContactById($idContact,$proprietaire) {
-
+  function readContactByPrimary($idContact,$proprietaire) {
+    $sql = "SELECT * FROM Contact WHERE idContact = ? and proprietaire = ?"; // requête
+    $req = $this->db->prepare($sql);
+    $params = array(
+      $idContact,
+      $proprietaire
+    );
+    $res = $req->execute($params);
+    if ($res === FALSE) {
+      die("readContactByPrimary : Requête impossible !"); // erreur dans la requête
+    }
+    $res = $req->fetchAll(PDO::FETCH_CLASS,"Contact");
+    return (isset($res[0])?$res[0]:null);
   }
 
   function createContact($contact) {
-
+    $c = $this->db->readContactByPrimary($contact->idContact,$contact->proprietaire);
+    if ($c == null) {
+      $sql = "INSERT INTO Contact(idContact,proprietaire,notes) VALUES (?,?,?)";
+      $req = $this->db->prepare($sql);
+      $params = array(
+        $contact->idContact,
+        $contact->proprietaire,
+        $contact->notes
+      );
+      $res = $req->execute($params);
+      if ($res === FALSE) {
+        die("createContact : Requête impossible !");
+      }
+      return $this->db->readContactByPrimary($contact->idContact,$contact->proprietaire);
+    } else {
+      throw DAOUserException("Contact déjà présent dans la base (l'id en tous cas)");
+    }
   }
 
   function updateContact($contact) {
-
+    $c = $this->db->readContactByPrimary($contact->idContact,$contact->proprietaire);
+    if ($c == null) {
+      $sql = "UPDATE Contact set (notes) = (?) where idContact = ? and proprietaire = ?";
+      $req = $this->db->prepare($sql);
+      $params = array(
+        $contact->notes,
+        $contact->idContact,
+        $contact->proprietaire
+      );
+      $res = $req->execute($params);
+      if ($res === FALSE) {
+        die("updateContact : Requête impossible !");
+      }
+      return $this->db->readContactByPrimary($contact->idContact,$contact->proprietaire);
+    } else {
+      throw DAOUserException("Contact non présent dans la base");
+    }
   }
 
   // ===================== Contact_Systeme =====================
 
   // Contact_Systeme(contactProprietaire,idContact,personne)
   function readContactSystemByPrimary($contactProprietaire, $idContact) {
-
+    $sql = "SELECT * FROM Contact_Systeme WHERE contactProprietaire = ? and idContact = ?"; // requête
+    $req = $this->db->prepare($sql);
+    $params = array(
+      $contactProprietaire,
+      $idContact
+    );
+    $res = $req->execute($params);
+    if ($res === FALSE) {
+      die("readContactSystemByPrimary : Requête impossible !"); // erreur dans la requête
+    }
+    $res = $req->fetchAll(PDO::FETCH_CLASS,"Contact_Systeme");
+    return (isset($res[0])?$res[0]:null);
   }
 
   function createContactSystem($contactSyst) {
-
+    $c = $this->db->readContactSystemByPrimary($contactSyst->contactProprietaire,$contactSyst->idContact);
+    if ($c == null) {
+      $sql = "INSERT INTO Contact_Systeme(contactProprietaire,idContact,personne) VALUES (?,?,?)";
+      $req = $this->db->prepare($sql);
+      $params = array(
+        $contactSyst->contactProprietaire,
+        $contactSyst->idContact,
+        $contactSyst->personne
+      );
+      $res = $req->execute($params);
+      if ($res === FALSE) {
+        die("createContactSystem : Requête impossible !");
+      }
+      return $this->db->readContactSystemByPrimary($contactSyst->contactProprietaire,$contactSyst->idContact);
+    } else {
+      throw DAOUserException("Contact_Systeme déjà présent dans la base");
+    }
   }
 
   function updateContactSystem($contactSyst) {
-
+    $c = $this->db->readContactSystemByPrimary($contactSyst->contactProprietaire,$contactSyst->idContact);
+    if ($c == null) {
+      $sql = "UPDATE Contact_Systeme set (personne) = (?) where contactProprietaire = ? and idContact = ?";
+      $req = $this->db->prepare($sql);
+      $params = array(
+        $contactSyst->personne,
+        $contactSyst->contactProprietaire,
+        $contactSyst->idContact
+      );
+      $res = $req->execute($params);
+      if ($res === FALSE) {
+        die("createContactSystem : Requête impossible !");
+      }
+      return $this->db->readContactSystemByPrimary($contactSyst->contactProprietaire,$contactSyst->idContact);
+    } else {
+      throw DAOUserException("Contact_Systeme non présent dans la base");
+    }
   }
 
   // ===================== Contact_exterieur =====================
 
   // Contact_exterieur(contactProprietaire,idContact,nom,email,tel)
   function readContactExterieurByPrimary($contactProprietaire, $idContact) {
-
+    $sql = "SELECT * FROM Contact_exterieur WHERE contactProprietaire = ? and idContact = ?"; // requête
+    $req = $this->db->prepare($sql);
+    $params = array(
+      $contactProprietaire,
+      $idContact
+    );
+    $res = $req->execute($params);
+    if ($res === FALSE) {
+      die("readContactExterieurByPrimary : Requête impossible !"); // erreur dans la requête
+    }
+    $res = $req->fetchAll(PDO::FETCH_CLASS,"Contact_exterieur");
+    return (isset($res[0])?$res[0]:null);
   }
 
   function createContactExterieur($contactProp) {
-
+    $c = $this->db->readContactExterieurByPrimary($contactSyst->contactProprietaire,$contactSyst->idContact);
+    if ($c == null) {
+      $sql = "INSERT INTO Contact_exterieur(contactProprietaire,idContact,nom,email,tel) VALUES (?,?,?,?,?)";
+      $req = $this->db->prepare($sql);
+      $params = array(
+        $contactProp->contactProprietaire,
+        $contactProp->idContact,
+        $contactProp->nom,
+        $contactProp->email,
+        $contactProp->tel
+      );
+      $res = $req->execute($params);
+      if ($res === FALSE) {
+        die("createContactExterieur : Requête impossible !");
+      }
+      return $this->db->readContactExterieurByPrimary($contactSyst->contactProprietaire,$contactSyst->idContact);
+    } else {
+      throw DAOUserException("Contact_exterieur déjà présent dans la base");
+    }
   }
 
   function updateContactExterieur($contactProp) {
-
+    $c = $this->db->readContactExterieurByPrimary($contactSyst->contactProprietaire,$contactSyst->idContact);
+    if ($c == null) {
+      $sql = "UPDATE Contact_exterieur set (nom,email,tel) = (?,?,?) where contactProprietaire = ? and idContact = ?";
+      $req = $this->db->prepare($sql);
+      $params = array(
+        $contactProp->nom,
+        $contactProp->email,
+        $contactProp->tel
+        $contactProp->contactProprietaire,
+        $contactProp->idContact
+      );
+      $res = $req->execute($params);
+      if ($res === FALSE) {
+        die("updateContactExterieur : Requête impossible !");
+      }
+      return $this->db->readContactExterieurByPrimary($contactSyst->contactProprietaire,$contactSyst->idContact);
+    } else {
+      throw DAOUserException("Contact_exterieur non présent dans la base");
+    }
   }
 
   // ===================== Contact_Evenement =====================
 
   // Contact_Evenement(contactProprietaire,idContact,idEvene)
-  function readContactEvenementByPrimary($contactEven, $idContact, $idEven) {
-
+  function readContactEvenementByPrimary($proprietaire, $idContact, $idEvene) {
+    $sql = "SELECT * FROM Contact_Evenement WHERE contactProprietaire = ? and idContact = ? and idEvene = ?"; // requête
+    $req = $this->db->prepare($sql);
+    $params = array(
+      $proprietaire,
+      $idContact,
+      $idEvene
+    );
+    $res = $req->execute($params);
+    if ($res === FALSE) {
+      die("readContactEvenementByPrimary : Requête impossible !"); // erreur dans la requête
+    }
+    $res = $req->fetchAll(PDO::FETCH_CLASS,"Contact_Evenement");
+    return (isset($res[0])?$res[0]:null);
   }
 
   function createContactEvenement($contactEven) {
-
+    $c = $this->db->readContactEvenementByPrimary($contactEven->proprietaire,$contactEven->idContact,$contactEven->idEvene);
+    if ($c == null) {
+      $sql = "INSERT INTO Contact_Evenement(contactProprietaire,idContact,idEvene) VALUES (?,?,?)";
+      $req = $this->db->prepare($sql);
+      $params = array(
+        $contactProp->contactProprietaire,
+        $contactProp->idContact,
+        $contactProp->idEvene
+      );
+      $res = $req->execute($params);
+      if ($res === FALSE) {
+        die("createContactEvenement : Requête impossible !");
+      }
+      return $this->db->readContactEvenementByPrimary($contactEven->proprietaire,$contactEven->idContact,$contactEven->idEvene);
+    } else {
+      throw DAOUserException("Contact_Evenement déjà présent dans la base");
+    }
   }
 
-  function updateContactEvenement($contactEven) {
-
-  }
+  //Etant donnée les trois clées qui sont primaire je ne pense pas qu'on puisse faire un update sur contact evenement
 
   // ===================== Creneau =====================
 
   // Creneau(idManif,idGroupe,heureDebut,heureFin,lieu,heureDebutTest,heureFinTest)
   function readCreneauByPrimary($idManif, $idGroupe, $heureDebut) {
-
+    $sql = "SELECT * FROM Creneau WHERE idManif=? and idGroupe=? and heureDebut = ?"; // requête
+    $req = $this->db->prepare($sql);
+    $params = array(
+      $idManif,
+      $idGroupe,
+      $heureDebut
+    );
+    $res = $req->execute($params);
+    if ($res === FALSE) {
+      die("readCreneauByPrimary : Requête impossible !"); // erreur dans la requête
+    }
+    $res = $req->fetchAll(PDO::FETCH_CLASS,"Creneau");
+    return (isset($res[0])?$res[0]:null);
   }
 
   function createCreneau($creneau) {
-
+    $c = $this->db->readCreneauByPrimary($creneau->idManif,$creneau->idGroupe,$creneau->heureDebut);
+    if ($c == null) {
+      $sql = "INSERT INTO Creneau(idManif,idGroupe,heureDebut,heureFin,lieu,heureDebutTest,heureFinTest) VALUES (?,?,?,?,?,?,?)";
+      $req = $this->db->prepare($sql);
+      $params = array(
+        $creneau->idManif,
+        $creneau->idGroupe,
+        $creneau->heureDebut,
+        $creneau->heureFin,
+        $creneau->lieu,
+        $creneau->heureDebutTest,
+        $creneau->heureFinTest
+      );
+      $res = $req->execute($params);
+      if ($res === FALSE) {
+        die("createCreneau : Requête impossible !");
+      }
+      return $this->db->readCreneauByPrimary($creneau->idManif,$creneau->idGroupe,$creneau->heureDebut);
+    } else {
+      throw DAOUserException("Creneau déjà présent dans la base");
+    }
   }
 
   function updateCreneau($creneau) {
-
+    $c = $this->db->readCreneauByPrimary($creneau->idManif,$creneau->idGroupe,$creneau->heureDebut);
+    if ($c == null) {
+      $sql = "UPDATE Creneau set (heureFin,lieu,heureDebutTest,heureFinTest) = (?,?,?,?) where idManif=? and idGroupe=? and heureDebut = ?";
+      $req = $this->db->prepare($sql);
+      $params = array(
+        $creneau->heureFin,
+        $creneau->lieu,
+        $creneau->heureDebutTest,
+        $creneau->heureFinTest,
+        $creneau->idManif,
+        $creneau->idGroupe,
+        $creneau->heureDebut
+      );
+      $res = $req->execute($params);
+      if ($res === FALSE) {
+        die("updateCreneau : Requête impossible !");
+      }
+      return $this->db->readCreneauByPrimary($creneau->idManif,$creneau->idGroupe,$creneau->heureDebut);
+    } else {
+      throw DAOUserException("Creneau non présent dans la base");
+    }
   }
 
   // ===================== Groupe_Artiste =====================
