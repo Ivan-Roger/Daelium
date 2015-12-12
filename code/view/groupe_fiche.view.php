@@ -51,9 +51,7 @@ Postremo ad id indignitatis est ventum, ut cum peregrini ob formidatam haut ita 
             <!-- Tab panes -->
             <div class="tab-content">
               <?php foreach($data['albums'] as $key => $album) { ?>
-              <div role="tabpanel" class="tab-pane <?php echo($key==0?"active":"") ?>" id="album<?= $key ?>">
-                Hinc ille commotus ut iniusta perferens et indigna praefecti custodiam protectoribus mandaverat fidis. quo conperto Montius tunc quaestor acer quidem sed ad lenitatem propensior, consulens in commune advocatos palatinarum primos scholarum adlocutus est mollius docens nec decere haec fieri nec prodesse addensque vocis obiurgatorio sonu quod si id placeret, post statuas Constantii deiectas super adimenda vita praefecto conveniet securius cogitari.
-              </div>
+              <div role="tabpanel" class="tab-pane <?php echo($key==0?"active":"") ?>" id="album<?= $key ?>">...</div>
               <?php } ?>
             </div>
           </div>

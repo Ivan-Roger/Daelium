@@ -57,13 +57,13 @@
             <li class="list-group-item">
               <span class="group-name col-sm-10">En marche</span>
               <div class="col-sm-2">
-                <a class="btn btn-default" href="groupe_fiche.ctrl.php?id=<?= "a" ?>">Voir fiche</a>
+                <a class="btn btn-default" href="artiste_fiche.ctrl.php?artiste=En marche">Voir fiche</a>
               </div>
             </li>
             <li class="list-group-item">
               <span class="group-name col-sm-10">Batoucada</span>
               <div class="col-sm-2">
-                <a class="btn btn-default" href="groupe_fiche.ctrl.php?id=<?= "a" ?>">Voir fiche</a>
+                <a class="btn btn-default" href="artiste_fiche.ctrl.php?artiste=En marche">Voir fiche</a>
               </div>
             </li>
           </ul>
