@@ -1022,135 +1022,383 @@
 
   // Groupe_Artiste(idGroupe,idArtiste)
   function readGroupeArtisteByPrimary($idGroupe, $idArtiste) {
-
+    $sql = "SELECT * FROM Groupe_Artiste WHERE  idGroupe=? and idArtiste = ?"; // requête
+    $req = $this->db->prepare($sql);
+    $params = array(
+      $idGroupe,
+      $idArtiste,
+    );
+    $res = $req->execute($params);
+    if ($res === FALSE) {
+      die("readGroupeArtisteByPrimary : Requête impossible !"); // erreur dans la requête
+    }
+    $res = $req->fetchAll(PDO::FETCH_CLASS,"Groupe_Artiste");
+    return (isset($res[0])?$res[0]:null);
   }
 
   function createGroupeArtiste($groupeArtiste) {
-
+    $c = $this->db->readCreneauByPrimary($groupeArtiste->idGroupe,$groupeArtiste->idArtiste);
+    if ($c == null) {
+      $sql = "INSERT INTO Groupe_Artiste(idGroupe,idArtiste) VALUES (?,?)";
+      $req = $this->db->prepare($sql);
+      $params = array(
+        $groupeArtiste->idGroupe,
+        $groupeArtiste->idArtiste
+      );
+      $res = $req->execute($params);
+      if ($res === FALSE) {
+        die("createGroupeArtiste : Requête impossible !");
+      }
+      return $this->db->readCreneauByPrimary($groupeArtiste->idGroupe,$groupeArtiste->idArtiste);
+    } else {
+      throw DAOUserException("Groupe_Artiste déjà présent dans la base");
+    }
   }
 
-  function updateGroupeArtiste($groupeArtiste) {
-
-  }
 
   // ===================== Negociation =====================
 
   // Negociation(idNegociation,idBooker,idManif,idGroupe,idOrganisateur,etat)
   function readNegociationById($id) {
-
+    $sql = "SELECT * FROM Negociation WHERE  idNegociation=?"; // requête
+    $req = $this->db->prepare($sql);
+    $params = array(
+      $id
+    );
+    $res = $req->execute($params);
+    if ($res === FALSE) {
+      die("readNegociationById : Requête impossible !"); // erreur dans la requête
+    }
+    $res = $req->fetchAll(PDO::FETCH_CLASS,"Negociation");
+    return (isset($res[0])?$res[0]:null);
   }
 
   function createNegociation($negociation) {
-
+    $n = $this->db->readNegociationById($negociation->idNegociation);
+    if ($n == null) {
+      $sql = "INSERT INTO Negociation(idBooker,idManif,idGroupe,idOrganisateur,etat) VALUES (?,?,?,?,?)";
+      $req = $this->db->prepare($sql);
+      $params = array(
+        $negociation->idBooker,
+        $negociation->idManif,
+        $negociation->idGroupe,
+        $negociation->idOrganisateur,
+        $negociation->etat,
+      );
+      $res = $req->execute($params);
+      if ($res === FALSE) {
+        die("createNegociation : Requête impossible !");
+      }
+      return $this->db->readNegociationById($negociation->idNegociation);
+    } else {
+      throw DAOUserException("Negociation déjà présente dans la base");
+    }
   }
 
   function updateNegociation($negociation) {
-
+    $n = $this->db->readNegociationById($negociation->idNegociation);
+    if ($n == null) {
+      $sql = "UPDATE Negociation (idBooker,idManif,idGroupe,idOrganisateur,etat) = (?,?,?,?,?) where idNegociation = ?";
+      $req = $this->db->prepare($sql);
+      $params = array(
+        $negociation->idBooker,
+        $negociation->idManif,
+        $negociation->idGroupe,
+        $negociation->idOrganisateur,
+        $negociation->etat,
+        $negociation->idNegociation
+      );
+      $res = $req->execute($params);
+      if ($res === FALSE) {
+        die("updateNegociation : Requête impossible !");
+      }
+      return $this->db->readNegociationById($negociation->idNegociation);
+    } else {
+      throw DAOUserException("Negociation non présente dans la base");
+    }
   }
 
   // ===================== Negociation_Documents =====================
 
   // Negociation_Documents(idDoc,idNegociation)
   function readNegociationDocumentsByPrimary($idNegociation,$idDoc) {
-
+    $sql = "SELECT * FROM Negociation_Documents WHERE  idNegociation=? and idDoc=?"; // requête
+    $req = $this->db->prepare($sql);
+    $params = array(
+      $idNegociation,
+      $idDoc
+    );
+    $res = $req->execute($params);
+    if ($res === FALSE) {
+      die("readNegociationDocumentsByPrimary : Requête impossible !"); // erreur dans la requête
+    }
+    $res = $req->fetchAll(PDO::FETCH_CLASS,"Negociation_Documents");
+    return (isset($res[0])?$res[0]:null);
   }
 
   function createNegociationDocuments($negociationDoc) {
-
+    $n = $this->db->readNegociationDocumentsByPrimary($negociationDoc->idNegociation,$negociationDoc->idDoc);
+    if ($n == null) {
+      $sql = "INSERT INTO Negociation_Documents(idDoc,idNegociation) VALUES (?,?)";
+      $req = $this->db->prepare($sql);
+      $params = array(
+        $negociationDoc->idNegociation,
+        $negociationDoc->idDoc
+      );
+      $res = $req->execute($params);
+      if ($res === FALSE) {
+        die("createNegociationDocuments : Requête impossible !");
+      }
+      return $this->db->readNegociationDocumentsByPrimary($negociationDoc->idNegociation,$negociationDoc->idDoc);
+    } else {
+      throw DAOUserException("Negociation_Documents déjà présente dans la base");
+    }
   }
 
-  function updateNegociationDocuments($negociationDoc) {
-
-  }
 
   // ===================== Negociation_Messages =====================
 
   // Negociation_Messages(idMessage,idNegociation)
-  function readNegociationMessagesByPrimary($idNegociation,$idMess) {
-
+  function readNegociationMessagesByPrimary($idNegociation,$idMessage) {
+    $sql = "SELECT * FROM Negociation_Messages WHERE  idNegociation=? and idMessage=?"; // requête
+    $req = $this->db->prepare($sql);
+    $params = array(
+      $idNegociation,
+      $idMessage
+    );
+    $res = $req->execute($params);
+    if ($res === FALSE) {
+      die("readNegociationMessagesByPrimary : Requête impossible !"); // erreur dans la requête
+    }
+    $res = $req->fetchAll(PDO::FETCH_CLASS,"Negociation_Messages");
+    return (isset($res[0])?$res[0]:null);
   }
 
   function createNegociationMessages($negociationMess) {
-
-  }
-
-  function updateNegociationMessages($negociationMess) {
-
+    $n = $this->db->readNegociationMessagesByPrimary($negociationMess->idNegociation,$negociationMess->idMessage);
+    if ($n == null) {
+      $sql = "INSERT INTO Negociation_Messages(idMessage,idNegociation) VALUES (?,?)";
+      $req = $this->db->prepare($sql);
+      $params = array(
+        $negociationMess->idNegociation,
+        $negociationMess->idMessage
+      );
+      $res = $req->execute($params);
+      if ($res === FALSE) {
+        die("createNegociationMessages : Requête impossible !");
+      }
+      return $this->db->readNegociationMessagesByPrimary($negociationMess->idNegociation,$negociationMess->idMessage);
+    } else {
+      throw DAOUserException("Negociation_Messages déjà présente dans la base");
+    }
   }
 
   // ===================== Message_Tag =====================
 
   // Message_Tag(idMessage,tel,nom)
-  function readMessageTagByPrimary($nomt,$idMess) {
-
+  function readMessageTagByPrimary($nomt,$idMessage) {
+    $sql = "SELECT * FROM Message_Tag WHERE  nomt=? and idMessage=?"; // requête
+    $req = $this->db->prepare($sql);
+    $params = array(
+      $nomt,
+      $idMessage
+    );
+    $res = $req->execute($params);
+    if ($res === FALSE) {
+      die("readMessageTagByPrimary : Requête impossible !"); // erreur dans la requête
+    }
+    $res = $req->fetchAll(PDO::FETCH_CLASS,"Message_Tag");
+    return (isset($res[0])?$res[0]:null);
   }
 
-  function createMessageTag($message) {
-
+  function createMessageTag($messageTag) {
+    $m = $this->db->readMessageTagByPrimary($messageTag->nomt,$messageTag->idMessage);
+    if ($m == null) {
+      $sql = "INSERT INTO Message_Tag(idMessage,tel,nomt) VALUES (?,?,?)";
+      $req = $this->db->prepare($sql);
+      $params = array(
+        $messageTag->idMessage,
+        $messageTag->tel,
+        $messageTag->nomt
+      );
+      $res = $req->execute($params);
+      if ($res === FALSE) {
+        die("createMessageTag : Requête impossible !");
+      }
+      return $this->db->readMessageTagByPrimary($messageTag->nomt,$messageTag->idMessage);
+    } else {
+      throw DAOUserException("Message_Tag déjà présente dans la base");
+    }
   }
 
   function updateMessageTag($message) {
-
+    $m = $this->db->readMessageTagByPrimary($messageTag->nomt,$messageTag->idMessage);
+    if ($m == null) {
+      $sql = "UPDATE Message_Tag (tel) = (?) VALUES where nomt=? and idMessage=? ";
+      $req = $this->db->prepare($sql);
+      $params = array(
+        $messageTag->tel,
+        $messageTag->nomt,
+        $messageTag->idMessage
+      );
+      $res = $req->execute($params);
+      if ($res === FALSE) {
+        die("updateMessageTag : Requête impossible !");
+      }
+      return $this->db->readMessageTagByPrimary($messageTag->nomt,$messageTag->idMessage);
+    } else {
+      throw DAOUserException("Message_Tag non présent dans la base");
+    }
   }
 
   // ===================== Booker_Groupe =====================
 
   // Booker_Groupe(idGroupe,idBooker)
   function readBookerGroupeByPrimary($idBooker,$idGroupe) {
-
+    $sql = "SELECT * FROM Booker_Groupe WHERE  idGroupe=? and idBooker=?"; // requête
+    $req = $this->db->prepare($sql);
+    $params = array(
+      $idGroupe,
+      $idBooker
+    );
+    $res = $req->execute($params);
+    if ($res === FALSE) {
+      die("readBookerGroupeByPrimary : Requête impossible !"); // erreur dans la requête
+    }
+    $res = $req->fetchAll(PDO::FETCH_CLASS,"Booker_Groupe");
+    return (isset($res[0])?$res[0]:null);
   }
 
   function createBookerGroupe($bookerGroupe) {
-
-  }
-
-  function updateBookerGroupe($bookerGroupe) {
-
+    $b = $this->db->readBookerGroupeByPrimary($bookerGroupe->idBooker,$bookerGroupe->idGroupe);
+    if ($b == null) {
+      $sql = "INSERT INTO Booker_Groupe(idGroupe,idBooker) VALUES (?,?)";
+      $req = $this->db->prepare($sql);
+      $params = array(
+        $bookerGroupe->idGroupe,
+        $bookerGroupe->idBooker
+      );
+      $res = $req->execute($params);
+      if ($res === FALSE) {
+        die("createBookerGroupe : Requête impossible !");
+      }
+      return $this->db->readBookerGroupeByPrimary($messageTag->nomt,$messageTag->idMessage);
+    } else {
+      throw DAOUserException("Booker_Groupe déjà présente dans la base");
+    }
   }
 
   // ===================== Groupe_Genre =====================
 
-  // Groupe_Genre(idGroupe,nomGenre)
+  // Groupe_Genre(idGroupe,nomg)
   function readGroupeGenreByPrimary($idGroupe, $nomGrenre) {
-
+    $sql = "SELECT * FROM Groupe_Genre WHERE  idGroupe=? and nomg=?"; // requête
+    $req = $this->db->prepare($sql);
+    $params = array(
+      $idGroupe,
+      $nomGrenre
+    );
+    $res = $req->execute($params);
+    if ($res === FALSE) {
+      die("readGroupeGenreByPrimary : Requête impossible !"); // erreur dans la requête
+    }
+    $res = $req->fetchAll(PDO::FETCH_CLASS,"Groupe_Genre");
+    return (isset($res[0])?$res[0]:null);
   }
 
   function createGroupeGenre($groupeGenre) {
-
-  }
-
-  function updateGroupeGenre($groupeGenre) {
-
+    $g = $this->db->readGroupeGenreByPrimary($groupeGenre->idGroupe,$groupeGenre->nomg);
+    if ($g == null) {
+      $sql = "INSERT INTO Groupe_Genre(idGroupe,nomg) VALUES (?,?)";
+      $req = $this->db->prepare($sql);
+      $params = array(
+        $groupeGenre->idGroupe,
+        $groupeGenre->nomg
+      );
+      $res = $req->execute($params);
+      if ($res === FALSE) {
+        die("createGroupeGenre : Requête impossible !");
+      }
+      return $this->db->readGroupeGenreByPrimary($groupeGenre->idGroupe,$groupeGenre->nomg);
+    } else {
+      throw DAOUserException("Groupe_Genre déjà présente dans la base");
+    }
   }
 
   // ===================== Manifestation_Genre =====================
 
   // Manifestation_Genre(idManif,nomGenre)
   function readManifestationGenreByPrimary($idManif, $nomGenre) {
-
+    $sql = "SELECT * FROM Groupe_Genre WHERE  idManif=? and nomg=?"; // requête
+    $req = $this->db->prepare($sql);
+    $params = array(
+      $idManif,
+      $nomGrenre
+    );
+    $res = $req->execute($params);
+    if ($res === FALSE) {
+      die("readManifestationGenreByPrimary : Requête impossible !"); // erreur dans la requête
+    }
+    $res = $req->fetchAll(PDO::FETCH_CLASS,"Manifestation_Genre");
+    return (isset($res[0])?$res[0]:null);
   }
 
   function createManifestationGenre($manifestationGenre) {
-
-  }
-
-  function updateManifestationGenre($manifestationGenre) {
-
+    $m = $this->db->readManifestationGenreByPrimary($manifestationGenre->idManif,$manifestationGenre->nomg);
+    if ($m == null) {
+      $sql = "INSERT INTO Manifestation_Genre(idManif,nomGenre) VALUES (?,?)";
+      $req = $this->db->prepare($sql);
+      $params = array(
+        $groupeGenre->idManif,
+        $groupeGenre->nomg
+      );
+      $res = $req->execute($params);
+      if ($res === FALSE) {
+        die("createManifestationGenre : Requête impossible !");
+      }
+      return $this->db->readManifestationGenreByPrimary($manifestationGenre->idManif,$manifestationGenre->nomg);
+    } else {
+      throw DAOUserException("Manifestation_Genre déjà présente dans la base");
+    }
   }
 
   // ===================== Contact_Tag =====================
 
   // Contact_Tag(nomt,idContact,proprietaire)
   function readContactTagByPrimary($nomt,$idContact,$proprietaire) {
-
+    $sql = "SELECT * FROM Contact_Tag WHERE  nomt= ? and idContact= ? and proprietaire = ?"; // requête
+    $req = $this->db->prepare($sql);
+    $params = array(
+      $nomt,
+      $idContact,
+      $proprietaire
+    );
+    $res = $req->execute($params);
+    if ($res === FALSE) {
+      die("readContactTagByPrimary : Requête impossible !"); // erreur dans la requête
+    }
+    $res = $req->fetchAll(PDO::FETCH_CLASS,"Contact_Tag");
+    return (isset($res[0])?$res[0]:null);
   }
 
   function createContactTag($contactTag) {
-
-  }
-
-  function updateContactTag($contactTag) {
-
+    $c = $this->db->readContactTagByPrimary($contactTag->nomt,$contactTag->idContact,$contactTag->proprietaire);
+    if ($c == null) {
+      $sql = "INSERT INTO Contact_Tag(nomt,idContact,proprietaire) VALUES (?,?,?)";
+      $req = $this->db->prepare($sql);
+      $params = array(
+        $contactTag->nomt,
+        $contactTag->idContact,
+        $contactTag->proprietaire
+      );
+      $res = $req->execute($params);
+      if ($res === FALSE) {
+        die("createContactTag : Requête impossible !");
+      }
+      return $this->db->readContactTagByPrimary($contactTag->nomt,$contactTag->idContact,$contactTag->proprietaire);
+    } else {
+      throw DAOUserException("Contact_Tag déjà présente dans la base");
+    }
   }
 
 }

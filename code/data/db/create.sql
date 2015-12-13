@@ -203,7 +203,7 @@ CREATE TABLE Message_Tag (
 
 CREATE TABLE Contact_Tag (
   nomt VARCHAR(255) NOT NULL,
-  Proprietaire  BIGINT,
+  proprietaire  BIGINT,
   idContact     integer,
   PRIMARY KEY (nomt,Proprietaire,idContact),
   FOREIGN KEY (nomt) references Tag(nomt),
