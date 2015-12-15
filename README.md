@@ -6,7 +6,7 @@ Pour plus d'infos : -> **[Wiki](https://github.com/Ivan-Roger/Daelium/wiki)**
 
 - **Itération 1** : Ok
 - **Itération 2** : Ok
-- **Itération 3** : Allez, il y a du boulot !!! (Rendu le 8 janvier)
+- **[Itération 3](https://github.com/Ivan-Roger/Daelium/wiki/It%C3%A9ration-3)** : Allez, il y a du boulot !!! (Rendu le 8 janvier)
 
 ## Dossiers ##
 
