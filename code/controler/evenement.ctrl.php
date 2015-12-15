@@ -7,21 +7,31 @@
   if (isset($_GET['id']) && $_GET['id'] != "") {
     // Recupérer les données depuis la BD avec l'id ($_GET['id'])
     $data['evenement']['id'] = $_GET['id'];
-    $data['evenement']['name'] = "Bilbao BBK Live";
+    $data['evenement']['nom'] = "Bilbao BBK Live";
+    $data['evenement']['lieu'] = "Villard de Lans";
+
+    $pas['date'] = "18/11/2015 21h20";
+    $pas['groupe']['nom'] = "En marche";
+    $data['passages'][] = $pas;
+
+    $pas['date'] = "18/11/2015 21h50";
+    $pas['groupe']['nom'] = "Batoucada";
+    $data['passages'][] = $pas;
+
     $data['evenement']['img'] = "../data/users/icons/bilbao-logo.jpg";
     include("../view/evenement.view.php");
 
   } elseif (isset($_GET['action']) && $_GET['action']=="new") {
     //si il demande la creation d'un evt
     $data['evenement']['id'] = "kfpb5gso63w7s2l";
-    $data['evenement']['name'] = "Nouvel Evenement";
+    $data['evenement']['nom'] = "Nouvel Evenement";
     //envoi un formulaire pour cree un artiste
     include("../view/evenement_edit.view.php");
 
   } elseif (isset($_POST['action']) && $_POST['action']="dates") {
     //quand il a rempli le 1er formulaire
     $data['evenement']['id'] = $_POST['id'];
-    $data['evenement']['name'] = "Bilbao BBK Live";
+    $data['evenement']['nom'] = "Bilbao BBK Live";
     $data['evenement']['img'] = "../data/users/icons/bilbao-logo.jpg";
     $dated = $_POST['dated'];
     $datef = $_POST['datef'];

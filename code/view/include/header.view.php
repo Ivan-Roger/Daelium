@@ -35,7 +35,7 @@
                 <div class="input-group collapse collapsed" id="searchBar">
                   <input type="text" class="form-control" placeholder="Je cherche ...">
                   <span class="input-group-btn">
-                    <button class="btn btn-primary" type="button">Rechercher</button>
+                    <button class="btn btn-default" type="button" data-toggle="collapse" data-target="#searchBarCollapse" aria-expanded="false" aria-controls="searchBarCollapse"><span class="glyphicon glyphicon-remove no-margin"></span></button>
                   </span>
                 </div>
               </div>

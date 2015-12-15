@@ -59,6 +59,10 @@ header nav .navbar-brand img {
   overflow-x: hidden;
 }
 
+header nav form.navbar-form a[aria-expanded="true"] {
+  display: none
+}
+
 nav #notifs li b {
   margin-left: 5px;
 }
