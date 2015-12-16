@@ -14,19 +14,16 @@ INSERT INTO Artiste VALUES(3,'06/12/2015',0,NULL,'JeanJack');
 INSERT INTO Personne VALUES(4,'Jule','Domartin','Jule.Domartin@gmail.com',0675757575,NULL);
 INSERT INTO Artiste VALUES(4,'06/12/2015',1,'AGSTBD154711744',NULL);
 
-INSERT INTO Groupe VALUES(1,'Les beaux gosses',2,'lbg@gmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO Groupe VALUES(1,'Les beaux gosses',2,'lbg@gmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO Groupe_Artiste VALUES(1,3);
 INSERT INTO Groupe_Artiste VALUES(1,4);
 
-INSERT INTO Groupe VALUES(2,'Le Solo',1,'ls@gmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO Groupe VALUES(2,'Le Solo',1,'ls@gmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO Groupe_Artiste VALUES(2,4);
 
 INSERT INTO Booker_Groupe VALUES(1,1);
 INSERT INTO Booker_Groupe VALUES(1,2);
 
-INSERT INTO Genre VALUES('Rock');
-INSERT INTO Genre VALUES('Pop');
-INSERT INTO Genre VALUES('Jazz');
 INSERT INTO Groupe_Genre VALUES(1,'Rock');
 INSERT INTO Groupe_Genre VALUES(1,'Pop');
 INSERT INTO Groupe_Genre VALUES(2,'Jazz');
@@ -49,8 +46,6 @@ INSERT INTO Contact_System VALUES(1,1,3);
 INSERT INTO Contact_System VALUES(1,2,4);
 INSERT INTO Contact_exterieur VALUES(1,3,'Pierre','pierrecroce@gmail.com',0601010101);
 
-INSERT INTO Tag VALUES('Groupe 1');
-INSERT INTO Tag VALUES('Amis');
 
 INSERT INTO Contact_Tag VALUES('Groupe 1',1,1);
 INSERT INTO Contact_Tag VALUES('Amis',1,3);

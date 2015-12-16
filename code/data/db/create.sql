@@ -23,7 +23,7 @@ CREATE TABLE Personne (
 CREATE TABLE Utilisateur (
   idUtilisateur SERIAL PRIMARY KEY,
   emailCompte VARCHAR(255) NOT NULL,
-  mdp VARCHAR(255) NOT NULL
+  mdp VARCHAR(255) NOT NULL,
   FOREIGN KEY (idUtilisateur) references Personne(idPersonne)
 );
 
@@ -133,8 +133,8 @@ CREATE TABLE Contact_Evenement (
   idEvene BIGINT references Evenement(idEvene),
   contactProprietaire  BIGINT,
   idContact     integer,
-  PRIMARY KEY(idEvene,Proprietaire,idContact),
-  FOREIGN KEY (idContact,Proprietaire) references Contact(idContact,Proprietaire)
+  PRIMARY KEY(idEvene,contactProprietaire,idContact),
+  FOREIGN KEY (idContact,contactProprietaire) references Contact(idContact,Proprietaire)
 );
 
 
@@ -197,7 +197,6 @@ CREATE TABLE Message_Tag (
   nomt VARCHAR(255) NOT NULL,
   idMessage BIGINT,
   PRIMARY KEY (nomt,idMessage),
-  FOREIGN KEY (nomt) references Tag(nomt),
   FOREIGN KEY (idMessage) references Message(idMessage)
 );
 
@@ -206,7 +205,6 @@ CREATE TABLE Contact_Tag (
   proprietaire  BIGINT,
   idContact     integer,
   PRIMARY KEY (nomt,Proprietaire,idContact),
-  FOREIGN KEY (nomt) references Tag(nomt),
   FOREIGN KEY (idContact,Proprietaire) references Contact(idContact,Proprietaire)
 );
 
@@ -232,14 +230,12 @@ CREATE TABLE Groupe_Genre (
   idGroupe BIGINT,
   nomg  VARCHAR(255),
   PRIMARY KEY (nomg,idGroupe),
-  FOREIGN KEY (idGroupe) references Groupe(idGroupe),
-  FOREIGN KEY (nomg) references Genre(nomg)
+  FOREIGN KEY (idGroupe) references Groupe(idGroupe)
 );
 
 CREATE TABLE Manifestation_Genre (
   idManif BIGINT,
   nomg  VARCHAR(255),
   PRIMARY KEY (nomg,idManif),
-  FOREIGN KEY (idManif) references Manifestation(idManif),
-  FOREIGN KEY (nomg) references Genre(nomg)
+  FOREIGN KEY (idManif) references Manifestation(idManif)
 );
