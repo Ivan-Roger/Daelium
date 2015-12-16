@@ -30,7 +30,7 @@
         <ul class="nav navbar-nav navbar-right">
           <li>
             <form class="navbar-form navbar-right" method="GET" action="#">
-              <a class="btn btn-default" role="button" data-toggle="collapse" href="#searchBarCollapse" aria-expanded="false" aria-controls="searchBarCollapse"><span class="glyphicon glyphicon-search no-margin"></span></a>
+              <a class="btn btn-default collapsed" role="button" data-toggle="collapse" href="#searchBarCollapse" aria-expanded="false" aria-controls="searchBarCollapse"><span class="glyphicon glyphicon-search no-margin"></span></a>
               <div class="collapse" id="searchBarCollapse">
                 <div class="input-group collapse collapsed" id="searchBar">
                   <input type="text" class="form-control" placeholder="Je cherche ...">

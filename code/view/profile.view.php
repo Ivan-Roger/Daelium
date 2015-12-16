@@ -13,8 +13,8 @@
     <div class="heading full">
       <img class="wall-pic" src="../data/img/fotolia_musique.jpg"/>
       <div class="userInfo col-xs-10 col-xs-offset-1">
-        <div class="col-xs-1 text-right"><img src="../data/users/icons/User_64.png" alt="Image de Profil"></div>
-        <h3 class="col-xs-9">Marc Dupuis</h3>
+        <div class="col-xs-1 text-right profile-pic"><img src="../data/users/icons/User_64.png" alt="Image de Profil"></div>
+        <h3 class="col-xs-8">Marc Dupuis</h3>
         <div class="controls col-xs-2 text-right">
           <a class="btn btn-primary" href="#">Editer</a>
         </div>
