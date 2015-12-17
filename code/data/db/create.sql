@@ -181,16 +181,18 @@ CREATE TABLE Negociation_Documents (
   FOREIGN KEY (idDoc) references Document(idDoc)
 );
 
-CREATE TABLE Message (
+CREATE TABLE Message (                  -- à revoir
   idMessage SERIAL PRIMARY KEY,
   expediteur BIGINT,
   receveur  BIGINT,
   etat integer,
   nom varchar(255),
   contenu varchar(255),
+  reponse integer,
   dateenvoi DATE,
   FOREIGN KEY (receveur) references Utilisateur(idUtilisateur),
-  FOREIGN KEY (expediteur) references Utilisateur(idUtilisateur)
+  FOREIGN KEY (expediteur) references Utilisateur(idUtilisateur),
+  FOREIGN KEY (reponse) references Message(idMessage),
 );
 
 CREATE TABLE Message_Tag (
