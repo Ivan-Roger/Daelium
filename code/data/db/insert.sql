@@ -51,8 +51,8 @@ INSERT INTO Contact_Tag VALUES('Groupe 1',1,1);
 INSERT INTO Contact_Tag VALUES('Amis',1,3);
 
 
-INSERT INTO Message VALUES(1,1,2,0,'rencontre','Salut tu vas bien ? On se fait une bouffe ?','10/12/2016');
-INSERT INTO Message VALUES(2,2,1,0,'rencontre','Oui','10/12/2016');
+INSERT INTO Message VALUES(1,1,2,0,'rencontre','Salut tu vas bien ? On se fait une bouffe ?',0,'10/12/2016');
+INSERT INTO Message VALUES(2,2,1,0,'rencontre','Oui',1,'10/12/2016');
 INSERT INTO Message_Tag VALUES('Amis',1);
 
 INSERT INTO Document VALUES(1,1,'Fiche Artiste','01/01/1970',NULL,'home/ficheartiste.pdf');
