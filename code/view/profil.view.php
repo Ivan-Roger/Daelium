@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <?php include("../view/includ/includes.view.php"); ?>
+    <?php include("../view/include/includes.view.php"); ?>
     <link rel="stylesheet" href="../data/css/profile.css">
     <title>Dælium - Profil</title>
   </head>
