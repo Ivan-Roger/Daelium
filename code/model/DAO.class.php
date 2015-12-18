@@ -117,7 +117,7 @@
     function createUtilisateur($utilisateur) { // peut etre mettre une personne en paramettre
       $u = $this->db->readUserByEmail($utilisateur->email);
       if ($u == null) {
-        $sql = "INSERT INTO Users(emailCompte,mdp) VALUES ($utilisateur->emailCompte,$utilisateur->mdp)";
+        $sql = "INSERT INTO Users(emailCompte,mdp) VALUES (?,?)";
         $req = $this->db->prepare($sql);
         $params = array(
           $utilisateur->emailCompte,
