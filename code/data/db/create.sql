@@ -24,7 +24,7 @@ CREATE TABLE Utilisateur (
   idUtilisateur SERIAL PRIMARY KEY,
   emailCompte VARCHAR(255) NOT NULL,
   mdp VARCHAR(255) NOT NULL,
-  googleToken VARCHAR(255),
+  googleToken TEXT,
   FOREIGN KEY (idUtilisateur) references Personne(idPersonne)
 );
 
