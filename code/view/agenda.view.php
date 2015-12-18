@@ -240,11 +240,7 @@
       </div>
     </section>
     <?php include("../view/include/footer.view.php"); ?>
-    <script src="../data/js/jQuery.min.js"></script>
     <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-    <script src="../data/js/bootstrap.min.js"></script>
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <script src="../data/js/common.js"></script>
     <script src="../data/js/agenda.js"></script>
     <script>
       $("#eventBeginingDate").datepicker();

@@ -79,8 +79,5 @@
       </aside>
     </section>
     <?php include("../view/include/footer.view.php"); ?>
-    <script src="../data/js/jQuery.min.js"></script>
-    <script src="../data/js/bootstrap.min.js"></script>
-    <script src="../data/js/common.js"></script>
   </body>
 </html>

@@ -88,10 +88,6 @@ Postremo ad id indignitatis est ventum, ut cum peregrini ob formidatam haut ita 
       </article>
     </section>
     <?php include("../view/include/footer.view.php"); ?>
-    <script src="../data/js/jQuery.min.js"></script>
-    <script src="../data/js/bootstrap.min.js"></script>
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <script src="../data/js/common.js"></script>
     <script src="../data/js/groupe.js"></script>
   </body>
 </html>
