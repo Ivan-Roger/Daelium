@@ -1,4 +1,4 @@
-CREATE TABLE lieu (
+CREATE TABLE Lieu (
   idLieu        SERIAL PRIMARY KEY,
   noml          VARCHAR(255) NOT NULL,
   description   VARCHAR(1000),
@@ -24,6 +24,7 @@ CREATE TABLE Utilisateur (
   idUtilisateur SERIAL PRIMARY KEY,
   emailCompte VARCHAR(255) NOT NULL,
   mdp VARCHAR(255) NOT NULL,
+  googleToken TEXT,
   FOREIGN KEY (idUtilisateur) references Personne(idPersonne)
 );
 
