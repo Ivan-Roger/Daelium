@@ -30,10 +30,12 @@
     }
   } else if (isset($_GET['logout'])) {
     // Deconnexion : vidage de $_SESSION
+    unset($_SESSION['userLoginID']);
+    unset($_SESSION['userLoginMail']);
+    unset($_SESSION['userLoginTime']);
     header("Location:"."../controler/nolog.ctrl.php");
   } else {
     // Pas d'action, on affiche la page
     include("../view/signin.view.php");
   }
-  var_dump($data);
 ?>
