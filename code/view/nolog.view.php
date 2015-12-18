@@ -17,7 +17,7 @@
         <form class="navbar-form navbar-right" method="GET" action="#">
           <!-- Menu de l'uilisateur-->
             <a href="../controler/connexion.ctrl.php" type="button" class="btn btn-primary">Se connecter</a>
-            <a href="signup.view.php" type="button" class="btn btn-warning">Je m'inscrit maintenant !</a>
+            <a href="../controler/inscription.ctrl.php" type="button" class="btn btn-warning">Je m'inscrit maintenant !</a>
         </form>
       </nav>
       <div id="carousel">

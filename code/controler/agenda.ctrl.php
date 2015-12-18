@@ -1,5 +1,6 @@
 <?php
   session_start();
+  include("include/auth.ctrl.php");
   require_once("../model/utils.class.php");
   $data = initPage("Agenda");
   $jours = array("Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi","Dimanche");

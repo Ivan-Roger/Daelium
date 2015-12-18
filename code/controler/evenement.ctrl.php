@@ -1,6 +1,7 @@
 <?php
   session_start();
   //include_once("../model/Artist.class.php");
+  include("include/auth.ctrl.php");
   require_once("../model/utils.class.php");
   $data = initPage("Events");
 

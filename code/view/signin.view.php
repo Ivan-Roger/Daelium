@@ -14,6 +14,7 @@
   <div class="container">
         <div class="card card-container">
             <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
+            <a class="btn btn-default" href="../controler/nolog.ctrl.php">&laquo; Retour</a>
             <img id="profile-img" class="profile-img-card" src="../data/img/D.png" />
             <p id="profile-name" class="profile-name-card">Bienvenue !</p>
             <?php if (isset($data['errorMessage'])) { ?><div class="alert alert-error"><?= $data['errorMessage'] ?></div><?php } ?>
