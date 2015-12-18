@@ -1397,6 +1397,95 @@
     }
   }
 
+  // ===================== Message =====================
+
+  // Message(idMessage,expediteur,receveur,etat,contenu,date,nom,reponse)
+  function readMessagesById($idMessage) {
+    $sql = "SELECT * FROM Message WHERE  idMessage = ?"; // requête
+    $req = $this->db->prepare($sql);
+    $params = array(
+      $idMessage
+    );
+    $res = $req->execute($params);
+    if ($res === FALSE) {
+      die("readMessagesById : Requête impossible !"); // erreur dans la requête
+    }
+    $res = $req->fetchAll(PDO::FETCH_CLASS,"Message");
+    return (isset($res[0])?$res[0]:null);
+  }
+
+  function readMessagesRecuByUtilisateur($idUtilisateur) {
+    $sql = "SELECT * FROM Message WHERE  receveur = ?"; // requête
+    $req = $this->db->prepare($sql);
+    $params = array(
+      $idUtilisateur
+    );
+    $res = $req->execute($params);
+    if ($res === FALSE) {
+      die("readMessagesRecuByReceveur : Requête impossible !"); // erreur dans la requête
+    }
+    $res = $req->fetchAll(PDO::FETCH_CLASS,"Message");
+    return (isset($res[0])?$res:null);
+  }
+
+  function readMessagesEnvoyeByUtilisateur($idUtilisateur) {
+    $sql = "SELECT * FROM Message WHERE  expediteur = ?"; // requête
+    $req = $this->db->prepare($sql);
+    $params = array(
+      $idUtilisateur
+    );
+    $res = $req->execute($params);
+    if ($res === FALSE) {
+      die("readMessagesEnvoyeByExpediteur : Requête impossible !"); // erreur dans la requête
+    }
+    $res = $req->fetchAll(PDO::FETCH_CLASS,"Message");
+    return (isset($res[0])?$res:null);
+  }
+
+    function createMessage($message) {
+    $c = $this->db->readMessagesById($idMessage);
+    if ($c == null) {
+      $sql = "INSERT INTO Message(idMessage,expediteur,receveur,etat,contenu,date,nom,reponse) VALUES (?,?,?,?,?,?,?,?)";
+      $req = $this->db->prepare($sql);
+      $params = array(
+        $message->idMessage,
+        $message->expediteur,
+        $message->receveur,
+        $message->etat,
+        $message->contenu,
+        $message->date,
+        $message->nom,
+        $message->reponse,
+        $message->nomt
+      );
+      $res = $req->execute($params);
+      if ($res === FALSE) {
+        die("createContactTag : Requête impossible !");
+      }
+      return $this->db->readContactTagByPrimary($contactTag->nomt,$contactTag->idContact,$contactTag->proprietaire);
+    } else {
+      throw DAOUserException("Contact_Tag déjà présente dans la base");
+    }
+  }
+
+    function updateMessage($message) {
+    $m = $this->db->readMessageTagByPrimary($messageTag->nomt,$messageTag->idMessage);
+    if ($m == null) {
+      $sql = "UPDATE Message_Tag (tel) = (?) VALUES where nomt=? and idMessage=? ";
+      $req = $this->db->prepare($sql);
+      $params = array(
+        $message->etat
+      );
+      $res = $req->execute($params);
+      if ($res === FALSE) {
+        die("updateMessageTag : Requête impossible !");
+      }
+      return $this->db->readMessageTagByPrimary($messageTag->nomt,$messageTag->idMessage);
+    } else {
+      throw DAOUserException("Message_Tag non présent dans la base");
+    }
+  }
+
 }
 
 ?>
