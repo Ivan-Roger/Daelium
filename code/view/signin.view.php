@@ -10,7 +10,6 @@
 <body>
   <div class="container">
         <div class="card card-container">
-
             <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
             <img id="profile-img" class="profile-img-card" src="../data/img/D.png" />
             <p id="profile-name" class="profile-name-card">Bienvenue !</p>
@@ -19,8 +18,12 @@
             <hr/>
             <form class="form-signin" method="POST" action="../controler/connexion.ctrl.php">
                 <span id="reauth-email" class="reauth-email"></span>
-                <input type="email" name="mail" id="inputEmail" class="form-control" placeholder="Adresse mail" required autofocus>
-                <input type="password" name="mdp" id="inputPassword" class="form-control" placeholder="Mot de passe" required>
+                <div class="form-group<?php if (isset($data['errorFields']['inputPasswordEmail'])) {echo (" has-error has-feedback"); } ?>">
+                  <input type="email" name="mail" id="inputEmail" class="form-control" placeholder="Adresse mail du compte" required autofocus>
+                </div>
+                <div class="form-group<?php if (isset($data['errorFields']['inputPassword'])) {echo (" has-error has-feedback"); } ?>">
+                  <input type="password" name="mdp" id="inputPassword" class="form-control" placeholder="Mot de passe" required>
+                </div>
                 <div id="remember" class="checkbox">
                     <label>
                         <input type="checkbox" value="remember-me"> Se souvenir de moi
