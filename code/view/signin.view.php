@@ -16,7 +16,7 @@
             <hr/>
             <p class="social" ><a href="#"><img src="../data/img/google_signIn.png" /></a></p>
             <hr/>
-            <form class="form-signin" method="POST" action="../controler/connexion.ctrl.php">
+            <form class="form-signin" method="POST" action="../controler/connexion.ctrl.php?login">
                 <span id="reauth-email" class="reauth-email"></span>
                 <div class="form-group<?php if (isset($data['errorFields']['inputPasswordEmail'])) {echo (" has-error has-feedback"); } ?>">
                   <input type="email" name="mail" id="inputEmail" class="form-control" placeholder="Adresse mail du compte" required autofocus>

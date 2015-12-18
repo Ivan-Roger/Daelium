@@ -1,5 +1,5 @@
 <?php
-  require_once("../data/config.php");
+  $config = parse_ini_file("../data/config.ini",true);
   require_once("utils.class.php");
   require_once("exceptions.class.php");
 
@@ -8,7 +8,7 @@
 
     function __construct() {
       try {
-        $this->db = new PDO("pgsql:host=".$ADRESS_BD.";port=".$PORT_BD.";dbname=".$NAME_BD.";user=".$USER_BD.";password=".$PASSWORD_BD);
+        $this->db = new PDO("pgsql:host=".$config['database']['address'].";port=".$config['database']['port'].";dbname=".$config['database']['name'].";user=".$config['database']['user'].";password=".$config['database']['password']);
       } catch (PDOException $e) {
         die("Error, Connexion a la DB impossible : ".$e->getMessage());
       }

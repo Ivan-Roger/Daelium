@@ -1,5 +1,6 @@
 <?php
   session_start();
+  require_once("../model/DAO.class.php");
   if (isset($_GET['login'])) {
     if(isset($_POST["mail"])){
       $dao = new DAO();
@@ -31,7 +32,7 @@
     // Deconnexion : vidage de $_SESSION
     header("Location:"."../controler/nolog.ctrl.php");
   } else {
-    // Action inconnue : retour vers nolog.view
-    header("Location:"."../controler/nolog.ctrl.php");
+    // Pas d'action, on affiche la page
+    include("../view/signin.view.php");
   }
 ?>
