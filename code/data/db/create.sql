@@ -188,7 +188,7 @@ CREATE TABLE Message (                  -- à revoir
   etat integer,
   nom varchar(255),
   contenu varchar(255),
-  reponse integer,
+  reponse BIGINT,
   dateenvoi DATE,
   FOREIGN KEY (receveur) references Utilisateur(idUtilisateur),
   FOREIGN KEY (expediteur) references Utilisateur(idUtilisateur),
