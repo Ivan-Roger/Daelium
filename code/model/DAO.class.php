@@ -60,7 +60,6 @@
         }
         return $this->db->readUserById($personne->id);
       }
-    }
 
     function updatePersonne($personne) {
       $p = $this->db->readPersonneById($personne->idUtilisateur);
@@ -177,7 +176,7 @@
       $sql = "INSERT INTO Booker(idBooker) VALUES (?)";
       $req = $this->db->prepare($sql);
       $params = array(
-        $booker->idBooker;
+        $booker->idBooker
       );
       $res = $req->execute($params);
       if ($res === FALSE) {
@@ -211,7 +210,7 @@
       $sql = "INSERT INTO $organisateur(idOrganisateur) VALUES (?)";
       $req = $this->db->prepare($sql);
       $params = array(
-        $organisateur->idOrganisateur;
+        $organisateur->idOrganisateur
       );
       $res = $req->execute($params);
       if ($res === FALSE) {
@@ -238,7 +237,6 @@
     }
     $res = $req->fetchAll(PDO::FETCH_CLASS,"Groupe");
     return (isset($res[0])?$res[0]:null); // retourne le premier resultat s'il existe, sinon null
-
   }
 
   function readGroupeByMail($email) {
@@ -253,7 +251,6 @@
     }
     $res = $req->fetchAll(PDO::FETCH_CLASS,"Groupe");
     return (isset($res[0])?$res[0]:null); // retourne le premier resultat s'il existe, sinon null
-
   }
 
   function createGroupe($groupe) {
@@ -324,7 +321,6 @@
     }
     $res = $req->fetchAll(PDO::FETCH_CLASS,"Artiste");
     return (isset($res[0])?$res[0]:null); // retourne le premier resultat s'il existe, sinon null
-
   }
 
   function createArtiste($artiste) {
@@ -561,7 +557,7 @@
         $manifestation->twitter,
         $manifestation->ficheCom,
         $manifestation->createur,
-        $manifestation->idLieu;
+        $manifestation->idLieu,
         $manifestation->idManif
       );
       $res = $req->execute($params);
@@ -896,7 +892,7 @@
       $params = array(
         $contactProp->nom,
         $contactProp->email,
-        $contactProp->tel
+        $contactProp->tel,
         $contactProp->contactProprietaire,
         $contactProp->idContact
       );
