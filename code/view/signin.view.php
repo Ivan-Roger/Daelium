@@ -19,8 +19,8 @@
             <hr/>
             <form class="form-signin" method="POST" action="../controler/connexion.ctrl.php">
                 <span id="reauth-email" class="reauth-email"></span>
-                <input type="email" id="inputEmail" class="form-control" placeholder="Adresse mail" required autofocus>
-                <input type="password" id="inputPassword" class="form-control" placeholder="Mot de passe" required>
+                <input type="email" name="mail" id="inputEmail" class="form-control" placeholder="Adresse mail" required autofocus>
+                <input type="password" name="mdp" id="inputPassword" class="form-control" placeholder="Mot de passe" required>
                 <div id="remember" class="checkbox">
                     <label>
                         <input type="checkbox" value="remember-me"> Se souvenir de moi
