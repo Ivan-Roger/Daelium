@@ -16,7 +16,7 @@
             <HR>
             <p class="social" ><a href="#"><img src="../data/img/google_signIn.png" /></a></p>
             <HR>
-            <form class="form-signin">
+            <form class="form-signin" action="../controler/inscription.ctrl.php" method="POST">
                 <span id="reauth-email" class="reauth-email"></span>
                 <input type="text" id="inputText" class="form-control" placeholder="Nom" required autofocus>
                 <input type="text" id="inputText" class="form-control" placeholder="Prenom" required>

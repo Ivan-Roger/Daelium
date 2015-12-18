@@ -2,11 +2,11 @@ INSERT INTO Lieu VALUES(1,'Maison',NULL,'FRANCE','Rhone-Alpes','Grenoble',38000,
 INSERT INTO Lieu VALUES(2,'Mairie de Grenoble',NULL,'FRANCE','Rhone-Alpes','Grenoble',38000,'4 rue des tulipes',NULL,NULL);
 
 INSERT INTO Personne VALUES(1,'Dupuis','Marc','marc.dupuis@gmail.com',0675757575,1);
-INSERT INTO Utilisateur VALUES(1,'1@gmail.com','azerty');
+INSERT INTO Utilisateur VALUES(1,'marc.dupuis@gmail.com','azerty');
 INSERT INTO Booker VALUES(1);
 
-INSERT INTO Personne VALUES(2,'Patrick','Bertoni','patrick.bertoni@gmail.com',0675757575,NULL);
-INSERT INTO Utilisateur VALUES(2,'2@gmail.com','azerty');
+INSERT INTO Personne VALUES(2,'Patrick','Lopez','patrick.lopez@gmail.com',0675757575,NULL);
+INSERT INTO Utilisateur VALUES(2,'plopez@gmail.com','azerty');
 INSERT INTO Organisateur VALUES(2);
 
 INSERT INTO Personne VALUES(3,'Jean','Jack','jean.jack@gmail.com',0675757575,NULL);

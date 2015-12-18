@@ -79,7 +79,7 @@
             <ul class="dropdown-menu">
               <li><a href="../controler/profil.ctrl.php">Voir le profil</a></li>
               <li role="separator" class="divider"></li>
-              <li><a href="../view/nolog.view.php?logout"><span class="glyphicon glyphicon-off"></span>Déconnexion</a></li>
+              <li><a href="../controler/connexion.ctrl.php?logout"><span class="glyphicon glyphicon-off"></span>Déconnexion</a></li>
             </ul>
           </li>
         </ul>
