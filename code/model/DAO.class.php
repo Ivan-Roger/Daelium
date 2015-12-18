@@ -138,7 +138,7 @@
     function updateUtilisateur($utilisateur) {
       $u = $this->db->readUserByEmail($utilisateur->email);
       if ($u != null) {
-        $sql = "UPDATE Utilisateur (emailCompte,mdp) = (?,?) where idUtilisateur = ?";
+        $sql = "UPDATE Utilisateur set (emailCompte,mdp) = (?,?) where idUtilisateur = ?";
         $req = $this->db->prepare($sql);
         $params = array(
           $utilisateur->emailCompte,
@@ -284,7 +284,7 @@
   function updateGroupe($groupe) {
     $g = $this->db->readGroupeById($groupe->idGroupe);
     if ($g != null) {
-      $sql = "UPDATE Groupe(nomg,lienImageOfficiel,facebook,google,twitter,lecteur,soundcloud,ficheCom,adresse) = (?,?,?,?,?,?,?,?,?) where idGroupe = ?";
+      $sql = "UPDATE Groupe set (nomg,lienImageOfficiel,facebook,google,twitter,lecteur,soundcloud,ficheCom,adresse) = (?,?,?,?,?,?,?,?,?) where idGroupe = ?";
       $req = $this->db->prepare($sql);
       $params = array(
         $groupe->nomg,
@@ -349,7 +349,7 @@
   function updateArtiste($artiste) {
     $a = $this->db->readArtisteById($utilisateur->idUtilisateur);
     if ($a != null) {
-      $sql = "UPDATE Artiste(dateNaissance, paiement, rib, ordreCheque) = (?,?,?,?) where idArtiste = ?";
+      $sql = "UPDATE Artiste set (dateNaissance, paiement, rib, ordreCheque) = (?,?,?,?) where idArtiste = ?";
       $req = $this->db->prepare($sql);
       $params = array(
         $artiste->dateNaissance,
@@ -457,7 +457,7 @@
   function updateLieu($lieu) {
     $l = $this->db->readLieuById($lieu->idLieu);
     if ($l != null) {
-      $sql = "UPDATE Lieu(noml,description,pays,region,ville,codePostal,adresse,latitude,longitude) = (?,?,?,?,?,?,?,?,?) where idLieu = ?";
+      $sql = "UPDATE Lieu set (noml,description,pays,region,ville,codePostal,adresse,latitude,longitude) = (?,?,?,?,?,?,?,?,?) where idLieu = ?";
       $req = $this->db->prepare($sql);
       $params = array(
         $lieu->noml,
@@ -545,7 +545,7 @@
   function updateManifestation($manifestation) {
     $m = $this->db->readUserByEmail($manifestation->idManif);
     if ($m != null) {
-      $sql = "UPDATE Manifestation(type,description,datedebut,datefin,prixPublic,lienImageOfficiel,facebook,google,twitter,ficheCom,createur,lieu) = (?,?,?,?,?,?,?,?,?,?,?,?) where idManif = ?";
+      $sql = "UPDATE Manifestation set (type,description,datedebut,datefin,prixPublic,lienImageOfficiel,facebook,google,twitter,ficheCom,createur,lieu) = (?,?,?,?,?,?,?,?,?,?,?,?) where idManif = ?";
       $req = $this->db->prepare($sql);
       $params = array(
         $manifestation->type,
@@ -616,7 +616,7 @@
   function updateDocument($document) {
     $d = $this->db->readDocumentById($document->idDoc);
     if ($d != null) {
-      $sql = "UPDATE Document(idUtilisateur,nom,dateCreation,dateModif,emplacement) = (?,?,?,?,?) where idDoc= ?";
+      $sql = "UPDATE Document set (idUtilisateur,nom,dateCreation,dateModif,emplacement) = (?,?,?,?,?) where idDoc= ?";
       $req = $this->db->prepare($sql);
       $params = array(
         $document->idUtilisateur,
@@ -708,7 +708,7 @@
   function updateEvenenement($evenenement) {
     $e = $this->db->readEvenenementById($evenenement->idEvene);
     if ($e != null) {
-      $sql = "UPDATE Evenenement(dateDebut,dateFin,heureDebut,heureFin,description,Lieu,createur) = (?,?,?,?,?,?,?) where idEvene = ?";
+      $sql = "UPDATE Evenenement set (dateDebut,dateFin,heureDebut,heureFin,description,Lieu,createur) = (?,?,?,?,?,?,?) where idEvene = ?";
       $req = $this->db->prepare($sql);
       $params = array(
         $evenenement->dateDebut,
@@ -1096,7 +1096,7 @@
   function updateNegociation($negociation) {
     $n = $this->db->readNegociationById($negociation->idNegociation);
     if ($n == null) {
-      $sql = "UPDATE Negociation (idBooker,idManif,idGroupe,idOrganisateur,etat) = (?,?,?,?,?) where idNegociation = ?";
+      $sql = "UPDATE Negociation set (idBooker,idManif,idGroupe,idOrganisateur,etat) = (?,?,?,?,?) where idNegociation = ?";
       $req = $this->db->prepare($sql);
       $params = array(
         $negociation->idBooker,
@@ -1232,7 +1232,7 @@
   function updateMessageTag($message) {
     $m = $this->db->readMessageTagByPrimary($messageTag->nomt,$messageTag->idMessage);
     if ($m == null) {
-      $sql = "UPDATE Message_Tag (tel) = (?) VALUES where nomt=? and idMessage=? ";
+      $sql = "UPDATE Message_Tag set (tel) = (?) where nomt=? and idMessage=? ";
       $req = $this->db->prepare($sql);
       $params = array(
         $messageTag->tel,
@@ -1457,34 +1457,34 @@
         $message->contenu,
         $message->date,
         $message->nom,
-        $message->reponse,
-        $message->nomt
+        $message->reponse
       );
       $res = $req->execute($params);
       if ($res === FALSE) {
-        die("createContactTag : Requête impossible !");
+        die("createMessage : Requête impossible !");
       }
-      return $this->db->readContactTagByPrimary($contactTag->nomt,$contactTag->idContact,$contactTag->proprietaire);
+      return $this->db->readMessagesById($idMessage);
     } else {
-      throw DAOUserException("Contact_Tag déjà présente dans la base");
+      throw DAOUserException("idMessage déjà présente dans la base");
     }
   }
 
     function updateMessage($message) {
-    $m = $this->db->readMessageTagByPrimary($messageTag->nomt,$messageTag->idMessage);
+    $m = $this->db->readMessagesById($idMessage);
     if ($m == null) {
-      $sql = "UPDATE Message_Tag (tel) = (?) VALUES where nomt=? and idMessage=? ";
+      $sql = "UPDATE Message set (etat) = (?) where idMessage= ? ";
       $req = $this->db->prepare($sql);
       $params = array(
-        $message->etat
+        $message->etat,
+        $message->idMessage
       );
       $res = $req->execute($params);
       if ($res === FALSE) {
-        die("updateMessageTag : Requête impossible !");
+        die("updateMessage : Requête impossible !");
       }
-      return $this->db->readMessageTagByPrimary($messageTag->nomt,$messageTag->idMessage);
+      return $this->db->readMessagesById($idMessage);
     } else {
-      throw DAOUserException("Message_Tag non présent dans la base");
+      throw DAOUserException("idMessage non présent dans la base");
     }
   }
 
