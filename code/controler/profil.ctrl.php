@@ -1,7 +1,7 @@
 <?php
   session_start();
   require_once("../model/utils.class.php");
-  $data = initPage("Profile");
+  $data = initPage("Profil");
 
-  include("../view/profile.view.php");
+  include("../view/profil.view.php");
 ?>

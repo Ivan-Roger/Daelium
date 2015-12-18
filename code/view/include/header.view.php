@@ -15,15 +15,15 @@
         <!-- Menu des differentes section du site  plus module de recherche-->
         <ul class="nav navbar-nav navbar-left">
           <li<?php echo($data['page']=="Main"?" class='active'":"") ?>><a href="../controler/main.ctrl.php"><span class="glyphicon glyphicon-home"></span><span class="text">Accueil</span></a></li>
-          <li<?php echo($data['page']=="Profile"?" class='active'":"") ?>><a href="../controler/profile.ctrl.php"><span class="glyphicon glyphicon-user"></span><span class="text">Profil</span></a></li>
+          <li<?php echo($data['page']=="Profil"?" class='active'":"") ?>><a href="../controler/profil.ctrl.php"><span class="glyphicon glyphicon-user"></span><span class="text">Profil</span></a></li>
           <li<?php echo($data['page']=="Documents"?" class='active'":"") ?>><a href="../controler/documents.ctrl.php"><span class="glyphicon glyphicon-file"></span><span class="text">Documents</span></a></li>
           <li<?php echo($data['page']=="Agenda"?" class='active'":"") ?>><a href="../controler/agenda.ctrl.php"><span class="glyphicon glyphicon-calendar"></span><span class="text">Agenda</span></a></li>
           <li<?php echo($data['page']=="Messages"?" class='active'":"") ?>><a href="../controler/messages.ctrl.php"><span class="glyphicon glyphicon-envelope"></span><span class="text">Messagerie</span></a></li>
-          <li<?php echo($data['page']=="List"?" class='active'":"") ?>><a href="../controler/list.ctrl.php"><span class="glyphicon glyphicon-list-alt"></span><span class="text">Annuaire</span></a></li>
+          <li<?php echo($data['page']=="Annuaire"?" class='active'":"") ?>><a href="../controler/annuaire.ctrl.php"><span class="glyphicon glyphicon-list-alt"></span><span class="text">Annuaire</span></a></li>
           <?php if($data["type"] == "booker") { ?>
-            <li<?php echo($data['page']=="Groups"?" class='active'":"") ?>><a href="../controler/groupes.ctrl.php"><span class="glyphicon glyphicon-music"></span><span class="text">Groupes</span></a></li>
+            <li<?php echo($data['page']=="Groupes"?" class='active'":"") ?>><a href="../controler/groupes.ctrl.php"><span class="glyphicon glyphicon-music"></span><span class="text">Groupes</span></a></li>
           <?php } else { ?>
-            <li<?php echo($data['page']=="Events"?" class='active'":"") ?>><a href="../controler/evenements.ctrl.php"><span class="glyphicon glyphicon-folder-open"></span><span class="text">Evenements</span></a></li>
+            <li<?php echo($data['page']=="Evenements"?" class='active'":"") ?>><a href="../controler/evenements.ctrl.php"><span class="glyphicon glyphicon-folder-open"></span><span class="text">Evenements</span></a></li>
           <?php }?>
           <li<?php echo($data['page']=="Negociations"?" class='active'":"") ?>><a href="../controler/negociations.ctrl.php"><span class="glyphicon glyphicon-list-alt"></span><span class="text">Negociations</span></a></li>
         </ul>
@@ -77,9 +77,9 @@
           <li id="profile" class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span><span class="text">Compte <span class="caret"></span></span></a>
             <ul class="dropdown-menu">
-              <li><a href="../controler/profile.ctrl.php">Voir le profil</a></li>
+              <li><a href="../controler/profil.ctrl.php">Voir le profil</a></li>
               <li role="separator" class="divider"></li>
-              <li><a href="../view/nolog.view.php"><span class="glyphicon glyphicon-off"></span>Déconnexion</a></li>
+              <li><a href="../view/nolog.view.php?logout"><span class="glyphicon glyphicon-off"></span>Déconnexion</a></li>
             </ul>
           </li>
         </ul>

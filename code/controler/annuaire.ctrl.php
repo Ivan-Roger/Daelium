@@ -3,5 +3,5 @@
   require_once("../model/utils.class.php");
   $data = initPage("List");
 
-  include("../view/list.view.php");
+  include("../view/annuaire.view.php");
 ?>
