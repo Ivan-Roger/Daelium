@@ -16,8 +16,9 @@
             <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
             <img id="profile-img" class="profile-img-card" src="../data/img/D.png" />
             <p id="profile-name" class="profile-name-card">Bienvenue !</p>
+            <?php if (isset($data['errorMessage'])) { ?><div class="alert alert-error"><?= $data['errorMessage'] ?></div><?php } ?>
             <hr/>
-            <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+            <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" data-width="270px"></div>
             <hr/>
             <form class="form-signin" method="POST" action="../controler/connexion.ctrl.php?login">
                 <span id="reauth-email" class="reauth-email"></span>
@@ -59,7 +60,8 @@
         // The ID token you need to pass to your backend:
         var id_token = googleUser.getAuthResponse().id_token;
         console.log("ID Token: " + id_token);
-      };
+        document.location=("../controler/connexion.ctrl.php?login&google&token="+id_token);
+      }
     </script>
   </body>
 </html>

@@ -1,12 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="../data/css/bootstrap.css">
-    <link rel="stylesheet" href="../data/css/common.css">
+    <?php include("../view/includ/includes.view.php"); ?>
     <link rel="stylesheet" href="../data/css/agenda.css">
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-    <link rel="icon" type="image/png" href="../data/img/D.png" />
     <title>Dælium - Agenda</title>
   </head>
   <body>

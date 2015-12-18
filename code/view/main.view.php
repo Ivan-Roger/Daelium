@@ -1,15 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="../data/css/bootstrap.css">
-    <link rel="stylesheet" href="../data/css/common.css">
+    <?php include("../view/includ/includes.view.php"); ?>
     <link rel="stylesheet" href="../data/css/main.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <link rel="icon" type="image/png" href="../data/img/D.png" />
     <title>Dælium</title>
   </head>
-  <body>
+  <body onload="onLoad()">
     <?php include("../view/include/header.view.php"); ?>
     <section id="welcome" class="container-fluid" style="padding:0px;">
       <div id="carousel-welcome" class="carousel slide" data-ride="carousel">
@@ -85,7 +81,6 @@
     <?php include("../view/include/footer.view.php"); ?>
     <script src="../data/js/jQuery.min.js"></script>
     <script src="../data/js/bootstrap.min.js"></script>
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="../data/js/common.js"></script>
   </body>
 </html>

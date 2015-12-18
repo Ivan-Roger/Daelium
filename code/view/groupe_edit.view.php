@@ -1,11 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8" />
-  <link rel="stylesheet" href="../data/css/bootstrap.css">
+  <?php include("../view/includ/includes.view.php"); ?>
   <link rel="stylesheet" href="../data/css/artiste.css">
-  <link rel="stylesheet" href="../data/css/common.css">
-  <link rel="icon" type="image/png" href="../data/img/D.png" />
   <title>Dælium - Artiste - <?= $data['groupe']['nom']?></title>
 </head>
 <body>

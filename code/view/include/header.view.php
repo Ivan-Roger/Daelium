@@ -79,14 +79,14 @@
             <ul class="dropdown-menu">
               <li><a href="../controler/profil.ctrl.php">Voir le profil</a></li>
               <li role="separator" class="divider"></li>
-              <li><a id="logoutBtn" href="../controler/connexion.ctrl.php?logout"><span class="glyphicon glyphicon-off"></span>Déconnexion</a></li>
+              <li><a id="logoutBtn" href="#"><span class="glyphicon glyphicon-off"></span>Déconnexion</a></li>
             </ul>
           </li>
         </ul>
       </div>
     </nav>
     <div class="alerts">
-    <?php foreach ($data['alert'] as $key => $alert) { ?>
+    <?php foreach ($data['alerts'] as $key => $alert) { ?>
       <p id="alert<?= $key ?>" class="alert alert-<?= $alert['type'] ?> alert-dismissible fade in" onclick="$('#alert<?= $key ?>').alert('close')"><span class="glyphicon glyphicon-<?= $alert['icon'] ?>"></span><span class="text"><?= $alert['message'] ?></span><button class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></p>
     <?php } ?>
     </div>

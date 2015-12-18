@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8" />
-  <link rel="stylesheet" href="../data/css/bootstrap.css">
-  <link rel="stylesheet" href="../data/css/common.css">
-  <link rel="icon" type="image/png" href="../data/img/D.png" />
+  <?php include("../view/includ/includes.view.php"); ?>
   <title>Dælium - Annuaire</title>
 </head>
 <body>

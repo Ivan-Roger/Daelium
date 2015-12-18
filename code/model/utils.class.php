@@ -5,9 +5,9 @@
 
    function initPage($page,$alerts=null) {
      $data['page']=$page;
-     $data['alert']=array();
+     $data['alerts']=array();
      if ($alerts!=null)
-       $data['alert'] = array_merge($data['alert'],$alerts);
+       $data['alerts'] = array_merge($data['alert'],$alerts);
 
      if (isset($_SESSION['userType']))
        $data['type'] = $_SESSION['userType'];
