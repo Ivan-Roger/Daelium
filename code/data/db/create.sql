@@ -191,8 +191,7 @@ CREATE TABLE Message (                  -- à revoir
   reponse BIGINT,
   dateenvoi DATE,
   FOREIGN KEY (receveur) references Utilisateur(idUtilisateur),
-  FOREIGN KEY (expediteur) references Utilisateur(idUtilisateur),
-  FOREIGN KEY (reponse) references Message(idMessage),
+  FOREIGN KEY (expediteur) references Utilisateur(idUtilisateur)
 );
 
 CREATE TABLE Message_Tag (
