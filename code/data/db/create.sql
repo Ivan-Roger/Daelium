@@ -1,4 +1,4 @@
-CREATE TABLE lieu (
+CREATE TABLE Lieu (
   idLieu        SERIAL PRIMARY KEY,
   noml          VARCHAR(255) NOT NULL,
   description   VARCHAR(1000),
