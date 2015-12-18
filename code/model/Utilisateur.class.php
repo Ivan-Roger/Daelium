@@ -5,9 +5,10 @@
     private $idUtilisateur;
     private $emailCompte;
     private $mdp; // mot de passe de l'utilisateur
+    private $googletoken;
 
 
-    function __construct($idUtilisateur = NULL, $nom = NULL, $prenom = NULL, $emailcontact = NULL, $tel = NULL, $adresse = NULL, $emailCompte = NULL, $mdp = NULL) {
+    function __construct($idUtilisateur = NULL, $nom = NULL, $prenom = NULL, $emailcontact = NULL, $tel = NULL, $adresse = NULL, $emailCompte = NULL, $mdp = NULL,$googletoken = NULL) {
       parent::__construct($idUtilisateur, $nom, $prenom, $emailcontact, $tel, $adresse);
       if (!isset($this->idUtilisateur)) {
         $this->idUtilisateur = $idUtilisateur;
@@ -17,6 +18,9 @@
       }
       if ($mdp != NULL) {
           $this->mdp = $mdp;
+      }
+      if ($googletoken != NULL) {
+          $this->googletoken = $googletoken;
       }
 
     }
