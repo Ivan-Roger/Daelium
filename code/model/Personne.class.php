@@ -1,11 +1,12 @@
 <?php
+  require_once('../model/Lieu.class.php');
   class Personne {
 	private $idPersonne;
 	private $nom;
 	private $prenom;
 	private $emailcontact;
 	private $tel;
-	private Lieu $adresse;
+	private $adresse; // Class lieu
 
     function __construct($idPersonne = NULL, $nom = NULL, $prenom = NULL, $emailcontact = NULL, $tel = NULL, $adresse = NULL) {
       if (!isset($this->idPersonne)) {

@@ -1,13 +1,13 @@
 <?php
-require_once('Personne.Class.php');
+  require_once('../model/Personne.class.php');
 
   class Utilisateur extends Personne {
-    private $idUtilisateur; 
+    private $idUtilisateur;
     private $emailCompte;
     private $mdp; // mot de passe de l'utilisateur
 
 
-    private function __construct($idUtilisateur = NULL, $emailCompte = NULL, $mdp = NULL) {
+    function __construct($idUtilisateur = NULL, $emailCompte = NULL, $mdp = NULL) {
       if (!isset($this->idUtilisateur)) {
         $this->idUtilisateur = $idUtilisateur;
       }
@@ -17,7 +17,7 @@ require_once('Personne.Class.php');
       if ($mdp != NULL) {
           $this->mdp = $mdp;
       }
-      
+
     }
 
     // ********************************

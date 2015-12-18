@@ -5,7 +5,7 @@
     if(isset($_POST["mail"])){
       $dao = new DAO();
       $user = $dao->readUtilisateurByEmail($_POST["mail"]);
-      if ($user===false) {
+      if ($user==null) {
         // Mail invalide : retour sur connexion avec message d'erreur
         $data['errorFields']['inputEmail']=true;
         include("../view/signin.view.php");
@@ -35,4 +35,5 @@
     // Pas d'action, on affiche la page
     include("../view/signin.view.php");
   }
+  var_dump($data);
 ?>

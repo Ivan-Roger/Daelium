@@ -1,12 +1,13 @@
 <?php
-  $config = parse_ini_file("../data/config.ini",true);
   require_once("utils.class.php");
   require_once("exceptions.class.php");
+  require_once("Utilisateur.class.php");
 
   class DAO {
     private $db;
 
     function __construct() {
+      $config = parse_ini_file("../data/config.ini",true);
       try {
         $this->db = new PDO("pgsql:host=".$config['database']['address'].";port=".$config['database']['port'].";dbname=".$config['database']['name'].";user=".$config['database']['user'].";password=".$config['database']['password']);
       } catch (PDOException $e) {
@@ -100,13 +101,14 @@
     }
 
     function readUtilisateurByEmail($email) {
-      $sql = "SELECT * FROM Users WHERE emailCompte = ?"; // requête
+      $sql = "SELECT * FROM Utilisateur WHERE emailCompte = ?"; // requête
       $req = $this->db->prepare($sql);
       $params = array( // paramétres
         $email // l'email de l'utilisateur
       );
       $res = $req->execute($params);
       if ($res === FALSE) {
+        echo("Error: ".$this->db->errorInfo()[2]."<br/>\n");
         die("readUserByEmail : Requête impossible !"); // erreur dans la requête
       }
       $res = $req->fetchAll(PDO::FETCH_CLASS,"Utilisateur");
