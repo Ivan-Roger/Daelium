@@ -69,7 +69,7 @@
                 <?php } ?>
               </li>
               <li role="separator" class="divider"></li>
-              <li><a href="#">Separated link</a></li>
+              <li><a href="#" onclick="$('#debug-info-frame').collapse('show')"><span style="margin-right: 10px;" class="fa fa-code"></span><span class="text">Debug</span></a></li>
               <li role="separator" class="divider"></li>
               <li><a href="#">One more separated link</a></li>
             </ul>
@@ -91,3 +91,21 @@
     <?php } ?>
     </div>
   </header>
+  <div id="debug-info-frame" class="collapse collapsed">
+    <div style="background-color: #DDD; width:70%; left: 15%; top: 10%; height: 80%; padding: 20px; position: fixed; z-index: 15; border: 1px solid #777; border-radius: 15px;">
+      <a href="#" onclick="$('#debug-info-frame').collapse('hide')" style="position: absolute; top: 10px; right: 15px;"><span class="fa fa-close"></span></span></a>
+      <h2>Debug :</h2>
+      <div style="height: 80%; padding: 20px; overflow: auto;">
+        <?php
+          echo('<b>$data</b>');
+          var_dump($data);
+
+          echo('<b>$_SESSION</b>');
+          var_dump($_SESSION);
+
+          echo('<b>$_GET</b>');
+          var_dump($_GET);
+        ?>
+      </div>
+    </div>
+  </div>

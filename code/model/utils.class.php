@@ -7,10 +7,10 @@
      $data['page']=$page;
      $data['alerts']=array();
      if ($alerts!=null)
-       $data['alerts'] = array_merge($data['alert'],$alerts);
+       $data['alerts'] = array_merge($data['alerts'],$alerts);
 
-     if (isset($_SESSION['userType']))
-       $data['type'] = $_SESSION['userType'];
+     if (isset($_SESSION['user']['type']))
+       $data['type'] = $_SESSION['user']['type'];
      else
        $data['type'] = "booker";
 

@@ -42,9 +42,9 @@
         include("../view/signin.view.php");
       } else {
         if($user->getMdp() == $_POST["mdp"]){
-          $_SESSION["userLoginMail"]=$_POST["mail"];
-          $_SESSION["userLoginTime"]=date("");
-          $_SESSION["userLoginID"]=$user->getIdUtilisateur();
+          $_SESSION["user"]["mail"]=$mail;
+          $_SESSION["user"]["loginTime"]=date("");
+          $_SESSION["user"]["ID"]=$user->getIdUtilisateur();
           //$_SESSION["userLoginName"]=$user->getNom(); // NOM
 
           header("Location:"."../controler/main.ctrl.php?login");
@@ -62,9 +62,7 @@
     }
   } else if (isset($_GET['logout'])) {
     // Deconnexion : vidage de $_SESSION
-    unset($_SESSION['userLoginID']);
-    unset($_SESSION['userLoginMail']);
-    unset($_SESSION['userLoginTime']);
+    unset($_SESSION['user']);
     header("Location:"."../controler/nolog.ctrl.php");
   } else {
     // Pas d'action, on affiche la page
