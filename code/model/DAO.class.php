@@ -31,6 +31,20 @@
       return (isset($res[0])?$res[0]:null); // retourne le premier resultat s'il existe, sinon null
     }
 
+    function readPersonneByIdNoClass($id) {
+    $sql = "SELECT * FROM Personne WHERE idPersonne = ?"; // requête
+    $req = $this->db->prepare($sql);
+    $params = array( // paramétres
+      $id // l'id de l'utilisateur
+    );
+    $res = $req->execute($params);
+    if ($res === FALSE) {
+      die("readPersonneById : Requête impossible !"); // erreur dans la requête
+    }
+    $res = $req->fetchAll(PDO::FETCH_ASSOC);
+    return (isset($res[0])?$res[0]:null); // retourne le premier resultat s'il existe, sinon null
+  }
+
     function readPersonneByMail($email) {
       $sql = "SELECT * FROM Personne WHERE emailContact = ?"; // requête
       $req = $this->db->prepare($sql);
@@ -87,18 +101,29 @@
     // ===================== Utilisateur =====================
 
     function readUtilisateurById($id) {
-      $sql = "SELECT * FROM Utilisateur WHERE idUtilisateur = ?"; // requête
-      $req = $this->db->prepare($sql);
-      $params = array( // paramétres
-        $id // l'id de l'utilisateur
-      );
-      $res = $req->execute($params);
-      if ($res === FALSE) {
-        die("readUserById : Requête impossible !"); // erreur dans la requête
-      }
-      $res = $req->fetchAll(PDO::FETCH_CLASS,"Utilisateur");
-      return (isset($res[0])?$res[0]:null); // retourne le premier resultat s'il existe, sinon null
-    }
+  $sql = "SELECT * FROM Utilisateur WHERE idUtilisateur = ?"; // requête
+  $req = $this->db->prepare($sql);
+  $params = array( // paramétres
+    $id // l'id de l'utilisateur
+  );
+  $res = $req->execute($params);
+
+  if ($res === FALSE) {
+    die("readUserById : Requête impossible !"); // erreur dans la requête
+  }
+  //plus complexe !
+  $pers = $this->readPersonneByIdNoClass($id);
+
+  $res = $req->fetchAll(PDO::FETCH_ASSOC);
+  if(isset($res[0]) && isset( $pers)){
+    $Utilisateur = new Utilisateur($pers["idpersonne"],$pers["nomp"], $pers["prenom"], $pers["emailcontact"], $pers["tel"], $pers["adresse"],$res[0]["emailcompte"],$res[0]["mdp"],$res[0]["googletoken"]);
+    var_dump($Utilisateur);
+    return $Utilisateur;
+  }else{
+    return NULL;
+  }
+// retourne le premier resultat s'il existe, sinon null
+}
 
     function readUtilisateurByEmail($email) {
       $sql = "SELECT * FROM Utilisateur WHERE emailCompte = ?"; // requête

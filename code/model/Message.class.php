@@ -1,24 +1,24 @@
 <?php
 include("../model/Utilisateur.class.php");
   class Message {
-    private $id;
-    private $sender;
-    private $recipient;
+    private $idmessage;
+    private $expediteur;
+    private $receveur;
     private $etat;
     private $nom;
     private $contenu;
-    private $date;
+    private $dateenvoi;
     private $reponse;
 
-    function __construct($id = NULL,$sender = NULL,$recipient = NULL,$etat = NULL,$nom = NULL,$contenu = NULL,$date = NULL,$reponse = NULL) {
-      if (!isset($this->id)) {
-          $this->id = $id;
+    function __construct($idmessage = NULL,$expediteur = NULL,$receveur = NULL,$etat = NULL,$nom = NULL,$contenu = NULL,$dateenvoi = NULL,$reponse = NULL) {
+      if (!isset($this->idmessage)) {
+          $this->idmessage = $idmessage;
       }
-      if($sender != NULL){
-      $this->sender = $sender;
+      if($expediteur != NULL){
+      $this->expediteur = $expediteur;
       }
-      if($recipient != NULL){
-      $this->recipient = $recipient;
+      if($receveur != NULL){
+      $this->receveur = $receveur;
       }
       if($etat != NULL){
       $this->etat = $etat;
@@ -29,12 +29,27 @@ include("../model/Utilisateur.class.php");
       if($contenu != NULL){
       $this->contenu = $contenu;
       }
-      if($date != NULL){
-      $this->date = $date;
+      if($dateenvoi != NULL){
+      $this->dateenvoi = $dateenvoi;
       }
       if($reponse != NULL){
       $this->reponse = $reponse;
       }
+    }
+    function getExpediteur(){
+      return $this->expediteur;
+    }
+    function getDestinataire(){
+      return $this->receveur;
+    }
+    function getContenu(){
+      return $this->contenu;
+    }
+    function getDateenvoi(){
+      return $this->dateenvoi;
+    }
+    function getNom(){
+      return $this->nom;
     }
   }
 ?>
