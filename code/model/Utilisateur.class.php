@@ -7,7 +7,8 @@
     private $mdp; // mot de passe de l'utilisateur
 
 
-    function __construct($idUtilisateur = NULL, $emailCompte = NULL, $mdp = NULL) {
+    function __construct($idUtilisateur = NULL, $nom = NULL, $prenom = NULL, $emailcontact = NULL, $tel = NULL, $adresse = NULL, $emailCompte = NULL, $mdp = NULL) {
+      parent::__construct($idUtilisateur, $nom, $prenom, $emailcontact, $tel, $adresse);
       if (!isset($this->idUtilisateur)) {
         $this->idUtilisateur = $idUtilisateur;
       }
