@@ -43,9 +43,13 @@
     }
 
     // getter du prenom de la personne
-    function getPrenom() {
-        return $this->prenom;
-    }
+   function getPrenom() {
+      return $this->prenom;
+   }
+
+   function getNomComplet() {
+      return $this->getPrenom()." ".$this->getNom();
+   }
 
     // getter de l'email de contact de la personne
     function getEmailcontact() {

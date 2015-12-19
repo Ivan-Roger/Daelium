@@ -12,7 +12,7 @@ CREATE TABLE Lieu (
 );
 CREATE TABLE Personne (
   idPersonne     SERIAL PRIMARY KEY,
-  nomp            VARCHAR (255) NOT NULL,
+  nom            VARCHAR (255) NOT NULL,
   prenom         VARCHAR (255),
   emailcontact   VARCHAR (255) NOT NULL,
   tel            numeric(10),

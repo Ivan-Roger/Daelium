@@ -100,16 +100,19 @@
       <a href="#" onclick="$('#debug-info-frame').collapse('hide')" style="position: absolute; top: 10px; right: 15px;"><span class="fa fa-close"></span></span></a>
       <h2>Debug :</h2>
       <div style="height: 80%; padding: 20px; overflow: auto;">
-        <?php
-          echo('<b>$data</b>');
-          var_dump($data);
+      <?php
+         echo('<b>$data</b>');
+         var_dump($data);
 
-          echo('<b>$_SESSION</b>');
-          var_dump($_SESSION);
+         echo('<b>$_SESSION</b>');
+         var_dump($_SESSION);
 
-          echo('<b>$_GET</b>');
-          var_dump($_GET);
-        ?>
+         echo('<b>$_GET</b>');
+         var_dump($_GET);
+
+         echo('<b>$DEBUG</b>');
+         if (isset($DEBUG)) var_dump($DEBUG);
+      ?>
       </div>
     </div>
   </div>

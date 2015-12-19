@@ -1,17 +1,21 @@
 INSERT INTO Lieu VALUES(1,'Maison',NULL,'FRANCE','Rhone-Alpes','Grenoble',38000,'110 place doyen gosses',NULL,NULL);
 INSERT INTO Lieu VALUES(2,'Mairie de Grenoble',NULL,'FRANCE','Rhone-Alpes','Grenoble',38000,'4 rue des tulipes',NULL,NULL);
 
-INSERT INTO Personne VALUES(1,'Dupuis','Marc','marc.dupuis@gmail.com',0675757575,1);
+INSERT INTO Personne VALUES(1,'Dupuis','Marc','marc.dupuis@gmail.com','0675757575',1);
 INSERT INTO Utilisateur VALUES(1,'marc.dupuis@gmail.com','azerty');
 INSERT INTO Booker VALUES(1);
 
-INSERT INTO Personne VALUES(2,'Patrick','Lopez','patrick.lopez@gmail.com',0675757575,NULL);
+INSERT INTO Personne VALUES(5,'Roger','Ivan','ivan.bob.emile@gmail.com','0607754241',1);
+INSERT INTO Utilisateur VALUES(5,'ivan.bob.emile@gmail.com','ploy!');
+INSERT INTO Booker VALUES(5);
+
+INSERT INTO Personne VALUES(2,'Patrick','Lopez','patrick.lopez@gmail.com','0675757575',NULL);
 INSERT INTO Utilisateur VALUES(2,'plopez@gmail.com','azerty');
 INSERT INTO Organisateur VALUES(2);
 
-INSERT INTO Personne VALUES(3,'Jean','Jack','jean.jack@gmail.com',0675757575,NULL);
+INSERT INTO Personne VALUES(3,'Jean','Jack','jean.jack@gmail.com','0675757575',NULL);
 INSERT INTO Artiste VALUES(3,'06/12/2015',0,NULL,'JeanJack');
-INSERT INTO Personne VALUES(4,'Jules','Domartin','jules.domartin@gmail.com',0675757575,NULL);
+INSERT INTO Personne VALUES(4,'Jules','Domartin','jules.domartin@gmail.com','0675757575',NULL);
 INSERT INTO Artiste VALUES(4,'06/12/2015',1,'AGSTBD154711744',NULL);
 
 INSERT INTO Groupe VALUES(1,'Les beaux gosses',2,'lbg@gmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL);
@@ -44,7 +48,7 @@ INSERT INTO Contact VALUES(1,2,'Sympa');
 INSERT INTO Contact VALUES(1,3,NULL);
 INSERT INTO Contact_System VALUES(1,1,3);
 INSERT INTO Contact_System VALUES(1,2,4);
-INSERT INTO Contact_exterieur VALUES(1,3,'Pierre','pierrecroce@gmail.com',0601010101);
+INSERT INTO Contact_exterieur VALUES(1,3,'Pierre','pierrecroce@gmail.com','0601010101');
 
 
 INSERT INTO Contact_Tag VALUES('Groupe 1',1,1);
