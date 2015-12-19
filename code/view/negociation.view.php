@@ -1,3 +1,7 @@
+<?php
+   if (!isset($data))
+      header("Location:"."../");
+?>
 <!DOCTYPE html>
 <html>
 <head>
