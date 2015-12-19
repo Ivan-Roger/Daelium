@@ -2,7 +2,7 @@
   session_start();
   include("include/auth.ctrl.php");
   require_once("../model/utils.class.php");
-  $data = initPage("List");
+  $data = initPage("Annuaire");
 
   include("../view/annuaire.view.php");
 ?>

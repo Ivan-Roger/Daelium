@@ -2,7 +2,7 @@
   session_start();
   include("include/auth.ctrl.php");
   require_once("../model/utils.class.php");
-  $data = initPage("Groups");
+  $data = initPage("Groupes");
 
   if (isset($_GET['id']) && $_GET['id'] != "" && isset($_GET['action']) && $_GET['action']=="edit") {
     $data['groupe']['id']="kfpb5gso63w7s2l";

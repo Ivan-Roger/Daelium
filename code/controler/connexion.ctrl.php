@@ -1,6 +1,7 @@
 <?php
   session_start();
   require_once("../model/DAO.class.php");
+  $data = Array();
   if (isset($_GET['login'])) {
     $mail=false;
     if (isset($_GET['google'])) {
