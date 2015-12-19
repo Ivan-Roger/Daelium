@@ -1,0 +1,7 @@
+tr.notif-item.new td.notif-item-title {
+   font-weight: bold;
+}
+
+tr.notif-item.old {
+   color: #777;
+}

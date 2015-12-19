@@ -45,10 +45,14 @@
           <li id="notifs" class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-bell"></span><sup><span class="badge badge-sm">3</span></sup></a>
             <ul class="dropdown-menu">
-              <li><b>Notifications</b></li>
-              <li class="bg-info"><a href="#">Invitation</a></li>
-              <li class="bg-info"><a href="#">Invitation</a></li>
-              <li class="bg-info"><a href="#">Invitation</a></li>
+              <li class="notifs-menu">
+                  <a href="../controler/notifications.ctrl.php">Notifications</a>
+                  <ul class="list-group">
+                    <a href="#" class="notif-item bg-info"><span class="fa fa-question"></span>Invitation</a>
+                    <a href="#" class="notif-item bg-info"><span class="fa fa-quote-right"></span>Message</a>
+                    <a href="#" class="notif-item bg-warning"><span class="fa fa-exclamation"></span>Rappel</a>
+                  </ul>
+               </li>
             </ul>
           </li>
           <li id="settings" class="dropdown">

@@ -6,7 +6,6 @@
 <html>
   <head>
     <?php include("../view/include/includes.view.php"); ?>
-    <link rel="stylesheet" href="../data/css/artiste.css">
     <title>Dælium - Erreur - <?= $data['error']['title']?></title>
   </head>
   <body>

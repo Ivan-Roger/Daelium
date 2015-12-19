@@ -67,8 +67,14 @@ header nav form.navbar-form a.collapsed {
   display: inline-block;
 }
 
-nav #notifs li b {
-  margin-left: 5px;
+nav #notifs .notifs-menu .notif-item {
+   display: block;
+   color: #333;
+   text-decoration: none;
+   width: 100%;
+   padding-left: 30px;
+   padding-top: 3px;
+   padding-bottom: 3px;
 }
 
 .alerts {
@@ -105,11 +111,11 @@ nav #notifs li b {
   margin: 0px;
 }
 
-.glyphicon {
+.glyphicon, .fa {
   margin-right: 7px;
 }
 
-.glyphicon.no-margin {
+.glyphicon.no-margin, .fa.no-margin {
   margin-right: 0px;
 }
 
@@ -128,4 +134,35 @@ footer {
 
 input[type="file"] button {
   height: 10px;
+}
+
+.led {
+   padding: 1px;
+   padding-left: 2px;
+   padding-right: 2px;
+   border: 1px solid #AAA;
+   border-radius: 50%;
+   background-color: #CCC;
+   box-shadow: 0px 0px 5px 0px rgba(#DDD,0.5) inset;
+}
+
+.led.led-blue {
+   color: #29F;
+}
+
+.led.led-green {
+   color: #4F2;
+}
+
+.led.led-red {
+   color: #F20;
+}
+
+.led.led-yellow {
+   color: #F92;
+}
+
+.led.led-off {
+   box-shadow: none;
+   color: #AAA;
 }
