@@ -9,7 +9,7 @@ INSERT INTO Personne VALUES(5,'Roger','Ivan','ivan.bob.emile@gmail.com','0607754
 INSERT INTO Utilisateur VALUES(5,'ivan.bob.emile@gmail.com','ploy!');
 INSERT INTO Booker VALUES(5);
 
-INSERT INTO Personne VALUES(2,'Patrick','Lopez','patrick.lopez@gmail.com','0675757575',NULL);
+INSERT INTO Personne VALUES(2,'Lopez','Patrick','patrick.lopez@gmail.com','0675757575',NULL);
 INSERT INTO Utilisateur VALUES(2,'plopez@gmail.com','azerty');
 INSERT INTO Organisateur VALUES(2);
 
