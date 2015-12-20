@@ -6,6 +6,7 @@
     private $emailcompte;
     private $mdp; // mot de passe de l'utilisateur
     private $googletoken;
+    private $type;
 
 
     function __construct($idUtilisateur = NULL, $nom = NULL, $prenom = NULL, $emailcontact = NULL, $tel = NULL, $adresse = NULL, $emailCompte = NULL, $mdp = NULL,$googletoken = NULL) {
@@ -22,6 +23,7 @@
       if ($googletoken != NULL) {
           $this->googletoken = $googletoken;
       }
+      
 
     }
 

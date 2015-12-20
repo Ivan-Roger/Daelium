@@ -17,6 +17,7 @@ CREATE TABLE Personne (
   emailcontact   VARCHAR (255) NOT NULL,
   tel            numeric(10),
   adresse        BIGINT,
+  description    TEXT,
   FOREIGN KEY (adresse) references Lieu(idLieu)
 );
 
@@ -25,6 +26,7 @@ CREATE TABLE Utilisateur (
   emailCompte VARCHAR(255) NOT NULL,
   mdp VARCHAR(255) NOT NULL,
   googleToken TEXT,
+  lastconnection DATE,
   FOREIGN KEY (idUtilisateur) references Personne(idPersonne)
 );
 
