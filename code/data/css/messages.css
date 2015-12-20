@@ -15,6 +15,10 @@ tbody > tr:first-of-type > td{
    overflow: auto;
 }
 
+#messageList .tab-content #inbox tr.info .objet {
+   font-weight: bold;
+}
+
 #messageLoading {
    height: 2px;
    width: 0%;

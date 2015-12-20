@@ -30,8 +30,12 @@ function addMessageReadListener() {
             $("#messageRecipient").html(res.message.destinataire);
             $("#messageSendDate").html(res.message.date);
             //$("#messageSendHour").html(res.message.hour);
-            $("#messageContent .messageInfoParent").html((res.message.parent>0?"Ce message est une réponse à <span class=\"showMessage not-shown showMessageText\" data-ID=\""+res.message.parent+"\">celui-ci</span>.":""));
-            addMessageReadListener();
+            if (res.message.parent>0) {
+               $("#messageContent .messageInfos").append($("<p class=\"messageInfoParent\">").html("Ce message est une réponse à <span class=\"showMessage not-shown showMessageText\" data-ID=\""+res.message.parent+"\">celui-ci</span>."));
+               addMessageReadListener();
+            } else {
+               $("#messageContent .messageInfos .messageInfoParent").remove();
+            }
             $("#messageContent .well").html(res.message.contenu);
 
             if (res.message.me='D') { // Si je suis le destinataire alors j'enregistre le message comme lu.
