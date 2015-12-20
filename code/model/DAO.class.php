@@ -60,7 +60,7 @@ private function readPersonneByIdNoClass($id) {
   }
 
   // vérif or not vérif this->db is the question (si la personne est déjà présente)
-  private function createPersonne($personne) {
+  function createPersonne($personne) {
     $sql = "INSERT INTO Personne(nomp,prenom,tel,emailContact) VALUES (?,?,?,?)";
     $req = $this->db->prepare($sql);
     $params = array(
