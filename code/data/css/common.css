@@ -77,6 +77,11 @@ nav #notifs .notifs-menu .notif-item {
    padding-bottom: 3px;
 }
 
+nav #notifs .notifs-menu .notif-item .icon {
+   width: 20px;
+   display: inline-block;
+}
+
 .alerts {
   margin-top: 20px;
 }

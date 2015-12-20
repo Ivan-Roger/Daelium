@@ -1538,14 +1538,14 @@
       }
       return true;
     } else {
-      throw DAOException("Contact_Tag non présent dans la base, supression impossible");
+      throw new DAOException("Contact_Tag non présent dans la base, supression impossible");
     }
   }
 
   // ===================== Message =====================
 
   // Message(idMessage,expediteur,receveur,etat,contenu,date,nom,reponse)
-  function readMessagesById($idMessage) {
+  function readMessageById($idMessage) {
     $sql = "SELECT * FROM Message WHERE  idMessage = ?"; // requête
     $req = $this->db->prepare($sql);
     $params = array(
@@ -1553,35 +1553,49 @@
     );
     $res = $req->execute($params);
     if ($res === FALSE) {
-      die("readMessagesById : Requête impossible !"); // erreur dans la requête
+      die("readMessageById : Requête impossible !"); // erreur dans la requête
     }
     $res = $req->fetchAll(PDO::FETCH_CLASS,"Message");
     return (isset($res[0])?$res[0]:null);
   }
 
-  function readMessagesRecuByUtilisateur($idUtilisateur) {
-    $sql = "SELECT * FROM Message WHERE  receveur = ?"; // requête
+  function readMessagesRecusByUtilisateur($idUtilisateur) {
+    $sql = "SELECT * FROM Message WHERE  receveur = ? AND etat >= 5"; // requête
     $req = $this->db->prepare($sql);
     $params = array(
       $idUtilisateur
     );
     $res = $req->execute($params);
     if ($res === FALSE) {
-      die("readMessagesRecuByReceveur : Requête impossible !"); // erreur dans la requête
+      die("readMessagesRecusByReceveur : Requête impossible !"); // erreur dans la requête
     }
     $res = $req->fetchAll(PDO::FETCH_CLASS,"Message");
     return (isset($res[0])?$res:null);
   }
 
-  function readMessagesEnvoyeByUtilisateur($idUtilisateur) {
-    $sql = "SELECT * FROM Message WHERE  expediteur = ?"; // requête
+  function readMessagesEnvoyesByUtilisateur($idUtilisateur) {
+    $sql = "SELECT * FROM Message WHERE  expediteur = ? AND etat >= 5"; // requête
     $req = $this->db->prepare($sql);
     $params = array(
       $idUtilisateur
     );
     $res = $req->execute($params);
     if ($res === FALSE) {
-      die("readMessagesEnvoyeByExpediteur : Requête impossible !"); // erreur dans la requête
+      die("readMessagesEnvoyesByExpediteur : Requête impossible !"); // erreur dans la requête
+    }
+    $res = $req->fetchAll(PDO::FETCH_CLASS,"Message");
+    return (isset($res[0])?$res:null);
+  }
+
+  function readMessagesBrouillonsByUtilisateur($idUtilisateur) {
+    $sql = "SELECT * FROM Message WHERE  expediteur = ? AND etat = 0"; // requête
+    $req = $this->db->prepare($sql);
+    $params = array(
+      $idUtilisateur
+    );
+    $res = $req->execute($params);
+    if ($res === FALSE) {
+      die("readMessagesBrouillonsByExpediteur : Requête impossible !"); // erreur dans la requête
     }
     $res = $req->fetchAll(PDO::FETCH_CLASS,"Message");
     return (isset($res[0])?$res:null);
@@ -1590,7 +1604,7 @@
     function createMessage($message) {
     $c = $this->db->readMessagesById($idMessage);
     if ($c == null) {
-      $sql = "INSERT INTO Message(idMessage,expediteur,receveur,etat,contenu,date,nom,reponse) VALUES (?,?,?,?,?,?,?,?)";
+      $sql = "INSERT INTO Message(idMessage,expediteur,receveur,etat,contenu,`date`,nom,reponse) VALUES (?,?,?,?,?,?,?,?)";
       $req = $this->db->prepare($sql);
       $params = array(
         $message->idMessage,
@@ -1608,14 +1622,14 @@
       }
       return $this->db->readMessagesById($idMessage);
     } else {
-      throw DAOException("idMessage déjà présente dans la base");
+      throw new DAOException("idMessage déjà présente dans la base");
     }
   }
 
     function updateMessage($message) {
-    $m = $this->db->readMessagesById($idMessage);
+    $m = $this->readMessageById($idMessage);
     if ($m != null) {
-      $sql = "UPDATE Message set (etat) = (?) where idMessage= ? ";
+      $sql = "UPDATE Message SET etat = ? where idMessage= ? ";
       $req = $this->db->prepare($sql);
       $params = array(
         $message->etat,
@@ -1627,7 +1641,7 @@
       }
       return $this->db->readMessagesById($idMessage);
     } else {
-      throw DAOException("idMessage non présent dans la base");
+      throw new DAOException("idMessage non présent dans la base");
     }
   }
 

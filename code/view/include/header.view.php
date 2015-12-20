@@ -48,9 +48,9 @@
               <li class="notifs-menu">
                   <a href="../controler/notifications.ctrl.php">Notifications</a>
                   <ul class="list-group">
-                    <a href="#" class="notif-item bg-info"><span class="fa fa-question"></span>Invitation</a>
-                    <a href="#" class="notif-item bg-info"><span class="fa fa-quote-right"></span>Message</a>
-                    <a href="#" class="notif-item bg-warning"><span class="fa fa-exclamation"></span>Rappel</a>
+                    <a href="#" class="notif-item bg-info"><span class="icon"><span class="fa fa-question"></span></span>Invitation</a>
+                    <a href="#" class="notif-item bg-info"><span class="icon"><span class="fa fa-quote-right"></span></span>Message</a>
+                    <a href="#" class="notif-item bg-warning"><span class="icon"><span class="fa fa-exclamation"></span></span>Rappel</a>
                   </ul>
                </li>
             </ul>

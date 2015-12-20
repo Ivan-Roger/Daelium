@@ -1,55 +1,67 @@
 <?php
-include("../model/Utilisateur.class.php");
-  class Message {
-    private $idmessage;
-    private $expediteur;
-    private $receveur;
-    private $etat;
-    private $nom;
-    private $contenu;
-    private $dateenvoi;
-    private $reponse;
+   include("../model/Utilisateur.class.php");
+   class Message {
+      private $idmessage;
+      private $expediteur;
+      private $receveur;
+      private $etat;
+      private $nom;
+      private $contenu;
+      private $dateenvoi;
+      private $reponse;
 
-    function __construct($idmessage = NULL,$expediteur = NULL,$receveur = NULL,$etat = NULL,$nom = NULL,$contenu = NULL,$dateenvoi = NULL,$reponse = NULL) {
-      if (!isset($this->idmessage)) {
-          $this->idmessage = $idmessage;
+      function __construct($idmessage = NULL,$expediteur = NULL,$receveur = NULL,$etat = NULL,$nom = NULL,$contenu = NULL,$dateenvoi = NULL,$reponse = NULL) {
+         if (!isset($this->idmessage)) {
+            $this->idmessage = $idmessage;
+         }
+         if($expediteur != NULL){
+            $this->expediteur = $expediteur;
+         }
+         if($receveur != NULL){
+            $this->receveur = $receveur;
+         }
+         if($etat != NULL){
+            $this->etat = $etat;
+         }
+         if($nom != NULL){
+            $this->nom = $nom;
+         }
+         if($contenu != NULL){
+            $this->contenu = $contenu;
+         }
+         if($dateenvoi != NULL){
+            $this->dateenvoi = $dateenvoi;
+         }
+         if($reponse != NULL){
+            $this->reponse = $reponse;
+         }
       }
-      if($expediteur != NULL){
-      $this->expediteur = $expediteur;
+      function getID(){
+         return $this->idmessage;
       }
-      if($receveur != NULL){
-      $this->receveur = $receveur;
+      function getExpediteur(){
+         return $this->expediteur;
       }
-      if($etat != NULL){
-      $this->etat = $etat;
+      function getDestinataire(){
+         return $this->receveur;
       }
-      if($nom != NULL){
-      $this->nom = $nom;
+      function getContenu(){
+         return $this->contenu;
       }
-      if($contenu != NULL){
-      $this->contenu = $contenu;
+      function getDateenvoi(){
+         return $this->dateenvoi;
       }
-      if($dateenvoi != NULL){
-      $this->dateenvoi = $dateenvoi;
+      function getNom(){
+         return $this->nom;
       }
-      if($reponse != NULL){
-      $this->reponse = $reponse;
+      function getParent(){
+         return $this->reponse;
       }
-    }
-    function getExpediteur(){
-      return $this->expediteur;
-    }
-    function getDestinataire(){
-      return $this->receveur;
-    }
-    function getContenu(){
-      return $this->contenu;
-    }
-    function getDateenvoi(){
-      return $this->dateenvoi;
-    }
-    function getNom(){
-      return $this->nom;
-    }
-  }
+      function getEtat(){
+         return $this->etat;
+      }
+      function setEtat($etat){
+         $this->etat=$etat;
+      }
+   }
 ?>

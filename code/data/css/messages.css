@@ -8,3 +8,32 @@ table {
 tbody > tr:first-of-type > td{
   border-top: 0px solid ;
 }
+
+#messageLoading {
+   height: 2px;
+   width: 0%;
+   background-color: #29F;
+   overflow: hidden;
+}
+
+@keyframes messageLoadingStart {
+   0%    {width: 0%;}
+   100%  {width: 66%;}
+}
+
+@keyframes messageLoadingEnd {
+   0%    {width: 66%;}
+   99%  {width: 100%;}
+   100%  {width: 0%;}
+}
+
+#messageLoading.loading-start {
+   animation: messageLoadingStart 1s ease-in;
+}
+#messageLoading.loading-end {
+   animation: messageLoadingEnd 0.3s ease-out;
+}
+#messageLoading.loading-fail {
+   width: 100%;
+   border-color: #F42;
+}
