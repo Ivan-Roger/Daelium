@@ -186,14 +186,15 @@ CREATE TABLE Negociation_Documents (
 );
 
 CREATE TABLE Message (                  -- à revoir
-  idMessage SERIAL PRIMARY KEY,
+  idMessage SERIAL,
+  idConversation BIGINT,
   expediteur BIGINT,
   receveur  BIGINT,
   etat integer,
   nom varchar(255),
-  contenu varchar(255),
-  reponse BIGINT,
-  dateenvoi DATE,
+  contenu TEXT,
+  dateenvoi timestamp,
+  PRIMARY KEY (idMessage,idConversation),
   FOREIGN KEY (receveur) references Utilisateur(idUtilisateur),
   FOREIGN KEY (expediteur) references Utilisateur(idUtilisateur)
 );
@@ -201,8 +202,9 @@ CREATE TABLE Message (                  -- à revoir
 CREATE TABLE Message_Tag (
   nomt VARCHAR(255) NOT NULL,
   idMessage BIGINT,
+  idConversation BIGINT,
   PRIMARY KEY (nomt,idMessage),
-  FOREIGN KEY (idMessage) references Message(idMessage)
+  FOREIGN KEY (idMessage,idConversation) references Message(idMessage,idConversation)
 );
 
 CREATE TABLE Contact_Tag (
@@ -216,9 +218,10 @@ CREATE TABLE Contact_Tag (
 CREATE TABLE Negociation_Messages (
   idNegociation BIGINT,
   idMessage BIGINT,
+  idConversation BIGINT,
   PRIMARY KEY (idNegociation,idMessage),
   FOREIGN KEY (idNegociation) references Negociation(idNegociation),
-  FOREIGN KEY (idMessage) references Message(idMessage)
+  FOREIGN KEY (idMessage,idConversation) references Message(idMessage,idConversation)
 );
 
 
@@ -243,4 +246,13 @@ CREATE TABLE Manifestation_Genre (
   nomg  VARCHAR(255),
   PRIMARY KEY (nomg,idManif),
   FOREIGN KEY (idManif) references Manifestation(idManif)
+);
+
+
+CREATE TABLE journalDeConnexion (
+  idUtilisateur BIGINT references Utilisateur(idUtilisateur),
+  moment timestamp,
+  ip VARCHAR(15),
+  support varchar(255),
+  PRIMARY KEY (idUtilisateur,moment)
 );

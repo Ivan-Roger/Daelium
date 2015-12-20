@@ -1,3 +1,4 @@
+DROP TABLE journalDeConnexion;
 DROP TABLE Manifestation_Genre;
 DROP TABLE Groupe_Genre;
 DROP TABLE Booker_Groupe;

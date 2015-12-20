@@ -2,15 +2,15 @@
    include("../model/Utilisateur.class.php");
    class Message {
       private $idmessage;
+      private $idConversation;
       private $expediteur;
       private $receveur;
       private $etat;
       private $nom;
       private $contenu;
       private $dateenvoi;
-      private $reponse;
 
-      function __construct($idmessage = NULL,$expediteur = NULL,$receveur = NULL,$etat = NULL,$nom = NULL,$contenu = NULL,$dateenvoi = NULL,$reponse = NULL) {
+      function __construct($idmessage = NULL,$idConversation =NULL,$expediteur = NULL,$receveur = NULL,$etat = NULL,$nom = NULL,$contenu = NULL,$dateenvoi = NULL) {
          if (!isset($this->idmessage)) {
             $this->idmessage = $idmessage;
          }
@@ -32,8 +32,8 @@
          if($dateenvoi != NULL){
             $this->dateenvoi = $dateenvoi;
          }
-         if($reponse != NULL){
-            $this->reponse = $reponse;
+         if($idConversation != NULL){
+            $this->idConversation = $idConversation;
          }
       }
       function getID(){
@@ -62,6 +62,9 @@
       }
       function setEtat($etat){
          $this->etat=$etat;
+      }
+      function getIdConversation(){
+         return $this->idConversation;
       }
    }
 ?>

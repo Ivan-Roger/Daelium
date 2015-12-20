@@ -95,7 +95,7 @@ private function readPersonneByIdNoClass($id) {
   //   return $this->db->readUserById($personne->id);
   // }
 
-  function updatePersonne($personne) {
+  private function updatePersonne($personne) {
     $p = $this->db->readPersonneById($personne->getIdPersonne());
     if ($p != null) {
       $sql = "UPDATE Personne set (type,nom, prenom, tel, emailContact, adresse,description) = (?,?,?,?,?,?,?) where id = ?";
@@ -239,12 +239,13 @@ private function createUtilisateur($type,$nomp,$prenom,$tel,$emailContact,$email
 function updateUtilisateur($utilisateur) {
   $u = $this->db->readUserByEmail($utilisateur->email);
   if ($u != null) {
+    $this->updatePersonne($utilisateur);
     $sql = "UPDATE Utilisateur set (emailCompte,mdp) = (?,?) where idUtilisateur = ?";
     $req = $this->db->prepare($sql);
     $params = array(
-      $utilisateur->emailCompte,
-      $utilisateur->mdp,
-      $utilisateur->idUtilisateur
+      $utilisateur->getEmailCompte(),
+      $utilisateur->getMdp(),
+      $utilisateur->getIdUtilisateur()
     );
     $res = $req->execute($params);
     if ($res === FALSE) {
@@ -282,7 +283,7 @@ function readBookerById($id) {
 function createBooker($booker) {
   $b = $this->db->readBookerById($booker->idBooker);
   if ($b == null) {
-    $this->createUtilisateur($booker->getType(),$booker->getNom(),$booker->getPrenom(),$booker->getTel(),$booker->getEmailcontact(),$booker->getEmailCompte(),$booker->getMdp());
+    $this->createUtilisateur(0,$booker->getNom(),$booker->getPrenom(),$booker->getTel(),$booker->getEmailcontact(),$booker->getEmailCompte(),$booker->getMdp());
     $sql = "INSERT INTO Booker(idBooker) VALUES (?)";
     $req = $this->db->prepare($sql);
     $params = array(
@@ -321,7 +322,7 @@ function readOrganisateurById($id) {
 function createOrganisateur($organisateur) {
   $o = $this->db->readBookerById($organisateur->$idOrganisateur);
   if ($o == null) {
-    $this->createUtilisateur($organisateur->getType(),$organisateur->getNom(),$organisateur->getPrenom(),$organisateur->getTel(),$organisateur->getEmailcontact(),$organisateur->getEmailCompte(),$organisateur->getMdp());
+    $this->createUtilisateur(1,$organisateur->getNom(),$organisateur->getPrenom(),$organisateur->getTel(),$organisateur->getEmailcontact(),$organisateur->getEmailCompte(),$organisateur->getMdp());
     $sql = "INSERT INTO $organisateur(idOrganisateur) VALUES (?)";
     $req = $this->db->prepare($sql);
     $params = array(
@@ -1633,11 +1634,12 @@ function deleteContactTagbyPrimary($nomt,$idContact,$proprietaire) {
 // ===================== Message =====================
 
 // Message(idMessage,expediteur,receveur,etat,contenu,date,nom,reponse)
-function readMessageById($idMessage) {
-  $sql = "SELECT * FROM Message WHERE  idMessage = ?"; // requête
+function readMessageById($idMessage,$idConversation) {
+  $sql = "SELECT * FROM Message WHERE  idMessage = ? AND idConversation = ?"; // requête
   $req = $this->db->prepare($sql);
   $params = array(
-    $idMessage
+    $idMessage,
+    $idConversation
   );
   $res = $req->execute($params);
   if ($res === FALSE) {
@@ -1690,19 +1692,18 @@ function readMessagesBrouillonsByUtilisateur($idUtilisateur) {
 }
 
 function createMessage($message) {
-  $c = $this->readMessageById($message->getID());
+  $c = $this->readMessageById($message->getID(),$idConversation->getIdConversation());
   if ($c == null) {
-    $sql = "INSERT INTO Message(idMessage,expediteur,receveur,etat,contenu,`date`,nom,reponse) VALUES (?,?,?,?,?,?,?,?)";
+    $sql = "INSERT INTO Message(idConversation,expediteur,receveur,etat,contenu,`date`,nom) VALUES (?,?,?,?,?,?,?)";
     $req = $this->db->prepare($sql);
     $params = array(
-      $message->getID(),
+      $message->getIdConversation(),
       $message->getExpediteur(),
       $message->getDestinataire(),
       $message->getEtat(),
       $message->getContenu(),
       $message->getDatenvoi(),
-      $message->getNom(),
-      $message->getParent()
+      $message->getNom()
     );
     $res = $req->execute($params);
     if ($res === FALSE) {
@@ -1715,13 +1716,14 @@ function createMessage($message) {
 }
 
 function updateMessage($message) {
-  $m = $this->readMessageById($message->getID());
+  $m = $this->readMessageById($message->getID(),$message->getIdConversation());
   if ($m != null) {
-    $sql = "UPDATE Message SET etat = ? where idMessage= ? ";
+    $sql = "UPDATE Message SET etat = ? where idMessage= ? AND idConversation = ?";
     $req = $this->db->prepare($sql);
     $params = array(
       $message->getEtat(),
-      $message->getID()
+      $message->getID(),
+      $message->getIdConversation()
     );
     $res = $req->execute($params);
     if ($res === FALSE) {
