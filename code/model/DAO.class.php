@@ -116,8 +116,7 @@
 
   $res = $req->fetchAll(PDO::FETCH_ASSOC);
   if(isset($res[0]) && isset( $pers)){
-    $Utilisateur = new Utilisateur($pers["idpersonne"],$pers["nomp"], $pers["prenom"], $pers["emailcontact"], $pers["tel"], $pers["adresse"],$res[0]["emailcompte"],$res[0]["mdp"],$res[0]["googletoken"]);
-    var_dump($Utilisateur);
+    $Utilisateur = new Utilisateur($pers["idpersonne"],$pers["nom"], $pers["prenom"], $pers["emailcontact"], $pers["tel"], $pers["adresse"],$res[0]["emailcompte"],$res[0]["mdp"],$res[0]["googletoken"]);
     return $Utilisateur;
   }else{
     return NULL;

@@ -11,7 +11,7 @@
     function __construct($idUtilisateur = NULL, $nom = NULL, $prenom = NULL, $emailcontact = NULL, $tel = NULL, $adresse = NULL, $emailCompte = NULL, $mdp = NULL,$googletoken = NULL) {
       parent::__construct($idUtilisateur, $nom, $prenom, $emailcontact, $tel, $adresse);
       if (!isset($this->idutilisateur)) {
-        $this->idutilisateur = $idutilisateur;
+        $this->idutilisateur = $idUtilisateur;
       }
       if ($emailCompte != NULL) {
           $this->emailCompte = $emailCompte;
