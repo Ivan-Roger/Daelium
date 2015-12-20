@@ -17,8 +17,9 @@
 
   $dao = new DAO();
   if($userpid != NULL){
-    $user = $dao->readUtilisateurById($userpid);
 
+
+    $user = $dao->readUtilisateurById($userpid);
     $data["nomcomplet"] = $user->getNomComplet();
     $data["mail"] = $user->getEmailCompte();
     $data["mailco"] = $user->getEmailcontact();

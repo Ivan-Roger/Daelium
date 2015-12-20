@@ -2,15 +2,19 @@
   require_once('../model/Lieu.class.php');
   class Personne {
 	private $idpersonne;
+  private $type;
 	private $nom;
 	private $prenom;
 	private $emailcontact;
 	private $tel;
 	private $adresse; // Class lieu
 
-   function __construct($idpersonne = NULL, $nom = NULL, $prenom = NULL, $emailcontact = NULL, $tel = NULL, $adresse = NULL) {
+   function __construct($idpersonne = NULL,$type = NULL, $nom = NULL, $prenom = NULL, $emailcontact = NULL, $tel = NULL, $adresse = NULL) {
       if (!isset($this->idpersonne)) {
          $this->idpersonne = $idpersonne;
+      }
+      if ($type != NULL) {
+         $this->type = $type;
       }
       if ($nom != NULL) {
          $this->nom = $nom;
@@ -46,6 +50,21 @@
    function getPrenom() {
       return $this->prenom;
    }
+
+   function getType() {
+      return $this->type;
+   }
+
+   function getNomType() {
+      if($this->type == 0){
+        return "Booker";
+      }elseif ($this->type == 1) {
+        return "Organisateur";
+      }else {
+        return "Artiste";
+      }
+   }
+
 
    function getNomComplet() {
       return $this->getPrenom()." ".$this->getNom();

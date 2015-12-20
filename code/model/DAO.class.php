@@ -31,7 +31,7 @@ class DAO {
     return (isset($res[0])?$res[0]:null); // retourne le premier resultat s'il existe, sinon null
   }
 
-  function readPersonneByIdNoClass($id) {
+private function readPersonneByIdNoClass($id) {
     $sql = "SELECT * FROM Personne WHERE idPersonne = ?"; // requête
     $req = $this->db->prepare($sql);
     $params = array( // paramétres
@@ -116,7 +116,7 @@ function readUtilisateurById($id) {
 
   $res = $req->fetchAll(PDO::FETCH_ASSOC);
   if(isset($res[0]) && isset( $pers)){
-    $Utilisateur = new Utilisateur($pers["idpersonne"],$pers["nom"], $pers["prenom"], $pers["emailcontact"], $pers["tel"], $pers["adresse"],$res[0]["emailcompte"],$res[0]["mdp"],$res[0]["googletoken"]);
+    $Utilisateur = new Utilisateur($pers["idpersonne"],$pers["type"],$pers["nom"], $pers["prenom"], $pers["emailcontact"], $pers["tel"], $pers["adresse"],$res[0]["emailcompte"],$res[0]["mdp"],$res[0]["googletoken"]);
     return $Utilisateur;
   }else{
     return NULL;
@@ -124,7 +124,7 @@ function readUtilisateurById($id) {
   // retourne le premier resultat s'il existe, sinon null
 }
 
-function readUtilisateurByIdNoClasse($id) {
+private function readUtilisateurByIdNoClasse($id) {
   $sql = "SELECT * FROM Utilisateur WHERE idUtilisateur = ?"; // requête
   $req = $this->db->prepare($sql);
   $params = array( // paramétres
@@ -142,6 +142,7 @@ function readUtilisateurByIdNoClasse($id) {
   if(isset($res[0]) && isset( $pers)){
     $Utilisateur = array(
     "idpersonne" => $pers["idpersonne"],
+    "type" =>  $pers["type"],
     "nom" => $pers["nom"],
     "prenom" => $pers["prenom"],
     "emailcontact" =>  $pers["emailcontact"],
@@ -230,7 +231,7 @@ function readBookerById($id) {
   $user = $this->readPersonneByIdNoClass($id);
   $res = $req->fetchAll(PDO::FETCH_ASSOC);
   if(isset($res[0]) && isset( $user)){
-    $Booker = new Booker($user["idpersonne"],$user["nom"], $user["prenom"], $user["emailcontact"], $user["tel"], $user["adresse"],$user["emailcompte"],$user["mdp"],$user["googletoken"]);
+    $Booker = new Booker($user["idpersonne"],$user["type"],$user["nom"], $user["prenom"], $user["emailcontact"], $user["tel"], $user["adresse"],$user["emailcompte"],$user["mdp"],$user["googletoken"]);
     return $Booker;
   }
 }
@@ -268,7 +269,7 @@ function readOrganisateurById($id) {
   $user = $this->readPersonneByIdNoClass($id);
   $res = $req->fetchAll(PDO::FETCH_ASSOC);
   if(isset($res[0]) && isset( $user)){
-    $Organisateur = new Organisateur($user["idpersonne"],$user["nom"], $user["prenom"], $user["emailcontact"], $user["tel"], $user["adresse"],$user["emailcompte"],$user["mdp"],$user["googletoken"]);
+    $Organisateur = new Organisateur($user["idpersonne"],$user["type"],$user["nom"], $user["prenom"], $user["emailcontact"], $user["tel"], $user["adresse"],$user["emailcompte"],$user["mdp"],$user["googletoken"]);
     return $Organisateur;
   }
 }
