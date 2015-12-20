@@ -33,7 +33,7 @@ header("Location:"."../");
             </ul>
             <div class="tab-content">
                <div role="tabpanel" class="tab-pane active messageRead" id="inbox">
-                  <table id="list" class="table table-hover col-lg-12">
+                  <table class="table table-hover col-lg-12">
                      <colgroup>
                         <col class="col-lg-3"/>
                         <col class="col-lg-7"/>
@@ -41,7 +41,7 @@ header("Location:"."../");
                      </colgroup>
                      <tbody>
                         <?php foreach ($data['messageR'] as $key => $message) { ?>
-                           <tr class="showMessage not-shown <?= ($message['lu']?"":"info")?>" data-ID="<?= $message['id'] ?>"><td><?= $message['expediteur'] ?></td><td><b><?= ($message['parent']!=0?"<span class=\"fa fa-chevron-right\"></span>":"")?><?= $message['objet'] ?></b></td><td class="text-right"><?= $message['date'] ?></td></tr>
+                           <tr class="showMessage not-shown <?= ($message['lu']?"":"info")?>" data-ID="<?= $message['id'] ?>"><td><?= $message['expediteur'] ?></td><td class="objet"><?= ($message['parent']!=0?"<span class=\"fa fa-chevron-right\"></span>":"")?><?= $message['objet'] ?></td><td class="text-right"><?= $message['date'] ?></td></tr>
                         <?php }?>
                      </tobdy>
                   </table>
@@ -55,7 +55,7 @@ header("Location:"."../");
                      </colgroup>
                      <tbody>
                      <?php foreach ($data['messageE'] as $key => $message) { ?>
-                        <tr class="showMessage not-shown" data-ID="<?= $message['id'] ?>"><td><?= $message['destinataire'] ?></td><td><?= ($message['parent']!=0?"<span class=\"fa fa-chevron-right\"></span>":"")?><?= $message['objet'] ?></td><td class="text-right"><?= $message['date'] ?></td></tr>
+                        <tr class="showMessage not-shown" data-ID="<?= $message['id'] ?>"><td><?= $message['destinataire'] ?></td><td class="objet"><?= ($message['parent']!=0?"<span class=\"fa fa-chevron-right\"></span>":"")?><?= $message['objet'] ?></td><td class="text-right"><?= $message['date'] ?></td></tr>
                      <?php }?>
                      </tobdy>
                   </table>
@@ -69,13 +69,14 @@ header("Location:"."../");
                      </colgroup>
                      <tbody>
                         <?php foreach ($data['messageB'] as $key => $message) { ?>
-                           <tr class="showMessage not-shown" data-ID="<?= $message['id'] ?>"><td><?= $message['destinataire'] ?></td><td><?= ($message['parent']!=0?"<span class=\"fa fa-chevron-right\"></span>":"")?><?= $message['objet'] ?></td><td class="text-right"><?= $message['date'] ?></td></tr>
+                           <tr class="showMessage not-shown" data-ID="<?= $message['id'] ?>"><td><?= $message['destinataire'] ?></td><td class="objet"><?= ($message['parent']!=0?"<span class=\"fa fa-chevron-right\"></span>":"")?><?= $message['objet'] ?></td><td class="text-right"><?= $message['date'] ?></td></tr>
                         <?php }?>
                         </tobdy>
                      </table>
                   </div>
                </div>
             </div>
+            <hr/>
          </div>
          <div class="row">
             <div id="messageLoading">.</div>
@@ -91,11 +92,11 @@ header("Location:"."../");
                         </div>
                         <div class="col-lg-12">
                            <div class="col-sm-8">
-                              <div class="col-sm-2">
+                              <div class="col-sm-3">
                                  <small>de : <span id="messageSender">Laurianne</span><br/>
                                  à : <span id="messageRecipient">Moi</span></small>
                               </div>
-                              <ul class="col-sm-10 list-inline">
+                              <ul class="col-sm-9 list-inline">
                                  <li><a class="btn btn-default" href="#"><span class="glyphicon glyphicon-tag no-margin"></span> Festival du lac</a></li>
                                  <li><a class="btn btn-default" href="#"><span class="glyphicon glyphicon-tag no-margin"></span> Metz</a></li>
                               </ul>
