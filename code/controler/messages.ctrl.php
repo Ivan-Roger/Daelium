@@ -21,6 +21,7 @@
       $DEBUG[]=$userObj;
 
       $DEBUG[]="Recu";
+      $data['count']["messageR"] = 0; // Nombre de message non lus
       $data["messageR"] = Array();
       if ($messagesrecus!=null)
       foreach ($messagesrecus as $key => $message) {
@@ -33,7 +34,8 @@
          $data["messageR"][$key]["parent"] = $message->getParent();
          $data["messageR"][$key]["lu"] = $message->getEtat()>=10;
 
-         //$data["messageR"][$key]["contenu"] = $message->getContenu(); // Ne l'envoyer que lors de la demande AJAX
+         if ($message->getEtat()<10)
+            $data['count']["messageR"]++;
 
          $DEBUG[]=$message;
       }
@@ -47,13 +49,14 @@
          $data["messageE"][$key]["id"] = $message->getID();
          $data["messageE"][$key]["destinataire"] = $userRec->getNomComplet(); // Mettre le nom
          $data["messageE"][$key]["objet"] = $message->getNom();
+         $data["messageE"][$key]["parent"] = $message->getParent();
          $data["messageE"][$key]["date"] = $message->getDateenvoi();
-         //$data["messageE"][$key]["contenu"] = $message->getContenu(); // Ne l'envoyer que lors de la demande AJAX
 
          $DEBUG[]=$message;
       }
 
       $DEBUG[]="Brouillons";
+      $data['count']["messageB"] = 0; // Nombre de brouillons
       $data["messageB"] = Array();
       if ($messagesbrouillons!=null)
       foreach ($messagesbrouillons as $key => $message) {
@@ -62,8 +65,10 @@
          $data["messageB"][$key]["id"] = $message->getID();
          $data["messageB"][$key]["destinataire"] = $userRec->getNomComplet(); // Mettre le nom
          $data["messageB"][$key]["objet"] = $message->getNom();
+         $data["messageB"][$key]["parent"] = $message->getParent();
          $data["messageB"][$key]["date"] = $message->getDateenvoi();
-         //$data["messageE"][$key]["contenu"] = $message->getContenu(); // Ne l'envoyer que lors de la demande AJAX
+
+         $data['count']["messageB"]++;
 
          $DEBUG[]=$message;
       }
@@ -80,12 +85,12 @@
          }
          $data['message']['id'] = $message->getID();
          $data['message']["me"] = ($message->getExpediteur()==$userid?'E':'D'); // Je suis Expediteur ou Destinataire ?
-         $data['message']["destinataire"] = $userDes->getNomComplet(); // Mettre le nom
-         $data['message']["expediteur"] = $userExp->getNomComplet(); // Mettre le nom
+         $data['message']["destinataire"] = $userDes->getNomComplet();
+         $data['message']["expediteur"] = $userExp->getNomComplet();
          $data['message']["objet"] = $message->getNom();
          $data['message']["date"] = $message->getDateenvoi();
          $data['message']["parent"] = $message->getParent();
-         $data['message']["contenu"] = $message->getContenu(); // Ne l'envoyer que lors de la demande AJAX
+         $data['message']["contenu"] = $message->getContenu();
          $data['message']["etat"] = $message->getEtat();
       } else {
          $data['error']['title'] = "Interdit";

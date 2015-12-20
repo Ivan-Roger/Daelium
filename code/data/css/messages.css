@@ -1,3 +1,4 @@
+
 table {
   border-left: 1px solid #ddd;
   border-right: 1px solid #ddd;
@@ -7,6 +8,11 @@ table {
 
 tbody > tr:first-of-type > td{
   border-top: 0px solid ;
+}
+
+#messageList .tab-content {
+   height: 300px;
+   overflow: auto;
 }
 
 #messageLoading {
@@ -27,13 +33,45 @@ tbody > tr:first-of-type > td{
    100%  {width: 0%;}
 }
 
+@keyframes messageLoadingFail {
+   0%    {width: 66%; background-color: #29F;}
+   100%  {width: 100%; background-color: #F42;}
+}
+
+.showMessage.shown {
+   background-color: blanchedalmond;
+}
+
+.showMessage.shown:hover {
+   background-color: blanchedalmond;
+}
+
 #messageLoading.loading-start {
-   animation: messageLoadingStart 1s ease-in;
+   background-color: #29F;
+   animation: messageLoadingStart 1.5s ease-in;
+   width: 66%;
 }
 #messageLoading.loading-end {
-   animation: messageLoadingEnd 0.3s ease-out;
+   background-color: #29F;
+   animation: messageLoadingEnd 0.5s ease-out;
+   width: 0%;
 }
 #messageLoading.loading-fail {
+   animation: messageLoadingFail 0.5s ease-out;
    width: 100%;
-   border-color: #F42;
+   background-color: #F42;
+}
+
+.showMessage.not-shown {
+   cursor: pointer;
+}
+
+.showMessage.showMessageText {
+   text-decoration: underline;
+   color: #29F;
+}
+
+#messageFrame #messageAnswerArea {
+   resize: vertical;
+   height: 80px;
 }

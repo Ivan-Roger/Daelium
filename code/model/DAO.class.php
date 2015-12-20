@@ -1646,44 +1646,44 @@ function readMessagesBrouillonsByUtilisateur($idUtilisateur) {
 }
 
 function createMessage($message) {
-  $c = $this->db->readMessagesById($idMessage);
+  $c = $this->readMessageById($message->getID());
   if ($c == null) {
     $sql = "INSERT INTO Message(idMessage,expediteur,receveur,etat,contenu,`date`,nom,reponse) VALUES (?,?,?,?,?,?,?,?)";
     $req = $this->db->prepare($sql);
     $params = array(
-      $message->idMessage,
-      $message->expediteur,
-      $message->receveur,
-      $message->etat,
-      $message->contenu,
-      $message->date,
-      $message->nom,
-      $message->reponse
+      $message->getID(),
+      $message->getExpediteur(),
+      $message->getDestinataire(),
+      $message->getEtat(),
+      $message->getContenu(),
+      $message->getDatenvoi(),
+      $message->getNom(),
+      $message->getParent()
     );
     $res = $req->execute($params);
     if ($res === FALSE) {
       die("createMessage : Requête impossible !");
     }
-    return $this->db->readMessagesById($idMessage);
+    return $this->readMessageById($message->getID());
   } else {
     throw new DAOException("idMessage déjà présente dans la base");
   }
 }
 
 function updateMessage($message) {
-  $m = $this->readMessageById($idMessage);
+  $m = $this->readMessageById($message->getID());
   if ($m != null) {
     $sql = "UPDATE Message SET etat = ? where idMessage= ? ";
     $req = $this->db->prepare($sql);
     $params = array(
-      $message->etat,
-      $message->idMessage
+      $message->getEtat(),
+      $message->getID()
     );
     $res = $req->execute($params);
     if ($res === FALSE) {
       die("updateMessage : Requête impossible !");
     }
-    return $this->db->readMessagesById($idMessage);
+    return $this->readMessageById($message->getID());
   } else {
     throw new DAOException("idMessage non présent dans la base");
   }

@@ -110,10 +110,8 @@ nav #notifs .notifs-menu .notif-item .icon {
   display: inline;
 }
 
-.full {
+.full-width {
   width: 100%;
-  padding: 0px;
-  margin: 0px;
 }
 
 .glyphicon, .fa {
