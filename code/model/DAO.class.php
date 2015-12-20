@@ -60,33 +60,55 @@ private function readPersonneByIdNoClass($id) {
   }
 
   // vérif or not vérif this->db is the question (si la personne est déjà présente)
-  private function createPersonne($personne) {
-    $sql = "INSERT INTO Personne(nomp,prenom,tel,emailContact) VALUES (?,?,?,?)";
+  private function createPersonne($type,$nomp,$prenom,$tel,$emailContact,$adresse) {
+    $sql = "INSERT INTO Personne(type,nom,prenom,tel,emailContact,adresse,description) VALUES (?,?,?,?,?,?,?)";
     $req = $this->db->prepare($sql);
     $params = array(
-      $personne->nomp,
-      $personne->prenom,
-      $personne->tel,
-      $personne->emailContact
+      $type,
+      $nomp,
+      $prenom,
+      $tel,
+      $emailContact,
+      $adresse,
+      $description
     );
     $res = $req->execute($params);
     if ($res === FALSE) {
       die("createUser : Requête impossible !");
     }
-    return $this->db->readUserById($personne->id);
+    return $this->db->readPersonneById($personne->id);
   }
 
+  // function createPersonne($personne) {
+  //   $sql = "INSERT INTO Personne(nomp,prenom,tel,emailContact) VALUES (?,?,?,?)";
+  //   $req = $this->db->prepare($sql);
+  //   $params = array(
+  //     $personne->nomp,
+  //     $personne->prenom,
+  //     $personne->tel,
+  //     $personne->emailContact
+  //   );
+  //   $res = $req->execute($params);
+  //   if ($res === FALSE) {
+  //     die("createUser : Requête impossible !");
+  //   }
+  //   return $this->db->readUserById($personne->id);
+  // }
+
   function updatePersonne($personne) {
-    $p = $this->db->readPersonneById($personne->idUtilisateur);
+    $p = $this->db->readPersonneById($personne->getIdPersonne());
     if ($p != null) {
-      $sql = "UPDATE Personne set (nomp, prenom, tel, emailContact, adresse) = (?,?,?,?,?) where id = ?";
+      $sql = "UPDATE Personne set (type,nom, prenom, tel, emailContact, adresse,description) = (?,?,?,?,?,?,?) where id = ?";
       $req = $this->db->prepare($sql);
-      $params = array($personne->nomp,
-      $personne->prenom,
-      $personne->tel,
-      $personne->emailContact,
-      $personne->adresse,
-      $personne->idPersonne
+      $params = array(
+      $personne->getType(),
+      $personne->getNom(),
+      $personne->getPrenom(),
+      $personne->getTel(),
+      $personne->getEmailcontact(),
+      $personne->getAdresse(),
+      $personne->getDescription(),
+      $personne->getIdPersonne()
     );
     $res = $req->execute($params);
     if ($res === FALSE) {
@@ -174,14 +196,15 @@ function readUtilisateurByEmail($email) {
   return (isset($res[0])?$res[0]:null); // retourne le premier resultat s'il existe, sinon null
 }
 
-function createUtilisateur($utilisateur) { // peut etre mettre une personne en paramettre
+private function createUtilisateur($type,$nomp,$prenom,$tel,$emailContact,$emailCompte,$mdp) { // peut etre mettre une personne en paramettre
   $u = $this->db->readUserByEmail($utilisateur->email);
   if ($u == null) {
+    $this->createPersonne($type,$nomp,$prenom,$tel,$emailContact);
     $sql = "INSERT INTO Users(emailCompte,mdp) VALUES (?,?)";
     $req = $this->db->prepare($sql);
     $params = array(
-      $utilisateur->emailCompte,
-      $utilisateur->mdp
+      $emailCompte,
+      $mdp
     );
     $res = $req->execute($params);
     if ($res === FALSE) {
@@ -192,6 +215,25 @@ function createUtilisateur($utilisateur) { // peut etre mettre une personne en p
     throw DAOException("utilisateur déjà présent dans la base (l'id en tous cas)");
   }
 }
+
+// function createUtilisateur($utilisateur) { // peut etre mettre une personne en paramettre
+//   $u = $this->db->readUserByEmail($utilisateur->email);
+//   if ($u == null) {
+//     $sql = "INSERT INTO Users(emailCompte,mdp) VALUES (?,?)";
+//     $req = $this->db->prepare($sql);
+//     $params = array(
+//       $utilisateur->emailCompte,
+//       $utilisateur->mdp
+//     );
+//     $res = $req->execute($params);
+//     if ($res === FALSE) {
+//       die("createUser : Requête impossible !");
+//     }
+//     return $this->db->readUserById($utilisateur->idUtilisateur);
+//   } else {
+//     throw DAOException("utilisateur déjà présent dans la base (l'id en tous cas)");
+//   }
+// }
 
 // aussi la PERSONNE
 function updateUtilisateur($utilisateur) {
@@ -240,6 +282,7 @@ function readBookerById($id) {
 function createBooker($booker) {
   $b = $this->db->readBookerById($booker->idBooker);
   if ($b == null) {
+    $this->createUtilisateur($booker->getType(),$booker->getNom(),$booker->getPrenom(),$booker->getTel(),$booker->getEmailcontact(),$booker->getEmailCompte(),$booker->getMdp());
     $sql = "INSERT INTO Booker(idBooker) VALUES (?)";
     $req = $this->db->prepare($sql);
     $params = array(
@@ -278,6 +321,7 @@ function readOrganisateurById($id) {
 function createOrganisateur($organisateur) {
   $o = $this->db->readBookerById($organisateur->$idOrganisateur);
   if ($o == null) {
+    $this->createUtilisateur($organisateur->getType(),$organisateur->getNom(),$organisateur->getPrenom(),$organisateur->getTel(),$organisateur->getEmailcontact(),$organisateur->getEmailCompte(),$organisateur->getMdp());
     $sql = "INSERT INTO $organisateur(idOrganisateur) VALUES (?)";
     $req = $this->db->prepare($sql);
     $params = array(

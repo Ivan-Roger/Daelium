@@ -8,6 +8,7 @@
 	private $emailcontact;
 	private $tel;
 	private $adresse; // Class lieu
+  private $description;
 
    function __construct($idpersonne = NULL,$type = NULL, $nom = NULL, $prenom = NULL, $emailcontact = NULL, $tel = NULL, $adresse = NULL) {
       if (!isset($this->idpersonne)) {
@@ -116,6 +117,10 @@
     // setter de l'adresse de la personne
     function setAdresse($adresse) {
         $this->adresse = $adresse;
+    }
+
+    function getDescription(){
+      return $this->description;
     }
   }
 ?>
