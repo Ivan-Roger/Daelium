@@ -1,22 +1,22 @@
 <?php
 class Lieu {
-  private $idLieu;
-  private $nom;
+  private $idlieu;
+  private $noml;
   private $description;
   private $pays;
   private $region;
   private $ville;
-  private $codePostal;
+  private $codepostal;
   private $adresse;
   private $latitude;
   private $longitude;
 
-  function __construct($idLieu = NULL, $nom = NULL, $description = NULL, $pays = NULL, $region = NULL, $ville = NULL, $codePostal = NULL, $adresse = NULL, $latitude = NULL, $longitude = NULL) {
-    if (!isset($this->idLieu)) {
-        $this->idLieu = $idLieu;
+  function __construct($idlieu = NULL, $noml = NULL, $description = NULL, $pays = NULL, $region = NULL, $ville = NULL, $codepostal = NULL, $adresse = NULL, $latitude = NULL, $longitude = NULL) {
+    if (!isset($this->idlieu)) {
+        $this->idlieu = $idlieu;
     }
-    if ($nom != NULL) {
-        $this->nom = $nom;
+    if ($noml != NULL) {
+        $this->noml = $noml;
     }
     if ($description != NULL) {
         $this->description = $description;
@@ -30,8 +30,8 @@ class Lieu {
     if ($ville != NULL) {
         $this->ville = $ville;
     }
-    if ($codePostal != NULL) {
-        $this->codePostal = $codePostal;
+    if ($codepostal != NULL) {
+        $this->codepostal = $codepostal;
     }
     if ($adresse != NULL) {
         $this->adresse = $adresse;
@@ -50,12 +50,12 @@ class Lieu {
   // ********************************
   // getter de l'id du lieu
   public function getIdLieu() {
-    return $this->idLieu;
+    return $this->idlieu;
   }
 
-  // getter du nom du lieu
-  public function getNom() {
-    return $this->nom;
+  // getter du noml du lieu
+  public function getnoml() {
+    return $this->noml;
   }
 
   // getter de la description du lieu
@@ -79,8 +79,8 @@ class Lieu {
   }
 
   // getter du code postal du lieu
-  public function getCodePostal() {
-    return $this->codePostal;
+  public function getcodepostal() {
+    return $this->codepostal;
   }
 
   // getter de l'adresse du lieu
@@ -102,9 +102,9 @@ class Lieu {
   //        Fonctions setter
   // ********************************
 
-  // setter du nom du lieu
-  public function setNom($nom) {
-    $this->nom = $nom;
+  // setter du noml du lieu
+  public function setnoml($noml) {
+    $this->noml = $noml;
   }
 
   // setter de la description du lieu
@@ -128,8 +128,8 @@ class Lieu {
   }
 
   // setter du code postal du lieu
-  public function setCodePostal($codePostal) {
-    $this->codePostal = $codePostal;
+  public function setcodepostal($codepostal) {
+    $this->codepostal = $codepostal;
   }
 
   // setter de l'adresse du lieu

@@ -41,22 +41,37 @@
         </div>
         <div class="well">
           <h4>Position</h4>
+          <?php if($data["adresse"]["ok"]){ ?>
+            <div class="row">
+              <span class="col-sm-4 text-right">Adresse</span><b class="col-sm-8 text-left" id="adress"><?= $data["adresse"]["adresse"] ?></b>
+            </div>
+            <div class="row">
+              <span class="col-sm-4 text-right">Code Postal / Ville</span><b class="col-sm-8 text-left" id="adress"><?= $data["adresse"]["codePostal"]." ".$data["adresse"]["Ville"] ?></b>
+            </div>
+            <div class="row">
+              <span class="col-sm-4 text-right">Region</span><b class="col-sm-8 text-left" id="adress"><?= $data["adresse"]["Region"] ?></b>
+            </div>
+            <div class="row">
+              <span class="col-sm-4 text-right">Pays</span><b class="col-sm-8 text-left" id="adress"><?= $data["adresse"]["Pays"] ?></b>
+            </div>
+            <div class="row">
+              <span class="col-sm-4 text-right">Plan</span>
+              <a href="<?=  $data["adresse"]["liengooglemaps"] ?>" target="_blank">
+                Voir sur google maps
+              </a>
+            </div>
+          <?php }else{ ?>
           <div class="row">
-            <span class="col-sm-4 text-right">Adresse</span><b class="col-sm-8 text-left" id="adress">2 Place Doyen Gosse<br/>38000 Grenoble</b>
+            <span class="col-sm-4 text-right">Adresse</span><b class="col-sm-8 text-left" id="adress">Pas d'adresse connue</b>
           </div>
-          <div class="row">
-            <span class="col-sm-4 text-right">Plan</span>
-            <a href="https://www.google.fr/maps/place/2+Place+Doyen+Gosse,+38000+Grenoble/@45.1919241,5.717596,18z/data=!4m2!3m1!1s0x478af4872c0a703f:0x6503d8b580fceb38" target="_blank">
-              Voir sur gogle maps
-            </a>
-          </div>
+          <?php } ?>
         </div>
       </article>
       <article class="col-lg-6">
         <div class="col-lg-12 well">
           <h4><?= $data["listname"] ?> : </h4>
           <ul class="groups list-group">
-            <?php foreach ($data["list"] as $key => $value) { ?>
+            <?php if($data["aslist"]) { foreach ($data["list"] as $key => $value) { ?>
               <li class="list-group-item">
                 <?php if($data["type"] == 1){ ?>
                   <span class="group-name col-sm-6"><?= $value["nom"] ?></span>
@@ -73,8 +88,11 @@
                   </div>
                 <?php } ?>
 
+
               </li>
-            <?php } ?>
+            <?php }}else{ ?>
+              <span class="group-name col-sm-6">Pas de <?= $data["typelist"] ?></span>
+          <?php  } ?>
             <!-- <li class="list-group-item">
               <span class="group-name col-sm-10">En marche</span>
               <div class="col-sm-2">

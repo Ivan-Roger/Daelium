@@ -1227,7 +1227,7 @@ function readGroupeArtisteByPrimary($idGroupe, $idArtiste) {
 }
 
 function readListGroupeByArtiste($idArtiste) {
-  $sql = "SELECT * FROM Groupe_Artiste WHERE idArtiste = ?"; // requête
+  $sql = "SELECT idGroupe FROM Groupe_Artiste WHERE idArtiste = ?"; // requête
   $req = $this->db->prepare($sql);
   $params = array(
     $idArtiste

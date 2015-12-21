@@ -2,11 +2,11 @@ CREATE TABLE Lieu (
   idLieu        SERIAL PRIMARY KEY,
   noml          VARCHAR(255) NOT NULL,
   description   VARCHAR(1000),
-  pays          VARCHAR(255),
+  pays          VARCHAR(255) NOT NULL,
   region        VARCHAR(255),
-  ville         VARCHAR(255),
-  codePostal    numeric(5),
-  adresse       VARCHAR(255),
+  ville         VARCHAR(255) NOT NULL,
+  codePostal    numeric(5) NOT NULL,
+  adresse       VARCHAR(255) NOT NULL,
   latitude      decimal,
   longitude     decimal
 );
