@@ -6,6 +6,9 @@
   $data = initPage("Groupes");
   $dao = new Dao();
 
+  $user = $dao->readPersonneById($_SESSION["user"]["ID"]);
+  if($user->getType() == 0){ // SI booker
+
   if (isset($_GET['id']) && $_GET['id'] != "" && isset($_GET['action']) && $_GET['action']=="edit") {
     $groupe = $dao->readGroupeById($_GET['id']);
     $listA = $dao->readArtisteByGroupe($_GET['id']);
@@ -67,4 +70,10 @@
     $data['page']="Error";
     include("../view/error.view.php");
   }
+    }else {
+      $data['error']['title'] = "Acces Interdit";
+      $data['error']['message'] = "Vous ne pouvez pas venir ici, cet espace est reservé aux bookers";
+      $data['error']['back'] = "../controler/main.ctrl.php";
+      include("../view/error.view.php");
+    }
 ?>
