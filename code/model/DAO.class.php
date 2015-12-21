@@ -470,7 +470,7 @@ function readArtisteById($id) {
 
   $res = $req->fetchAll(PDO::FETCH_ASSOC);
   if(isset($res[0]) && isset( $pers)){
-    $Artist = new Utilisateur($pers["idpersonne"],$pers["type"],$pers["nom"], $pers["prenom"], $pers["emailcontact"], $pers["tel"], $pers["adresse"],$res[0]["datenaissance"],$res[0]["paiement"],$res[0]["rib"],$res[0]["ordrecheque"]);
+    $Artist = new Artist($pers["idpersonne"],$pers["nom"], $pers["prenom"], $pers["emailcontact"], $pers["tel"], $pers["adresse"],$res[0]["datenaissance"],$res[0]["paiement"],$res[0]["rib"],$res[0]["ordrecheque"]);
     return $Artist;
   }else{
     return NULL;
@@ -1241,7 +1241,7 @@ function readListGroupeByArtiste($idArtiste) {
 }
 
 function readArtisteByGroupe($idGroupe) {
-  $sql = "SELECT * FROM Groupe_Artiste WHERE idGroupe=?"; // requête
+  $sql = "SELECT idArtiste FROM Groupe_Artiste WHERE idGroupe=?"; // requête
   $req = $this->db->prepare($sql);
   $params = array(
     $idGroupe
