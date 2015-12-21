@@ -28,7 +28,8 @@
     }else {
       $data["description"] = $user->getDescription();
     }
-    $data["type"] = $user->getNomType();
+    $data["typename"] = $user->getNomType();
+    $data["type"] = $user->getType();
 
 
 
@@ -38,28 +39,36 @@
       $data["listname"] = "Je gère ces groupes";
       $listidgroupe = $dao->readListGroupeByBooker($user->getIdPersonne());
       foreach ($listidgroupe as $key => $value) {
-        $listegroupe[] = $dao->readGroupeById((int) $value);
+        $groupe = $dao->readGroupeById((int) $value);
+        $data["list"][$key]["nom"] = $groupe->getNom();
+        $data["list"][$key]["id"] = $groupe->getIdGroupe();
       }
-      $data["list"] = $listegroupe;
     }elseif ($user->getType() == 1) { //Un Organisateur
       $data["user"] = true;
       $data["mail"] = $user->getEmailCompte();
       $data["listname"] = "Je gère ces evenenements";
-      $listidevt = $dao->readManifestationByCreateur($user->getIdPersonne());
-      var_dump($listidevt);
-      // foreach ($listidevt as $key => $value) {
-      //   $listevt[] = $dao->readGroupeById((int) $value);
-      // }
-      $data["list"] = $listevt;
+      $listevt= $dao->readManifestationByCreateur($user->getIdPersonne());
+      foreach ($listevt as $key => $value) {
+        $data["list"][$key]["nom"] = $value->getNom();
+        $data["list"][$key]["id"] = $value->getidManif();
+        $data["list"][$key]["dated"] = $value->getDateDebut();
+        if($data["list"][$key]["dated"] == $value->getDateFin()){
+          $data["list"][$key]["datef"] = "";
+        }else{
+          $data["list"][$key]["datef"] = " - ".$value->getDateFin();
+        }
+
+      }
+
     }else{ // Un artiste
       $data["user"] = false;
       $data["listname"] = "J'appartiens aux groupes";
       $listidgroupe = $dao->readListGroupeByArtiste($user->getIdPersonne());
       foreach ($listidgroupe as $key => $value) {
-        $listegroupe[] = $dao->readGroupeById((int) $value);
+        $groupe = $dao->readGroupeById((int) $value);
+        $data["list"][$key]["nom"] = $groupe->getNom();
+        $data["list"][$key]["id"] = $groupe->getIdGroupe();
       }
-      $data["list"] = $listegroupe;
-      var_dump($data["list"]);
     }
     //recup le lieu
   }else {

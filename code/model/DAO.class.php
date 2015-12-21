@@ -669,21 +669,21 @@ function readManifestationByCreateur($createur) {
 function createManifestation($manifestation) {
   $m = $this->db->readUserByEmail($manifestation->idManif);
   if ($m == null) {
-    $sql = "INSERT INTO Manifestation(type,description,datedebut,datefin,prixPublic,lienImageOfficiel,facebook,google,twitter,ficheCom,createur,lieu) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+    $sql = "INSERT INTO Manifestation(nom,type,description,datedebut,datefin,lienImageOfficiel,facebook,google,twitter,ficheCom,createur,lieu) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
     $req = $this->db->prepare($sql);
     $params = array(
-      $manifestation->type,
-      $manifestation->description,
-      $manifestation->dateDebut,
-      $manifestation->dateFin,
-      $manifestation->prixPublic,
-      $manifestation->lienImageOfficiel,
-      $manifestation->facebook,
-      $manifestation->google,
-      $manifestation->twitter,
-      $manifestation->ficheCom,
-      $manifestation->createur,
-      $manifestation->lieu
+      $manifestation->getNom(),
+      $manifestation->getType(),
+      $manifestation->getDescription(),
+      $manifestation->getDateDebut(),
+      $manifestation->getDateFin(),
+      $manifestation->getLienImageOfficiel(),
+      $manifestation->getFacebook(),
+      $manifestation->getGoogle(),
+      $manifestation->getTwitter(),
+      $manifestation->getFicheCom(),
+      $manifestation->getCreateur(),
+      $manifestation->getLieu()
     );
     $res = $req->execute($params);
     if ($res === FALSE) {
@@ -698,22 +698,22 @@ function createManifestation($manifestation) {
 function updateManifestation($manifestation) {
   $m = $this->db->readUserByEmail($manifestation->idManif);
   if ($m != null) {
-    $sql = "UPDATE Manifestation set (type,description,datedebut,datefin,prixPublic,lienImageOfficiel,facebook,google,twitter,ficheCom,createur,lieu) = (?,?,?,?,?,?,?,?,?,?,?,?) where idManif = ?";
+    $sql = "UPDATE Manifestation set (nom,type,description,datedebut,datefin,lienImageOfficiel,facebook,google,twitter,ficheCom,createur,lieu) = (?,?,?,?,?,?,?,?,?,?,?,?) where idManif = ?";
     $req = $this->db->prepare($sql);
     $params = array(
-      $manifestation->type,
-      $manifestation->description,
-      $manifestation->dateDebut,
-      $manifestation->dateFin,
-      $manifestation->prixPublic,
-      $manifestation->lienImageOfficiel,
-      $manifestation->facebook,
-      $manifestation->google,
-      $manifestation->twitter,
-      $manifestation->ficheCom,
-      $manifestation->createur,
-      $manifestation->idLieu,
-      $manifestation->idManif
+      $manifestation->getNom(),
+      $manifestation->getType(),
+      $manifestation->getDescription(),
+      $manifestation->getDateDebut(),
+      $manifestation->getDateFin(),
+      $manifestation->getLienImageOfficiel(),
+      $manifestation->getFacebook(),
+      $manifestation->getGoogle(),
+      $manifestation->getTwitter(),
+      $manifestation->getFicheCom(),
+      $manifestation->getCreateur(),
+      $manifestation->getLieu(),
+      $manifestation->getidManif()
     );
     $res = $req->execute($params);
     if ($res === FALSE) {

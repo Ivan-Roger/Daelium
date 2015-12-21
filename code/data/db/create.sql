@@ -80,16 +80,16 @@ CREATE TABLE Contact_exterieur (
 
 CREATE TABLE Manifestation (
   idManif           SERIAL PRIMARY KEY,
+  nom               VARCHAR(255) NOT NULL,
   type              VARCHAR(255),
-  description       VARCHAR(255),
+  description       TEXT,
   dateDebut         DATE NOT NULL,
   dateFin           DATE NOT NULL,
-  prixPublic        integer, --NON
   lienImageOfficiel VARCHAR(255),
   facebook          VARCHAR(255),
   google            VARCHAR(255),
   twitter           VARCHAR(255),
-  ficheCom          VARCHAR(255),
+  ficheCom          TEXT,
   createur          BIGINT,
   lieu              BIGINT,
   FOREIGN KEY (createur) references Organisateur(idOrganisateur),
@@ -105,8 +105,8 @@ CREATE TABLE Groupe (
   google            VARCHAR(255),
   twitter           VARCHAR(255),
   soundcloud        VARCHAR(255),
-  lecteur           VARCHAR(255),
-  ficheCom          VARCHAR(255),
+  lecteur           TEXT,
+  ficheCom          TEXT,
   adresse           BIGINT,
   FOREIGN KEY (adresse) references Lieu(idLieu)
 );

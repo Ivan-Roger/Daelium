@@ -32,8 +32,8 @@ INSERT INTO Groupe_Genre VALUES(1,'Rock');
 INSERT INTO Groupe_Genre VALUES(1,'Pop');
 INSERT INTO Groupe_Genre VALUES(2,'Jazz');
 
-INSERT INTO Manifestation VALUES(1,'Concert','Concert pour la lutte contre le sida','01/01/2016','03/01/2016',15,NULL,NULL,NULL,NULL,NULL,2,NULL);
-INSERT INTO Manifestation VALUES(2,'Mariage','Mariage de Sandra et Kevin','01/07/2016','01/07/2016',15,NULL,NULL,NULL,NULL,NULL,2,2);
+INSERT INTO Manifestation VALUES(1,'Concert pour la lutte contre le sida','Concert','Concert pour la lutte contre le sida','01/01/2016','03/01/2016',NULL,NULL,NULL,NULL,NULL,2,NULL);
+INSERT INTO Manifestation VALUES(2,'Mariage de Sandra et Kevin','Mariage','Mariage de Sandra et Kevin','01/07/2016','01/07/2016',NULL,NULL,NULL,NULL,NULL,2,2);
 INSERT INTO Manifestation_Genre VALUES(1,'Rock');
 
 

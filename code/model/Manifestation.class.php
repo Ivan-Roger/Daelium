@@ -1,6 +1,7 @@
 <?php
   class Manifestation {
     private $idmanif;
+    private $nom;
     private $type;
     private $description;
     private $datedebut;
@@ -13,9 +14,12 @@
     private $createur; // Organisateur de l'evt
     private $lieu;
 
-    function __construct($idmanif = NULL,$type = NULL,$email = NULL,$description = NULL,$datedebut = NULL,$datefin = NULL,$lienimageofficiel = NULL,$facebook = NULL,$google = NULL,$twitter = NULL,$fichecom = NULL,$createur = NULL,$lieu = NULL) {
+    function __construct($idmanif = NULL,$nom = NULL,$type = NULL,$email = NULL,$description = NULL,$datedebut = NULL,$datefin = NULL,$lienimageofficiel = NULL,$facebook = NULL,$google = NULL,$twitter = NULL,$fichecom = NULL,$createur = NULL,$lieu = NULL) {
       if (!isset($this->idmanif)) {
          $this->idmanif = $idmanif;
+      }
+      if ($nom != NULL) {
+         $this->nom = $nom;
       }
       if ($type != NULL) {
          $this->type = $type;
@@ -59,6 +63,9 @@
     function getidManif(){
       return $this->idmanif;
     }
+    function getNom(){
+      return $this->nom;
+    }
     function getType(){
       return $this->type;
     }
@@ -93,38 +100,40 @@
       return $this->lieu;
     }
  // SETTERS
-
- function setType(){
+ function setNom($nom){
+    $this->nom = $nom;
+ }
+ function setType($type){
     $this->type = $type;
  }
- function setDescription(){
+ function setDescription($description){
     $this->description = $description;
  }
- function setDateDebut(){
+ function setDateDebut($datedebut){
     $this->datedebut = $datedebut;
  }
- function setDateFin(){
+ function setDateFin($datefin){
     $this->datefin = $datefin;
  }
- function setLienImageOfficiel(){
+ function setLienImageOfficiel($lienimageofficiel){
     $this->lienimageofficiel = $lienimageofficiel;
  }
- function setFacebook(){
+ function setFacebook($facebook){
     $this->facebook = $facebook;
  }
- function setGoogle(){
+ function setGoogle($google){
     $this->google = $google;
  }
- function setTwitter(){
+ function setTwitter($twitter){
     $this->twitter = $twitter;
  }
- function setFicheCom(){
+ function setFicheCom($fichecom){
     $this->fichecom = $fichecom;
  }
- function setCreateur(){
+ function setCreateur($createur){
     $this->createur = $createur;
  }
- function setLieu(){
+ function setLieu($lieu){
     $this->lieu = $lieu;
  }
 
