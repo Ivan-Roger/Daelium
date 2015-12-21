@@ -1,22 +1,22 @@
 <?php
   class Group {
-    private $idGroupe;
+    private $idgroupe;
     private $nomg;
     private $email;
-    private $lienImageOfficiel;
+    private $lienimageofficiel;
     private $facebook;
     private $google;
     private $twitter;
     private $soundcloud;
     private $lecteur;
-    private $ficheCom;
+    private $fichecom;
     private $adresse;
 
     private $artists; //list
 
-    function __construct($idGroupe = NULL,$nomg = NULL,$email = NULL,$lienImageOfficiel = NULL,$facebook = NULL,$google = NULL,$twitter = NULL,$soundcloud = NULL,$lecteur = NULL,$ficheCom = NULL,$adresse = NULL) {
-      if (!isset($this->idGroupe)) {
-         $this->idGroupe = $idGroupe;
+    function __construct($idGroupe = NULL,$nomg = NULL,$email = NULL,$lienimageofficiel = NULL,$facebook = NULL,$google = NULL,$twitter = NULL,$soundcloud = NULL,$lecteur = NULL,$fichecom = NULL,$adresse = NULL) {
+      if (!isset($this->idgroupe)) {
+         $this->idgroupe = $idGroupe;
       }
       if ($nomg != NULL) {
          $this->nomg = $nomg;
@@ -24,8 +24,8 @@
       if ($email != NULL) {
          $this->email = $email;
       }
-      if ($lienImageOfficiel != NULL) {
-         $this->lienImageOfficiel = $lienImageOfficiel;
+      if ($lienimageofficiel != NULL) {
+         $this->lienimageofficiel = $lienimageofficiel;
       }
       if ($facebook != NULL) {
          $this->facebook = $facebook;
@@ -43,8 +43,8 @@
       if ($lecteur != NULL) {
          $this->lecteur = $lecteur;
       }
-      if ($ficheCom != NULL) {
-         $this->ficheCom = $ficheCom;
+      if ($fichecom != NULL) {
+         $this->fichecom = $fichecom;
       }
       if ($adresse != NULL) {
          $this->adresse = $adresse;
@@ -53,7 +53,7 @@
     }
     //GETTERS
     function getIdGroupe(){
-      return $this->idGroupe;
+      return $this->idgroupe;
     }
     function getNom(){
       return $this->nomg;
@@ -62,7 +62,7 @@
       return $this->email;
     }
     function getLienImageOfficiel(){
-      return $this->lienImageOfficiel;
+      return $this->lienimageofficiel;
     }
     function getFacebook(){
       return $this->facebook;
@@ -80,7 +80,7 @@
       return $this->lecteur;
     }
     function getFicheCom(){
-      return $this->ficheCom;
+      return $this->fichecom;
     }
     function getAdresse(){
       return $this->adresse;
@@ -97,7 +97,7 @@
       $this->email = $email;
     }
     function setLienImageOfficiel(){
-      $this->lienImageOfficiel = $lienImageOfficiel;
+      $this->lienimageofficiel = $lienimageofficiel;
     }
     function setFacebook(){
       $this->facebook = $facebook;

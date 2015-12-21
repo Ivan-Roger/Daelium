@@ -84,7 +84,7 @@ CREATE TABLE Manifestation (
   description       VARCHAR(255),
   dateDebut         DATE NOT NULL,
   dateFin           DATE NOT NULL,
-  prixPublic        integer,
+  prixPublic        integer, --NON
   lienImageOfficiel VARCHAR(255),
   facebook          VARCHAR(255),
   google            VARCHAR(255),

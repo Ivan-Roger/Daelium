@@ -5,6 +5,9 @@ require_once("Utilisateur.class.php");
 require_once("Artist.class.php");
 require_once("Organisateur.class.php");
 require_once("Booker.class.php");
+require_once("Group.class.php");
+require_once("Manifestation.class.php");
+
 
 class DAO {
   private $db;
@@ -379,7 +382,7 @@ function readGroupeById($id) {
   if ($res === FALSE) {
     die("readGroupeById : Requête impossible !"); // erreur dans la requête
   }
-  $res = $req->fetchAll(PDO::FETCH_CLASS,"Groupe");
+  $res = $req->fetchAll(PDO::FETCH_CLASS,"Group");
   return (isset($res[0])?$res[0]:null); // retourne le premier resultat s'il existe, sinon null
 }
 
@@ -393,7 +396,7 @@ function readGroupeByMail($email) {
   if ($res === FALSE) {
     die("readGroupeByMail : Requête impossible !"); // erreur dans la requête
   }
-  $res = $req->fetchAll(PDO::FETCH_CLASS,"Groupe");
+  $res = $req->fetchAll(PDO::FETCH_CLASS,"Group");
   return (isset($res[0])?$res[0]:null); // retourne le premier resultat s'il existe, sinon null
 }
 
@@ -1223,7 +1226,7 @@ function readGroupeArtisteByPrimary($idGroupe, $idArtiste) {
   return (isset($res[0])?$res[0]:null);
 }
 
-function readGroupeByArtiste($idArtiste) {
+function readListGroupeByArtiste($idArtiste) {
   $sql = "SELECT * FROM Groupe_Artiste WHERE idArtiste = ?"; // requête
   $req = $this->db->prepare($sql);
   $params = array(

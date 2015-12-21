@@ -21,20 +21,45 @@
     $user = $dao->readPersonneByIdGoodClasse($userpid);
 
     $data["nomcomplet"] = $user->getNomComplet();
-
     $data["mailco"] = $user->getEmailcontact();
     $data["tel"] = $user->getTel();
-    $data["description"] = $user->getDescription();
+    if($user->getDescription() == NULL){
+      $data["description"] = "Aucune description ...";
+    }else {
+      $data["description"] = $user->getDescription();
+    }
+    $data["type"] = $user->getNomType();
+
 
 
     if($user->getType() == 0){ //Un booker
+      $data["user"] = true;
       $data["mail"] = $user->getEmailCompte();
-      $data["list"] = "Mes Groupes";
+      $data["listname"] = "Je gère ces groupes";
+      $listidgroupe = $dao->readListGroupeByBooker($user->getIdPersonne());
+      foreach ($listidgroupe as $key => $value) {
+        $listegroupe[] = $dao->readGroupeById((int) $value);
+      }
+      $data["list"] = $listegroupe;
     }elseif ($user->getType() == 1) { //Un Organisateur
+      $data["user"] = true;
       $data["mail"] = $user->getEmailCompte();
-      $data["list"] = "Mes Evenenements";
+      $data["listname"] = "Je gère ces evenenements";
+      $listidevt = $dao->readManifestationByCreateur($user->getIdPersonne());
+      var_dump($listidevt);
+      // foreach ($listidevt as $key => $value) {
+      //   $listevt[] = $dao->readGroupeById((int) $value);
+      // }
+      $data["list"] = $listevt;
     }else{ // Un artiste
-
+      $data["user"] = false;
+      $data["listname"] = "J'appartiens aux groupes";
+      $listidgroupe = $dao->readListGroupeByArtiste($user->getIdPersonne());
+      foreach ($listidgroupe as $key => $value) {
+        $listegroupe[] = $dao->readGroupeById((int) $value);
+      }
+      $data["list"] = $listegroupe;
+      var_dump($data["list"]);
     }
     //recup le lieu
   }else {
