@@ -1223,20 +1223,48 @@ function readGroupeArtisteByPrimary($idGroupe, $idArtiste) {
   return (isset($res[0])?$res[0]:null);
 }
 
-function createGroupeArtiste($groupeArtiste) {
-  $c = $this->db->readCreneauByPrimary($groupeArtiste->idGroupe,$groupeArtiste->idArtiste);
+function readGroupeByArtiste($idArtiste) {
+  $sql = "SELECT * FROM Groupe_Artiste WHERE idArtiste = ?"; // requête
+  $req = $this->db->prepare($sql);
+  $params = array(
+    $idArtiste
+  );
+  $res = $req->execute($params);
+  if ($res === FALSE) {
+    die("readGroupeByArtiste : Requête impossible !"); // erreur dans la requête
+  }
+  $res = $req->fetchAll(PDO::FETCH_ASSOC);
+  return (isset($res[0])?$res[0]:null);
+}
+
+function readArtisteByGroupe($idGroupe) {
+  $sql = "SELECT * FROM Groupe_Artiste WHERE idGroupe=?"; // requête
+  $req = $this->db->prepare($sql);
+  $params = array(
+    $idGroupe
+  );
+  $res = $req->execute($params);
+  if ($res === FALSE) {
+    die("readArtisteByGroupe : Requête impossible !"); // erreur dans la requête
+  }
+  $res = $req->fetchAll(PDO::FETCH_ASSOC);
+  return (isset($res[0])?$res[0]:null);
+}
+
+function createGroupeArtiste($idGroupe,$idArtiste) {
+  $c = $this->db->readCreneauByPrimary($idGroupe,$idArtiste);
   if ($c == null) {
     $sql = "INSERT INTO Groupe_Artiste(idGroupe,idArtiste) VALUES (?,?)";
     $req = $this->db->prepare($sql);
     $params = array(
-      $groupeArtiste->idGroupe,
-      $groupeArtiste->idArtiste
+      $idGroupe,
+      $idArtiste
     );
     $res = $req->execute($params);
     if ($res === FALSE) {
       die("createGroupeArtiste : Requête impossible !");
     }
-    return $this->db->readCreneauByPrimary($groupeArtiste->idGroupe,$groupeArtiste->idArtiste);
+    return $this->db->readGroupeArtisteByPrimary($idGroupe,$idArtiste);
   } else {
     throw DAOException("Groupe_Artiste déjà présent dans la base");
   }
