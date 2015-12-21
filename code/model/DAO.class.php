@@ -2,6 +2,9 @@
 require_once("utils.class.php");
 require_once("exceptions.class.php");
 require_once("Utilisateur.class.php");
+require_once("Artist.class.php");
+require_once("Organisateur.class.php");
+require_once("Booker.class.php");
 
 class DAO {
   private $db;
@@ -29,6 +32,32 @@ class DAO {
     }
     $res = $req->fetchAll(PDO::FETCH_CLASS,"Personne");
     return (isset($res[0])?$res[0]:null); // retourne le premier resultat s'il existe, sinon null
+  }
+
+  function readPersonneByIdGoodClasse($id) {
+    $sql = "SELECT type FROM Personne WHERE idPersonne = ?"; // requête
+    $req = $this->db->prepare($sql);
+    $params = array( // paramétres
+      $id // l'id de l'utilisateur
+    );
+    $res = $req->execute($params);
+    if ($res === FALSE) {
+      die("readPersonneById : Requête impossible !"); // erreur dans la requête
+    }
+    $res = $req->fetchAll(PDO::FETCH_ASSOC);
+
+    if(isset($res[0]["type"])){
+      $type = (int) $res[0]["type"];
+      if($type == 0){
+        return $this->readBookerById($id);
+      }elseif ($type == 1) {
+        return $this->readOrganisateurById($id);
+      }else {
+        return $this->readArtisteById($id);
+      }
+    }else {
+      return NULL;
+    }
   }
 
 private function readPersonneByIdNoClass($id) {
@@ -271,7 +300,7 @@ function readBookerById($id) {
     die("readBookerById : Requête impossible !"); // erreur dans la requête
   }
 
-  $user = $this->readPersonneByIdNoClass($id);
+  $user = $this->readUtilisateurByIdNoClasse($id);
   $res = $req->fetchAll(PDO::FETCH_ASSOC);
   if(isset($res[0]) && isset( $user)){
     $Booker = new Booker($user["idpersonne"],$user["type"],$user["nom"], $user["prenom"], $user["emailcontact"], $user["tel"], $user["adresse"],$user["emailcompte"],$user["mdp"],$user["googletoken"]);
@@ -310,7 +339,7 @@ function readOrganisateurById($id) {
   if ($res === FALSE) {
     die("readOrganisateurById : Requête impossible !"); // erreur dans la requête
   }
-  $user = $this->readPersonneByIdNoClass($id);
+  $user = $this->readUtilisateurByIdNoClasse($id);
   $res = $req->fetchAll(PDO::FETCH_ASSOC);
   if(isset($res[0]) && isset( $user)){
     $Organisateur = new Organisateur($user["idpersonne"],$user["type"],$user["nom"], $user["prenom"], $user["emailcontact"], $user["tel"], $user["adresse"],$user["emailcompte"],$user["mdp"],$user["googletoken"]);
@@ -435,7 +464,7 @@ function readArtisteById($id) {
   if ($res === FALSE) {
     die("readArtisteById : Requête impossible !"); // erreur dans la requête
   }
-  $res = $req->fetchAll(PDO::FETCH_CLASS,"Artiste");
+  $res = $req->fetchAll(PDO::FETCH_CLASS,"Artist");
   return (isset($res[0])?$res[0]:null); // retourne le premier resultat s'il existe, sinon null
 }
 
@@ -1439,20 +1468,49 @@ function readBookerGroupeByPrimary($idBooker,$idGroupe) {
   return (isset($res[0])?$res[0]:null);
 }
 
-function createBookerGroupe($bookerGroupe) {
-  $b = $this->db->readBookerGroupeByPrimary($bookerGroupe->idBooker,$bookerGroupe->idGroupe);
+function readListGroupeByBooker($idBooker) {
+  $sql = "SELECT idGroupe FROM Booker_Groupe WHERE  idBooker=?"; // requête
+  $req = $this->db->prepare($sql);
+  $params = array(
+    $idBooker
+  );
+  $res = $req->execute($params);
+  if ($res === FALSE) {
+    die("readListGroupeByBooker : Requête impossible !"); // erreur dans la requête
+  }
+  $res = $req->fetchAll(PDO::FETCH_ASSOC);
+  return (isset($res[0])?$res[0]:null);
+}
+
+function readListBookerByGroupe($idGroupe) {
+  $sql = "SELECT idBooker FROM Booker_Groupe WHERE  idGroupe=?"; // requête
+  $req = $this->db->prepare($sql);
+  $params = array(
+    $idGroupe
+  );
+  $res = $req->execute($params);
+  if ($res === FALSE) {
+    die("readListBookerByGroupe : Requête impossible !"); // erreur dans la requête
+  }
+  $res = $req->fetchAll(PDO::FETCH_ASSOC);
+  return (isset($res[0])?$res[0]:null);
+}
+
+
+function createBookerGroupe($idBooker, $idGroupe) {
+  $b = $this->db->readBookerGroupeByPrimary($idBooker,$idGroupe);
   if ($b == null) {
     $sql = "INSERT INTO Booker_Groupe(idGroupe,idBooker) VALUES (?,?)";
     $req = $this->db->prepare($sql);
     $params = array(
-      $bookerGroupe->idGroupe,
-      $bookerGroupe->idBooker
+      $idGroupe,
+      $idBooker
     );
     $res = $req->execute($params);
     if ($res === FALSE) {
       die("createBookerGroupe : Requête impossible !");
     }
-    return $this->db->readBookerGroupeByPrimary($messageTag->nomt,$messageTag->idMessage);
+    return $this->db->readBookerGroupeByPrimary($idBooker,$idGroupe);
   } else {
     throw DAOException("Booker_Groupe déjà présente dans la base");
   }

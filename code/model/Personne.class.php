@@ -10,7 +10,7 @@
 	private $adresse; // Class lieu
   private $description;
 
-   function __construct($idpersonne = NULL,$type = NULL, $nom = NULL, $prenom = NULL, $emailcontact = NULL, $tel = NULL, $adresse = NULL) {
+   function __construct($idpersonne = NULL,$type = NULL, $nom = NULL, $prenom = NULL, $emailcontact = NULL, $tel = NULL, $adresse = NULL, $description =NULL) {
       if (!isset($this->idpersonne)) {
          $this->idpersonne = $idpersonne;
       }
@@ -31,6 +31,9 @@
       }
       if ($adresse != NULL) {
          $this->adresse = $adresse;
+      }
+      if ($description != NULL) {
+         $this->description = $description;
       }
    }
 
@@ -81,6 +84,10 @@
         return $this->tel;
     }
 
+    function getDescription() {
+        return $this->description;
+    }
+
     // getter de l'adresse de la personne
     function getAdresse() {
         return $this->adresse;
@@ -119,8 +126,5 @@
         $this->adresse = $adresse;
     }
 
-    function getDescription(){
-      return $this->description;
-    }
   }
 ?>

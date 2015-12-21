@@ -1,7 +1,7 @@
 <?php
   class Artist {
-    private User $user;
-    private Group[] $group;
+    private $user;
+    private $group;
 
     function __construct() {
 

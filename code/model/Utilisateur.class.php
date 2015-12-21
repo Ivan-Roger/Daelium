@@ -2,18 +2,13 @@
   require_once('../model/Personne.class.php');
 
   class Utilisateur extends Personne {
-    private $idutilisateur;
-    private $emailcompte;
+    private $emailCompte;
     private $mdp; // mot de passe de l'utilisateur
     private $googletoken;
-    private $type;
 
 
     function __construct($idUtilisateur = NULL,$type = NULL, $nom = NULL, $prenom = NULL, $emailcontact = NULL, $tel = NULL, $adresse = NULL, $emailCompte = NULL, $mdp = NULL,$googletoken = NULL) {
       parent::__construct($idUtilisateur,$type, $nom, $prenom, $emailcontact, $tel, $adresse);
-      if (!isset($this->idutilisateur)) {
-        $this->idutilisateur = $idUtilisateur;
-      }
       if ($emailCompte != NULL) {
           $this->emailCompte = $emailCompte;
       }
