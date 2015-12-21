@@ -21,15 +21,20 @@
     $user = $dao->readPersonneByIdGoodClasse($userpid);
 
     $data["nomcomplet"] = $user->getNomComplet();
-    $data["mail"] = $user->getEmailCompte();
+
     $data["mailco"] = $user->getEmailcontact();
     $data["tel"] = $user->getTel();
     $data["description"] = $user->getDescription();
 
-    if($user->getType() == 0){
+
+    if($user->getType() == 0){ //Un booker
+      $data["mail"] = $user->getEmailCompte();
       $data["list"] = "Mes Groupes";
-    }elseif ($user->getType() == 1) {
+    }elseif ($user->getType() == 1) { //Un Organisateur
+      $data["mail"] = $user->getEmailCompte();
       $data["list"] = "Mes Evenenements";
+    }else{ // Un artiste
+
     }
     //recup le lieu
   }else {

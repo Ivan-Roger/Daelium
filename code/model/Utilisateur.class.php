@@ -40,6 +40,11 @@
       return $this->mdp;
     }
 
+
+    function getGoogleToken() {
+      return $this->googletoken;
+    }
+
     // ********************************
     //        Fonctions setter
     // ********************************

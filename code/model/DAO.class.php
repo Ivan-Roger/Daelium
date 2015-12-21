@@ -89,17 +89,17 @@ private function readPersonneByIdNoClass($id) {
   }
 
   // vérif or not vérif this->db is the question (si la personne est déjà présente)
-  private function createPersonne($type,$nomp,$prenom,$tel,$emailContact,$adresse) {
+  private function createPersonne($personne) {
     $sql = "INSERT INTO Personne(type,nom,prenom,tel,emailContact,adresse,description) VALUES (?,?,?,?,?,?,?)";
     $req = $this->db->prepare($sql);
     $params = array(
-      $type,
-      $nomp,
-      $prenom,
-      $tel,
-      $emailContact,
-      $adresse,
-      $description
+      $personne->getType(),
+      $personne->getNom(),
+      $personne->getPrenom(),
+      $personne->getTel(),
+      $personne->getEmailcontact(),
+      $personne->getAdresse(),
+      $personne->getDescription()
     );
     $res = $req->execute($params);
     if ($res === FALSE) {
@@ -186,14 +186,12 @@ private function readUtilisateurByIdNoClasse($id) {
   if ($res === FALSE) {
     die("readUserById : Requête impossible !"); // erreur dans la requête
   }
-  //plus complexe !
   $pers = $this->readPersonneByIdNoClass($id);
 
   $res = $req->fetchAll(PDO::FETCH_ASSOC);
   if(isset($res[0]) && isset( $pers)){
     $Utilisateur = array(
     "idpersonne" => $pers["idpersonne"],
-    "type" =>  $pers["type"],
     "nom" => $pers["nom"],
     "prenom" => $pers["prenom"],
     "emailcontact" =>  $pers["emailcontact"],
@@ -225,15 +223,16 @@ function readUtilisateurByEmail($email) {
   return (isset($res[0])?$res[0]:null); // retourne le premier resultat s'il existe, sinon null
 }
 
-private function createUtilisateur($type,$nomp,$prenom,$tel,$emailContact,$emailCompte,$mdp) { // peut etre mettre une personne en paramettre
+private function createUtilisateur($utilisateur) { // peut etre mettre une personne en paramettre
   $u = $this->db->readUserByEmail($utilisateur->email);
   if ($u == null) {
-    $this->createPersonne($type,$nomp,$prenom,$tel,$emailContact);
-    $sql = "INSERT INTO Users(emailCompte,mdp) VALUES (?,?)";
+    $this->createPersonne($utilisateur);
+    $sql = "INSERT INTO Users(emailCompte,mdp,googletoken) VALUES (?,?,?)";
     $req = $this->db->prepare($sql);
     $params = array(
-      $emailCompte,
-      $mdp
+      $utilisateur->getEmailCompte(),
+      $utilisateur->getMdp(),
+      $utilisateur->getGoogleToken()
     );
     $res = $req->execute($params);
     if ($res === FALSE) {
@@ -303,7 +302,7 @@ function readBookerById($id) {
   $user = $this->readUtilisateurByIdNoClasse($id);
   $res = $req->fetchAll(PDO::FETCH_ASSOC);
   if(isset($res[0]) && isset( $user)){
-    $Booker = new Booker($user["idpersonne"],$user["type"],$user["nom"], $user["prenom"], $user["emailcontact"], $user["tel"], $user["adresse"],$user["emailcompte"],$user["mdp"],$user["googletoken"]);
+    $Booker = new Booker($user["idpersonne"],$user["nom"], $user["prenom"], $user["emailcontact"], $user["tel"], $user["adresse"],$user["emailcompte"],$user["mdp"],$user["googletoken"]);
     return $Booker;
   }
 }
@@ -312,7 +311,7 @@ function readBookerById($id) {
 function createBooker($booker) {
   $b = $this->db->readBookerById($booker->idBooker);
   if ($b == null) {
-    $this->createUtilisateur(0,$booker->getNom(),$booker->getPrenom(),$booker->getTel(),$booker->getEmailcontact(),$booker->getEmailCompte(),$booker->getMdp());
+    $this->createUtilisateur($booker);
     $sql = "INSERT INTO Booker(idBooker) VALUES (?)";
     $req = $this->db->prepare($sql);
     $params = array(
@@ -342,7 +341,7 @@ function readOrganisateurById($id) {
   $user = $this->readUtilisateurByIdNoClasse($id);
   $res = $req->fetchAll(PDO::FETCH_ASSOC);
   if(isset($res[0]) && isset( $user)){
-    $Organisateur = new Organisateur($user["idpersonne"],$user["type"],$user["nom"], $user["prenom"], $user["emailcontact"], $user["tel"], $user["adresse"],$user["emailcompte"],$user["mdp"],$user["googletoken"]);
+    $Organisateur = new Organisateur($user["idpersonne"],$user["nom"], $user["prenom"], $user["emailcontact"], $user["tel"], $user["adresse"],$user["emailcompte"],$user["mdp"],$user["googletoken"]);
     return $Organisateur;
   }
 }
@@ -351,7 +350,7 @@ function readOrganisateurById($id) {
 function createOrganisateur($organisateur) {
   $o = $this->db->readBookerById($organisateur->$idOrganisateur);
   if ($o == null) {
-    $this->createUtilisateur(1,$organisateur->getNom(),$organisateur->getPrenom(),$organisateur->getTel(),$organisateur->getEmailcontact(),$organisateur->getEmailCompte(),$organisateur->getMdp());
+    $this->createUtilisateur($organisateur);
     $sql = "INSERT INTO $organisateur(idOrganisateur) VALUES (?)";
     $req = $this->db->prepare($sql);
     $params = array(
@@ -464,13 +463,20 @@ function readArtisteById($id) {
   if ($res === FALSE) {
     die("readArtisteById : Requête impossible !"); // erreur dans la requête
   }
-  $res = $req->fetchAll(PDO::FETCH_CLASS,"Artist");
-  return (isset($res[0])?$res[0]:null); // retourne le premier resultat s'il existe, sinon null
-}
+  $pers = $this->readPersonneByIdNoClass($id);
+
+  $res = $req->fetchAll(PDO::FETCH_ASSOC);
+  if(isset($res[0]) && isset( $pers)){
+    $Artist = new Utilisateur($pers["idpersonne"],$pers["type"],$pers["nom"], $pers["prenom"], $pers["emailcontact"], $pers["tel"], $pers["adresse"],$res[0]["datenaissance"],$res[0]["paiement"],$res[0]["rib"],$res[0]["ordrecheque"]);
+    return $Artist;
+  }else{
+    return NULL;
+  }}
 
 function createArtiste($artiste) {
   $a = $this->db->readArtisteById($artiste->idArtiste);
   if ($a == null) {
+    $this->createPersonne($artiste);
     $sql = "INSERT INTO Artiste(dateNaissance, paiement, rib, ordreCheque) VALUES (?,?,?,?)";
     $req = $this->db->prepare($sql);
     $params = array(
@@ -492,6 +498,7 @@ function createArtiste($artiste) {
 function updateArtiste($artiste) {
   $a = $this->db->readArtisteById($utilisateur->idUtilisateur);
   if ($a != null) {
+    $this->updatePersonne($artiste);
     $sql = "UPDATE Artiste set (dateNaissance, paiement, rib, ordreCheque) = (?,?,?,?) where idArtiste = ?";
     $req = $this->db->prepare($sql);
     $params = array(
