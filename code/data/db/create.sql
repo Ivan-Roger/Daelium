@@ -196,15 +196,15 @@ CREATE TABLE Message (                  -- à revoir
   FOREIGN KEY (expediteur) references Utilisateur(idUtilisateur)
 );
 
+CREATE TABLE Conversation (
+   idConversation SERIAL PRIMARY KEY,
+   nom varchar(255)
+);
+
 CREATE TABLE Conversation_Message (
    idMessage BIGINT REFERENCES Message(idMessage),
    idConversation BIGINT REFERENCES Conversation(idConversation),
    PRIMARY KEY (idMessage,idConversation)
-);
-
-CREATE TABLE Conversation (
-   idConversation SERIAL PRIMARY KEY,
-   nom varchar(255)
 );
 
 CREATE TABLE Message_Tag (
