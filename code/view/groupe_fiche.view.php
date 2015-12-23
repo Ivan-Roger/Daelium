@@ -26,7 +26,9 @@
         <div class="well">
           <h4>Informations générales :</h4>
           <div class="row">
-            <span class="col-sm-4 text-right">Booker en charge</span><b class="col-sm-8 text-left" id="mailAccount">Jean-Louis Dupond</b>
+            <span class="col-sm-4 text-right">Booker(s) en charge</span><?php foreach ($data["booker"] as $key => $value) { ?>
+              <b class="col-sm-8 text-left" id="mailAccount"><?= $value["prenom"]." ".$value["nom"] ?> <a class="btn btn-primary" href="../controler/profil.ctrl.php?id=<?= $value['id'] ?>">Voir Profil</a></b>
+          <?php  } ?>
           </div>
           <div class="row">
             <span class="col-sm-4 text-right">Nombre de membres</span><b class="col-sm-8 text-left" id="mailAccount"><?= $data['groupe']['nb'] ?></b>
@@ -75,7 +77,7 @@ Postremo ad id indignitatis est ventum, ut cum peregrini ob formidatam haut ita 
                 </div>
                 <div id="collapseArtist<?= $key ?>" class="panel-collapse collapse" aria-expanded="false" role="tabpanel" aria-labelledby="headingArtist<?= $key ?>">
                   <div class="panel-body">
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                    <?= $art['description'] ?>
                   </div>
                 </div>
               </div>
