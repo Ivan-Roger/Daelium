@@ -6,6 +6,8 @@ require_once("Artiste.class.php");
 require_once("Organisateur.class.php");
 require_once("Booker.class.php");
 require_once("Groupe.class.php");
+require_once("Message.class.php");
+require_once("Conversation.class.php");
 require_once("Manifestation.class.php");
 
 
@@ -1850,6 +1852,7 @@ class DAO {
          );
          $res = $req->execute($params);
          if ($res === FALSE) {
+            var_dump($this->db->errorInfo()[2]);
             die("readConversationById : Requête impossible !"); // erreur dans la requête
          }
          $res = $req->fetchAll(PDO::FETCH_CLASS,"Conversation");
@@ -1904,7 +1907,7 @@ class DAO {
             die("readConversationByMessage : Requête impossible !"); // erreur dans la requête
          }
          $res = $req->fetchAll();
-         return (isset($res[0])?$res[0]:null);
+         return (isset($res[0])?$res[0][0]:null);
       }
 
       function createMessageConversation($idConversation,$idMessage) {

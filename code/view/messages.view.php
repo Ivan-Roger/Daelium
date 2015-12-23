@@ -41,7 +41,10 @@ header("Location:"."../");
                      </colgroup>
                      <tbody>
                         <?php foreach ($data['messageR'] as $key => $message) { ?>
-                           <tr class="showMessage not-shown <?= ($message['lu']?"":"info")?>" data-ID="<?= $message['id'] ?>"><td><?= $message['expediteur'] ?></td><td class="objet"><?= ($message['parent']!=0?"<span class=\"fa fa-chevron-right\"></span>":"")?><?= $message['objet'] ?></td><td class="text-right"><?= $message['date'] ?></td></tr>
+                           <tr class="showMessage not-shown <?= ($message['lu']?"":"info")?>" data-ID="<?= $message['id'] ?>" data-conv="<?= $message['conversation'] ?>">
+                              <td><?= $message['expediteur'] ?></td><td class="objet"><?= (!$message['origine']?"<span class=\"fa fa-chevron-right\"></span>":"")?><?= $message['objet'] ?></td>
+                              <td class="text-right"><?= $message['date'] ?></td>
+                           </tr>
                         <?php }?>
                      </tobdy>
                   </table>
@@ -55,7 +58,10 @@ header("Location:"."../");
                      </colgroup>
                      <tbody>
                      <?php foreach ($data['messageE'] as $key => $message) { ?>
-                        <tr class="showMessage not-shown" data-ID="<?= $message['id'] ?>"><td><?= $message['destinataire'] ?></td><td class="objet"><?= ($message['parent']!=0?"<span class=\"fa fa-chevron-right\"></span>":"")?><?= $message['objet'] ?></td><td class="text-right"><?= $message['date'] ?></td></tr>
+                        <tr class="showMessage not-shown" data-ID="<?= $message['id'] ?>" data-conv="<?= $message['conversation'] ?>">
+                           <td><?= $message['destinataire'] ?></td><td class="objet"><?= (!$message['origine']?"<span class=\"fa fa-chevron-right\"></span>":"")?><?= $message['objet'] ?></td>
+                           <td class="text-right"><?= $message['date'] ?></td>
+                        </tr>
                      <?php }?>
                      </tobdy>
                   </table>
@@ -69,7 +75,7 @@ header("Location:"."../");
                      </colgroup>
                      <tbody>
                         <?php foreach ($data['messageB'] as $key => $message) { ?>
-                           <tr class="showMessage not-shown" data-ID="<?= $message['id'] ?>"><td><?= $message['destinataire'] ?></td><td class="objet"><?= ($message['parent']!=0?"<span class=\"fa fa-chevron-right\"></span>":"")?><?= $message['objet'] ?></td><td class="text-right"><?= $message['date'] ?></td></tr>
+                           <tr class="showMessage not-shown" data-ID="<?= $message['id'] ?>"><td><?= $message['destinataire'] ?></td><td class="objet"><?= (!$message['origine']?"<span class=\"fa fa-chevron-right\"></span>":"")?><?= $message['objet'] ?></td><td class="text-right"><?= $message['date'] ?></td></tr>
                         <?php }?>
                         </tobdy>
                      </table>
@@ -113,15 +119,13 @@ header("Location:"."../");
                      </div>
                   </div>
                   <div id="messageContent" class="panel-body">
-                     <div class="messageInfos">
-                        <div class="messageInfoParent"></div>
-                     </div>
-                     <div class="well">
-                        <p>Bonjour,<br/>
+                     <div class="content">
+                        <div class="well">
+                           Bonjour,<br/>
                            Je vous contacte car j'ai reçu de nouvelles informations et je ne pourrais pas venir ce Week-End. Je vous préviens donc que j'annule le rendez-vous.<br/>
                            Cordialement,
                            Laurianne
-                        </p>
+                        </div>
                      </div>
                      <hr/>
                      <div>

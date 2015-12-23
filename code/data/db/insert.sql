@@ -59,8 +59,14 @@ INSERT INTO Message VALUES(1,1,2,10,'Salut tu vas bien ? On se fait une bouffe ?
 INSERT INTO Message_Tag VALUES('Amis',1);
 INSERT INTO Conversation VALUES(1,1,'Rencontre');
 INSERT INTO Conversation_Message VALUES(1,1);
-INSERT INTO Message VALUES(2,2,1,5,'Oui','2015-10-19 10:23:54');
+INSERT INTO Message VALUES(2,2,1,10,'Oui','2015-10-19 10:23:54');
 INSERT INTO Conversation_Message VALUES(2,1);
+INSERT INTO Message VALUES(3,1,2,10,'On fait ça quand, t''es dispo mardi ?','2015-10-19 17:36:21');
+INSERT INTO Conversation_Message VALUES(3,1);
+INSERT INTO Message VALUES(4,2,1,10,'Je crois bien, oui','2015-10-19 20:37:14');
+INSERT INTO Conversation_Message VALUES(4,1);
+INSERT INTO Message VALUES(5,1,2,5,'Parfait, a mardi alors.','2015-10-20 07:08:12');
+INSERT INTO Conversation_Message VALUES(5,1);
 
 
 INSERT INTO Document VALUES(1,1,'Fiche Artiste','01/01/1970',NULL,'home/ficheartiste.pdf');

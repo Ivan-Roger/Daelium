@@ -1,16 +1,18 @@
 function showMessage(e) {
    if ($(e.currentTarget).hasClass("shown"))
       return;
+   var convID = $(e.currentTarget).data().conv;
    var id = $(e.currentTarget).data().id;
    console.log("Display message "+id);
 
    $("#messageLoading").addClass("loading-start");
    $("#messageLoading").removeClass("loading-fail");
    $("#messageLoading").removeClass("loading-end");
-   $.ajax({url: "messages.ctrl.php?ajax&message&id="+id, success: function(res){
+   $.ajax({url: "messages.ctrl.php?ajax&message="+id+"&conversation="+convID, success: function(res){
       $("#messageLoading").addClass("loading-end");
       $("#messageLoading").removeClass("loading-start");
       try {
+         console.log(res);
          res = JSON.parse(res);
          console.log(res);
 
@@ -29,13 +31,20 @@ function showMessage(e) {
          $("#messageRecipient").html(res.message.destinataire);
          $("#messageSendDate").html(res.message.date);
          //$("#messageSendHour").html(res.message.hour);
-         if (res.message.parent>0) {
-            $("#messageContent .messageInfos").append($("<p class=\"messageInfoParent\">").html("Ce message est une réponse à <span class=\"showMessage not-shown showMessageText\" data-ID=\""+res.message.parent+"\">celui-ci</span>."));
-            $("#messageContent .messageInfos .messageInfoParent .showMessage.not-shown").on('click',showMessage);
-         } else {
-            $("#messageContent .messageInfos .messageInfoParent").remove();
+
+         $("#messageContent .content").html("");
+         for (var key in res.conversation.list) {
+            var cur = res.conversation.list[key];
+            linkText = (key==0?"Message originel":"Réponse #"+key);
+            if (cur[0]<res.message.id) {
+               $("#messageContent .content").append($("<div class=\"showMessage not-shown well well-sm\" data-ID=\""+cur[0]+"\" data-conv=\""+res.conversation.id+"\">").html("<b>"+linkText+"</b>"));
+            } else if (cur[0]==res.message.id) {
+               $("#messageContent .content").append($("<div class=\"well\">").html(res.message.contenu));
+            } else {
+               $("#messageContent .content").append($("<div class=\"showMessage not-shown well well-sm\" data-ID=\""+cur[0]+"\" data-conv=\""+res.conversation.id+"\">").html("<b>"+linkText+"</b>"));
+            }
          }
-         $("#messageContent .well").html(res.message.contenu);
+         $("#messageContent .content .showMessage.not-shown").on('click',showMessage);
 
          if (res.message.me='D') { // Si je suis le destinataire alors j'enregistre le message comme lu.
             $.ajax({url: "messages.ctrl.php?ajax&message&id="+res.message.id+"&setState="+10});

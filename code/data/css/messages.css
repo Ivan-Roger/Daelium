@@ -70,9 +70,9 @@ tbody > tr:first-of-type > td{
    cursor: pointer;
 }
 
-.showMessage.showMessageText {
-   text-decoration: underline;
-   color: #29F;
+#messageFrame #messageContent .content {
+   max-height: 400px;
+   overflow: auto;
 }
 
 #messageFrame #messageAnswerArea {
