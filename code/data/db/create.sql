@@ -197,8 +197,8 @@ CREATE TABLE Message (                  -- à revoir
 );
 
 CREATE TABLE Conversation_Message (
-   idMessage REFERENCES Message(idMessage),
-   idConversation REFERENCES Conversation(idConversation),
+   idMessage BIGINT REFERENCES Message(idMessage),
+   idConversation BIGINT REFERENCES Conversation(idConversation),
    PRIMARY KEY (idMessage,idConversation)
 );
 
