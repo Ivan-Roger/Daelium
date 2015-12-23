@@ -29,11 +29,13 @@ if($user->getType() == 1){ // SI ce n'est pas un organisateur alors a un message
       $data['evenement']['id'] = $_GET['id'];
       $data['evenement']['nom'] = $evt->getNom();
       if(($idlieu = $evt->getLieu()) == NULL){
-      $data['evenement']['lieu'] = "Non indiquer";
+      $data['evenement']['lieu']['adresse'] = "Non indiquer";
+      $data['evenement']['lieu']['googlemaps'] = NULL;
       }else{
+
        $lieu = $dao->readLieuById($idlieu);
        $data['evenement']['lieu']['adresse'] =  $lieu->getAdresse().", ".$lieu->getcodepostal().", ".$lieu->getVille().", ".$lieu->getPays();
-        $data['evenement']['lieu']['googlemaps'] = "https://www.google.fr/maps/place/".str_replace ( ' ' ,'+' ,$lieu->getAdresse())."+".$lieu->getcodepostal()."+".$lieu->getVille()."+".strtolower($lieu->getPays());
+       $data['evenement']['lieu']['googlemaps'] = "https://www.google.fr/maps/place/".str_replace ( ' ' ,'+' ,$lieu->getAdresse())."+".$lieu->getcodepostal()."+".$lieu->getVille()."+".strtolower($lieu->getPays());
       }
 
 

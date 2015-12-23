@@ -29,9 +29,9 @@
             <span class="col-sm-4 text-right">Organisateur</span><b class="col-sm-8 text-left" id="mailAccount">Marc-Henri Durand</b>
           </div>
           <div class="row">
-            <span class="col-sm-4 text-right">Lieu</span><b class="col-sm-8 text-left" id="mailAccount"><?= $data['evenement']['lieu']['adresse'] ?> <a href="<?=  $data['evenement']['lieu']['googlemaps'] ?>" target="_blank">
+            <span class="col-sm-4 text-right">Lieu</span><b class="col-sm-8 text-left" id="mailAccount"><?= $data['evenement']['lieu']['adresse'] ?> <?php if($data['evenement']['lieu']['googlemaps'] != NULL){ ?><a href="<?=  $data['evenement']['lieu']['googlemaps'] ?>" target="_blank">
               (Voir sur google maps)
-            </a></b>
+            </a><?php }?></b>
           </div>
         </div>
         <div class="well">
