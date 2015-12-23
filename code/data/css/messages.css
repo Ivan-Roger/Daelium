@@ -50,9 +50,13 @@ tbody > tr:first-of-type > td{
    background-color: blanchedalmond;
 }
 
+.showMessage.not-shown {
+   cursor: pointer;
+}
+
 #messageLoading.loading-start {
    background-color: #29F;
-   animation: messageLoadingStart 1.5s ease-in;
+   animation: messageLoadingStart 3.5s ease-in;
    width: 66%;
 }
 #messageLoading.loading-end {
@@ -64,10 +68,6 @@ tbody > tr:first-of-type > td{
    animation: messageLoadingFail 0.5s ease-out;
    width: 100%;
    background-color: #F42;
-}
-
-.showMessage.not-shown {
-   cursor: pointer;
 }
 
 #messageFrame #messageContent .content {
