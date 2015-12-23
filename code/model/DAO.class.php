@@ -9,6 +9,7 @@ require_once("Groupe.class.php");
 require_once("Message.class.php");
 require_once("Conversation.class.php");
 require_once("Manifestation.class.php");
+require_once("Creneau.class.php");
 
 
 class DAO {
@@ -1187,7 +1188,7 @@ class DAO {
             die("readCreneauByPrimary : Requête impossible !"); // erreur dans la requête
          }
          $res = $req->fetchAll(PDO::FETCH_CLASS,"Creneau");
-         return (isset($res[0])?$res[0]:null);
+         return (isset($res)?$res:null);
       }
 
       function readCreneauByidGroupe($idGroupe) {
@@ -1201,7 +1202,7 @@ class DAO {
             die("readCreneauByPrimary : Requête impossible !"); // erreur dans la requête
          }
          $res = $req->fetchAll(PDO::FETCH_CLASS,"Creneau");
-         return (isset($res[0])?$res[0]:null);
+         return (isset($res)?$res:null);
       }
 
       function readCreneauByidGroupeidManif($idManif, $idGroupe) {
@@ -1216,7 +1217,7 @@ class DAO {
             die("readCreneauByPrimary : Requête impossible !"); // erreur dans la requête
          }
          $res = $req->fetchAll(PDO::FETCH_CLASS,"Creneau");
-         return (isset($res[0])?$res[0]:null);
+         return (isset($res)?$res:null);
       }
 
 

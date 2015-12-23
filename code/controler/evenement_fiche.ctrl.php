@@ -49,17 +49,15 @@ if($evt->getFacebook() == NULL &&  $evt->getTwitter() == NULL && $evt->getGoogle
 }
 
 
-$dao->
+    $creneaux = $dao->readCreneauByidManif($evtid);
+    foreach ($creneaux as $key => $value) {
+      $data['passages'][$key]['date'] = $value->getDate()." ".$value->getHeureDebut();
+      $groupe = $dao->readGroupeById($value->getidGroupe());
+      $data['passages'][$key]['groupe']['nom'] = $groupe->getNom();
+      $data['passages'][$key]['groupe']['description'] = 'Rajouter un attribut description sur groupe';
+    }
 
-    $pas['date'] = "18/11/2015 21h20";
-    $pas['groupe']['nom'] = "En marche";
-    $data['passages'][] = $pas;
-
-    $pas['date'] = "18/11/2015 21h50";
-    $pas['groupe']['nom'] = "Batoucada";
-    $data['passages'][] = $pas;
-
-    $data['evenement']['img'] = "../data/users/icons/bilbao-logo.jpg";
+    $data['evenement']['img'] = "../data/users/icons/bilbao-logo.jpg";   // Image ?
     include("../view/evenement_fiche.view.php");
   }else {
     $data['error']['title'] = "Manifestation Inconnu";
