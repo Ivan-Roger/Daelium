@@ -210,9 +210,8 @@ CREATE TABLE Conversation (
 CREATE TABLE Message_Tag (
   nomt VARCHAR(255) NOT NULL,
   idMessage BIGINT,
-  idConversation BIGINT,
   PRIMARY KEY (nomt,idMessage),
-  FOREIGN KEY (idMessage,idConversation) references Message(idMessage,idConversation)
+  FOREIGN KEY (idMessage) references Message(idMessage)
 );
 
 CREATE TABLE Contact_Tag (
