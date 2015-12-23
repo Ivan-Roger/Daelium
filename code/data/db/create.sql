@@ -225,10 +225,9 @@ CREATE TABLE Contact_Tag (
 CREATE TABLE Negociation_Messages (
   idNegociation BIGINT,
   idMessage BIGINT,
-  idConversation BIGINT,
   PRIMARY KEY (idNegociation,idMessage),
   FOREIGN KEY (idNegociation) references Negociation(idNegociation),
-  FOREIGN KEY (idMessage,idConversation) references Message(idMessage,idConversation)
+  FOREIGN KEY (idMessage) references Message(idMessage)
 );
 
 
