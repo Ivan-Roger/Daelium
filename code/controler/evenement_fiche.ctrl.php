@@ -2,11 +2,7 @@
   session_start();
   include("include/auth.ctrl.php");
   require_once("../model/utils.class.php");
-  require_once("../model/DAO.class.php");
   $data = initPage("Groupes");
-  $dao = new Dao();
-
-
 
 
   $data["action"] = "";
@@ -15,37 +11,22 @@
     $data['groupe']['nom']= "En Marche";
     include("../view/groupe_fiche_edit.view.php");
   } else if(isset($_GET["id"])) {
-    $idgroupe = $_GET['id'];
-    $groupe = $dao->readGroupeById($idgroupe);
-    if($groupe != NULL){
-    $listA = $dao->readArtisteByGroupe($idgroupe);
-    $i = 0;
-    foreach ($listA as $key => $value) {
-      $artiste = $dao->readArtisteById($value);
-      $art[$i]['prenom'] = $artiste->getPrenom();
-      $art[$i]['nom'] = $artiste->getNom();
-      if($artiste->getDescription() == NULL){
-          $art[$i]['description'] = "Pas de description disponible";
-      }else{
-        $art[$i]['description'] = $artiste->getDescription();
-      }
-      $i++;
-    }
-
-    $data['artistes']= $art;
 
     $data['groupe']['id']=$_GET['id'];
-    $data['groupe']['nom'] = $groupe->getNom();
-    $data['groupe']['nb']= $i;
+    $data['groupe']['nom'] ="En Marche";
+    $data['groupe']['nb']=2;
 
+    $art['prenom'] = "Jean-Louis";
+    $art['nom'] = "Dupond";
+    $art['role'] = "Guitariste Chanteur";
+    $art['desc'] = "Guitariste du groupe et chanteur";
+    $data['artistes'][] = $art;
 
-    $bookeridlist = $dao->readListBookerByGroupe($idgroupe);
-    foreach ($bookeridlist as $key => $value) {
-      $booker = $dao->readBookerById($value);
-      $data["booker"][$key]["id"] = $value;
-      $data["booker"][$key]["nom"] = $booker->getNom();
-      $data["booker"][$key]["prenom"] = $booker->getPrenom();
-    }
+    $art['prenom'] = "Laurent";
+    $art['nom'] = "Dupuis";
+    $art['role'] = "Batteur";
+    $art['desc'] = "Batteur du groupe";
+    $data['artistes'][] = $art;
 
     $album['nom'] = "Hon Hop";
     $album['date'] = "2013";
@@ -65,12 +46,6 @@
 
     //envoie les données pour un artiste
     include("../view/groupe_fiche.view.php");
-  }else{
-    $data['error']['title'] = "Groupe Inconnu";
-    $data['error']['back'] = "../controler/main.ctrl.php";
-    $data['error']['message'] = "Le groupe que vous cherchez n'existe pas ou plus !";
-    include("../view/error.view.php");
-  }
   } else {
     $data['error']['title'] = "Groupe Inconnu";
     $data['error']['back'] = "../controler/main.ctrl.php";

@@ -5,7 +5,7 @@ DROP TABLE Booker_Groupe;
 DROP TABLE Negociation_Messages;
 DROP TABLE Contact_Tag;
 DROP TABLE Message_Tag;
-DROP TABLE Message_Conversation;
+DROP TABLE Conversation_Message;
 DROP TABLE Conversation;
 DROP TABLE Message;
 DROP TABLE Negociation_Documents;

@@ -26,12 +26,15 @@
       if ($messagesrecus!=null)
       foreach ($messagesrecus as $key => $message) {
          $userExp = $dao->readPersonneById($message->getExpediteur());
+         $convID = $dao->readConversationByMessage($message->getID());
+         $conv = $dao->readConversationById($convID);
 
          $data["messageR"][$key]["id"] = $message->getID();
          $data["messageR"][$key]["expediteur"] = $userExp->getNomComplet(); // Mettre le nom
-         $data["messageR"][$key]["objet"] = $message->getNom();
          $data["messageR"][$key]["date"] = $message->getDateenvoi();
-         $data["messageR"][$key]["parent"] = $message->getParent();
+         $data["messageR"][$key]["conversation"] = $conv->getID();
+         $data["messageR"][$key]["objet"] = $conv->getNom();
+         $data["messageR"][$key]["origine"] = $conv->getIDMessageOrigine()==$message->getID(); // Si c'est le message d'origine de la conversation
          $data["messageR"][$key]["lu"] = $message->getEtat()>=10;
 
          if ($message->getEtat()<10)
@@ -45,11 +48,14 @@
       if ($messagesenvoyes!=null)
       foreach ($messagesenvoyes as $key => $message) {
          $userRec = $dao->readPersonneById($message->getDestinataire());
+         $convID = $dao->readConversationByMessage($message->getID());
+         $conv = $dao->readConversationById($convID);
 
          $data["messageE"][$key]["id"] = $message->getID();
          $data["messageE"][$key]["destinataire"] = $userRec->getNomComplet(); // Mettre le nom
-         $data["messageE"][$key]["objet"] = $message->getNom();
-         $data["messageE"][$key]["parent"] = $message->getParent();
+         $data["messageR"][$key]["conversation"] = $conv->getID();
+         $data["messageR"][$key]["objet"] = $conv->getNom();
+         $data["messageR"][$key]["origine"] = $conv->getIDMessageOrigine()==$message->getID(); // Si c'est le message d'origine de la conversation
          $data["messageE"][$key]["date"] = $message->getDateenvoi();
 
          $DEBUG[]=$message;
@@ -79,6 +85,8 @@
       if ($message->getExpediteur()==$userid || $message->getDestinataire()==$userid) {
          $userExp = $dao->readPersonneById($message->getExpediteur());
          $userDes = $dao->readPersonneById($message->getDestinataire());
+         $convID = $dao->readConversationByMessage($message->getID());
+         $conv = $dao->readConversationById($convID);
          if (isset($_GET['setState'])) {
             $message->setEtat($_GET['setState']);
             $dao->updateMessage($message);
@@ -87,34 +95,45 @@
          $data['message']["me"] = ($message->getExpediteur()==$userid?'E':'D'); // Je suis Expediteur ou Destinataire ?
          $data['message']["destinataire"] = $userDes->getNomComplet();
          $data['message']["expediteur"] = $userExp->getNomComplet();
-         $data['message']["objet"] = $message->getNom();
          $data['message']["date"] = $message->getDateenvoi();
-         $data['message']["parent"] = $message->getParent();
+         $data["message"]["conversation"] = $conv->getID();
+         $data["message"]["objet"] = $conv->getNom();
+         $data["message"]["origine"] = $conv->getIDMessageOrigine()==$message->getID(); // Si c'est le message d'origine de la conversation
          $data['message']["contenu"] = $message->getContenu();
          $data['message']["etat"] = $message->getEtat();
       } else {
          $data['error']['title'] = "Interdit";
          $data['error']['back'] = "../controler/messages.ctrl.php";
          $data['error']['message'] = "Vous n'avez pas le droit d'accéder a ce message (".$userid."/".$message->getExpediteur().",".$message->getDestinataire().")";
-         $data['error']['code'] = 5003; // Message - Interdit
+         $data['error']['code'] = 5103; // Message - Message - Interdit
+      }
+   }
+
+   if (isset($_GET['conversation']) && isset($_GET['id'])) {
+      $conv = $dao->readConversationById($_GET['id']);
+      $pMessage = $dao->readMessageById($conv->getIDMessageOrigine());
+      if ($pMessage->getExpediteur()==$userid || $pMessage->getDestinataire()==$userid) {
+         $userExp = $dao->readPersonneById($message->getExpediteur());
+         $userDes = $dao->readPersonneById($message->getDestinataire());
+         $convID = $dao->readConversationByMessage($message->getID());
+         $conv = $dao->readConversationById($convID);
+         $data['conversation']['id'] = $conv->getID();
+         $data['conversation']["me"] = ($pMessage->getExpediteur()==$userid?'E':'D'); // Je suis Expediteur ou Destinataire ?
+         $data['conversation']["destinataire"] = $userDes->getNomComplet();
+         $data['conversation']["expediteur"] = $userExp->getNomComplet();
+         $data["conversation"]["objet"] = $conv->getNom();
+         $data["conversation"]["origine"] = $conv->getIDMessageOrigine();
+      } else {
+         $data['error']['title'] = "Interdit";
+         $data['error']['back'] = "../controler/messages.ctrl.php";
+         $data['error']['message'] = "Vous n'avez pas le droit d'accéder a cette conversation (".$userid."/".$pMessage->getExpediteur().",".$pMessage->getDestinataire().")";
+         $data['error']['code'] = 5203; // Message - Conversation - Interdit
       }
    }
 
    // ------------- DISPLAY -------------
    if (isset($_GET['ajax'])) {
-      echo("{\n");
-      if (isset($_GET['message']) && isset($_GET['id'])) {
-         if (isset($data['error'])) {
-            echo("\t\"error\": ");
-            echo(json_encode($data['error'],JSON_PRETTY_PRINT));
-            echo("\n");
-         } else {
-            echo("\t\"message\": ");
-            echo(json_encode($data['message'],JSON_PRETTY_PRINT));
-            echo("\n");
-         }
-      }
-      echo("}");
+      echo(json_encode($data,JSON_PRETTY_PRINT));
    } else {
       if (!isset($data['error']))
          include("../view/messages.view.php");
