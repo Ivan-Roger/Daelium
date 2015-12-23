@@ -102,7 +102,7 @@ header("Location:"."../");
                                  <small>de : <span id="messageSender">Laurianne</span><br/>
                                  à : <span id="messageRecipient">Moi</span></small>
                               </div>
-                              <ul class="col-sm-9 list-inline">
+                              <ul id="messageTags" class="col-sm-9 list-inline">
                                  <li><a class="btn btn-default" href="#"><span class="glyphicon glyphicon-tag no-margin"></span> Festival du lac</a></li>
                                  <li><a class="btn btn-default" href="#"><span class="glyphicon glyphicon-tag no-margin"></span> Metz</a></li>
                               </ul>
@@ -110,8 +110,6 @@ header("Location:"."../");
                            <div class="col-sm-4 text-right">
                               <div class="btn-group">
                                  <a class="btn btn-default" title="Tagger"><span class="glyphicon glyphicon-tags no-margin"></span></a>
-                                 <a class="btn btn-default" title="Favori"><span class="glyphicon glyphicon-star-empty no-margin"></span></a>
-                                 <a class="btn btn-default" title="Répondre"><span class="glyphicon glyphicon-comment no-margin"></span></a>
                                  <a class="btn btn-default" title="Transférer"><span class="glyphicon glyphicon-share-alt no-margin"></span></a>
                               </div>
                            </div>

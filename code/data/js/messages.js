@@ -46,6 +46,12 @@ function showMessage(e) {
          }
          $("#messageContent .content .showMessage.not-shown").on('click',showMessage);
 
+         $("#messageTags").html("");
+         for (var key in res.message.tags) {
+            var cur = res.message.tags[key];
+            $("#messageTags").append($("<li><button class=\"btn btn-default\"><span class=\"glyphicon glyphicon-tag\"></span>"+cur['nomt']+"</button></li>"));
+         }
+
          if (res.message.me='D') { // Si je suis le destinataire alors j'enregistre le message comme lu.
             $.ajax({url: "messages.ctrl.php?ajax&message&id="+res.message.id+"&setState="+10});
             $(".tab-content .tab-pane.messageRead tr.showMessage.shown").removeClass("info");

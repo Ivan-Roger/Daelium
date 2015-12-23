@@ -1429,7 +1429,7 @@ class DAO {
 
       // ===================== Message_Tag =====================
 
-      // Message_Tag(idMessage,tel,nom)
+      // Message_Tag(idMessage,nom)
       function readMessageTagByPrimary($nomt,$idMessage) {
          $sql = "SELECT * FROM Message_Tag WHERE  nomt=? and idMessage=?"; // requête
          $req = $this->db->prepare($sql);
@@ -1441,47 +1441,40 @@ class DAO {
          if ($res === FALSE) {
             die("readMessageTagByPrimary : Requête impossible !"); // erreur dans la requête
          }
-         $res = $req->fetchAll(PDO::FETCH_CLASS,"Message_Tag");
+         $res = $req->fetchAll();
          return (isset($res[0])?$res[0]:null);
       }
 
-      function createMessageTag($messageTag) {
-         $m = $this->db->readMessageTagByPrimary($messageTag->nomt,$messageTag->idMessage);
+      function readMessageTagsByMessage($idMessage) {
+         $sql = "SELECT * FROM Message_Tag WHERE idMessage=?"; // requête
+         $req = $this->db->prepare($sql);
+         $params = array(
+            $idMessage
+         );
+         $res = $req->execute($params);
+         if ($res === FALSE) {
+            die("readMessageTagsByMessage : Requête impossible !"); // erreur dans la requête
+         }
+         $res = $req->fetchAll();
+         return (isset($res[0])?$res:null);
+      }
+
+      function createMessageTag($nom,$idMessage) {
+         $m = $this->db->readMessageTagByPrimary($nomt,$idMessage);
          if ($m == null) {
-            $sql = "INSERT INTO Message_Tag(idMessage,tel,nomt) VALUES (?,?,?)";
+            $sql = "INSERT INTO Message_Tag(idMessage,nomt) VALUES (?,?,?)";
             $req = $this->db->prepare($sql);
             $params = array(
-               $messageTag->idMessage,
-               $messageTag->tel,
-               $messageTag->nomt
+               $idMessage,
+               $nom
             );
             $res = $req->execute($params);
             if ($res === FALSE) {
                die("createMessageTag : Requête impossible !");
             }
-            return $this->db->readMessageTagByPrimary($messageTag->nomt,$messageTag->idMessage);
+            return $this->db->readMessageTagByPrimary($nomt,$idMessage);
          } else {
-            throw DAOException("Message_Tag déjà présente dans la base");
-         }
-      }
-
-      function updateMessageTag($message) {
-         $m = $this->db->readMessageTagByPrimary($messageTag->nomt,$messageTag->idMessage);
-         if ($m != null) {
-            $sql = "UPDATE Message_Tag set (tel) = (?) where nomt=? and idMessage=? ";
-            $req = $this->db->prepare($sql);
-            $params = array(
-               $messageTag->tel,
-               $messageTag->nomt,
-               $messageTag->idMessage
-            );
-            $res = $req->execute($params);
-            if ($res === FALSE) {
-               die("updateMessageTag : Requête impossible !");
-            }
-            return $this->db->readMessageTagByPrimary($messageTag->nomt,$messageTag->idMessage);
-         } else {
-            throw DAOException("Message_Tag non présent dans la base");
+            throw DAOException("Message_Tag déjà présent dans la base");
          }
       }
 
@@ -1491,8 +1484,8 @@ class DAO {
             $sql = "DELETE FROM Message_Tag where nomt=? and idMessage=? ";
             $req = $this->db->prepare($sql);
             $params = array(
-               $messageTag->nomt,
-               $messageTag->idMessage
+               $nomt,
+               $idMessage
             );
             $res = $req->execute($params);
             if ($res === FALSE) {

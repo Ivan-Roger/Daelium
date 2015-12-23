@@ -102,6 +102,7 @@
             $data["message"]["origine"] = $conv->getIDMessageOrigine()==$message->getID(); // Si c'est le message d'origine de la conversation
             $data['message']["contenu"] = $message->getContenu();
             $data['message']["etat"] = $message->getEtat();
+            $data['message']['tags'] = $dao->readMessageTagsByMessage($message->getID());
          } else {
             $data['error']['title'] = "Interdit";
             $data['error']['back'] = "../controler/messages.ctrl.php";
@@ -121,14 +122,10 @@
       if ($conv != null) {
          $pMessage = $dao->readMessageById($conv->getIDMessageOrigine());
          if ($pMessage->getExpediteur()==$userid || $pMessage->getDestinataire()==$userid) {
-            $userExp = $dao->readPersonneById($message->getExpediteur());
-            $userDes = $dao->readPersonneById($message->getDestinataire());
             $convID = $dao->readConversationByMessage($message->getID());
             $conv = $dao->readConversationById($convID);
             $data['conversation']['id'] = $conv->getID();
             $data['conversation']["me"] = ($pMessage->getExpediteur()==$userid?'E':'D'); // Je suis Expediteur ou Destinataire ?
-            $data['conversation']["destinataire"] = $userDes->getNomComplet();
-            $data['conversation']["expediteur"] = $userExp->getNomComplet();
             $data["conversation"]["objet"] = $conv->getNom();
             $data["conversation"]["origine"] = $conv->getIDMessageOrigine();
             $data["conversation"]['list'] = $dao->readMessagesByConversation($conv->getID());
