@@ -3,18 +3,22 @@
   class Creneau {
     private $idmanif;
     private $idgroupe;
+    private $lieu;
     private $datec;
     private $heuredebut;
     private $heurefin;
     private $heuredebuttest;
     private $heurefintest;
 
-    function __construct($idmanif = NULL,$idgroupe=NULL,$datec=NULL,$heuredebut=NULL,$heurefin=NULL,$heuredebuttest=NULL,$heurefintest=NULL) {
+    function __construct($idmanif = NULL,$idgroupe=NULL,$lieu =NULL,$datec=NULL,$heuredebut=NULL,$heurefin=NULL,$heuredebuttest=NULL,$heurefintest=NULL) {
       if (!isset($this->idmanif)) {
          $this->idmanif = $idmanif;
       }
       if ($idgroupe != NULL) {
          $this->idgroupe = $idgroupe;
+      }
+      if ($lieu != NULL) {
+         $this->lieu = $lieu;
       }
       if ($datec != NULL) {
          $this->datec = $datec;
@@ -38,6 +42,9 @@
     function getidGroupe(){
       return $this->idgroupe;
     }
+    function getLieu(){
+      return $this->lieu;
+    }
     function getDate(){
       return $this->datec;
     }
@@ -60,6 +67,9 @@
     }
     function setHeureDebut($heuredebut){
      $this->heuredebut = $heuredebut;
+    }
+    function setLieu($lieu){
+     $this->lieu = $lieu;
     }
     function setHeureFin($heurefin){
      $this->heurefin = $heurefin;

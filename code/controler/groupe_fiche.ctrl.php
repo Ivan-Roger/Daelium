@@ -42,13 +42,17 @@
       $data["booker"][$key]["prenom"] = $booker->getPrenom();
     }
 
-    $album['nom'] = "Hon Hop";
-    $album['date'] = "2013";
-    $data['albums'][] = $album;
-
-    $album['nom'] = "Ping Pong";
-    $album['date'] = "2015";
-    $data['albums'][] = $album;
+    if($groupe->getFacebook() == NULL &&  $groupe->getTwitter() == NULL && $groupe->getGoogle() == NULL){
+      $data['evenement']["facebook"] = NULL;
+      $data['evenement']["twitter"] = NULL;
+      $data['evenement']["google"] = NULL;
+      $data['evenement']["rs"] = "Il n'y a pas de liens vers les reseaux sociaux";
+    }else{
+      $data['evenement']["facebook"] = $groupe->getFacebook();
+      $data['evenement']["twitter"] = $groupe->getTwitter();
+      $data['evenement']["google"] = $groupe->getGoogle();
+      $data['evenement']["rs"] ="";
+    }
 
     $lineUp['nom'] = "Hello";
     $lineUp['url'] = "https://www.youtube.com/embed/YQHsXMglC9A?feature=player_detailpage";

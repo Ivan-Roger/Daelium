@@ -37,8 +37,8 @@ INSERT INTO Manifestation VALUES(2,'Mariage de Sandra et Kevin','Mariage','Maria
 INSERT INTO Manifestation_Genre VALUES(1,'Rock');
 
 
-INSERT INTO Creneau VALUES(1,1,'01/01/2016','20:00','22:00','16:00','16:30');
-INSERT INTO Creneau VALUES(2,1,'01/07/2016','22:00','23:00',NULL,NULL);
+INSERT INTO Creneau VALUES(1,1,'Petite scene','01/01/2016','20:00','22:00','16:00','16:30');
+INSERT INTO Creneau VALUES(2,1,'Grande scene','01/07/2016','22:00','23:00',NULL,NULL);
 
 
 INSERT INTO Evenement VALUES(1,'Rendez vous chez Marc','12/02/2016','12/02/2016','15:12','15:30',NULL,NULL,1);

@@ -52,8 +52,10 @@ if($evt->getFacebook() == NULL &&  $evt->getTwitter() == NULL && $evt->getGoogle
     $creneaux = $dao->readCreneauByidManif($evtid);
     foreach ($creneaux as $key => $value) {
       $data['passages'][$key]['date'] = $value->getDate()." ".$value->getHeureDebut();
-      $groupe = $dao->readGroupeById($value->getidGroupe());
+      $idgroupe = $value->getidGroupe();
+      $groupe = $dao->readGroupeById($idgroupe);
       $data['passages'][$key]['groupe']['nom'] = $groupe->getNom();
+      $data['passages'][$key]['groupe']['id'] = $idgroupe;
       $data['passages'][$key]['groupe']['description'] = 'Rajouter un attribut description sur groupe';
     }
 

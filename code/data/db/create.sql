@@ -146,6 +146,7 @@ CREATE TABLE Contact_Evenement (
 CREATE TABLE Creneau (
   idManif         BIGINT,
   idGroupe        BIGINT,
+  lieu            VARCHAR(255),
   dateC           DATE,
   heureDebut      TIME(6),
   heureFin        TIME(6),

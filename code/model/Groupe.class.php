@@ -3,6 +3,7 @@
     private $idgroupe;
     private $nomg;
     private $email;
+    private $description;
     private $lienimageofficiel;
     private $facebook;
     private $google;
@@ -14,7 +15,7 @@
 
     private $artists; //list
 
-    function __construct($idGroupe = NULL,$nomg = NULL,$email = NULL,$lienimageofficiel = NULL,$facebook = NULL,$google = NULL,$twitter = NULL,$soundcloud = NULL,$lecteur = NULL,$fichecom = NULL,$adresse = NULL) {
+    function __construct($idGroupe = NULL,$nomg = NULL,$email = NULL,$description = NULL,$lienimageofficiel = NULL,$facebook = NULL,$google = NULL,$twitter = NULL,$soundcloud = NULL,$lecteur = NULL,$fichecom = NULL,$adresse = NULL) {
       if (!isset($this->idgroupe)) {
          $this->idgroupe = $idGroupe;
       }
@@ -23,6 +24,9 @@
       }
       if ($email != NULL) {
          $this->email = $email;
+      }
+      if ($description != NULL) {
+         $this->description = $description;
       }
       if ($lienimageofficiel != NULL) {
          $this->lienimageofficiel = $lienimageofficiel;
@@ -61,6 +65,9 @@
     function getEmail(){
       return $this->email;
     }
+    function getDescription(){
+      return $this->description;
+    }
     function getLienImageOfficiel(){
       return $this->lienimageofficiel;
     }
@@ -90,37 +97,40 @@
     }
 
     //SETTERS
-    function setNom(){
+    function setNom($nomg){
       $this->nomg = $nomg;
     }
-    function setEmail(){
+    function setEmail($email){
       $this->email = $email;
     }
-    function setLienImageOfficiel(){
+    function setLienImageOfficiel($lienimageofficiel){
       $this->lienimageofficiel = $lienimageofficiel;
     }
-    function setFacebook(){
+    function setFacebook($facebook){
       $this->facebook = $facebook;
     }
-    function setGoogle(){
+    function setDescription($description){
+      $this->description = $description;
+    }
+    function setGoogle($google){
       $this->google = $google;
     }
-    function setTwitter(){
+    function setTwitter($twitter){
       $this->twitter = $twitter;
     }
-    function setSoundcloud(){
+    function setSoundcloud($soundcloud){
       $this->soundcloud = $soundcloud;
     }
-    function setLecteur(){
+    function setLecteur($lecteur){
       $this->lecteur = $lecteur;
     }
-    function setFicheCom(){
+    function setFicheCom($ficheCom){
       $this->ficheCom = $ficheCom;
     }
-    function setAdresse(){
+    function setAdresse($adresse){
       $this->adresse = $adresse;
     }
-    function setArtistes(){
+    function setArtistes($artists){
       $this->artists = $artists;
     }
 

@@ -17,7 +17,6 @@
         $groupe =$dao->readGroupeById($value);
         $data["groupes"][$key]["id"] = $groupe->getIdGroupe();
         $data["groupes"][$key]["name"] = $groupe->getNom();
-        var_dump($groupe);
         if($groupe->getLienImageOfficiel() == NULL){
           $data['groupes'][$key]["img"] = "../data/img/icons/Group_64px.png";
         }else {

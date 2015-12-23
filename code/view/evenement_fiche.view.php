@@ -80,6 +80,7 @@ header("Location:"."../");
                       </div>
                       <div id="collapsePassage<?= $key ?>" class="panel-collapse collapse" aria-expanded="false" role="tabpanel" aria-labelledby="headingArtist<?= $key ?>">
                         <div class="panel-body">
+                          <a class="btn btn-primary" href="../controler/groupe_fiche.ctr.php?id=<?= $pas['groupe']['id']?>">Voir Fiche</a>
                           <?= $pas['groupe']['description'] ?>
                         </div>
                       </div>
