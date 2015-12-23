@@ -1176,6 +1176,51 @@ class DAO {
          return (isset($res[0])?$res[0]:null);
       }
 
+      function readCreneauByidManif($idManif) {
+         $sql = "SELECT * FROM Creneau WHERE idManif=?"; // requête
+         $req = $this->db->prepare($sql);
+         $params = array(
+            $idManif
+         );
+         $res = $req->execute($params);
+         if ($res === FALSE) {
+            die("readCreneauByPrimary : Requête impossible !"); // erreur dans la requête
+         }
+         $res = $req->fetchAll(PDO::FETCH_CLASS,"Creneau");
+         return (isset($res[0])?$res[0]:null);
+      }
+
+      function readCreneauByidGroupe($idGroupe) {
+         $sql = "SELECT * FROM Creneau WHERE idGroupe=?"; // requête
+         $req = $this->db->prepare($sql);
+         $params = array(
+            $idGroupe
+         );
+         $res = $req->execute($params);
+         if ($res === FALSE) {
+            die("readCreneauByPrimary : Requête impossible !"); // erreur dans la requête
+         }
+         $res = $req->fetchAll(PDO::FETCH_CLASS,"Creneau");
+         return (isset($res[0])?$res[0]:null);
+      }
+
+      function readCreneauByidGroupeidManif($idManif, $idGroupe) {
+         $sql = "SELECT * FROM Creneau WHERE idManif=? and idGroupe=?"; // requête
+         $req = $this->db->prepare($sql);
+         $params = array(
+            $idManif,
+            $idGroupe
+         );
+         $res = $req->execute($params);
+         if ($res === FALSE) {
+            die("readCreneauByPrimary : Requête impossible !"); // erreur dans la requête
+         }
+         $res = $req->fetchAll(PDO::FETCH_CLASS,"Creneau");
+         return (isset($res[0])?$res[0]:null);
+      }
+
+
+
       function createCreneau($creneau) {
          $c = $this->db->readCreneauByPrimary($creneau->idManif,$creneau->idGroupe,$creneau->heureDebut);
          if ($c == null) {

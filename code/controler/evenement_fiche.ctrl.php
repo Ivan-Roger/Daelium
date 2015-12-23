@@ -22,6 +22,10 @@ if (isset($_GET['id'])) { // Si il n'y a pas d'id alors -> message d'erreur
     $data['evenement']['organisateur'] = $organisateur->getPrenom()." ".$organisateur->getNom();
     $data['evenement']['id'] = $_GET['id'];
     $data['evenement']['nom'] = $evt->getNom();
+    $data['evenement']['type'] = $evt->getType();
+    $data['evenement']['tarif'] = $evt->getType();
+    $data['evenement']['dated'] = $evt->getDateDebut();
+    $data['evenement']['datef'] = $evt->getDateFin();
     if(($idlieu = $evt->getLieu()) == NULL){
       $data['evenement']['lieu']['adresse'] = "Non indiquer";
       $data['evenement']['lieu']['googlemaps'] = NULL;
@@ -30,6 +34,23 @@ if (isset($_GET['id'])) { // Si il n'y a pas d'id alors -> message d'erreur
       $data['evenement']['lieu']['adresse'] =  $lieu->getAdresse().", ".$lieu->getcodepostal().", ".$lieu->getVille().", ".$lieu->getPays();
       $data['evenement']['lieu']['googlemaps'] = "https://www.google.fr/maps/place/".str_replace ( ' ' ,'+' ,$lieu->getAdresse())."+".$lieu->getcodepostal()."+".$lieu->getVille()."+".strtolower($lieu->getPays());
     }
+
+//Reseaux sociaux
+if($evt->getFacebook() == NULL &&  $evt->getTwitter() == NULL && $evt->getGoogle() == NULL){
+  $data['evenement']["facebook"] = NULL;
+  $data['evenement']["twitter"] = NULL;
+  $data['evenement']["google"] = NULL;
+  $data['evenement']["rs"] = "Il n'y a pas de liens vers les reseaux sociaux";
+}else{
+  $data['evenement']["facebook"] = $evt->getFacebook();
+  $data['evenement']["twitter"] = $evt->getTwitter();
+  $data['evenement']["google"] = $evt->getGoogle();
+  $data['evenement']["rs"] ="";
+}
+
+
+$dao->
+
     $pas['date'] = "18/11/2015 21h20";
     $pas['groupe']['nom'] = "En marche";
     $data['passages'][] = $pas;

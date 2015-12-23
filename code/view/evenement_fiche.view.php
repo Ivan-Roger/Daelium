@@ -15,7 +15,7 @@
       <img class="wall-pic" src="https://cdn2.artstation.com/p/assets/images/images/001/023/866/large/samma-van-klaarbergen-patrick-watson2.jpg?1438415706"/>
       <div class="groupInfo col-lg-10 col-lg-offset-1">
         <div class="groupPic col-sm-1 text-right"><img src="../data/img/icons/Evenement_64px.png" alt="Image de Profil"></div>
-        <h3 class="col-sm-9"><?= $data['evenement']['nom'] ?></h3>
+        <h3 class="col-sm-9"><?= $data['evenement']['nom'] ?> (<?= $data['evenement']['type'] ?>)</h3>
         <div class="controls col-sm-2 text-right">
           <a class="btn btn-primary" href="../controler/evenement.ctrl.php?id=<?= $data['evenement']['id'] ?>&action=edit">Editer</a>
         </div>
@@ -33,9 +33,15 @@
               (Voir sur google maps)
             </a><?php }?></b>
           </div>
+          <div class="row">
+            <span class="col-sm-4 text-right">Date de début</span><b class="col-sm-8 text-left" id="mailAccount"> <?= $data['evenement']['dated'] ?></b>
+          </div>
+          <div class="row">
+            <span class="col-sm-4 text-right">Date de fin</span><b class="col-sm-8 text-left" id="mailAccount"><?= $data['evenement']['datef'] ?></b>
+          </div>
         </div>
         <div class="well">
-          <h4>Description :</h4>
+          <h4>Presentation :</h4>
           <p>Dumque ibi diu moratur commeatus opperiens, quorum translationem ex Aquitania verni imbres solito crebriores prohibebant auctique torrentes, Herculanus advenit protector domesticus, Hermogenis ex magistro equitum filius, apud Constantinopolim, ut supra rettulimus, populari quondam turbela discerpti. quo verissime referente quae Gallus egerat, damnis super praeteritis maerens et futurorum timore suspensus angorem animi quam diu potuit emendabat.<br/>
 Hinc ille commotus ut iniusta perferens et indigna praefecti custodiam protectoribus mandaverat fidis. quo conperto Montius tunc quaestor acer quidem sed ad lenitatem propensior, consulens in commune advocatos palatinarum primos scholarum adlocutus est mollius docens nec decere haec fieri nec prodesse addensque vocis obiurgatorio sonu quod si id placeret, post statuas Constantii deiectas super adimenda vita praefecto conveniet securius cogitari.<br/>
 Quam ob rem cave Catoni anteponas ne istum quidem ipsum, quem Apollo, ut ais, sapientissimum iudicavit; huius enim facta, illius dicta laudantur. De me autem, ut iam cum utroque vestrum loquar, sic habetote.<br/>
@@ -44,12 +50,25 @@ Postremo ad id indignitatis est ventum, ut cum peregrini ob formidatam haut ita 
         </div>
       </article>
       <article class="col-lg-6">
-        <div class="well">
+
+        
+        <div class="well"> <!-- Reseaux sociaux -->
           <h4>Reseaux sociaux :</h4>
+          <?= $data['evenement']["rs"] ?>
+          <?php if($data['evenement']["facebook"] != NULL){ ?>
+          <a href="<?= $data['evenement']["facebook"]  ?>">Facebook : <img src="../data/img/icons/facebook.jpg" height="50" width="50"  alt="facebook"/></a>
+          <?php } if($data['evenement']["google"] != NULL){ ?>
+          <a href="<?= $data['evenement']["google"]  ?>">Google + : <img src="../data/img/icons/google+.jpeg" height="50" width="50" alt="Google +"/></a>
+          <?php } if($data['evenement']["twitter"] != NULL){ ?>
+          <a href="<?= $data['evenement']["twitter"]  ?>">Twitter : <img src="../data/img/icons/twitter.jpg" height="50" width="50" alt="Twitter"/></a>
+          <?php } ?>
           <p></p>
-        </div>
+        </div> <!-- FIN Reseaux sociaux -->
+
+
+
         <div class="col-lg-12 well">
-          <h4>Passages : </h4>
+          <h4>Programation : </h4>
           <div class="panel-group" id="accordion" role="tablist">
             <?php foreach($data['passages'] as $key => $pas) { ?>
               <div class="panel panel-default">
