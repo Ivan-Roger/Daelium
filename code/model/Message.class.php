@@ -1,5 +1,6 @@
 <?php
-   include("../model/Utilisateur.class.php");
+include("../model/Utilisateur.class.php");
+
    class Message {
       private $idmessage;
       private $idConversation;
@@ -36,35 +37,54 @@
             $this->idConversation = $idConversation;
          }
       }
+      
+      // ********************************
+      //        Fonctions getter
+      // ********************************
+      // getter de l'id du message
       function getID(){
          return $this->idmessage;
       }
+      // getter de l'expéditeur du message
       function getExpediteur(){
          return $this->expediteur;
       }
+      // getter du destinataire du message
       function getDestinataire(){
          return $this->receveur;
       }
+      // getter du contenu du message
       function getContenu(){
          return $this->contenu;
       }
+      // getter de la date d'envoi du message
       function getDateenvoi(){
          return $this->dateenvoi;
       }
+      // getter du nom du message
       function getNom(){
          return $this->nom;
       }
+      // getter du parent du message ?????
       function getParent(){
          return $this->reponse;
       }
+      // getter de l'etat du message
       function getEtat(){
          return $this->etat;
-      }
-      function setEtat($etat){
-         $this->etat=$etat;
-      }
+      }      
+      // getter de l'id de la conversation à laquelle appartient le message
       function getIdConversation(){
          return $this->idConversation;
+      }
+
+
+      // ********************************
+      //        Fonctions setter
+      // ********************************
+      // setter de l'etat du message
+      function setEtat($etat){
+         $this->etat=$etat;
       }
    }
 ?>
