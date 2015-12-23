@@ -247,25 +247,6 @@ private function createUtilisateur($utilisateur) { // peut etre mettre une perso
   }
 }
 
-// function createUtilisateur($utilisateur) { // peut etre mettre une personne en paramettre
-//   $u = $this->db->readUserByEmail($utilisateur->email);
-//   if ($u == null) {
-//     $sql = "INSERT INTO Users(emailCompte,mdp) VALUES (?,?)";
-//     $req = $this->db->prepare($sql);
-//     $params = array(
-//       $utilisateur->emailCompte,
-//       $utilisateur->mdp
-//     );
-//     $res = $req->execute($params);
-//     if ($res === FALSE) {
-//       die("createUser : Requête impossible !");
-//     }
-//     return $this->db->readUserById($utilisateur->idUtilisateur);
-//   } else {
-//     throw DAOException("utilisateur déjà présent dans la base (l'id en tous cas)");
-//   }
-// }
-
 // aussi la PERSONNE
 function updateUtilisateur($utilisateur) {
   $u = $this->db->readUserByEmail($utilisateur->email);
@@ -285,6 +266,37 @@ function updateUtilisateur($utilisateur) {
     return $this->db->readUserById($utilisateur->idUtilisateur);
   } else {
     throw DAOException("Utilisateur non présent dans la base de données !");
+  }
+}
+
+function deleteUtilisateurById($idUtilisateur) {
+  $u = $this->db->readUtilisateurById($idUtilisateur);
+  if ($u != null) {
+    $sql = "DELETE FROM Utilisateur where idUtilisateur = ?";
+    $req = $this->db->prepare($sql);
+    $params = array(
+      $idUtilisateur
+    );
+    $res = $req->execute($params);
+    if ($res === FALSE) {
+      die("deleteUtilisateurById : Requête impossible !");
+    }
+    $contactSupr = $this->db->deleteContactByPrimary($idUtilisateur);
+
+    if ($this->$db->readBookerById($idUtilisateur) != null) {
+          $roleSupr = $this->db->deleteBookerByPrimary(); //pas fini
+    } else {
+          $roleSupr = $this->db->deleteOrganisateurByPrimary(); // pas fini
+    }
+
+    $eventSupr = $this->db->deleteEvenementByPrimary($idUtilisateur); // pas fini
+
+    $this->db->deleteMessageByPrimary();
+    $this->db->deleteDocumentByPrimary();
+    return ($contactSupr && $roleSupr &&);
+
+  } else {
+    throw DAOException("Utilisateur non présent dans la base, supression impossible");
   }
 }
 
@@ -330,6 +342,24 @@ function createBooker($booker) {
   }
 }
 
+function deleteBookerById($idBooker) {
+  $b = $this->db->readBookerById($idBooker);
+  if ($b != null) {
+    $sql = "DELETE FROM Booker where idBooker = ?";
+    $req = $this->db->prepare($sql);
+    $params = array(
+      $idBooker
+    );
+    $res = $req->execute($params);
+    if ($res === FALSE) {
+      die("deleteBookerById : Requête impossible !");
+    }
+    return $this->db->deleteBookerGroupeByIdBooker($idBooker);
+  } else {
+    throw DAOException("Booker non présent dans la base, supression impossible");
+  }
+}
+
 // ===================== Organisateur =====================
 function readOrganisateurById($id) {
   $sql = "SELECT * FROM Organisateur WHERE idOrganisateur = ?"; // requête
@@ -354,7 +384,7 @@ function createOrganisateur($organisateur) {
   $o = $this->db->readBookerById($organisateur->$idOrganisateur);
   if ($o == null) {
     $this->createUtilisateur($organisateur);
-    $sql = "INSERT INTO $organisateur(idOrganisateur) VALUES (?)";
+    $sql = "INSERT INTO Organisateur (idOrganisateur) VALUES (?)";
     $req = $this->db->prepare($sql);
     $params = array(
       $organisateur->idOrganisateur
@@ -366,6 +396,24 @@ function createOrganisateur($organisateur) {
     return $this->db->createOrganisateur($organisateur->id);
   } else {
     throw DAOException("Organisateur déjà présent dans la base");
+  }
+}
+
+function deleteBookerById($idOrganisateur) {
+  $o = $this->db->readOrganisateurById($idOrganisateur);
+  if ($o != null) {
+    $sql = "DELETE FROM Organisateur where idOrganisateur = ?";
+    $req = $this->db->prepare($sql);
+    $params = array(
+      $idOrganisateur
+    );
+    $res = $req->execute($params);
+    if ($res === FALSE) {
+      die("deleteBookerById : Requête impossible !");
+    }
+    return true;
+  } else {
+    throw DAOException("Booker non présent dans la base, supression impossible");
   }
 }
 
@@ -897,6 +945,24 @@ function updateEvenenement($evenenement) {
   }
 }
 
+function deleteEvenementByIdCreateur($idCreateur) {
+  $e = $this->db->readEvenenementByCreateur($idCreateur);
+  if ($e != null) {
+    $sql = "DELETE FROM Evenenement where createur = ?";
+    $req = $this->db->prepare($sql);
+    $params = array(
+      $idCreateur
+    );
+    $res = $req->execute($params);
+    if ($res === FALSE) {
+      die("deleteEvenementByIdCreateur : Requête impossible !");
+    }
+    return true;
+  } else {
+    throw DAOException("Evenenement non présent dans la base, supression impossible");
+  }
+}
+
 // ===================== Contact =====================
 
 //Contact(idContact,proprietaire,notes)
@@ -913,6 +979,20 @@ function readContactByPrimary($idContact,$proprietaire) {
   }
   $res = $req->fetchAll(PDO::FETCH_CLASS,"Contact");
   return (isset($res[0])?$res[0]:null);
+}
+
+function readContactByProprietaire($proprietaire) {
+  $sql = "SELECT * FROM Contact WHERE proprietaire = ?"; // requête
+  $req = $this->db->prepare($sql);
+  $params = array(
+    $proprietaire
+  );
+  $res = $req->execute($params);
+  if ($res === FALSE) {
+    die("readContactByProprietaire : Requête impossible !"); // erreur dans la requête
+  }
+  $res = $req->fetchAll(PDO::FETCH_CLASS,"Contact");
+  return (isset($res[0])?$res:null);
 }
 
 function createContact($contact) {
@@ -954,6 +1034,26 @@ function updateContact($contact) {
     throw DAOException("Contact non présent dans la base");
   }
 }
+
+function deleteContactById($proprietaire) {
+  $c = $this->db->readContactByProprietaire($proprietaire);
+  if ($c != null) {
+    $sql = "DELETE FROM Contact where Proprietaire = ? or idContact = ?";
+    $req = $this->db->prepare($sql);
+    $params = array(
+      $proprietaire,
+      $proprietaire
+    );
+    $res = $req->execute($params);
+    if ($res === FALSE) {
+      die("deleteContactById : Requête impossible !");
+    }
+    return true;
+  } else {
+    throw DAOException("Contact non présent dans la base, supression impossible");
+  }
+}
+
 
 // ===================== Contact_Systeme =====================
 
@@ -1305,6 +1405,20 @@ function readNegociationById($id) {
   return (isset($res[0])?$res[0]:null);
 }
 
+function readNegociationByIdBooker($idBooker) {
+  $sql = "SELECT * FROM Negociation WHERE  idBooker  =?"; // requête
+  $req = $this->db->prepare($sql);
+  $params = array(
+    $idBooker
+  );
+  $res = $req->execute($params);
+  if ($res === FALSE) {
+    die("readNegociationByIdBooker : Requête impossible !"); // erreur dans la requête
+  }
+  $res = $req->fetchAll(PDO::FETCH_CLASS,"Negociation");
+  return (isset($res[0])?$res:null);
+}
+
 function createNegociation($negociation) {
   $n = $this->db->readNegociationById($negociation->idNegociation);
   if ($n == null) {
@@ -1350,6 +1464,33 @@ function updateNegociation($negociation) {
   }
 }
 
+function deleteNegociationByIdBooker($idBooker) {
+  $n = $this->db->readNegociationByIdBooker($idBooker);
+  if ($n != null) {
+    foreach ($n as $negociation) {
+      try {
+        $this->db->deleteNegociationMessagesByIdNegociation($negociation->idNegociation);
+      } catch (DAOException $e) {}
+      try {
+        $this->db->deleteNegociationDocumentsByIdNegociation($negociation->idNegociation);
+      } catch (DAOException $e) {}
+    }
+
+    $sql = "DELETE FROM Negociation where idBooker = ?";
+    $req = $this->db->prepare($sql);
+    $params = array(
+      $idBooker
+    );
+    $res = $req->execute($params);
+    if ($res === FALSE) {
+      die("deleteNegociationByIdBooker : Requête impossible !");
+    }
+    return true;
+  } else {
+    throw DAOException("Negociation non présente dans la base, supression impossible");
+  }
+}
+
 // ===================== Negociation_Documents =====================
 
 // Negociation_Documents(idDoc,idNegociation)
@@ -1368,6 +1509,20 @@ function readNegociationDocumentsByPrimary($idNegociation,$idDoc) {
   return (isset($res[0])?$res[0]:null);
 }
 
+function readNegociationDocumentsByIdNegociation($idNegociation) {
+  $sql = "SELECT * FROM Negociation_Documents WHERE  idNegociation=? "; // requête
+  $req = $this->db->prepare($sql);
+  $params = array(
+    $idNegociation,
+  );
+  $res = $req->execute($params);
+  if ($res === FALSE) {
+    die("readNegociationDocumentsByIdNegociation : Requête impossible !"); // erreur dans la requête
+  }
+  $res = $req->fetchAll(PDO::FETCH_CLASS,"Negociation_Documents");
+  return (isset($res[0])?$res:null);
+}
+
 function createNegociationDocuments($negociationDoc) {
   $n = $this->db->readNegociationDocumentsByPrimary($negociationDoc->idNegociation,$negociationDoc->idDoc);
   if ($n == null) {
@@ -1384,6 +1539,24 @@ function createNegociationDocuments($negociationDoc) {
     return $this->db->readNegociationDocumentsByPrimary($negociationDoc->idNegociation,$negociationDoc->idDoc);
   } else {
     throw DAOException("Negociation_Documents déjà présente dans la base");
+  }
+}
+
+function deleteNegociationDocumentsByIdNegociation($idNegociation) {
+  $n = $this->db->readNegociationDocumentsByIdNegociation($idNegociation);
+  if ($n != null) {
+    $sql = "DELETE FROM Negociation where idNegociation = ?";
+    $req = $this->db->prepare($sql);
+    $params = array(
+      $idNegociation
+    );
+    $res = $req->execute($params);
+    if ($res === FALSE) {
+      die("deleteNegociationDocumentsByIdNegociation : Requête impossible !");
+    }
+    return true;
+  } else {
+    throw DAOException("Negociation_Documents non présente dans la base, supression impossible");
   }
 }
 
@@ -1565,6 +1738,24 @@ function createBookerGroupe($idBooker, $idGroupe) {
     return $this->db->readBookerGroupeByPrimary($idBooker,$idGroupe);
   } else {
     throw DAOException("Booker_Groupe déjà présente dans la base");
+  }
+}
+
+function deleteBookerGroupeByIdBooker($idBooker) {
+  $b = $this->db->readListGroupeByBooker($idBooker);
+  if ($b != null) {
+    $sql = "DELETE FROM Booker_Groupe where idBooker = ?";
+    $req = $this->db->prepare($sql);
+    $params = array(
+      $idBooker
+    );
+    $res = $req->execute($params);
+    if ($res === FALSE) {
+      die("deleteBookerGroupeByIdBooker : Requête impossible !");
+    }
+    return true;
+  } else {
+    throw DAOException("Booker_Groupe non présent dans la base, supression impossible");
   }
 }
 
