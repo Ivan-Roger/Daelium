@@ -72,7 +72,7 @@
   }
     }else {
       $data['error']['title'] = "Acces Interdit";
-      $data['error']['message'] = "Vous ne pouvez pas venir ici, cet espace est reservé aux bookers";
+      $data['error']['message'] = "Vous ne pouvez pas venir ici, cet espace est reservé au booker du Groupe";
       $data['error']['back'] = "../controler/main.ctrl.php";
       include("../view/error.view.php");
     }

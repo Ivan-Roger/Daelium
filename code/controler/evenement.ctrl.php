@@ -3,14 +3,24 @@
   //include_once("../model/Artist.class.php");
   include("include/auth.ctrl.php");
   require_once("../model/utils.class.php");
+  require_once("../model/DAO.class.php");
   $data = initPage("Events");
+  $dao = new Dao();
+
+  $user = $dao->readPersonneById($_SESSION["user"]["ID"]);
+  if($user->getType() == 1){ // SI booker
 
   if (isset($_GET['id']) && $_GET['id'] != "") {
     // Recupérer les données depuis la BD avec l'id ($_GET['id'])
+    $evt = $dao->readManifestationById($_GET['id']);
+    var_dump($evt);
+    //Information sur l'evt !
     $data['evenement']['id'] = $_GET['id'];
-    $data['evenement']['nom'] = "Bilbao BBK Live";
-    $data['evenement']['lieu'] = "Villard de Lans";
+    $data['evenement']['nom'] = $evt->getNom();
+    $data['evenement']['lieu'] = "Non indiquer";
 
+
+    // Info sur les passages
     $pas['date'] = "18/11/2015 21h20";
     $pas['groupe']['nom'] = "En marche";
     $data['passages'][] = $pas;
@@ -84,4 +94,11 @@
     $data['page'] = "Error";
     include("../view/error.view.php");
   }
+
+}else {
+  $data['error']['title'] = "Acces Interdit";
+  $data['error']['message'] = "Vous ne pouvez pas venir ici, cet espace est reservé à l'organisateur de la manifestation.";
+  $data['error']['back'] = "../controler/main.ctrl.php";
+  include("../view/error.view.php");
+}
 ?>

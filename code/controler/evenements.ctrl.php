@@ -2,18 +2,32 @@
   session_start();
   include("include/auth.ctrl.php");
   require_once("../model/utils.class.php");
+  require_once("../model/DAO.class.php");
   $data = initPage("Events");
+  $dao = new Dao();
 
-  // Recupérer les données depuis la BD
-  $evt['id'] = "fhdg8x5x8bncx5";
-  $evt['name'] = "Evenement 1";
-  $evt['img'] = "../data/img/icons/calendar_64px.png";
-  $data['evenements'][] = $evt;
 
-  $evt['id'] = "8fgb5wsd63w7sxa";
-  $evt['name'] = "Bilbao BBK live";
-  $evt['img'] = "../data/users/icons/bilbao-logo.jpg";
-  $data['evenements'][] = $evt;
+  $userid= $_SESSION["user"]["ID"];
+  $user = $dao->readPersonneById($userid);
+  if($user->getType() == 1){ // SI booker
+
+  $list = $dao->readManifestationByCreateur($userid);
+  foreach ($list as $key => $value) {
+    $data['evenements'][$key]["id"] = $value->getidManif();
+    $data['evenements'][$key]["name"] = $value->getNom();
+    if($value->getLienImageOfficiel() == NULL){
+      $data['evenements'][$key]["img"] = "../data/img/icons/calendar_64px.png";
+    }else {
+      $data['evenements'][$key]["img"] = $value->getLienImageOfficiel();
+    }
+
+  }
 
   include("../view/evenements.view.php");
+}else {
+  $data['error']['title'] = "Acces Interdit";
+  $data['error']['message'] = "Vous ne pouvez pas venir ici, cet espace est reservé aux Organisateurs";
+  $data['error']['back'] = "../controler/main.ctrl.php";
+  include("../view/error.view.php");
+}
 ?>
