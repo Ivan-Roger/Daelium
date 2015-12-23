@@ -56,11 +56,12 @@ INSERT INTO Contact_Tag VALUES('Amis',1,3);
 
 
 INSERT INTO Message VALUES(1,1,2,10,'Salut tu vas bien ? On se fait une bouffe ?','2015-10-19 10:23:54');
-INSERT INTO Conversation VALUES(1,'rencontre');
+INSERT INTO Message_Tag VALUES('Amis',1);
+INSERT INTO Conversation VALUES(1,1,'Rencontre');
 INSERT INTO Conversation_Message VALUES(1,1);
 INSERT INTO Message VALUES(2,2,1,5,'Oui','2015-10-19 10:23:54');
 INSERT INTO Conversation_Message VALUES(2,1);
-INSERT INTO Message_Tag VALUES('Amis',1);
+
 
 INSERT INTO Document VALUES(1,1,'Fiche Artiste','01/01/1970',NULL,'home/ficheartiste.pdf');
 INSERT INTO Document VALUES(2,1,'Fiche Groupe','01/01/1970',NULL,'home/fichegroupe.pdf');

@@ -187,17 +187,16 @@ CREATE TABLE Negociation_Documents (
 
 CREATE TABLE Message (                  -- à revoir
   idMessage SERIAL PRIMARY KEY,
-  expediteur BIGINT,
-  receveur  BIGINT,
+  expediteur BIGINT REFERENCES Utilisateur(idUtilisateur),
+  destinataire BIGINT REFERENCES Utilisateur(idUtilisateur),
   etat integer,
   contenu TEXT,
-  dateenvoi timestamp,
-  FOREIGN KEY (receveur) references Utilisateur(idUtilisateur),
-  FOREIGN KEY (expediteur) references Utilisateur(idUtilisateur)
+  dateenvoi timestamp
 );
 
 CREATE TABLE Conversation (
    idConversation SERIAL PRIMARY KEY,
+   idPremierMessage BIGINT REFERENCES Message(idMessage),
    nom varchar(255)
 );
 

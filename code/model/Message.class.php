@@ -1,31 +1,24 @@
 <?php
-include("../model/Utilisateur.class.php");
-
    class Message {
       private $idmessage;
-      private $idConversation;
       private $expediteur;
-      private $receveur;
+      private $destinataire;
       private $etat;
-      private $nom;
       private $contenu;
       private $dateenvoi;
 
-      function __construct($idmessage = NULL,$idConversation =NULL,$expediteur = NULL,$receveur = NULL,$etat = NULL,$nom = NULL,$contenu = NULL,$dateenvoi = NULL) {
+      function __construct($idmessage = NULL,$expediteur = NULL,$destinataire = NULL,$etat = NULL,$contenu = NULL,$dateenvoi = NULL) {
          if (!isset($this->idmessage)) {
             $this->idmessage = $idmessage;
          }
          if($expediteur != NULL){
             $this->expediteur = $expediteur;
          }
-         if($receveur != NULL){
-            $this->receveur = $receveur;
+         if($destinataire != NULL){
+            $this->destinataire = $destinataire;
          }
          if($etat != NULL){
             $this->etat = $etat;
-         }
-         if($nom != NULL){
-            $this->nom = $nom;
          }
          if($contenu != NULL){
             $this->contenu = $contenu;
@@ -33,11 +26,8 @@ include("../model/Utilisateur.class.php");
          if($dateenvoi != NULL){
             $this->dateenvoi = $dateenvoi;
          }
-         if($idConversation != NULL){
-            $this->idConversation = $idConversation;
-         }
       }
-      
+
       // ********************************
       //        Fonctions getter
       // ********************************
@@ -45,13 +35,13 @@ include("../model/Utilisateur.class.php");
       function getID(){
          return $this->idmessage;
       }
-      // getter de l'expéditeur du message
+      // getter de l'expediteur du message
       function getExpediteur(){
          return $this->expediteur;
       }
       // getter du destinataire du message
       function getDestinataire(){
-         return $this->receveur;
+         return $this->destinataire;
       }
       // getter du contenu du message
       function getContenu(){
@@ -61,21 +51,9 @@ include("../model/Utilisateur.class.php");
       function getDateenvoi(){
          return $this->dateenvoi;
       }
-      // getter du nom du message
-      function getNom(){
-         return $this->nom;
-      }
-      // getter du parent du message ?????
-      function getParent(){
-         return $this->reponse;
-      }
       // getter de l'etat du message
       function getEtat(){
          return $this->etat;
-      }      
-      // getter de l'id de la conversation à laquelle appartient le message
-      function getIdConversation(){
-         return $this->idConversation;
       }
 
 
