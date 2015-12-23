@@ -50,9 +50,13 @@ tbody > tr:first-of-type > td{
    background-color: blanchedalmond;
 }
 
+.showMessage.not-shown {
+   cursor: pointer;
+}
+
 #messageLoading.loading-start {
    background-color: #29F;
-   animation: messageLoadingStart 1.5s ease-in;
+   animation: messageLoadingStart 3.5s ease-in;
    width: 66%;
 }
 #messageLoading.loading-end {
@@ -66,13 +70,9 @@ tbody > tr:first-of-type > td{
    background-color: #F42;
 }
 
-.showMessage.not-shown {
-   cursor: pointer;
-}
-
-.showMessage.showMessageText {
-   text-decoration: underline;
-   color: #29F;
+#messageFrame #messageContent .content {
+   max-height: 400px;
+   overflow: auto;
 }
 
 #messageFrame #messageAnswerArea {

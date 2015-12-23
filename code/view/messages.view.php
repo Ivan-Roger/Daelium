@@ -41,7 +41,10 @@ header("Location:"."../");
                      </colgroup>
                      <tbody>
                         <?php foreach ($data['messageR'] as $key => $message) { ?>
-                           <tr class="showMessage not-shown <?= ($message['lu']?"":"info")?>" data-ID="<?= $message['id'] ?>"><td><?= $message['expediteur'] ?></td><td class="objet"><?= ($message['parent']!=0?"<span class=\"fa fa-chevron-right\"></span>":"")?><?= $message['objet'] ?></td><td class="text-right"><?= $message['date'] ?></td></tr>
+                           <tr class="showMessage not-shown <?= ($message['lu']?"":"info")?>" data-ID="<?= $message['id'] ?>" data-conv="<?= $message['conversation'] ?>">
+                              <td><?= $message['expediteur'] ?></td><td class="objet"><?= (!$message['origine']?"<span class=\"fa fa-chevron-right\"></span>":"")?><?= $message['objet'] ?></td>
+                              <td class="text-right"><?= $message['date'] ?></td>
+                           </tr>
                         <?php }?>
                      </tobdy>
                   </table>
@@ -55,7 +58,10 @@ header("Location:"."../");
                      </colgroup>
                      <tbody>
                      <?php foreach ($data['messageE'] as $key => $message) { ?>
-                        <tr class="showMessage not-shown" data-ID="<?= $message['id'] ?>"><td><?= $message['destinataire'] ?></td><td class="objet"><?= ($message['parent']!=0?"<span class=\"fa fa-chevron-right\"></span>":"")?><?= $message['objet'] ?></td><td class="text-right"><?= $message['date'] ?></td></tr>
+                        <tr class="showMessage not-shown" data-ID="<?= $message['id'] ?>" data-conv="<?= $message['conversation'] ?>">
+                           <td><?= $message['destinataire'] ?></td><td class="objet"><?= (!$message['origine']?"<span class=\"fa fa-chevron-right\"></span>":"")?><?= $message['objet'] ?></td>
+                           <td class="text-right"><?= $message['date'] ?></td>
+                        </tr>
                      <?php }?>
                      </tobdy>
                   </table>
@@ -69,7 +75,7 @@ header("Location:"."../");
                      </colgroup>
                      <tbody>
                         <?php foreach ($data['messageB'] as $key => $message) { ?>
-                           <tr class="showMessage not-shown" data-ID="<?= $message['id'] ?>"><td><?= $message['destinataire'] ?></td><td class="objet"><?= ($message['parent']!=0?"<span class=\"fa fa-chevron-right\"></span>":"")?><?= $message['objet'] ?></td><td class="text-right"><?= $message['date'] ?></td></tr>
+                           <tr class="showMessage not-shown" data-ID="<?= $message['id'] ?>"><td><?= $message['destinataire'] ?></td><td class="objet"><?= (!$message['origine']?"<span class=\"fa fa-chevron-right\"></span>":"")?><?= $message['objet'] ?></td><td class="text-right"><?= $message['date'] ?></td></tr>
                         <?php }?>
                         </tobdy>
                      </table>
@@ -96,7 +102,7 @@ header("Location:"."../");
                                  <small>de : <span id="messageSender">Laurianne</span><br/>
                                  à : <span id="messageRecipient">Moi</span></small>
                               </div>
-                              <ul class="col-sm-9 list-inline">
+                              <ul id="messageTags" class="col-sm-9 list-inline">
                                  <li><a class="btn btn-default" href="#"><span class="glyphicon glyphicon-tag no-margin"></span> Festival du lac</a></li>
                                  <li><a class="btn btn-default" href="#"><span class="glyphicon glyphicon-tag no-margin"></span> Metz</a></li>
                               </ul>
@@ -104,8 +110,6 @@ header("Location:"."../");
                            <div class="col-sm-4 text-right">
                               <div class="btn-group">
                                  <a class="btn btn-default" title="Tagger"><span class="glyphicon glyphicon-tags no-margin"></span></a>
-                                 <a class="btn btn-default" title="Favori"><span class="glyphicon glyphicon-star-empty no-margin"></span></a>
-                                 <a class="btn btn-default" title="Répondre"><span class="glyphicon glyphicon-comment no-margin"></span></a>
                                  <a class="btn btn-default" title="Transférer"><span class="glyphicon glyphicon-share-alt no-margin"></span></a>
                               </div>
                            </div>
@@ -113,15 +117,13 @@ header("Location:"."../");
                      </div>
                   </div>
                   <div id="messageContent" class="panel-body">
-                     <div class="messageInfos">
-                        <div class="messageInfoParent"></div>
-                     </div>
-                     <div class="well">
-                        <p>Bonjour,<br/>
+                     <div class="content">
+                        <div class="well">
+                           Bonjour,<br/>
                            Je vous contacte car j'ai reçu de nouvelles informations et je ne pourrais pas venir ce Week-End. Je vous préviens donc que j'annule le rendez-vous.<br/>
                            Cordialement,
                            Laurianne
-                        </p>
+                        </div>
                      </div>
                      <hr/>
                      <div>
