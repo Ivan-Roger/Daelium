@@ -15,12 +15,13 @@
       $data["asgroupe"] = true;
       foreach ($groupelist as $key => $value) {
         $groupe =$dao->readGroupeById($value);
-        $data["groupes"][$key]["id"] = $value->getIdGroupe();
-        $data["groupes"][$key]["name"] = $value->getNom();
-        if($value->getLienImageOfficiel() == NULL){
+        $data["groupes"][$key]["id"] = $groupe->getIdGroupe();
+        $data["groupes"][$key]["name"] = $groupe->getNom();
+        var_dump($groupe);
+        if($groupe->getLienImageOfficiel() == NULL){
           $data['groupes'][$key]["img"] = "../data/img/icons/Group_64px.png";
         }else {
-          $data['groupes'][$key]["img"] = $value->getLienImageOfficiel();
+          $data['groupes'][$key]["img"] = $groupe->getLienImageOfficiel();
         }
       }
     }else { // si il ne possede as de groupe

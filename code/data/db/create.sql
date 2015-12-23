@@ -105,6 +105,7 @@ CREATE TABLE Groupe (
   google            VARCHAR(255),
   twitter           VARCHAR(255),
   soundcloud        VARCHAR(255),
+  description       TEXT,
   lecteur           TEXT,
   ficheCom          TEXT,
   adresse           BIGINT,

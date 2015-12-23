@@ -18,11 +18,11 @@ INSERT INTO Artiste VALUES(3,'06/12/2015',0,NULL,'JeanJack');
 INSERT INTO Personne VALUES(4,2,'Jules','Domartin','jules.domartin@gmail.com','0675757575',NULL); -- 2 si artiste
 INSERT INTO Artiste VALUES(4,'06/12/2015',1,'AGSTBD154711744',NULL);
 
-INSERT INTO Groupe VALUES(1,'Les beaux gosses',2,'lbg@gmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO Groupe VALUES(1,'Les beaux gosses','lbg@gmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO Groupe_Artiste VALUES(1,3);
 INSERT INTO Groupe_Artiste VALUES(1,4);
 
-INSERT INTO Groupe VALUES(2,'Le Solo',1,'ls@gmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO Groupe VALUES(2,'Le Solo','ls@gmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO Groupe_Artiste VALUES(2,4);
 
 INSERT INTO Booker_Groupe VALUES(1,1);
