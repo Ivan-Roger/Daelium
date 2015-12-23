@@ -26,7 +26,7 @@
         <div class="well">
           <h4>Informations générales :</h4>
           <div class="row">
-            <span class="col-sm-4 text-right">Organisateur</span><b class="col-sm-8 text-left" id="mailAccount">Marc-Henri Durand</b>
+            <span class="col-sm-4 text-right">Organisateur</span><b class="col-sm-8 text-left" id="mailAccount"> <?= $data['evenement']['organisateur'] ?> <a class="btn btn-primary" href="../controler/profil.ctrl.php?id=<?= $data['evenement']['idorganisateur']?>">Voir Profil</a></b>
           </div>
           <div class="row">
             <span class="col-sm-4 text-right">Lieu</span><b class="col-sm-8 text-left" id="mailAccount"><?= $data['evenement']['lieu']['adresse'] ?> <?php if($data['evenement']['lieu']['googlemaps'] != NULL){ ?><a href="<?=  $data['evenement']['lieu']['googlemaps'] ?>" target="_blank">

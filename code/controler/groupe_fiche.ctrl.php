@@ -9,12 +9,7 @@
 
 
 
-  $data["action"] = "";
-  if (isset($_GET["id"]) && isset($_GET["action"]) && $_GET['action']=="edit") {
-    $data['groupe']['id']= $_GET['id'];
-    $data['groupe']['nom']= "En Marche";
-    include("../view/groupe_fiche_edit.view.php");
-  } else if(isset($_GET["id"])) {
+ if(isset($_GET["id"])) {
     $idgroupe = $_GET['id'];
     $groupe = $dao->readGroupeById($idgroupe);
     if($groupe != NULL){
