@@ -56,7 +56,11 @@ if($evt->getFacebook() == NULL &&  $evt->getTwitter() == NULL && $evt->getGoogle
       $groupe = $dao->readGroupeById($idgroupe);
       $data['passages'][$key]['groupe']['nom'] = $groupe->getNom();
       $data['passages'][$key]['groupe']['id'] = $idgroupe;
-      $data['passages'][$key]['groupe']['description'] = 'Rajouter un attribut description sur groupe';
+      if($groupe->getDescription() == NULL){
+        $data['passages'][$key]['groupe']['description'] = "Il n'y a pas de description pour ce groupe";
+      }else {
+        $data['passages'][$key]['groupe']['description'] = $groupe->getDescription() ;
+      }
     }
 
     $data['evenement']['img'] = "../data/users/icons/bilbao-logo.jpg";   // Image ?

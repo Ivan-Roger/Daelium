@@ -39,11 +39,6 @@
               </tr>
             </tbody>
           </table>
-          <div class="pull-right">
-            <a class ="btn btn-primary" href="#"> Ajouter un Artiste </a>
-            <a class ="btn btn-warning" href="#"> Modifier </a>
-            <a class ="btn btn-danger" href="#"> Suprimer </a>
-          </div>
         </div>
       </div>
       <h3>Liste des membre du groupe</h3>
