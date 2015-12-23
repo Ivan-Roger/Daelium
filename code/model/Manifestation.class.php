@@ -59,83 +59,116 @@
       }
 
     }
-    //GETTERS
+    
+    
+    // ********************************
+    //        Fonctions getter
+    // ********************************
+    // getter de l'id de la manifestation
     function getidManif(){
       return $this->idmanif;
     }
+    // getter du nom de la manifestation
     function getNom(){
       return $this->nom;
     }
+    // getter du type de la manifestation
     function getType(){
       return $this->type;
     }
+    // getter de la description de la manifestation
     function getDescription(){
       return $this->description;
     }
+    // getter de la date de début de la manifestation
     function getDateDebut(){
       return $this->datedebut;
     }
+    // getter de la date de fin de la manifestation
     function getDateFin(){
       return $this->datefin;
     }
+    // getter du lien de l'image officielle de la manifestation
     function getLienImageOfficiel(){
       return $this->lienimageofficiel;
     }
+    // getter du Facebook de la manifestation
     function getFacebook(){
       return $this->facebook;
     }
+    // getter du Google de la manifestation
     function getGoogle(){
       return $this->google;
     }
+    // getter du Twitter de la manifestation
     function getTwitter(){
       return $this->twitter;
     }
+    // getter de la fiche de communication de la manifestation
     function getFicheCom(){
       return $this->fichecom;
     }
+    // getter du createut de la manifestation
     function getCreateur(){
       return $this->createur;
     }
+    // getter du lieu de la manifestation
     function getLieu(){
       return $this->lieu;
     }
- // SETTERS
- function setNom($nom){
-    $this->nom = $nom;
- }
- function setType($type){
-    $this->type = $type;
- }
- function setDescription($description){
-    $this->description = $description;
- }
- function setDateDebut($datedebut){
-    $this->datedebut = $datedebut;
- }
- function setDateFin($datefin){
-    $this->datefin = $datefin;
- }
- function setLienImageOfficiel($lienimageofficiel){
-    $this->lienimageofficiel = $lienimageofficiel;
- }
- function setFacebook($facebook){
-    $this->facebook = $facebook;
- }
- function setGoogle($google){
-    $this->google = $google;
- }
- function setTwitter($twitter){
-    $this->twitter = $twitter;
- }
- function setFicheCom($fichecom){
-    $this->fichecom = $fichecom;
- }
- function setCreateur($createur){
-    $this->createur = $createur;
- }
- function setLieu($lieu){
-    $this->lieu = $lieu;
- }
+
+    
+    // ********************************
+    //        Fonctions setter
+    // ********************************
+   // setter du nom de la manifestation
+   function setNom($nom){
+      $this->nom = $nom;
+   }
+   // setter du type de la manifestation
+   function setType($type){
+      $this->type = $type;
+   }
+   // setter de la description de la manifestation
+   function setDescription($description){
+      $this->description = $description;
+   }
+   // setter de la date de début de la manifestation
+   function setDateDebut($datedebut){
+      $this->datedebut = $datedebut;
+   }
+   // setter de la date de fin de la manifestation
+   function setDateFin($datefin){
+      $this->datefin = $datefin;
+   }
+   // setter du lien de l'image officielle de la manifestation
+   function setLienImageOfficiel($lienimageofficiel){
+      $this->lienimageofficiel = $lienimageofficiel;
+   }
+   // setter du Facebook de la manifestation
+   function setFacebook($facebook){
+      $this->facebook = $facebook;
+   }
+   // setter du Google de la manifestation
+   function setGoogle($google){
+      $this->google = $google;
+   }
+   // setter du Twitter de la manifestation
+   function setTwitter($twitter){
+      $this->twitter = $twitter;
+   }
+   // setter de la fiche de communication de la manifestation
+   function setFicheCom($fichecom){
+      $this->fichecom = $fichecom;
+   }
+   // setter du createut de la manifestation
+   function setCreateur($createur){
+      $this->createur = $createur;
+   }
+   // setter du lieu de la manifestation
+   function setLieu($lieu){
+      $this->lieu = $lieu;
+   }
 
   }
 ?>
