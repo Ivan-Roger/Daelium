@@ -1,36 +1,59 @@
 <?php
-  session_start();
-  //include_once("../model/Artist.class.php");
-  include("include/auth.ctrl.php");
-  require_once("../model/utils.class.php");
-  require_once("../model/DAO.class.php");
-  $data = initPage("Events");
-  $dao = new Dao();
+session_start();
+//include_once("../model/Artist.class.php");
+include("include/auth.ctrl.php");
+require_once("../model/utils.class.php");
+require_once("../model/DAO.class.php");
+$data = initPage("Events");
+$dao = new Dao();
 
-  $user = $dao->readPersonneById($_SESSION["user"]["ID"]);
-  if($user->getType() == 1){ // SI booker
+$userid= $_SESSION["user"]["ID"];
+$user = $dao->readPersonneById($userid);
+if($user->getType() == 1){ // SI ce n'est pas un organisateur alors a un message d'erreur .
+  if (isset($_GET['id']) && $_GET['id'] != "") { // Si il n'y a pas d'id alors -> message d'erreur
 
-  if (isset($_GET['id']) && $_GET['id'] != "") {
     // Recupérer les données depuis la BD avec l'id ($_GET['id'])
-    $evt = $dao->readManifestationById($_GET['id']);
-    var_dump($evt);
-    //Information sur l'evt !
-    $data['evenement']['id'] = $_GET['id'];
-    $data['evenement']['nom'] = $evt->getNom();
-    $data['evenement']['lieu'] = "Non indiquer";
+    $evtid = $_GET['id'];
+    $evt = $dao->readManifestationById($evtid);
+
+    //On verifie que la manifestation appartient bien a l'organisateur.
+    $listeevtuser = $dao->readIdManifestationByCreateur($userid);
+    $present = false;
+    foreach ($listeevtuser as $key => $value) {
+      if($value['idmanif'] == $evtid && !$present){
+        $present = true;
+      }
+    }
+    if($present){ //Si il est le proprietaire de l'evt alors on affiche. sinon message d'erreur
+      //Information sur l'evt !
+      $data['evenement']['id'] = $_GET['id'];
+      $data['evenement']['nom'] = $evt->getNom();
+      if(($idlieu = $evt->getLieu()) == NULL){
+      $data['evenement']['lieu'] = "Non indiquer";
+      }else{
+       $lieu = $dao->readLieuById($idlieu);
+       $data['evenement']['lieu']['adresse'] =  $lieu->getAdresse().", ".$lieu->getcodepostal().", ".$lieu->getVille().", ".$lieu->getPays();
+        $data['evenement']['lieu']['googlemaps'] = "https://www.google.fr/maps/place/".str_replace ( ' ' ,'+' ,$lieu->getAdresse())."+".$lieu->getcodepostal()."+".$lieu->getVille()."+".strtolower($lieu->getPays());
+      }
 
 
-    // Info sur les passages
-    $pas['date'] = "18/11/2015 21h20";
-    $pas['groupe']['nom'] = "En marche";
-    $data['passages'][] = $pas;
+      // Info sur les passages
+      $pas['date'] = "18/11/2015 21h20";
+      $pas['groupe']['nom'] = "En marche";
+      $data['passages'][] = $pas;
 
-    $pas['date'] = "18/11/2015 21h50";
-    $pas['groupe']['nom'] = "Batoucada";
-    $data['passages'][] = $pas;
+      $pas['date'] = "18/11/2015 21h50";
+      $pas['groupe']['nom'] = "Batoucada";
+      $data['passages'][] = $pas;
 
-    $data['evenement']['img'] = "../data/users/icons/bilbao-logo.jpg";
-    include("../view/evenement.view.php");
+      $data['evenement']['img'] = "../data/users/icons/bilbao-logo.jpg";
+      include("../view/evenement.view.php");
+    }else {
+      $data['error']['title'] = "Acces Interdit";
+      $data['error']['message'] = "Vous ne pouvez pas venir ici, cet espace est reservé à l'organisateur de la manifestation.";
+      $data['error']['back'] = "../controler/main.ctrl.php";
+      include("../view/error.view.php");
+    }
 
   } elseif (isset($_GET['action']) && $_GET['action']=="new") {
     //si il demande la creation d'un evt

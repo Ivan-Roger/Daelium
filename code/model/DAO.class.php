@@ -666,6 +666,20 @@ function readManifestationByCreateur($createur) {
   return (isset($res[0])?$res:null); // retourne le premier resultat s'il existe, sinon null
 }
 
+function readIdManifestationByCreateur($createur) {
+  $sql = "SELECT idManif FROM Manifestation WHERE createur = ?"; // requête
+  $req = $this->db->prepare($sql);
+  $params = array(
+    $createur
+  );
+  $res = $req->execute($params);
+  if ($res === FALSE) {
+    die("readManifestationByCreateur : Requête impossible !"); // erreur dans la requête
+  }
+  $res = $req->fetchAll(PDO::FETCH_ASSOC);
+  return (isset($res[0])?$res:null); // retourne le premier resultat s'il existe, sinon null
+}
+
 function createManifestation($manifestation) {
   $m = $this->db->readUserByEmail($manifestation->idManif);
   if ($m == null) {
