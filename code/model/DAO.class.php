@@ -2,10 +2,10 @@
 require_once("utils.class.php");
 require_once("exceptions.class.php");
 require_once("Utilisateur.class.php");
-require_once("Artist.class.php");
+require_once("Artiste.class.php");
 require_once("Organisateur.class.php");
 require_once("Booker.class.php");
-require_once("Group.class.php");
+require_once("Groupe.class.php");
 require_once("Manifestation.class.php");
 
 

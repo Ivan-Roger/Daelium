@@ -186,17 +186,25 @@ CREATE TABLE Negociation_Documents (
 );
 
 CREATE TABLE Message (                  -- à revoir
-  idMessage SERIAL,
-  idConversation BIGINT,
+  idMessage SERIAL PRIMARY KEY,
   expediteur BIGINT,
   receveur  BIGINT,
   etat integer,
-  nom varchar(255),
   contenu TEXT,
   dateenvoi timestamp,
-  PRIMARY KEY (idMessage,idConversation),
   FOREIGN KEY (receveur) references Utilisateur(idUtilisateur),
   FOREIGN KEY (expediteur) references Utilisateur(idUtilisateur)
+);
+
+CREATE TABLE Conversation_Message (
+   idMessage REFERENCES Message(idMessage),
+   idConversation REFERENCES Conversation(idConversation),
+   PRIMARY KEY (idMessage,idConversation)
+);
+
+CREATE TABLE Conversation (
+   idConversation SERIAL PRIMARY KEY,
+   nom varchar(255)
 );
 
 CREATE TABLE Message_Tag (
