@@ -6,35 +6,26 @@
   $data = initPage("Groupes");
   $dao = new Dao();
 
-  $user = $dao->readPersonneById($_SESSION["user"]["ID"]);
+  $userid= $_SESSION["user"]["ID"];
+  $user = $dao->readPersonneById($userid);
   if($user->getType() == 0){ // SI booker
 
-
-    $groupelist = $dao->readListGroupeByBooker($_SESSION["user"]["ID"]);
-    var_dump($groupelist);
-    foreach ($groupelist as $key => $value) {
-      $groupe =$dao->readGroupeById($value);
-      var_dump($groupe);
+    $groupelist = $dao->readListGroupeByBooker($userid);
+    if($groupelist != NULL){ // Si il possede au moins un groupe
+      $data["asgroupe"] = true;
+      foreach ($groupelist as $key => $value) {
+        $groupe =$dao->readGroupeById($value);
+        $data["groupes"][$key]["id"] = $value->getIdGroupe();
+        $data["groupes"][$key]["name"] = $value->getNom();
+        if($value->getLienImageOfficiel() == NULL){
+          $data['groupes'][$key]["img"] = "../data/img/icons/Group_64px.png";
+        }else {
+          $data['groupes'][$key]["img"] = $value->getLienImageOfficiel();
+        }
+      }
+    }else { // si il ne possede as de groupe
+      $data["asgroupe"] = false;
     }
-
-    $group['id'] = "mla8df1h3qet0sy";
-    $group['name'] = "En Marche";
-    $group['img'] = "../data/img/icons/Group_64px.png";
-    $data['groupes'][] = $group;
-
-    $group['id'] = "hla8df1h3qet0sp";
-    $group['name'] = "Batoucada";
-    $group['img'] = "../data/img/icons/Group_64px.png";
-    $data['groupes'][] = $group;
-
-    $group['id'] = "gla8df1h3qet0sv";
-    $group['name'] = "Berlondon";
-    $group['img'] = "../data/img/icons/Group_64px.png";
-    $data['groupes'][] = $group;
-
-
-
-
 
 include("../view/groupes.view.php");
   }else {
@@ -43,9 +34,4 @@ include("../view/groupes.view.php");
     $data['error']['back'] = "../controler/main.ctrl.php";
     include("../view/error.view.php");
   }
-
-
-
-
-
 ?>

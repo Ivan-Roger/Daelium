@@ -13,14 +13,14 @@
     <?php include("../view/include/header.view.php"); ?>
     <section class="col-lg-offset-1 col-lg-10">
       <div class="row">
-        <?php foreach($data['evenements'] as $evt) { ?>
+        <?php if($data["asevenements"]){ foreach($data['evenements'] as $evt) { ?>
           <div class="col-xs-2">
             <a href="../controler/evenement.ctrl.php?id=<?= $evt['id'] ?>" id="pic" class="thumbnail">
               <img class="category-banner img-responsive" src="<?= $evt['img'] ?>" alt="...">
               <div class="OverlayText"><?= $evt['name'] ?></div>
             </a>
           </div>
-        <?php } ?>
+        <?php } } ?>
         <div  class="col-xs-2">
           <a href="../controler/evenement.ctrl.php?action=new" id="pic" class="thumbnail">
             <img class="category-banner img-responsive" src="../data/img/icons/plus.png" alt="...">

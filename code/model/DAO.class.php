@@ -5,7 +5,7 @@ require_once("Utilisateur.class.php");
 require_once("Artist.class.php");
 require_once("Organisateur.class.php");
 require_once("Booker.class.php");
-require_once("Group.class.php");
+require_once("Groupe.class.php");
 require_once("Manifestation.class.php");
 
 
@@ -663,6 +663,20 @@ function readManifestationByCreateur($createur) {
     die("readManifestationByCreateur : Requête impossible !"); // erreur dans la requête
   }
   $res = $req->fetchAll(PDO::FETCH_CLASS,"Manifestation");
+  return (isset($res[0])?$res:null); // retourne le premier resultat s'il existe, sinon null
+}
+
+function readIdManifestationByCreateur($createur) {
+  $sql = "SELECT idManif FROM Manifestation WHERE createur = ?"; // requête
+  $req = $this->db->prepare($sql);
+  $params = array(
+    $createur
+  );
+  $res = $req->execute($params);
+  if ($res === FALSE) {
+    die("readManifestationByCreateur : Requête impossible !"); // erreur dans la requête
+  }
+  $res = $req->fetchAll(PDO::FETCH_ASSOC);
   return (isset($res[0])?$res:null); // retourne le premier resultat s'il existe, sinon null
 }
 
