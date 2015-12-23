@@ -46,20 +46,45 @@ function updateCommingNext(func) {
       $("#commingNext tbody").append("<tr>");
       $("#commingNext tbody tr:last-child").append($("<td class=\"date\" data-date=\""+res.events[id].day+"\">").html(res.events[id].day));
       if (res.events[id].hour=="day") {
-        $("#commingNext tbody tr:last-child").append($("<td class=\"hour empty\" data-hour=\""+res.events[id].hour+"\">").html("Toute la journée"));
+        $("#commingNext tbody tr:last-child").append($("<td class=\"hour empty\" data-hour=\""+res.events[id].hour+"\">").html("Journée"));
         console.log("Day");
       } else
         $("#commingNext tbody tr:last-child").append($("<td class=\"hour\" data-hour=\""+res.events[id].hour+"\">").html(res.events[id].hour));
       $("#commingNext tbody tr:last-child").append($("<td>").html(res.events[id].name));
-
-      // DEBUG
-      console.log("Evenement : ("+res.events[id].day+" "+res.events[id].hour+") : "+res.events[id].name);
     }
     if (func!=null) {
       func();
     }
   }, error: function(a, b, c) {
     console.warn("AJAX Error: couldn't update Comming Next (\""+b+"\")");
+  }});
+}
+
+function updateEvent(id,func) {
+  $.ajax({url: "agenda.ctrl.php?ajax&event="+id, success: function(res){
+    console.log("Update Event !");
+    console.log(res);
+    $("#eventView").attr("data-id","");
+    $("#eventView .eventTitle").html("");
+    $("#eventView .horaires .debut .date").html("");
+    $("#eventView .horaires .debut .heure").html("");
+    $("#eventView .horaires .fin .date").html("");
+    $("#eventView .horaires .fin .heure").html("");
+    $("#eventView .lieu .text").html("");
+    $("#eventView .lieu a").attr("href","");
+    $("#eventView .desc textarea").html("");
+    $("#eventView .participants tbody").html("");
+    for (var id in res.event.participants) {
+      $("#eventView .participants tbody").append($("<tr data-id=\""+res.event.participants[id]+"\" >")
+         .append($("<td class=\"text-right\">").html("<span class=\"glyphicon glyphicon-user\">"))
+         .append($("<td>").html("Marc")) // Nom du participant
+         .append($("<td>").html("...")); // Notes
+    }
+    if (func!=null) {
+      func();
+    }
+  }, error: function(a, b, c) {
+    console.warn("AJAX Error: couldn't update Event (\""+b+"\")");
   }});
 }
 
@@ -204,7 +229,7 @@ function updateDayPlan(func) {
 
   function clickSetDay(e) {
     AgendaDate.setDay(e.currentTarget.dataset.day);
-    $("#calendar tbody td[class~='day']").click(clickSetDay);
+    $("#calendar tbody td[class~='day']").on('click',clickSetDay);
   }
 
   function init() {
@@ -229,7 +254,7 @@ function updateDayPlan(func) {
       AgendaDate.nextDay();
     });
 
-    $("#calendar tbody td[class~='day']").click(clickSetDay);
+    $("#calendar tbody td[class~='day']").on('click',clickSetDay);
   }
 
 

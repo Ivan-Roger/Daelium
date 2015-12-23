@@ -13,8 +13,6 @@ function showMessage(e) {
       $("#messageLoading").removeClass("loading-start");
       try {
          console.log(res);
-         res = JSON.parse(res);
-         console.log(res);
 
          $("#messageFrame").collapse("show");
 

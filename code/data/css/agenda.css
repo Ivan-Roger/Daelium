@@ -15,9 +15,11 @@
 
 #calendar td:hover {
   background-color: #E5E5E5;
+  cursor: pointer;
 }
 
 #calendar .not-hover:hover{
+  cursor: auto;
   background-color: transparent;
 }
 
@@ -26,6 +28,7 @@
 }
 
 #calendar .selected {
+  cursor: auto;
   box-shadow: 0px 0px 5px #B5B5B5 inset;
   background-color: #E5E5E5;
 }
@@ -105,6 +108,7 @@ table tbody td.active {
 }
 
 #dayPlan td.content span.evenement {
+   cursor: pointer;
   margin-right: 5px;
   padding: 3px;
   border: 1px solid #E0E0E0;

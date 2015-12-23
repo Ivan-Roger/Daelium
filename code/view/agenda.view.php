@@ -13,7 +13,26 @@
     <?php include("../view/include/header.view.php"); ?>
     <section class="col-lg-12">
       <div class="row">
-        <article id="calendarArticle" class="col-lg-5 col-lg-offset-1"> <!-- =============================================== Calendar =============================================== -->
+        <article class="col-lg-3" style="height:400px;"> <!-- =============================================== Comming Next =============================================== -->
+          <div class="panel panel-default">
+            <div class="panel-heading"><h4>Prochains événements</h4></div>
+            <div class="panel-body table-responsive evt no-padding" style="overflow:auto;height:450px;overflow-x: hidden;">
+              <table id="commingNext" class="table table-striped table-hover table-bordered col-lg-12">
+                <colgroup>
+                  <col class="text-center col-lg-2" />
+                  <col class="text-center col-lg-3" />
+                  <col class="col-lg-7"/>
+                </colgroup>
+                <thead>
+                  <tr><th>Date</th> <th>Heure</th> <th>Evenement</th></tr>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </article>
+        <article id="calendarArticle" class="col-lg-5"> <!-- =============================================== Calendar =============================================== -->
           <div class="panel panel-default">
             <div class="panel-heading text-center">
               <div class='row'>
@@ -22,7 +41,7 @@
                     <span class='glyphicon glyphicon-arrow-left no-margin'></span>
                   </button>
                 </div>
-                <div class='col-md-6 col-xs-4'><h4 id="calendarTitle"><?= $data['monthName'] ?> <?= $data['year'] ?></h4></div>
+                <div class='col-md-6 col-xs-4'><h4 id="calendarTitle"></h4></div>
                 <div class='col-md-3 col-xs-4 '>
                   <button id="calendarNext" class='ajax-navigation btn btn-default btn-sm'>
                     <span class='glyphicon glyphicon-arrow-right no-margin'></span>
@@ -46,61 +65,13 @@
                   <tr><th>Semaine</th><th>Lundi</th><th>Mardi</th><th>Mercredi</th><th>Jeudi</th><th>Vendredi</th><th>Samedi</th><th>Dimanche</th></tr>
                 </thead>
                 <tbody>
-                  <?php
-                  $today = (($data['date']['month']==$data['month'] && $data['date']['year']==$data['year'])?$data['date']['day']:null);
-                  foreach($data['calendar'] as $week) { ?>
-                  <tr data-week="<?= $week['id'] ?>">
-                    <th><?= $week['id'] ?></th>
-                    <td data-day="<?= $week['days'][0] ?>" class="<?php echo($week['days'][0]<=0?"not-hover ":"day "); ?><?php echo($week['days'][0]==$today?"info ":""); ?>">
-                      <?= $week['days'][0] ?>
-                    </td>
-                    <td data-day="<?= $week['days'][1] ?>" class="<?php echo($week['days'][1]<=0?"not-hover ":"day "); ?><?php echo($week['days'][1]==$today?"info ":""); ?>">
-                      <?= $week['days'][1] ?></td>
-                    <td data-day="<?= $week['days'][2] ?>" class="<?php echo($week['days'][2]<=0?"not-hover ":"day "); ?><?php echo($week['days'][2]==$today?"info ":""); ?>">
-                      <?= $week['days'][2] ?>
-                    </td>
-                    <td data-day="<?= $week['days'][3] ?>" class="<?php echo($week['days'][3]<=0?"not-hover ":"day "); ?><?php echo($week['days'][3]==$today?"info ":""); ?>">
-                      <?= $week['days'][3] ?>
-                    </td>
-                    <td data-day="<?= $week['days'][4] ?>" class="<?php echo($week['days'][4]<=0?"not-hover ":"day "); ?><?php echo($week['days'][4]==$today?"info ":""); ?>">
-                      <?= $week['days'][4] ?>
-                    </td>
-                    <td data-day="<?= $week['days'][5] ?>" class="<?php echo($week['days'][5]<=0?"not-hover ":"day "); ?><?php echo($week['days'][5]==$today?"info ":""); ?>">
-                      <?= $week['days'][5] ?>
-                    </td>
-                    <td data-day="<?= $week['days'][6] ?>" class="<?php echo($week['days'][6]<=0?"not-hover ":"day "); ?><?php echo($week['days'][6]==$today?"info ":""); ?>">
-                      <?= $week['days'][6] ?>
-                    </td>
-                  </tr>
-                  <?php } ?>
                 </tbody>
               </table>
               <button id="calendarResetToday" class="btn btn-default"><span class="glyphicon glyphicon-time"></span>Aujourd'hui</button>
             </div>
           </div>
         </article>
-        <article class="col-lg-5" style="height:400px;"> <!-- =============================================== Comming Next =============================================== -->
-          <div class="panel panel-default">
-            <div class="panel-heading"><h4>Prochains événements</h4></div>
-            <div class="panel-body table-responsive evt no-padding" style="overflow:auto;height:450px;overflow-x: hidden;">
-              <table id="commingNext" class="table table-striped table-hover table-bordered col-lg-12">
-                <colgroup>
-                  <col class="text-center col-lg-2" />
-                  <col class="text-center col-lg-3" />
-                  <col class="col-lg-7"/>
-                </colgroup>
-                <thead>
-                  <tr><th>Date</th> <th>Heure</th> <th>Evenement</th></tr>
-                </thead>
-                <tbody>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </article>
-      </div>
-      <div class="row">
-        <article class="col-lg-5 col-lg-offset-1"> <!-- =============================================== Day Plan =============================================== -->
+        <article id="dayPlanArticle" class="col-lg-4"> <!-- =============================================== Day Plan =============================================== -->
           <div class="panel panel-default">
             <div class="panel-heading text-center">
               <div class='row'>
@@ -133,14 +104,70 @@
             </div>
           </div>
         </article>
-        <article class="col-lg-5"> <!-- =============================================== Event Form =============================================== -->
+      </div>
+      <div class="row">
+        <article id="eventView" data-id="" class="collapse col-lg-10 col-lg-offset-1"> <!-- =============================================== Event Form =============================================== -->
+          <div class="panel panel-default">
+            <div class="panel-heading">
+             <div class="col-xs-11"><h3 class="eventTitle">RDV Marc-Henri</h3></div>
+             <button class="float-right btn btn-lg btn-default"><span class="glyphicon glyphicon-share no-margin"></span></button>
+            </div>
+            <div class="panel-body">
+             <!-- Date debut -->
+             <div class="col-lg-6">
+                <div class="horaires row">
+                     <h4>Début</h4>
+                     <p class="debut">
+                        Du <b class="date">18/12/2015</b> à
+                        <b class="heure">09h45</b>
+                     </p>
+                     <h4>Fin</h4>
+                     <p class="fin">
+                        Au <b class="date">18/12/2015</b> à
+                        <b class="heure">10h30</b>
+                     </p>
+                </div>
+                <div class="desc row">
+                    <h4>Description</h4>
+                    <textarea style="width:90%; height: 150px; margin-bottom: 25px;" readonly class="form-control eventDesc"></textarea>
+                </div>
+                <div class="rappels row">
+                   <h4>Rappels</h4>
+                   <button class="btn btn-default">Voir les rappels</button>
+                </div>
+             </div>
+            <div class="col-lg-6">
+               <h4><span class="glyphicon glyphicon-flag"></span>Lieu</h4>
+               <div class="lieu row">
+                 <p class="text">
+                    110 place doyen gosses<br/>
+                    38000 Grenoble<br/>
+                    Isère / Rhone-Alpes<br/>
+                    FRANCE
+                 </p>
+                 <span class="col-sm-4 text-right">Plan</span><a class="col-sm-8 text-left" href="#" target="_blank">Voir sur google maps</a>
+               </div>
+               <div class="row participants">
+                  <h4><span class="glyphicon glyphicon-book"></span>Participants</h4>
+                  <table class="table">
+                     <thead>
+                        <tr><th></th><th>Nom</th><th>Note</th></tr>
+                     </thead>
+                     <tbody>
+                        <tr><td class="text-right"><span class="glyphicon glyphicon-user"></span></td><td>Marc-Henri</td><td>...</td></tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+           </div>
+          </div>
+         </div>
+        </article>
+        <article id="eventEdit" class="collapse collapsed col-lg-10 col-lg-offset-1"> <!-- =============================================== Event Form =============================================== -->
           <div class="panel panel-default">
             <div class="panel-heading">
               <div class="input-group">
                 <input name="eventname" class="form-control input-lg" value="Nouvel évènement">
-                <div class="input-group-btn">
-                  <button class="btn btn-lg btn-default"><span class="glyphicon glyphicon-share no-margin"></span></button>
-                </div>
               </div>
             </div>
             <div class="panel-body">
@@ -249,12 +276,10 @@
     <script>
       $("#eventBeginingDate").datepicker();
       $("#eventEndingDate").datepicker();
-      AgendaDate.set(
-        <?= $data['wday'] ?>,
+      AgendaDate.setDate(
         <?= $data['day'] ?>,
         <?= $data['month'] ?>,
-        <?= $data['year'] ?>,
-        <?= $data['mlength'] ?>
+        <?= $data['year'] ?>
       );
     </script>
   </body>
