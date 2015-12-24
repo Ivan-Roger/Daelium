@@ -340,7 +340,12 @@ class DAO {
        if ($res === FALSE) {
          die("deleteBookerById : Requête impossible !");
        }
-       return $this->db->deleteBookerGroupeByIdBooker($idBooker);
+
+       $supr = $this->db->readListGroupeByBooker($idBooker);
+       foreach ($supr as $Groupe) {
+         $this->db->deleteGroupeById($Groupe->getIdGroupe());
+       }
+       return true;
      } else {
        throw DAOException("Booker non présent dans la base, supression impossible");
      }
@@ -487,6 +492,39 @@ class DAO {
       }
    }
 
+   function deleteGroupeByIdGroupe($idGroupe) {
+     $b = $this->db->readListGroupeByBooker($idGroupe);
+     if ($b != null) {
+
+       $this->db->deleteBookerGroupeByIdGroupe($idGroupe);
+
+       $supr = $this->db->readArtisteByGroupe($idGroupe);
+       foreach ($supr as $artiste) {
+         $this->db->deleteArtisteById($artiste->getIdPersonne());
+       }
+
+
+       $this->db->deleteGroupeGenreByPrimary();
+       $this->db->deleteCreneauIdGroupe($idGroupe);
+
+
+       $sql = "DELETE FROM Groupe where idGroupe = ?";
+       $req = $this->db->prepare($sql);
+       $params = array(
+         $idGroupe
+       );
+       $res = $req->execute($params);
+       if ($res === FALSE) {
+         die("deleteGroupeById : Requête impossible !");
+       }
+       return true;
+     } else {
+       throw DAOException("Groupe non présent dans la base, supression impossible");
+     }
+   }
+
+
+
    // ===================== Artiste =====================
 
    //idArtiste dateNaissance paiement rib ordreCheque
@@ -554,6 +592,27 @@ class DAO {
        } else {
           throw DAOException("Artiste non présent dans la base de données !");
        }
+    }
+
+    function deleteArtisteById($idArtiste) {
+      $b = $this->db->readListGroupeByBooker($idArtiste);
+      if ($b != null) {
+
+        $this->db->deleteGroupeArtisteByIdArtiste($idArtiste);
+
+        $sql = "DELETE FROM Artiste where idArtiste = ?";
+        $req = $this->db->prepare($sql);
+        $params = array(
+          $idArtiste
+        );
+        $res = $req->execute($params);
+        if ($res === FALSE) {
+          die("deleteArtisteById : Requête impossible !");
+        }
+        return true;
+      } else {
+        throw DAOException("Artiste non présent dans la base, supression impossible");
+      }
     }
 
       // ===================== Lieu =====================
@@ -1418,6 +1477,24 @@ class DAO {
          }
       }
 
+      function deleteGroupeArtisteByIdArtiste($idArtiste) {
+        $g = $this->db->readListGroupeByBooker($idArtiste);
+        if ($g != null) {
+          $sql = "DELETE FROM Groupe_Artiste where idArtiste = ?";
+          $req = $this->db->prepare($sql);
+          $params = array(
+            $idArtiste
+          );
+          $res = $req->execute($params);
+          if ($res === FALSE) {
+            die("deleteGroupeArtisteByIdArtiste : Requête impossible !");
+          }
+          return true;
+        } else {
+          throw DAOException("Groupe_Artiste non présent dans la base, supression impossible");
+        }
+      }
+
 
       // ===================== Negociation =====================
 
@@ -1764,23 +1841,25 @@ class DAO {
          }
       }
 
-      function deleteBookerGroupeByIdBooker($idBooker) {
-        $b = $this->db->readListGroupeByBooker($idBooker);
+      function deleteBookerGroupeByIdGroupe($idGroupe) {
+        $b = $this->db->readListBookerByGroupe($idGroupe);
         if ($b != null) {
-          $sql = "DELETE FROM Booker_Groupe where idBooker = ?";
+          $sql = "DELETE FROM Booker_Groupe where idGroupe = ?";
           $req = $this->db->prepare($sql);
           $params = array(
-            $idBooker
+            $idGroupe
           );
           $res = $req->execute($params);
           if ($res === FALSE) {
-            die("deleteBookerGroupeByIdBooker : Requête impossible !");
+            die("deleteBookerGroupeById : Requête impossible !");
           }
           return true;
         } else {
           throw DAOException("Booker_Groupe non présent dans la base, supression impossible");
         }
       }
+
+
 
       // ===================== Groupe_Genre =====================
 
