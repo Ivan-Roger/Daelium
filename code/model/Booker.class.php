@@ -8,8 +8,9 @@
       parent::__construct($idUtilisateur,0, $nom, $prenom, $emailcontact, $tel, $adresse,$emailCompte,$mdp,$googletoken);
     }
     function possedeGroupe($idGroupe,$listeGroupe){
+
       foreach ($listeGroupe as $key => $value) {
-        if($value['idmanif'] == $idGroupe){
+        if($value == $idGroupe){
           return true;
         }
       }

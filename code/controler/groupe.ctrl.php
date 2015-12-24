@@ -18,7 +18,7 @@ if($user != NULL){ // SI booker
 
       $listegroupeuser = $dao->readListGroupeByBooker($userid);
       if($listegroupeuser != NULL){ // Si l'organisateur a au moins un evt.
-        $present = $user->possedeGroupe($evtid,$listegroupeuser);
+        $present = $user->possedeGroupe($groupeid,$listegroupeuser);
       }else {
         $present = false;
       }
