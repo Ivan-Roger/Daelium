@@ -1841,19 +1841,32 @@ class DAO {
       // ===================== Manifestation_Genre =====================
 
       // Manifestation_Genre(idManif,nomGenre)
-      function readManifestationGenreByPrimary($idManif, $nomGenre) {
-         $sql = "SELECT * FROM Groupe_Genre WHERE  idManif=? and nomg=?"; // requête
+      function readManifestationGenreByidManif($idManif) {
+         $sql = "SELECT * FROM Manifestation_Genre WHERE  idManif=?"; // requête
          $req = $this->db->prepare($sql);
          $params = array(
-            $idManif,
-            $nomGrenre
+            $idManif
          );
          $res = $req->execute($params);
          if ($res === FALSE) {
             die("readManifestationGenreByPrimary : Requête impossible !"); // erreur dans la requête
          }
-         $res = $req->fetchAll(PDO::FETCH_CLASS,"Manifestation_Genre");
-         return (isset($res[0])?$res[0]:null);
+         $res = $req->fetchAll(PDO::FETCH_ASSOC);
+         return (isset($res)?$res:null);
+      }
+
+      function readManifestationByGenre($nomg) {
+         $sql = "SELECT * FROM Manifestation_Genre WHERE  nomg=?"; // requête
+         $req = $this->db->prepare($sql);
+         $params = array(
+            $nomg
+         );
+         $res = $req->execute($params);
+         if ($res === FALSE) {
+            die("readManifestationGenreByPrimary : Requête impossible !"); // erreur dans la requête
+         }
+         $res = $req->fetchAll(PDO::FETCH_ASSOC);
+         return (isset($res)?$res:null);
       }
 
       function createManifestationGenre($manifestationGenre) {

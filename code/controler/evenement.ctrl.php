@@ -8,15 +8,16 @@ $data = initPage("Events");
 $dao = new Dao();
 
 $userid= $_SESSION["user"]["ID"];
-$user = $dao->readPersonneById($userid);
-if($user->getType() == 1){ // SI ce n'est pas un organisateur alors a un message d'erreur .
-  if (isset($_GET['id']) && $_GET['id'] != "") { // Si il n'y a pas d'id alors -> message d'erreur
+$user = $dao->readOrganisateurById($userid);
+  if (isset($_GET['id'])) { // Si il n'y a pas d'id alors -> message d'erreur
 
     // Recupérer les données depuis la BD avec l'id ($_GET['id'])
     $evtid = $_GET['id'];
     $evt = $dao->readManifestationById($evtid);
+    if($evt != NULL){ //Si pas dans BD
 
     //On verifie que la manifestation appartient bien a l'organisateur.
+    $listeevtuser = array();
     $listeevtuser = $dao->readIdManifestationByCreateur($userid);
     $present = false;
     foreach ($listeevtuser as $key => $value) {
@@ -28,6 +29,9 @@ if($user->getType() == 1){ // SI ce n'est pas un organisateur alors a un message
       //Information sur l'evt !
       $data['evenement']['id'] = $_GET['id'];
       $data['evenement']['nom'] = $evt->getNom();
+      $data['evenement']['dated'] = $evt->getDateDebut();
+      $data['evenement']['datef'] = $evt->getDateFin();
+      $DEBUG[] = $data;
       if(($idlieu = $evt->getLieu()) == NULL){
       $data['evenement']['lieu']['adresse'] = "Non indiquer";
       $data['evenement']['lieu']['googlemaps'] = NULL;

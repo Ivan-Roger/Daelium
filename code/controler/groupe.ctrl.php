@@ -6,8 +6,8 @@
   $data = initPage("Groupes");
   $dao = new Dao();
 
-  $user = $dao->readPersonneById($_SESSION["user"]["ID"]);
-  if($user->getType() == 0){ // SI booker
+  $user = $dao->readBookerById($_SESSION["user"]["ID"]);
+  if($user != NULL){ // SI booker
 
   if (isset($_GET['id']) && $_GET['id'] != "" && isset($_GET['action']) && $_GET['action']=="edit") {
     $groupe = $dao->readGroupeById($_GET['id']);
