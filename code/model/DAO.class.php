@@ -331,6 +331,13 @@ class DAO {
    function deleteBookerById($idBooker) {
      $b = $this->db->readBookerById($idBooker);
      if ($b != null) {
+       $supr = $this->db->readListGroupeByBooker($idBooker);
+       foreach ($supr as $Groupe) {
+         try {
+            $this->db->deleteGroupeById($Groupe->getIdGroupe());
+         } catch (DAOException $e) {}
+       }
+
        $sql = "DELETE FROM Booker where idBooker = ?";
        $req = $this->db->prepare($sql);
        $params = array(
@@ -341,10 +348,6 @@ class DAO {
          die("deleteBookerById : Requête impossible !");
        }
 
-       $supr = $this->db->readListGroupeByBooker($idBooker);
-       foreach ($supr as $Groupe) {
-         $this->db->deleteGroupeById($Groupe->getIdGroupe());
-       }
        return true;
      } else {
        throw DAOException("Booker non présent dans la base, supression impossible");
@@ -495,18 +498,18 @@ class DAO {
    function deleteGroupeByIdGroupe($idGroupe) {
      $b = $this->db->readListGroupeByBooker($idGroupe);
      if ($b != null) {
-
-       $this->db->deleteBookerGroupeByIdGroupe($idGroupe);
-
-       $supr = $this->db->readArtisteByGroupe($idGroupe);
-       foreach ($supr as $artiste) {
-         $this->db->deleteArtisteById($artiste->getIdPersonne());
-       }
-
-
-       $this->db->deleteGroupeGenreByPrimary();
-       $this->db->deleteCreneauIdGroupe($idGroupe);
-
+       try {
+          $this->db->deleteBookerGroupeByIdGroupe($idGroupe);
+       } catch (DAOException $e) {}
+       try {
+          $this->db->deleteGroupeArtisteByIdGroupe($idGroupe);
+       } catch (DAOException $e) {}
+       try {
+          $this->db->deleteGroupeGenreIdGroupe($idGroupe);
+       } catch (DAOException $e) {}
+       try {
+         $this->db->deleteCreneauByIdGroupe($idGroupe);
+       } catch (DAOException $e) {}
 
        $sql = "DELETE FROM Groupe where idGroupe = ?";
        $req = $this->db->prepare($sql);
@@ -1412,6 +1415,24 @@ class DAO {
          }
       }
 
+      function deleteCreneauByIdGroupe($idGroupe) {
+        $b = $this->db->readCreneauByidGroupe($idGroupe);
+        if ($b != null) {
+          $sql = "DELETE FROM Creneau where idGroupe = ?";
+          $req = $this->db->prepare($sql);
+          $params = array(
+            $idGroupe
+          );
+          $res = $req->execute($params);
+          if ($res === FALSE) {
+            die("deleteCreneauByIdGroupe : Requête impossible !");
+          }
+          return true;
+        } else {
+          throw DAOException("Creneau non présent dans la base, supression impossible");
+        }
+      }
+
       // ===================== Groupe_Artiste =====================
 
       // Groupe_Artiste(idGroupe,idArtiste)
@@ -1478,7 +1499,7 @@ class DAO {
       }
 
       function deleteGroupeArtisteByIdArtiste($idArtiste) {
-        $g = $this->db->readListGroupeByBooker($idArtiste);
+        $g = $this->db->readListGroupeByArtiste ($idArtiste);
         if ($g != null) {
           $sql = "DELETE FROM Groupe_Artiste where idArtiste = ?";
           $req = $this->db->prepare($sql);
@@ -1488,6 +1509,24 @@ class DAO {
           $res = $req->execute($params);
           if ($res === FALSE) {
             die("deleteGroupeArtisteByIdArtiste : Requête impossible !");
+          }
+          return true;
+        } else {
+          throw DAOException("Groupe_Artiste non présent dans la base, supression impossible");
+        }
+      }
+
+      function deleteGroupeArtisteByIdGroupe($idGroupe) {
+        $g = $this->db->readArtisteByGroupe($idGroupe);
+        if ($g != null) {
+          $sql = "DELETE FROM Groupe_Artiste where idGroupe = ?";
+          $req = $this->db->prepare($sql);
+          $params = array(
+            $idGroupe
+          );
+          $res = $req->execute($params);
+          if ($res === FALSE) {
+            die("deleteGroupeArtisteByIdGroupe : Requête impossible !");
           }
           return true;
         } else {
@@ -1879,6 +1918,20 @@ class DAO {
          return (isset($res[0])?$res[0]:null);
       }
 
+      function readGroupeGenreByIdGroupe($idGroupe) {
+         $sql = "SELECT * FROM Groupe_Genre WHERE  idGroupe=?"; // requête
+         $req = $this->db->prepare($sql);
+         $params = array(
+            $idGroupe
+         );
+         $res = $req->execute($params);
+         if ($res === FALSE) {
+            die("readGroupeGenreByIdGroupe : Requête impossible !"); // erreur dans la requête
+         }
+         $res = $req->fetchAll(PDO::FETCH_CLASS,"Groupe_Genre");
+         return (isset($res[0])?$res:null);
+      }
+
       function createGroupeGenre($groupeGenre) {
          $g = $this->db->readGroupeGenreByPrimary($groupeGenre->idGroupe,$groupeGenre->nomg);
          if ($g == null) {
@@ -1910,6 +1963,24 @@ class DAO {
             $res = $req->execute($params);
             if ($res === FALSE) {
                die("deleteGroupeGenreByPrimary : Requête impossible !");
+            }
+            return true;
+         } else {
+            throw DAOException("Groupe_Genre non présente dans la base, suppression impossible");
+         }
+      }
+
+      function deleteGroupeGenreIdGroupe($idGroupe) {
+         $g = $this->db->readGroupeGenreByIdGroupe($idGroupe);
+         if ($g != null) {
+            $sql = "DELETE FROM Groupe_Genre WHERE idGroupe = ?";
+            $req = $this->db->prepare($sql);
+            $params = array(
+               $idGroupe
+            );
+            $res = $req->execute($params);
+            if ($res === FALSE) {
+               die("deleteGroupeGenreIdGroupe : Requête impossible !");
             }
             return true;
          } else {
