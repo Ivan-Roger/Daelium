@@ -88,14 +88,12 @@ if($user != NULL){ // SI c'est un organisateur
       $data['error']['title'] = "Evenement inconnu";
       $data['error']['back'] = "../controler/evenements.ctrl.php";
       $data['error']['message'] = "Vous vous etes perdu ...";
-      $data['page'] = "Error";
       include("../view/error.view.php");
     }
   }else{
     $data['error']['title'] = "Evenement inconnu";
     $data['error']['back'] = "../controler/evenements.ctrl.php";
     $data['error']['message'] = "Vous vous etes perdu ...";
-    $data['page'] = "Error";
     include("../view/error.view.php");
   }
 
