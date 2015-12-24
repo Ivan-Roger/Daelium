@@ -279,7 +279,7 @@ class DAO {
 
        $this->db->deleteMessageByPrimary();
        $this->db->deleteDocumentByPrimary();
-       return ($contactSupr && $roleSupr &&);
+       return ($contactSupr && $roleSupr);
 
      } else {
        throw DAOException("Utilisateur non présent dans la base, supression impossible");
