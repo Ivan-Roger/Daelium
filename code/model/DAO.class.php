@@ -258,6 +258,20 @@ class DAO {
    function deleteUtilisateurById($idUtilisateur) {
      $u = $this->db->readUtilisateurById($idUtilisateur);
      if ($u != null) {
+
+       $this->db->deleteContactByPrimary($idUtilisateur);
+
+       if ($this->$db->readBookerById($idUtilisateur) != null) {
+         $this->db->deleteBookerByPrimary();
+       } else {
+         $this->db->deleteOrganisateurByPrimary(); // pas fini
+       }
+
+       $eventSupr = $this->db->deleteEvenementByPrimary($idUtilisateur); // pas fini
+
+       $this->db->deleteMessageByPrimary();
+       $this->db->deleteDocumentByPrimary();
+
        $sql = "DELETE FROM Utilisateur where idUtilisateur = ?";
        $req = $this->db->prepare($sql);
        $params = array(
@@ -267,20 +281,7 @@ class DAO {
        if ($res === FALSE) {
          die("deleteUtilisateurById : Requête impossible !");
        }
-       $contactSupr = $this->db->deleteContactByPrimary($idUtilisateur);
-
-       if ($this->$db->readBookerById($idUtilisateur) != null) {
-             $roleSupr = $this->db->deleteBookerByPrimary(); //pas fini
-       } else {
-             $roleSupr = $this->db->deleteOrganisateurByPrimary(); // pas fini
-       }
-
-       $eventSupr = $this->db->deleteEvenementByPrimary($idUtilisateur); // pas fini
-
-       $this->db->deleteMessageByPrimary();
-       $this->db->deleteDocumentByPrimary();
-       return ($contactSupr && $roleSupr);
-
+       return true;
      } else {
        throw DAOException("Utilisateur non présent dans la base, supression impossible");
      }
@@ -338,6 +339,8 @@ class DAO {
          } catch (DAOException $e) {}
        }
 
+       $this->db->deleteNegociationByIdBooker($idBooker);
+
        $sql = "DELETE FROM Booker where idBooker = ?";
        $req = $this->db->prepare($sql);
        $params = array(
@@ -347,7 +350,6 @@ class DAO {
        if ($res === FALSE) {
          die("deleteBookerById : Requête impossible !");
        }
-
        return true;
      } else {
        throw DAOException("Booker non présent dans la base, supression impossible");
@@ -396,6 +398,16 @@ class DAO {
    function deleteOrganisateurById($idOrganisateur) {
      $o = $this->db->readOrganisateurById($idOrganisateur);
      if ($o != null) {
+       $supr = $this->db->readManifestationByCreateur($idOrganisateur);
+       foreach ($supr as $Manif) {
+         try {
+            $this->db->deleteManifesationById($Manif->getidManif());
+         } catch (DAOException $e) {}
+       }
+
+       $this->db->deleteNegociationByIdOrganisateur($idOrganisateur);
+
+
        $sql = "DELETE FROM Organisateur where idOrganisateur = ?";
        $req = $this->db->prepare($sql);
        $params = array(
@@ -836,6 +848,8 @@ class DAO {
          }
       }
 
+
+
       // ===================== Document =====================
 
       //Document(idDoc,idUtilisateur,nom,dateCreation,dateModif,emplacement)
@@ -898,6 +912,24 @@ class DAO {
          } else {
             throw DAOException("Document non présent dans la base de données !");
          }
+      }
+
+      function deleteDocumentsById($idDoc) {
+        $n = $this->db->readDocumentById($idDoc);
+        if ($n != null) {
+          $sql = "DELETE FROM Document where idDoc = ?";
+          $req = $this->db->prepare($sql);
+          $params = array(
+            $idDoc
+          );
+          $res = $req->execute($params);
+          if ($res === FALSE) {
+            die("deleteDocumentsById : Requête impossible !");
+          }
+          return true;
+        } else {
+          throw DAOException("Document non présente dans la base, supression impossible");
+        }
       }
 
       // ===================== Evenenement =====================
@@ -1692,7 +1724,7 @@ class DAO {
       function deleteNegociationDocumentsByIdNegociation($idNegociation) {
         $n = $this->db->readNegociationDocumentsByIdNegociation($idNegociation);
         if ($n != null) {
-          $sql = "DELETE FROM Negociation where idNegociation = ?";
+          $sql = "DELETE FROM Negociation_Documents where idNegociation = ?";
           $req = $this->db->prepare($sql);
           $params = array(
             $idNegociation
@@ -1700,6 +1732,11 @@ class DAO {
           $res = $req->execute($params);
           if ($res === FALSE) {
             die("deleteNegociationDocumentsByIdNegociation : Requête impossible !");
+          }
+          foreach ($n as $doc) {
+            try {
+                $this->db->deleteDocumentsById($doc->getIdDoc());
+            } catch (DAOException $e) {}
           }
           return true;
         } else {
@@ -1725,6 +1762,20 @@ class DAO {
          return (isset($res[0])?$res[0]:null);
       }
 
+      function readNegociationMessagesByIdNegociation($idNegociation) {
+         $sql = "SELECT * FROM Negociation_Messages WHERE  idNegociation=?"; // requête
+         $req = $this->db->prepare($sql);
+         $params = array(
+            $idNegociation
+         );
+         $res = $req->execute($params);
+         if ($res === FALSE) {
+            die("readNegociationMessagesByIdNegociation : Requête impossible !"); // erreur dans la requête
+         }
+         $res = $req->fetchAll(PDO::FETCH_CLASS,"Negociation_Messages");
+         return (isset($res[0])?$res:null);
+      }
+
       function createNegociationMessages($negociationMess) {
          $n = $this->db->readNegociationMessagesByPrimary($negociationMess->idNegociation,$negociationMess->idMessage);
          if ($n == null) {
@@ -1742,6 +1793,29 @@ class DAO {
          } else {
             throw DAOException("Negociation_Messages déjà présente dans la base");
          }
+      }
+
+      function deleteNegociationMessagesByIdNegociation($idNegociation) {
+        $n = $this->db->readNegociationMessagesByIdNegociation($idNegociation);
+        if ($n != null) {
+          $sql = "DELETE FROM Negociation_Messages where idNegociation = ?";
+          $req = $this->db->prepare($sql);
+          $params = array(
+            $idNegociation
+          );
+          $res = $req->execute($params);
+          if ($res === FALSE) {
+            die("deleteNegociationMessagesByIdNegociation : Requête impossible !");
+          }
+          foreach ($n as $message) {
+            try {
+                $this->db->deleteMessageByIdMessage($message->getID());
+            } catch (DAOException $e) {}
+          }
+          return true;
+        } else {
+          throw DAOException("Negociation_Messages non présente dans la base, supression impossible");
+        }
       }
 
       // ===================== Message_Tag =====================
