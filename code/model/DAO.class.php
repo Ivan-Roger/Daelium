@@ -262,15 +262,14 @@ class DAO {
        $this->db->deleteContactByPrimary($idUtilisateur);
 
        if ($this->$db->readBookerById($idUtilisateur) != null) {
-         $this->db->deleteBookerByPrimary();
+         $this->db->deleteBookerById($idUtilisateur);
        } else {
-         $this->db->deleteOrganisateurByPrimary(); // pas fini
+         $this->db->deleteOrganisateurById($idUtilisateur);
        }
 
-       $eventSupr = $this->db->deleteEvenementByPrimary($idUtilisateur); // pas fini
+       $this->db->deleteEvenementByidCreateur($idUtilisateur);
 
-       $this->db->deleteMessageByPrimary();
-       $this->db->deleteDocumentByPrimary();
+       $this->db->deleteDocumentsByIdUtilisateur($idUtilisateur);
 
        $sql = "DELETE FROM Utilisateur where idUtilisateur = ?";
        $req = $this->db->prepare($sql);
@@ -790,7 +789,7 @@ class DAO {
       }
 
       function createManifestation($manifestation) {
-         $m = $this->db->readUserByEmail($manifestation->idManif);
+         $m = $this->db->readManifestationById($manifestation->idManif);
          if ($m == null) {
             $sql = "INSERT INTO Manifestation(nom,type,description,datedebut,datefin,lienImageOfficiel,facebook,google,twitter,ficheCom,createur,lieu) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
             $req = $this->db->prepare($sql);
@@ -819,7 +818,7 @@ class DAO {
       }
 
       function updateManifestation($manifestation) {
-         $m = $this->db->readUserByEmail($manifestation->idManif);
+         $m = $this->db->readManifestationById($manifestation->idManif);
          if ($m != null) {
             $sql = "UPDATE Manifestation set (nom,type,description,datedebut,datefin,lienImageOfficiel,facebook,google,twitter,ficheCom,createur,lieu) = (?,?,?,?,?,?,?,?,?,?,?,?) where idManif = ?";
             $req = $this->db->prepare($sql);
@@ -848,6 +847,32 @@ class DAO {
          }
       }
 
+      function deleteManifesationById($idManif) {
+        $o = $this->db->readManifestationById($idManif);
+        if ($o != null) {
+
+          try {
+            $this->db->deleteManifestationGenreByIdManif($idManif);
+          } catch (DAOException $e) {}
+          try {
+            $this->db->;
+          } catch (DAOException $e) {}
+
+          $sql = "DELETE FROM Manifestation where idManif = ?";
+          $req = $this->db->prepare($sql);
+          $params = array(
+            $idManif
+          );
+          $res = $req->execute($params);
+          if ($res === FALSE) {
+            die("deleteManifesationById : Requête impossible !");
+          }
+          return true;
+        } else {
+          throw DAOException("Manifestation non présent dans la base, supression impossible");
+        }
+      }
+
 
 
       // ===================== Document =====================
@@ -865,6 +890,20 @@ class DAO {
          }
          $res = $req->fetchAll(PDO::FETCH_CLASS,"Document");
          return (isset($res[0])?$res[0]:null); // retourne le premier resultat s'il existe, sinon null
+      }
+
+      function readDocumentByIdUtilisateur($idUtilisateur) {
+         $sql = "SELECT * FROM Document WHERE idUtilisateur = ?"; // requête
+         $req = $this->db->prepare($sql);
+         $params = array( // paramétres
+            $idUtilisateur // l'id de l'utilisateur
+         );
+         $res = $req->execute($params);
+         if ($res === FALSE) {
+            die("readDocumentByIdUtilisateur : Requête impossible !"); // erreur dans la requête
+         }
+         $res = $req->fetchAll(PDO::FETCH_CLASS,"Document");
+         return (isset($res[0])?$res:null); // retourne le premier resultat s'il existe, sinon null
       }
 
 
@@ -931,6 +970,32 @@ class DAO {
           throw DAOException("Document non présente dans la base, supression impossible");
         }
       }
+
+      function deleteDocumentsByIdUtilisateur($idUtilisateur) {
+        $n = $this->db->readDocumentByIdUtilisateur($idUtilisateur);
+        if ($n != null) {
+
+          foreach ($n as $neg) {
+            try {
+              $this->db->deleteNegociationDocumentsByIdDoc($neg->getIdDoc());
+            } catch(DAOException $e) {}
+          }
+
+          $sql = "DELETE FROM Document where idUtilisateur = ?";
+          $req = $this->db->prepare($sql);
+          $params = array(
+            $idUtilisateur
+          );
+          $res = $req->execute($params);
+          if ($res === FALSE) {
+            die("deleteDocumentsByIdUtilisateur : Requête impossible !");
+          }
+          return true;
+        } else {
+          throw DAOException("Document non présente dans la base, supression impossible");
+        }
+      }
+
 
       // ===================== Evenenement =====================
 
@@ -1029,6 +1094,10 @@ class DAO {
       function deleteEvenementByIdCreateur($idCreateur) {
         $e = $this->db->readEvenenementByCreateur($idCreateur);
         if ($e != null) {
+          try {
+            $this->db->deleteContactEvenementByContactProprietaire($idCreateur);
+          } catch (DAOException $e) {}
+
           $sql = "DELETE FROM Evenenement where createur = ?";
           $req = $this->db->prepare($sql);
           $params = array(
@@ -1313,6 +1382,20 @@ class DAO {
          return (isset($res[0])?$res[0]:null);
       }
 
+      function readContactEvenementByContactProprietaire($proprietaire) {
+         $sql = "SELECT * FROM Contact_Evenement WHERE contactProprietaire = ?"; // requête
+         $req = $this->db->prepare($sql);
+         $params = array(
+            $proprietaire
+         );
+         $res = $req->execute($params);
+         if ($res === FALSE) {
+            die("readContactEvenementByContactProprietaire : Requête impossible !"); // erreur dans la requête
+         }
+         $res = $req->fetchAll(PDO::FETCH_CLASS,"Contact_Evenement");
+         return (isset($res[0])?$res:null);
+      }
+
       function createContactEvenement($contactEven) {
          $c = $this->db->readContactEvenementByPrimary($contactEven->proprietaire,$contactEven->idContact,$contactEven->idEvene);
          if ($c == null) {
@@ -1333,7 +1416,23 @@ class DAO {
          }
       }
 
-      //Etant donnée les trois clées qui sont primaire je ne pense pas qu'on puisse faire un update sur contact evenement
+      function deleteContactEvenementByContactProprietaire($idProprietaire) {
+        $e = $this->db->readContactEvenementByContactProprietaire($idProprietaire);
+        if ($e != null) {
+          $sql = "DELETE FROM Contact_Evenement where contactProprietaire = ?";
+          $req = $this->db->prepare($sql);
+          $params = array(
+            $idProprietaire
+          );
+          $res = $req->execute($params);
+          if ($res === FALSE) {
+            die("deleteContactEvenementByContactProprietaire : Requête impossible !");
+          }
+          return true;
+        } else {
+          throw DAOException("Contact_Evenement non présent dans la base, supression impossible");
+        }
+      }
 
       // ===================== Creneau =====================
 
@@ -1458,6 +1557,24 @@ class DAO {
           $res = $req->execute($params);
           if ($res === FALSE) {
             die("deleteCreneauByIdGroupe : Requête impossible !");
+          }
+          return true;
+        } else {
+          throw DAOException("Creneau non présent dans la base, supression impossible");
+        }
+      }
+
+      function deleteCreneauByIdManif($idManif) {
+        $b = $this->db->readCreneauByidManif($idManif);
+        if ($b != null) {
+          $sql = "DELETE FROM Creneau where idManif = ?";
+          $req = $this->db->prepare($sql);
+          $params = array(
+            $idManif
+          );
+          $res = $req->execute($params);
+          if ($res === FALSE) {
+            die("deleteCreneauByIdManif : Requête impossible !");
           }
           return true;
         } else {
@@ -1597,6 +1714,19 @@ class DAO {
         $res = $req->fetchAll(PDO::FETCH_CLASS,"Negociation");
         return (isset($res[0])?$res:null);
       }
+      function readNegociationByIdOrganisateur($idOrganisateur) {
+        $sql = "SELECT * FROM Negociation WHERE idOrganisateur  =?"; // requête
+        $req = $this->db->prepare($sql);
+        $params = array(
+          $idOrganisateur
+        );
+        $res = $req->execute($params);
+        if ($res === FALSE) {
+          die("readNegociationByIdOrganisateur : Requête impossible !"); // erreur dans la requête
+        }
+        $res = $req->fetchAll(PDO::FETCH_CLASS,"Negociation");
+        return (isset($res[0])?$res:null);
+      }
 
       function createNegociation($negociation) {
          $n = $this->db->readNegociationById($negociation->idNegociation);
@@ -1663,6 +1793,33 @@ class DAO {
           $res = $req->execute($params);
           if ($res === FALSE) {
             die("deleteNegociationByIdBooker : Requête impossible !");
+          }
+          return true;
+        } else {
+          throw DAOException("Negociation non présente dans la base, supression impossible");
+        }
+      }
+
+      function deleteNegociationByIdOrganisateur($idOrganisateur) {
+        $n = $this->db->readNegociationByIdOrganisateur($idOrganisateur);
+        if ($n != null) {
+          foreach ($n as $negociation) {
+            try {
+              $this->db->deleteNegociationMessagesByIdNegociation($negociation->idNegociation);
+            } catch (DAOException $e) {}
+            try {
+              $this->db->deleteNegociationDocumentsByIdNegociation($negociation->idNegociation);
+            } catch (DAOException $e) {}
+          }
+
+          $sql = "DELETE FROM Negociation where idOrganisateur = ?";
+          $req = $this->db->prepare($sql);
+          $params = array(
+            $idOrganisateur
+          );
+          $res = $req->execute($params);
+          if ($res === FALSE) {
+            die("deleteNegociationByIdOrganisateur : Requête impossible !");
           }
           return true;
         } else {
@@ -1737,6 +1894,24 @@ class DAO {
             try {
                 $this->db->deleteDocumentsById($doc->getIdDoc());
             } catch (DAOException $e) {}
+          }
+          return true;
+        } else {
+          throw DAOException("Negociation_Documents non présente dans la base, supression impossible");
+        }
+      }
+
+      function deleteNegociationDocumentsByIdDoc($idDoc) {
+        $n = $this->db->readNegociationDocumentsByIdNegociation($idDoc);
+        if ($n != null) {
+          $sql = "DELETE FROM Negociation_Documents where idDoc = ?";
+          $req = $this->db->prepare($sql);
+          $params = array(
+            $idDoc
+          );
+          $res = $req->execute($params);
+          if ($res === FALSE) {
+            die("deleteNegociationDocumentsByIdDoc : Requête impossible !");
           }
           return true;
         } else {
@@ -1881,6 +2056,24 @@ class DAO {
             $res = $req->execute($params);
             if ($res === FALSE) {
                die("deleteMessageTagByPrimary : Requête impossible !");
+            }
+            return true;
+         } else {
+            throw DAOException("Message_Tag non présent dans la base, supression impossible");
+         }
+      }
+
+      function deleteMessageTagByIdMessage($idMessage) {
+         $m = $this->db->readMessageTagsByMessage($idMessage);
+         if ($m != null) {
+            $sql = "DELETE FROM Message_Tag where idMessage=? ";
+            $req = $this->db->prepare($sql);
+            $params = array(
+               $idMessage
+            );
+            $res = $req->execute($params);
+            if ($res === FALSE) {
+               die("deleteMessageTagByIdMessage : Requête impossible !");
             }
             return true;
          } else {
@@ -2131,6 +2324,23 @@ class DAO {
          }
       }
 
+      function deleteManifestationGenreByIdManif($idManif) {
+         $m = $this->db->readManifestationGenreByidManif($idManif);
+         if ($m != null) {
+            $sql = "DELETE FROM Manifestation_Genre where idManif=? ";
+            $req = $this->db->prepare($sql);
+            $params = array(
+               $idManif
+            );
+            $res = $req->execute($params);
+            if ($res === FALSE) {
+               die("deleteManifestationGenreByIdManif : Requête impossible !");
+            }
+            return true;
+         } else {
+            throw DAOException("Manifestation_Genre non présente dans la base, supression impossible");
+         }
+      }
 
 
       // ===================== Contact_Tag =====================
@@ -2288,6 +2498,30 @@ class DAO {
          } else {
             throw new DAOException("idMessage non présent dans la base");
          }
+      }
+
+      function deleteMessageByIdReceveur($idReceveur) {
+        $u = $this->db->readMessagesRecusByUtilisateur($idReceveur);
+        if ($u != null) {
+          foreach ($u as $message) {
+            try {
+              $this->db->deleteMessageTagByIdMessage($message->getID);
+            } catch (DAOException $e) {}
+          }
+
+          $sql = "DELETE FROM Message where destinataire = ?";
+          $req = $this->db->prepare($sql);
+          $params = array(
+            $idReceveur
+          );
+          $res = $req->execute($params);
+          if ($res === FALSE) {
+            die("deleteMessageByIdReceveur : Requête impossible !");
+          }
+          return true;
+        } else {
+          throw DAOException("Message non présent dans la base, supression impossible");
+        }
       }
 
       // ===================== Conversation =====================
