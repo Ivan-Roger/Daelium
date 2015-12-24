@@ -17,7 +17,7 @@ header("Location:"."../");
       <div class="navbar navbar-right">
         <a class ="btn btn-default" href="../controler/evenements.ctrl.php"> Retour </a>
         <a class ="btn btn-danger" href="../controler/evenement.ctrl.php?id=<?= $data['evenement']['id'] ?>&action=edit" > Supprimer </a>
-        <a class ="btn btn-warning" href="../controler/evenement.ctrl.php?id=<?= $data['evenement']['id'] ?>&action=edit" > Modifier </a>
+        <a class ="btn btn-warning" href="../controler/evenement_edit.ctrl.php?id=<?= $data['evenement']['id'] ?>" > Modifier </a>
       </div>
     </article>
 
