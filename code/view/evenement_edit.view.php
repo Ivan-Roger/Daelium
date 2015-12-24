@@ -28,20 +28,20 @@ header("Location:"."../");
               <label class="control-label col-sm-4" for="type">Type :</label>
               <div class="col-sm-8">
                 <div class="btn-group" data-toggle="buttons" id="fonction">
-                  <label class="btn btn-default active">
-                    <input type="radio" name="type" id="option1" value="Concert" checked> Concert
+                  <label class="btn btn-default <?php if($data['evenement']['type'] =="Concert"){echo "active";}  ?>">
+                    <input type="radio" name="type" id="option1" value="Concert" <?php if($data['evenement']['type'] =="Concert"){echo "checked";}  ?>> Concert
                   </label>
-                  <label class="btn btn-default">
-                    <input type="radio" name="type" id="option2" value="Festival"> Festival
+                  <label class="btn btn-default <?php if($data['evenement']['type'] == "Festival"){echo "active";}  ?>">
+                    <input type="radio" name="type" id="option2" value="Festival" <?php if($data['evenement']['type'] =="Festival"){echo "checked";}  ?>> Festival
                   </label>
-                  <label class="btn btn-default">
-                    <input type="radio" name="type" id="option2" value="Mariage"> Mariage
+                  <label class="btn btn-default <?php if($data['evenement']['type'] == "Mariage"){echo "active";}  ?>">
+                    <input type="radio" name="type" id="option2" value="Mariage" <?php if($data['evenement']['type'] =="Mariage"){echo "checked";}  ?>> Mariage
                   </label>
-                  <label class="btn btn-default">
-                    <input type="radio" name="type" id="option2" value="Fête"> Fête de village
+                  <label class="btn btn-default <?php if($data['evenement']['type'] == "Fête de village"){echo "active";}  ?>">
+                    <input type="radio" name="type" id="option2" value="Fête" <?php if($data['evenement']['type'] =="Fête de village"){echo "checked";}  ?>> Fête de village
                   </label>
-                  <label class="btn btn-default">
-                    <input type="radio" name="type" id="option2" value="Autre"> Autre
+                  <label class="btn btn-default <?php if($data['evenement']['type'] == "Autre"){echo "active";}  ?>">
+                    <input type="radio" name="type" id="option2" value="Autre" <?php if($data['evenement']['type'] =="Autre"){echo "checked";}  ?>> Autre
                   </label>
                 </div>
               </div>
@@ -49,7 +49,14 @@ header("Location:"."../");
             <div class="form-group">
               <label class="control-label col-sm-4" for="autre">Si autre :</label>
               <div class="col-sm-8">
-                <input type="text" id="autre" name="autre" class="form-control" />
+                <input type="text" id="autre" name="autre" class="form-control" value="<?= $data['evenement']['type'] ?>"/>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label col-sm-4" for="dated">Genre :</label>
+              <div class="col-sm-8">
+                <input type="text" id="dated" name="dated" required="required" class="form-control" value="<?= $data['evenement']['genre'] ?>" />
               </div>
             </div>
 

@@ -37,7 +37,7 @@ if($user != NULL){ // SI c'est un organisateur
             $data['evenement']['genre'] = $data['evenement']['genre']." ".$value['nomg'];
           }
         }else {
-          $data['evenement']['genre'] = "Aucun genre";
+          $data['evenement']['genre'] = "";
         }
         if($evt->getDescription() == NULL){
           $data['evenement']['description'] = "Aucune description";
