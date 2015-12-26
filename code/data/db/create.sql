@@ -127,9 +127,11 @@ CREATE TABLE Evenement (
   nom           VARCHAR(255),
   datedebut     DATE NOT NULL,
   datefin       DATE NOT NULL,
-  heuredebut    TIME(6) NOT NULL,
-  heurefin      TIME(6) NOT NULL,
+  journee       VARCHAR(10) NOT NULL,
+  heuredebut    TIME(6),
+  heurefin      TIME(6),
   description   VARCHAR(255),
+  plus          TEXT,
   lieu          integer references Lieu(idLieu),
   createur      integer NOT NULL references Utilisateur(idUtilisateur)
 );

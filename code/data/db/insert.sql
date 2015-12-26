@@ -42,6 +42,10 @@ INSERT INTO Creneau VALUES(2,1,'Grande scene','01/07/2016','22:00','23:00',NULL,
 
 
 INSERT INTO Evenement VALUES(1,'Rendez vous chez Marc','12/02/2016','12/02/2016','15:12','15:30',NULL,NULL,1);
+INSERT INTO Evenement VALUES(2,'Noël','25/12/2015','25/12/2015','00:00','23:59',NULL,NULL,1);
+INSERT INTO Evenement VALUES(3,'En scène','24/07/2016','26/07/2016','10:00','20:30',NULL,NULL,1);
+INSERT INTO Evenement VALUES(4,'Debut Paris Live','15/01/2016','17/01/2016','15:00','19:45',NULL,NULL,1);
+
 
 INSERT INTO Contact VALUES(1,1,'Pas tres Cool');
 INSERT INTO Contact VALUES(1,2,'Sympa');

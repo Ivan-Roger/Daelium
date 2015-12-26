@@ -44,8 +44,8 @@ function updateCommingNext(func) {
     $("#commingNext tbody").html("");
     for (var id in res.events) {
       $("#commingNext tbody").append("<tr>");
-      $("#commingNext tbody tr:last-child").append($("<td class=\"date\" data-date=\""+res.events[id].day+"\">").html(res.events[id].day));
-      if (res.events[id].hour=="day") {
+      $("#commingNext tbody tr:last-child").append($("<td class=\"date\" data-date=\""+res.events[id].dateDebut+"\">").html(res.events[id].day));
+      if (res.events[id].day) {
         $("#commingNext tbody tr:last-child").append($("<td class=\"hour empty\" data-hour=\""+res.events[id].hour+"\">").html("Journée"));
         console.log("Day");
       } else
@@ -61,6 +61,7 @@ function updateCommingNext(func) {
 }
 
 function updateEvent(id,func) {
+  console.log("Open event "+id);
   $.ajax({url: "agenda.ctrl.php?ajax&event="+id, success: function(res){
     console.log("Update Event !");
     console.log(res);
@@ -78,7 +79,8 @@ function updateEvent(id,func) {
       $("#eventView .participants tbody").append($("<tr data-id=\""+res.event.participants[id]+"\" >")
          .append($("<td class=\"text-right\">").html("<span class=\"glyphicon glyphicon-user\">"))
          .append($("<td>").html("Marc")) // Nom du participant
-         .append($("<td>").html("...")); // Notes
+         .append($("<td>").html("...")) // Notes
+      );
     }
     if (func!=null) {
       func();
@@ -98,14 +100,14 @@ function updateDayPlan(func) {
       $("#dayPlan tr[data-hour=\""+i+"\"] td.content").html("");
     }
     for (var id in res.events) {
-      var hour = res.events[id].hour.split("h")[0];
+      var hour = res.events[id].heureDebut.split(":")[0];
       hour = (hour>0?hour*1:hour);
-      $("#dayPlan tr[data-hour=\""+hour+"\"] td.content").append($("<span class=\"evenement\" data-id=\""+id+"\">").html(res.events[id].name));
+      $("#dayPlan tr[data-hour=\""+hour+"\"] td.content").append($("<span class=\"evenement\" data-id=\""+res.events[id].id+"\">").html(res.events[id].name));
       $("#dayPlan tr[data-hour=\""+hour+"\"] td.content span.evenement:last-child").click(function (e) {
-        console.log("Open event "+$(e.currentTarget).data().id);
+        updateEvent($(e.currentTarget).data().id);
       });
       // DEBUG
-      console.log("Evenement : ("+AgendaDate.getDate()+" "+res.events[id].hour+") : "+res.events[id].name);
+      console.log("Evenement : ("+res.events[id].dateDebut+" "+res.events[id].heureDebut+") : "+res.events[id].name);
     }
     if (func!=null) {
       func();

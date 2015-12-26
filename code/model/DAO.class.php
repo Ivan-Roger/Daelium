@@ -8,6 +8,7 @@ require_once("Booker.class.php");
 require_once("Groupe.class.php");
 require_once("Message.class.php");
 require_once("Conversation.class.php");
+require_once("Evenement.class.php");
 require_once("Manifestation.class.php");
 require_once("Creneau.class.php");
 
@@ -890,7 +891,7 @@ class DAO {
             $this->db->deleteManifestationGenreByIdManif($idManif);
           } catch (DAOException $e) {}
           try {
-            $this->db->;
+            //$this->db->;
           } catch (DAOException $e) {}
 
           $sql = "DELETE FROM Manifestation where idManif = ?";
@@ -1032,108 +1033,125 @@ class DAO {
       }
 
 
-      // ===================== Evenenement =====================
+      // ===================== Evenement =====================
 
-      //Evenenement(idEvene,dateDebut,dateFin,heureDebut,heureFin,description,Lieu,createur)
-      function readEvenenementById($idEvene) {
-         $sql = "SELECT * FROM Evenenement WHERE idEvene = ?"; // requête
+      //Evenement(idEvene,dateDebut,dateFin,heureDebut,heureFin,description,plus,lieu,createur)
+      function readEvenementById($idEvene) {
+         $sql = "SELECT * FROM Evenement WHERE idEvene = ?"; // requête
          $req = $this->db->prepare($sql);
          $params = array( // paramétres
             $idEvene // l'id de l'utilisateur
          );
          $res = $req->execute($params);
          if ($res === FALSE) {
-            die("readEvenenementById : Requête impossible !"); // erreur dans la requête
+            die("readEvenementById : Requête impossible !"); // erreur dans la requête
          }
-         $res = $req->fetchAll(PDO::FETCH_CLASS,"Evenenement");
+         $res = $req->fetchAll(PDO::FETCH_CLASS,"Evenement");
          return (isset($res[0])?$res[0]:null);
       }
 
-      function readEvenenementByLieu($idLieu) {
-         $sql = "SELECT * FROM Evenenement WHERE idLieu = ?"; // requête
+      function readEvenementByLieu($idLieu) {
+         $sql = "SELECT * FROM Evenement WHERE idLieu = ?"; // requête
          $req = $this->db->prepare($sql);
          $params = array( // paramétres
             $idLieu // l'id de l'utilisateur
          );
          $res = $req->execute($params);
          if ($res === FALSE) {
-            die("readEvenenementByLieu : Requête impossible !"); // erreur dans la requête
+            die("readEvenementByLieu : Requête impossible !"); // erreur dans la requête
          }
-         $res = $req->fetchAll(PDO::FETCH_CLASS,"Evenenement");
+         $res = $req->fetchAll(PDO::FETCH_CLASS,"Evenement");
          return (isset($res[0])?$res:null);
       }
 
-      function readEvenenementByCreateur($idCreateur) {
-         $sql = "SELECT * FROM Evenenement WHERE idCreateur = ?"; // requête
+      function readEvenementByCreateur($idCreateur) {
+         $sql = "SELECT * FROM Evenement WHERE createur = ?"; // requête
          $req = $this->db->prepare($sql);
          $params = array( // paramétres
             $idCreateur // l'id de l'utilisateur
          );
          $res = $req->execute($params);
          if ($res === FALSE) {
-            die("readEvenenementByCreateur : Requête impossible !"); // erreur dans la requête
+            var_dump($this->db->errorInfo()[2]);
+            die("readEvenementByCreateur : Requête impossible !"); // erreur dans la requête
          }
-         $res = $req->fetchAll(PDO::FETCH_CLASS,"Evenenement");
+         $res = $req->fetchAll(PDO::FETCH_CLASS,"Evenement");
          return (isset($res[0])?$res:null);
       }
 
-      function createEvenenement($evenenement) {
-         $e = $this->db->readEvenenementById($evenenement->idEvene);
+      function readEvenementByCreateurDate($idCreateur,$dateDebut) {
+         $sql = "SELECT * FROM Evenement WHERE createur = ? AND datedebut = ?"; // requête
+         $req = $this->db->prepare($sql);
+         $params = array( // paramétres
+            $idCreateur, // l'id de l'utilisateur
+            $dateDebut // la date de début
+         );
+         $res = $req->execute($params);
+         if ($res === FALSE) {
+            var_dump($this->db->errorInfo()[2]);
+            die("readEvenementByCreateurDate : Requête impossible !"); // erreur dans la requête
+         }
+         $res = $req->fetchAll(PDO::FETCH_CLASS,"Evenement");
+         return (isset($res[0])?$res:null);
+      }
+
+      function createEvenement($evenement) {
+         $e = $this->db->readEvenementById($evenement->idEvene);
          if ($e == null) {
-            $sql = "INSERT INTO Evenenement(dateDebut,dateFin,heureDebut,heureFin,description,Lieu,createur) VALUES (?,?,?,?,?,?,?)";
+            $sql = "INSERT INTO Evenement(dateDebut,dateFin,heureDebut,heureFin,description,lieu,createur) VALUES (?,?,?,?,?,?,?)";
             $req = $this->db->prepare($sql);
             $params = array(
-               $evenenement->dateDebut,
-               $evenenement->dateFin,
-               $evenenement->heureDebut,
-               $evenenement->heureFin,
-               $evenenement->description,
-               $evenenement->Lieu,
-               $evenenement->createur
+               $evenement->getDateDebut(),
+               $evenement->getDateFin(),
+               $evenement->getHeureDebut(),
+               $evenement->getHeureFin(),
+               $evenement->description(),
+               $evenement->getLieu(),
+               $evenement->getCreateur()
             );
             $res = $req->execute($params);
             if ($res === FALSE) {
-               die("createEvenenement : Requête impossible !");
+               die("createEvenement : Requête impossible !");
             }
-            return $this->db->readUserById($evenenement->idEvene);
+            return true;
          } else {
-            throw DAOException("Evenenement déjà présent dans la base (l'id en tous cas)");
+            throw DAOException("Evenement déjà présent dans la base (l'id en tous cas)");
          }
       }
 
-      function updateEvenenement($evenenement) {
-         $e = $this->db->readEvenenementById($evenenement->idEvene);
+      function updateEvenement($evenement) {
+         $e = $this->db->readEvenementById($evenement->idEvene);
          if ($e != null) {
-            $sql = "UPDATE Evenenement set (dateDebut,dateFin,heureDebut,heureFin,description,Lieu,createur) = (?,?,?,?,?,?,?) where idEvene = ?";
+            $sql = "UPDATE Evenement set (dateDebut,dateFin,heureDebut,heureFin,description,lieu,createur) = (?,?,?,?,?,?,?) where idEvene = ?";
             $req = $this->db->prepare($sql);
             $params = array(
-               $evenenement->dateDebut,
-               $evenenement->dateFin,
-               $evenenement->heureDebut,
-               $evenenement->heureFin,
-               $evenenement->description,
-               $evenenement->Lieu,
-               $evenenement->createur,
-               $evenenement->idEvene
+               $evenement->getDateDebut(),
+               $evenement->getDateFin(),
+               $evenement->getHeureDebut(),
+               $evenement->getHeureFin(),
+               $evenement->description(),
+               $evenement->getLieu(),
+               $evenement->getCreateur(),
+               $evenement->getID()
             );
             $res = $req->execute($params);
             if ($res === FALSE) {
-               die("updateEvenenement : Requête impossible !");
+               die("updateEvenement : Requête impossible !");
             }
-            return $this->db->readEvenenementById($evenenement->idEvene);
+            return true;
          } else {
             throw DAOException("Evenement non présent dans la base de données !");
          }
       }
 
       function deleteEvenementByIdCreateur($idCreateur) {
-        $e = $this->db->readEvenenementByCreateur($idCreateur);
+        $e = $this->db->readEvenementByCreateur($idCreateur);
         if ($e != null) {
           try {
             $this->db->deleteContactEvenementByContactProprietaire($idCreateur);
           } catch (DAOException $e) {}
 
-          $sql = "DELETE FROM Evenenement where createur = ?";
+          $sql = "DELETE FROM Evenement where createur = ?";
           $req = $this->db->prepare($sql);
           $params = array(
             $idCreateur
@@ -1144,7 +1162,7 @@ class DAO {
           }
           return true;
         } else {
-          throw DAOException("Evenenement non présent dans la base, supression impossible");
+          throw DAOException("Evenement non présent dans la base, supression impossible");
         }
       }
 
