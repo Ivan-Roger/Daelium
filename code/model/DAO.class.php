@@ -139,6 +139,34 @@ class DAO {
       }
    }
 
+   function deletePersonneById($idPersonne) {
+     $u = $this->db->readPersonneById($idPersonne);
+     if ($u != null) {
+
+       $type = (int) $u["type"];
+       if($type == 0 || $type == 1){
+          $this->deleteUtilisateurById($idPersonne);
+       }else {
+          $this->deleteArtisteById($idPersonne);
+       }
+
+       $sql = "DELETE FROM Personne where idPersonne = ?";
+       $req = $this->db->prepare($sql);
+       $params = array(
+         $idPersonne
+       );
+       $res = $req->execute($params);
+       if ($res === FALSE) {
+         die("deletePersonneById : Requête impossible !");
+       }
+       return true;
+     } else {
+       throw DAOException("Personne non présent dans la base, supression impossible");
+     }
+   }
+
+
+
    // ===================== Utilisateur =====================
 
    function readUtilisateurById($id) {
@@ -258,18 +286,25 @@ class DAO {
    function deleteUtilisateurById($idUtilisateur) {
      $u = $this->db->readUtilisateurById($idUtilisateur);
      if ($u != null) {
-
-       $this->db->deleteContactByPrimary($idUtilisateur);
-
+       try {
+          $this->db->deleteContactByIdProprietaire($idUtilisateur);
+       } catch (DAOException $e) {}
        if ($this->$db->readBookerById($idUtilisateur) != null) {
-         $this->db->deleteBookerById($idUtilisateur);
+         try {
+           $this->db->deleteBookerById($idUtilisateur);
+         } catch (DAOException $e) {}
        } else {
-         $this->db->deleteOrganisateurById($idUtilisateur);
+         try {
+           $this->db->deleteOrganisateurById($idUtilisateur);
+         } catch (DAOException $e) {}
        }
+       try {
+         $this->db->deleteEvenementByidCreateur($idUtilisateur);
+       } catch (DAOException $e) {}
+       try {
+         $this->db->deleteDocumentsByIdUtilisateur($idUtilisateur);
+       } catch (DAOException $e) {}
 
-       $this->db->deleteEvenementByidCreateur($idUtilisateur);
-
-       $this->db->deleteDocumentsByIdUtilisateur($idUtilisateur);
 
        $sql = "DELETE FROM Utilisateur where idUtilisateur = ?";
        $req = $this->db->prepare($sql);
@@ -1185,14 +1220,27 @@ class DAO {
          }
       }
 
-      function deleteContactById($proprietaire) {
-        $c = $this->db->readContactByProprietaire($proprietaire);
+      function deleteContactByIdProprietaire($idProprietaire) {
+        $c = $this->db->readContactByProprietaire($idProprietaire);
         if ($c != null) {
+          try {
+            $this->db->deleteContactSystemById($idProprietaire);
+          } catch (DAOException $e) {}
+          try {
+            $this->db->deleteContactExterieurById($idProprietaire);
+          } catch (DAOException $e) {}
+          try {
+            $this->db->deleteContactTagById($idProprietaire);
+          } catch (DAOException $e) {}
+          try {
+            $this->db->deleteContactEvenementById($idProprietaire);
+          } catch (DAOException $e) {}
+
           $sql = "DELETE FROM Contact where Proprietaire = ? or idContact = ?";
           $req = $this->db->prepare($sql);
           $params = array(
-            $proprietaire,
-            $proprietaire
+            $idProprietaire,
+            $idProprietaire
           );
           $res = $req->execute($params);
           if ($res === FALSE) {
@@ -1220,6 +1268,21 @@ class DAO {
          }
          $res = $req->fetchAll(PDO::FETCH_CLASS,"Contact_Systeme");
          return (isset($res[0])?$res[0]:null);
+      }
+
+      function readContactSystemById($id) {
+         $sql = "SELECT * FROM Contact_Systeme WHERE contactProprietaire = ? or idContact = ?"; // requête
+         $req = $this->db->prepare($sql);
+         $params = array(
+            $id,
+            $id
+         );
+         $res = $req->execute($params);
+         if ($res === FALSE) {
+            die("readContactSystemById : Requête impossible !"); // erreur dans la requête
+         }
+         $res = $req->fetchAll(PDO::FETCH_CLASS,"Contact_Systeme");
+         return (isset($res[0])?$res:null);
       }
 
       function createContactSystem($contactSyst) {
@@ -1281,6 +1344,25 @@ class DAO {
          }
       }
 
+      function deleteContactSystemById($id) {
+         $c = $this->db->readContactSystemById($id);
+         if ($c != null) {
+            $sql = "DELETE FROM Contact_Systeme where contactProprietaire = ? or idContact = ?";
+            $req = $this->db->prepare($sql);
+            $params = array(
+               $id,
+               $id
+            );
+            $res = $req->execute($params);
+            if ($res === FALSE) {
+               die("deleteContactSystemById : Requête impossible !");
+            }
+            return true;
+         } else {
+            throw DAOException("Contact_Systeme non présent dans la base, supression impossible");
+         }
+      }
+
       // ===================== Contact_exterieur =====================
 
       // Contact_exterieur(contactProprietaire,idContact,nom,email,tel)
@@ -1297,6 +1379,21 @@ class DAO {
          }
          $res = $req->fetchAll(PDO::FETCH_CLASS,"Contact_exterieur");
          return (isset($res[0])?$res[0]:null);
+      }
+
+      function readContactExterieurById($id) {
+         $sql = "SELECT * FROM Contact_exterieur WHERE contactProprietaire = ? or idContact = ?"; // requête
+         $req = $this->db->prepare($sql);
+         $params = array(
+            $id,
+            $id
+         );
+         $res = $req->execute($params);
+         if ($res === FALSE) {
+            die("readContactExterieurById : Requête impossible !"); // erreur dans la requête
+         }
+         $res = $req->fetchAll(PDO::FETCH_CLASS,"Contact_exterieur");
+         return (isset($res[0])?$res:null);
       }
 
       function createContactExterieur($contactProp) {
@@ -1343,7 +1440,7 @@ class DAO {
          }
       }
 
-      function DeleteContactExterieur($contactProprietaire, $idContact) {
+      function deleteContactExterieurByPrimary($contactProprietaire, $idContact) {
          $c = $this->db->readContactExterieurByPrimary($contactProprietaire,$idContact);
          if ($c != null) {
             $sql = "DELETE FROM Contact_exterieur where contactProprietaire = ? and idContact = ?";
@@ -1362,6 +1459,24 @@ class DAO {
          }
       }
 
+      function deleteContactExterieurById($id) {
+         $c = $this->db->readContactExterieurById($id);
+         if ($c != null) {
+            $sql = "DELETE FROM Contact_exterieur where contactProprietaire = ? or idContact = ?";
+            $req = $this->db->prepare($sql);
+            $params = array(
+               $id,
+               $id
+            );
+            $res = $req->execute($params);
+            if ($res === FALSE) {
+               die("deleteContactExterieurById : Requête impossible !");
+            }
+            return true;
+         } else {
+            throw DAOException("Contact_exterieur non présent dans la base");
+         }
+      }
 
       // ===================== Contact_Evenement =====================
 
@@ -1380,6 +1495,21 @@ class DAO {
          }
          $res = $req->fetchAll(PDO::FETCH_CLASS,"Contact_Evenement");
          return (isset($res[0])?$res[0]:null);
+      }
+
+      function readContactEvenementById($id) {
+         $sql = "SELECT * FROM Contact_Evenement WHERE contactProprietaire = ? or idContact = ?"; // requête
+         $req = $this->db->prepare($sql);
+         $params = array(
+            $id,
+            $id
+         );
+         $res = $req->execute($params);
+         if ($res === FALSE) {
+            die("readContactEvenementById : Requête impossible !"); // erreur dans la requête
+         }
+         $res = $req->fetchAll(PDO::FETCH_CLASS,"Contact_Evenement");
+         return (isset($res[0])?$res:null);
       }
 
       function readContactEvenementByContactProprietaire($proprietaire) {
@@ -1427,6 +1557,25 @@ class DAO {
           $res = $req->execute($params);
           if ($res === FALSE) {
             die("deleteContactEvenementByContactProprietaire : Requête impossible !");
+          }
+          return true;
+        } else {
+          throw DAOException("Contact_Evenement non présent dans la base, supression impossible");
+        }
+      }
+
+      function deleteContactEvenementById($id) {
+        $e = $this->db->readContactEvenementById($id);
+        if ($e != null) {
+          $sql = "DELETE FROM Contact_Evenement where contactProprietaire = ? or idContact = ? ";
+          $req = $this->db->prepare($sql);
+          $params = array(
+            $id,
+            $id
+          );
+          $res = $req->execute($params);
+          if ($res === FALSE) {
+            die("deleteContactEvenementById : Requête impossible !");
           }
           return true;
         } else {
@@ -2362,6 +2511,21 @@ class DAO {
          return (isset($res[0])?$res[0]:null);
       }
 
+      function readContactTagById($id) {
+         $sql = "SELECT * FROM Contact_Tag WHERE  idContact= ? or proprietaire = ?"; // requête
+         $req = $this->db->prepare($sql);
+         $params = array(
+            $id,
+            $id
+         );
+         $res = $req->execute($params);
+         if ($res === FALSE) {
+            die("readContactTagById : Requête impossible !"); // erreur dans la requête
+         }
+         $res = $req->fetchAll(PDO::FETCH_CLASS,"Contact_Tag");
+         return (isset($res[0])?$res:null);
+      }
+
       function createContactTag($contactTag) {
          $c = $this->db->readContactTagByPrimary($contactTag->nomt,$contactTag->idContact,$contactTag->proprietaire);
          if ($c == null) {
@@ -2395,6 +2559,25 @@ class DAO {
             $res = $req->execute($params);
             if ($res === FALSE) {
                die("deleteContactTagbyPrimary : Requête impossible !");
+            }
+            return true;
+         } else {
+            throw new DAOException("Contact_Tag non présent dans la base, supression impossible");
+         }
+      }
+
+      function deleteContactTagById($id) {
+         $c = $this->db->readContactTagById($id);
+         if ($c != null) {
+            $sql = "DELETE FROM Contact_Tag WHERE idContact= ? and proprietaire = ?";
+            $req = $this->db->prepare($sql);
+            $params = array(
+               $id,
+               $id
+            );
+            $res = $req->execute($params);
+            if ($res === FALSE) {
+               die("deleteContactTagById : Requête impossible !");
             }
             return true;
          } else {
