@@ -88,7 +88,7 @@
 	}
 
 	// getter pour connaitre si l'evenement dure la jounée ou non
-	function idDayLong() {
+	function isDayLong() {
       return $this->journee == 'day';
 	}
 

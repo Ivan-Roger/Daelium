@@ -64,41 +64,48 @@
             $evt['id'] = $evtO->getID();
             $evt['name'] = $evtO->getNom();
             $evt['dateDebut'] = $evtO->getDateDebut();
-            $evt['heureDebut'] = $evtO->getHeureDebut();
+            $evt['dateFin'] = $evtO->getDateFin();
             $evt['journee'] = $evtO->isDayLong();
             if ($evtO->isDayLong()) {
-               $evt['dateFin'] = $evtO->getDateFin();
+               $evt['heureDebut'] = $evtO->getHeureDebut();
                $evt['heureFin'] = $evtO->getHeureFin();
             }
             $data['events'][]=$evt;
          }
       }
       if (isset($_GET['events-day'])) {
+         $data['events'] = Array();
          $evts = $dao->readEvenementByCreateurDate($_SESSION['user']['ID'],$year."-".$month."-".$day);
-         foreach($evts as $evtO) {
-            $evt['id'] = $evtO->getID();
-            $evt['name'] = $evtO->getNom();
-            $evt['dateDebut'] = $evtO->getDateDebut();
-            $evt['heureDebut'] = $evtO->getHeureDebut();
-            $evt['journee'] = $evtO->isDayLong();
-            if ($evtO->isDayLong()) {
+         if ($evts!=null) {
+            foreach($evts as $evtO) {
+               $evt['id'] = $evtO->getID();
+               $evt['name'] = $evtO->getNom();
+               $evt['dateDebut'] = $evtO->getDateDebut();
                $evt['dateFin'] = $evtO->getDateFin();
-               $evt['heureFin'] = $evtO->getHeureFin();
+               $evt['journee'] = $evtO->isDayLong();
+               if ($evtO->isDayLong()) {
+                  $evt['heureDebut'] = $evtO->getHeureDebut();
+                  $evt['heureFin'] = $evtO->getHeureFin();
+               }
+               $data['events'][]=$evt;
             }
-            $data['events'][]=$evt;
          }
       }
       if (isset($_GET['event'])) {
-         $evts = $dao->readEvenementByID($_GET['event']);
-         $data['event']['id'] = 0;
-         $data['event']['name'] = "Nouvel An";
-         $data['event']['dateDebut'] = "31/12/2015";
-         $data['event']['heureDebut'] = "24h00";
+         $evt = $dao->readEvenementByID($_GET['event']);
+         $data['event']['id'] = $evt->getID();
+         $data['event']['name'] = $evt->getNom();
+         $data['event']['dateDebut'] = $evt->getDateDebut();
+         $data['event']['dateFin'] = $evt->getDateFin();
          $data['event']['journee'] = $evt->isDayLong();
          if ($evt->isDayLong()) {
-            $data['event']['dateFin'] = $evt->getHeureDebut();
+            $data['event']['heureDebut'] = $evt->getHeureDebut();
             $data['event']['heureFin'] = $evt->getHeureFin();
          }
+         $data['event']['lieu'] = $evt->getLieu();
+         $data['event']['participants'] = $evt->getParticipants();
+         $data['event']['rappels'] = $evt->getRappels();
+         $data['event']['plus'] = $evt->getPlus();
       }
    }
 

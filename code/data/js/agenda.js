@@ -33,7 +33,8 @@ function updateCalendar(func) {
         func();
       }
     }, error: function(a, b, c) {
-      console.warn("AJAX Error: couldn't update Calendar (\""+b+"\")");
+      console.warn("AJAX Error: couldn't update Calendar (\""+b+"\"/\""+c+"\")");
+      console.log(a.responseText);
     }});
 }
 
@@ -56,37 +57,40 @@ function updateCommingNext(func) {
       func();
     }
   }, error: function(a, b, c) {
-    console.warn("AJAX Error: couldn't update Comming Next (\""+b+"\")");
+    console.warn("AJAX Error: couldn't update Comming Next (\""+b+"\"/\""+c+"\")");
+    console.log(a.responseText);
   }});
 }
 
 function updateEvent(id,func) {
   console.log("Open event "+id);
   $.ajax({url: "agenda.ctrl.php?ajax&event="+id, success: function(res){
-    console.log("Update Event !");
-    console.log(res);
-    $("#eventView").attr("data-id","");
-    $("#eventView .eventTitle").html("");
-    $("#eventView .horaires .debut .date").html("");
-    $("#eventView .horaires .debut .heure").html("");
-    $("#eventView .horaires .fin .date").html("");
-    $("#eventView .horaires .fin .heure").html("");
-    $("#eventView .lieu .text").html("");
-    $("#eventView .lieu a").attr("href","");
-    $("#eventView .desc textarea").html("");
-    $("#eventView .participants tbody").html("");
-    for (var id in res.event.participants) {
-      $("#eventView .participants tbody").append($("<tr data-id=\""+res.event.participants[id]+"\" >")
-         .append($("<td class=\"text-right\">").html("<span class=\"glyphicon glyphicon-user\">"))
-         .append($("<td>").html("Marc")) // Nom du participant
-         .append($("<td>").html("...")) // Notes
-      );
-    }
-    if (func!=null) {
-      func();
-    }
+      $("#eventView").collapse('toggle');
+      console.log("Update Event !");
+      console.log(res);
+      $("#eventView").attr("data-id",res.event.id);
+      $("#eventView .eventTitle").html(res.event.name);
+      $("#eventView .horaires .debut .date").html(res.event.dateDebut);
+      $("#eventView .horaires .debut .heure").html("...");
+      $("#eventView .horaires .fin .date").html(res.event.dateFin);
+      $("#eventView .horaires .fin .heure").html("...");
+      $("#eventView .lieu .text").html(res.event.lieu);
+      $("#eventView .lieu a").attr("href","#");
+      $("#eventView .desc textarea").html(res.event.description);
+      $("#eventView .participants tbody").html("");
+      for (var id in res.event.participants) {
+         $("#eventView .participants tbody").append($("<tr data-id=\""+res.event.participants[id]+"\" >")
+            .append($("<td class=\"text-right\">").html("<span class=\"glyphicon glyphicon-user\">"))
+            .append($("<td>").html("Marc")) // Nom du participant
+            .append($("<td>").html("...")) // Notes
+         );
+      }
+      if (func!=null) {
+         func();
+      }
   }, error: function(a, b, c) {
-    console.warn("AJAX Error: couldn't update Event (\""+b+"\")");
+    console.warn("AJAX Error: couldn't update Event (\""+b+"\"/\""+c+"\")");
+    console.log(a.responseText);
   }});
 }
 
@@ -100,20 +104,28 @@ function updateDayPlan(func) {
       $("#dayPlan tr[data-hour=\""+i+"\"] td.content").html("");
     }
     for (var id in res.events) {
-      var hour = res.events[id].heureDebut.split(":")[0];
-      hour = (hour>0?hour*1:hour);
-      $("#dayPlan tr[data-hour=\""+hour+"\"] td.content").append($("<span class=\"evenement\" data-id=\""+res.events[id].id+"\">").html(res.events[id].name));
-      $("#dayPlan tr[data-hour=\""+hour+"\"] td.content span.evenement:last-child").click(function (e) {
-        updateEvent($(e.currentTarget).data().id);
-      });
+      if (res.events[id].journee) {
+         $("#dayPlan tr[data-hour=\"day\"] td.content").append($("<span class=\"evenement\" data-id=\""+res.events[id].id+"\">").html(res.events[id].name));
+         $("#dayPlan tr[data-hour=\"day\"] td.content span.evenement:last-child").click(function (e) {
+           updateEvent($(e.currentTarget).data().id);
+         });
+      } else {
+         var hour = res.events[id].heureDebut.split(":")[0];
+         hour = (hour>0?hour*1:hour);
+         $("#dayPlan tr[data-hour=\""+hour+"\"] td.content").append($("<span class=\"evenement\" data-id=\""+res.events[id].id+"\">").html(res.events[id].name));
+         $("#dayPlan tr[data-hour=\""+hour+"\"] td.content span.evenement:last-child").click(function (e) {
+           updateEvent($(e.currentTarget).data().id);
+         });
+      }
       // DEBUG
-      console.log("Evenement : ("+res.events[id].dateDebut+" "+res.events[id].heureDebut+") : "+res.events[id].name);
+      console.log("Evenement : ("+res.events[id].dateDebut+") : "+res.events[id].name);
     }
     if (func!=null) {
       func();
     }
   }, error: function(a, b ,c) {
-    console.warn("AJAX Error: couldn't update Day Plan (\""+b+"\")");
+    console.warn("AJAX Error: couldn't update Day Plan (\""+b+"\"/\""+c+"\")");
+    console.log(a.responseText);
   }});
 }
 

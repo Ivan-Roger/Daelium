@@ -81,7 +81,7 @@
                   </button>
                 </div>
                 <div class='col-md-6 col-xs-4'>
-                  <h4 id="dayPlanTitle"><?= $data['wdayName'] ?> <?= $data['day'] ?> <?= $data['monthName'] ?></h4>
+                  <h4 id="dayPlanTitle"></h4>
                 </div>
                 <div class='col-md-3 col-xs-4 '>
                   <button id="dayPlanNext" class='ajax-navigation btn btn-default btn-sm'>
