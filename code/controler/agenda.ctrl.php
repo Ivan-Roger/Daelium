@@ -66,7 +66,7 @@
             $evt['dateDebut'] = $evtO->getDateDebut();
             $evt['dateFin'] = $evtO->getDateFin();
             $evt['journee'] = $evtO->isDayLong();
-            if ($evtO->isDayLong()) {
+            if (!$evtO->isDayLong()) {
                $evt['heureDebut'] = $evtO->getHeureDebut();
                $evt['heureFin'] = $evtO->getHeureFin();
             }
@@ -83,7 +83,7 @@
                $evt['dateDebut'] = $evtO->getDateDebut();
                $evt['dateFin'] = $evtO->getDateFin();
                $evt['journee'] = $evtO->isDayLong();
-               if ($evtO->isDayLong()) {
+               if (!$evtO->isDayLong()) {
                   $evt['heureDebut'] = $evtO->getHeureDebut();
                   $evt['heureFin'] = $evtO->getHeureFin();
                }
@@ -98,7 +98,7 @@
          $data['event']['dateDebut'] = $evt->getDateDebut();
          $data['event']['dateFin'] = $evt->getDateFin();
          $data['event']['journee'] = $evt->isDayLong();
-         if ($evt->isDayLong()) {
+         if (!$evt->isDayLong()) {
             $data['event']['heureDebut'] = $evt->getHeureDebut();
             $data['event']['heureFin'] = $evt->getHeureFin();
          }

@@ -218,7 +218,7 @@ function updateDayPlan(func) {
         $("#calendar").attr("data-day",this.getDay()-1);
         this.update();
       }
-      console.log("Next");
+      console.log("Prev");
     },
     nextDay() {
       if (this.getDay()==this.getMonthLength()) {
