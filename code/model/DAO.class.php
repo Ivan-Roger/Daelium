@@ -391,6 +391,16 @@ class DAO {
      }
    }
 
+   function deleteBookerByTop($idBooker) {
+     $b = $this->db->readBookerById($idBooker);
+     if ($b != null) {
+       $this->db->deletePersonneById($idBooker);
+       return true;
+     } else {
+       throw DAOException("Booker non présent dans la base, supression impossible");
+     }
+   }
+
    // ===================== Organisateur =====================
    function readOrganisateurById($id) {
       $sql = "SELECT * FROM Organisateur WHERE idOrganisateur = ?"; // requête
@@ -452,6 +462,16 @@ class DAO {
        if ($res === FALSE) {
          die("deleteOrganisateurById : Requête impossible !");
        }
+       return true;
+     } else {
+       throw DAOException("Organisateur non présent dans la base, supression impossible");
+     }
+   }
+
+   function deleteOrganisateurByTop($idOrganisateur) {
+     $o = $this->db->readOrganisateurById($idOrganisateur);
+     if ($o != null) {
+       $this->db->deletePersonneById($idOrganisateur);
        return true;
      } else {
        throw DAOException("Organisateur non présent dans la base, supression impossible");
@@ -645,7 +665,7 @@ class DAO {
     }
 
     function deleteArtisteById($idArtiste) {
-      $b = $this->db->readListGroupeByBooker($idArtiste);
+      $b = $this->db->readArtisteById($idArtiste);
       if ($b != null) {
 
         $this->db->deleteGroupeArtisteByIdArtiste($idArtiste);
@@ -659,6 +679,16 @@ class DAO {
         if ($res === FALSE) {
           die("deleteArtisteById : Requête impossible !");
         }
+        return true;
+      } else {
+        throw DAOException("Artiste non présent dans la base, supression impossible");
+      }
+    }
+
+    function deleteArtisteByTop($idArtiste) {
+      $b = $this->db->readArtisteById($idArtiste);
+      if ($b != null) {
+        $this->db->deletePersonneById($idArtiste);
         return true;
       } else {
         throw DAOException("Artiste non présent dans la base, supression impossible");
@@ -776,6 +806,24 @@ class DAO {
          } else {
             throw DAOException("Lieu non présent dans la base de données !");
          }
+      }
+
+      function deleteLieuById($idLieu) {
+        $l = $this->db->readLieuById($idLieu);
+        if ($l != null) {
+          $sql = "DELETE FROM Lieu where idLieu = ?";
+          $req = $this->db->prepare($sql);
+          $params = array(
+            $idLieu
+          );
+          $res = $req->execute($params);
+          if ($res === FALSE) {
+            die("deleteLieuById : Requête impossible !");
+          }
+          return true;
+        } else {
+          throw DAOException("Lieu non présente dans la base, supression impossible");
+        }
       }
 
       // ===================== Manifestation =====================
@@ -2118,6 +2166,20 @@ class DAO {
          return (isset($res[0])?$res:null);
       }
 
+      function readNegociationMessagesByIdMessage($idMessage) {
+         $sql = "SELECT * FROM Negociation_Messages WHERE  idMessage=?"; // requête
+         $req = $this->db->prepare($sql);
+         $params = array(
+            $idMessage
+         );
+         $res = $req->execute($params);
+         if ($res === FALSE) {
+            die("readNegociationMessagesByIdMessage : Requête impossible !"); // erreur dans la requête
+         }
+         $res = $req->fetchAll(PDO::FETCH_CLASS,"Negociation_Messages");
+         return (isset($res[0])?$res:null);
+      }
+
       function createNegociationMessages($negociationMess) {
          $n = $this->db->readNegociationMessagesByPrimary($negociationMess->idNegociation,$negociationMess->idMessage);
          if ($n == null) {
@@ -2153,6 +2215,24 @@ class DAO {
             try {
                 $this->db->deleteMessageByIdMessage($message->getID());
             } catch (DAOException $e) {}
+          }
+          return true;
+        } else {
+          throw DAOException("Negociation_Messages non présente dans la base, supression impossible");
+        }
+      }
+
+      function deleteNegociationMessagesByIdMessage($idMessage) {
+        $n = $this->db->readNegociationMessagesByIdMessage($idMessage);
+        if ($n != null) {
+          $sql = "DELETE FROM Negociation_Messages where idMessage = ?";
+          $req = $this->db->prepare($sql);
+          $params = array(
+            $idMessage
+          );
+          $res = $req->execute($params);
+          if ($res === FALSE) {
+            die("deleteNegociationMessagesByIdMessage : Requête impossible !");
           }
           return true;
         } else {
@@ -2326,6 +2406,16 @@ class DAO {
           if ($res === FALSE) {
             die("deleteBookerGroupeById : Requête impossible !");
           }
+          return true;
+        } else {
+          throw DAOException("Booker_Groupe non présent dans la base, supression impossible");
+        }
+      }
+
+      function deleteBookerGroupeByTop($idGroupe) {
+        $b = $this->db->readListBookerByGroupe($idGroupe);
+        if ($b != null) {
+          $this->db->deleteGroupeByIdGroupe($idGroupe);
           return true;
         } else {
           throw DAOException("Booker_Groupe non présent dans la base, supression impossible");
@@ -2701,23 +2791,25 @@ class DAO {
          }
       }
 
-      function deleteMessageByIdReceveur($idReceveur) {
-        $u = $this->db->readMessagesRecusByUtilisateur($idReceveur);
-        if ($u != null) {
-          foreach ($u as $message) {
-            try {
-              $this->db->deleteMessageTagByIdMessage($message->getID);
-            } catch (DAOException $e) {}
-          }
 
-          $sql = "DELETE FROM Message where destinataire = ?";
+      function deleteMessageByIdMessage($idMessage) {
+        $u = $this->db->readMessageById($idMessage);
+        if ($u != null) {
+          try {
+            $this->db->deleteMessageTagByIdMessage($idMessage);
+          } catch (DAOException $e) {}
+          try {
+            $this->db->deleteNegociationMessagesByIdMessage($idMessage);
+          } catch (DAOException $e) {}
+
+          $sql = "DELETE FROM Message where idMessage = ?";
           $req = $this->db->prepare($sql);
           $params = array(
-            $idReceveur
+            $idMessage
           );
           $res = $req->execute($params);
           if ($res === FALSE) {
-            die("deleteMessageByIdReceveur : Requête impossible !");
+            die("deleteMessageByIdMessage : Requête impossible !");
           }
           return true;
         } else {
