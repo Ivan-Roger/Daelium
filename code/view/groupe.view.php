@@ -17,7 +17,7 @@
         <div class="navbar navbar-right">
           <a class ="btn btn-default" href="../controler/groupes.ctrl.php"> Retour </a>
           <a class ="btn btn-primary" href="../controler/groupe_fiche.ctrl.php?id=<?= $data['groupe']['id'] ?>" > Voir fiche </a>
-          <a class ="btn btn-warning" href="../controler/groupe.ctrl.php?id=<?= $data['groupe']['id'] ?>&action=edit" > Modifier </a>
+          <a class ="btn btn-warning" href="../controler/groupe_edit.ctrl.php?id=<?= $data['groupe']['id'] ?>" > Modifier </a>
         </div>
       </article>
       <article class="col-lg-6 infoProfile">
