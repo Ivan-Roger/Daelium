@@ -761,15 +761,15 @@ class DAO {
             $sql = "INSERT INTO Lieu(noml,description,pays,region,ville,codePostal,adresse,latitude,longitude) VALUES (?,?,?,?,?,?,?,?,?)";
             $req = $this->db->prepare($sql);
             $params = array(
-               $lieu->noml,
-               $lieu->description,
-               $lieu->pays,
-               $lieu->region,
-               $lieu->ville,
-               $lieu->codePostal,
-               $lieu->adresse,
-               $lieu->latitude,
-               $lieu->longitude
+               $lieu->getnoml(),
+               $lieu->getDescription(),
+               $lieu->getPays(),
+               $lieu->getRegion(),
+               $lieu->getVille(),
+               $lieu->getcodepostal(),
+               $lieu->getAdresse(),
+               $lieu->getLatitude(),
+               $lieu->getLongitude()
             );
             $res = $req->execute($params);
             if ($res === FALSE) {
@@ -787,16 +787,16 @@ class DAO {
             $sql = "UPDATE Lieu set (noml,description,pays,region,ville,codePostal,adresse,latitude,longitude) = (?,?,?,?,?,?,?,?,?) where idLieu = ?";
             $req = $this->db->prepare($sql);
             $params = array(
-               $lieu->noml,
-               $lieu->description,
-               $lieu->pays,
-               $lieu->region,
-               $lieu->ville,
-               $lieu->codePostal,
-               $lieu->adresse,
-               $lieu->latitude,
-               $lieu->longitude,
-               $lieu->idLieu
+              $lieu->getnoml(),
+              $lieu->getDescription(),
+              $lieu->getPays(),
+              $lieu->getRegion(),
+              $lieu->getVille(),
+              $lieu->getcodepostal(),
+              $lieu->getAdresse(),
+              $lieu->getLatitude(),
+              $lieu->getLongitude(),
+               $lieu->getIdLieu()
             );
             $res = $req->execute($params);
             if ($res === FALSE) {
