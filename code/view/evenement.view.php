@@ -16,7 +16,10 @@ header("Location:"."../");
     <article class="col-lg-offset-2 col-lg-10">
       <div class="navbar navbar-right">
         <a class ="btn btn-default" href="../controler/evenements.ctrl.php"> Retour </a>
-        <a class ="btn btn-danger" href="../controler/evenement.ctrl.php?id=<?= $data['evenement']['id'] ?>&action=edit" > Supprimer </a>
+        <form class="" action="../controler/evenement_edit.ctrl.php?action=remove" method="post">
+          <input type="hidden" name="idmanif" value="<?= $data['evenement']['id'] ?>">
+          <input class="btn btn-danger" type="submit" value="Supprimer">
+        </form>
         <a class ="btn btn-warning" href="../controler/evenement_edit.ctrl.php?id=<?= $data['evenement']['id'] ?>" > Modifier </a>
       </div>
     </article>

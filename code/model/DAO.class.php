@@ -936,11 +936,11 @@ class DAO {
       }
 
       function deleteManifesationById($idManif) {
-        $o = $this->db->readManifestationById($idManif);
+        $o = $this->readManifestationById($idManif);
         if ($o != null) {
 
           try {
-            $this->db->deleteManifestationGenreByIdManif($idManif);
+            $this->deleteManifestationGenreByIdManif($idManif);
           } catch (DAOException $e) {}
           try {
             //$this->db->;
@@ -2603,7 +2603,7 @@ class DAO {
       }
 
       function deleteManifestationGenreByIdManif($idManif) {
-         $m = $this->db->readManifestationGenreByidManif($idManif);
+         $m = $this->readManifestationGenreByidManif($idManif);
          if ($m != null) {
             $sql = "DELETE FROM Manifestation_Genre where idManif=? ";
             $req = $this->db->prepare($sql);
@@ -2615,9 +2615,7 @@ class DAO {
                die("deleteManifestationGenreByIdManif : Requête impossible !");
             }
             return true;
-         } else {
-            throw DAOException("Manifestation_Genre non présente dans la base, supression impossible");
-         }
+         } 
       }
 
 
