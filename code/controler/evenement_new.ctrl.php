@@ -40,8 +40,8 @@ if($user != NULL){ // SI c'est un organisateur
     $lieu = new Lieu(NULL,$nomlieu,NULL,$pays,$region,$ville,$codepostal,$adresse,$latitude,$longitude);
 
     $lieu2 =  $dao->createLieu($lieu);
-    if(isset($lieu)){
-      $manif = new Manifestation(NULL,$nomevent,$type,$des,$dated,$datef,NULL,NULL,NULL,NULL,NULL,$userid,10);
+    if(isset($lieu2)){
+      $manif = new Manifestation(NULL,$nomevent,$type,$des,$dated,$datef,NULL,NULL,NULL,NULL,NULL,$userid,$lieu2->getIdLieu());
       $manif2 = $dao->createManifestation($manif);
       if(isset($manif2)){
         foreach ($genres as $key => $value) {

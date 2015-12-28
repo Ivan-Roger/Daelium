@@ -626,7 +626,7 @@ class DAO {
           $sql = "INSERT INTO Artiste(idArtiste,dateNaissance, paiement, rib, ordreCheque) VALUES (?,?,?,?) RETURNING idArtiste";
           $req = $this->db->prepare($sql);
           $params = array(
-            $artiste->getIdPersonne()
+            $artiste->getIdPersonne(),
              $artiste->getDateNaissance(),
              $artiste->getPaiement(),
              $artiste->getRib(),
@@ -1819,7 +1819,7 @@ class DAO {
          if ($res === FALSE) {
             die("readGroupeArtisteByPrimary : Requête impossible !"); // erreur dans la requête
          }
-         $res = $req->fetchAll(PDO::FETCH_CLASS,"Groupe_Artiste");
+         $res = $req->fetchAll(PDO::FETCH_ASSOC);
          return (isset($res[0])?$res[0]:null);
       }
 
