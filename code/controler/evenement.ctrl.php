@@ -55,6 +55,8 @@ if($user != NULL){ // SI c'est un organisateur
 
         // Les creneaux & groupe
         $creneaux = $dao->readCreneauByidManif($evtid);
+        $data["passages"] = array();
+          $data['groupes'] = array();
         foreach ($creneaux as $key => $value) {
           $k = $value->getDate().$value->getHeureDebut();
           $k2 = $value->getDate().$value->getHeureDebutTest();

@@ -12,7 +12,7 @@ header("Location:"."../");
 <body>
   <?php include("../view/include/header.view.php"); ?>
   <section class="col-lg-offset-2 col-lg-8">
-    <form class="form-horizontal" role="form" method="post" action="../controler/evenement.ctrl.php">
+    <form class="form-horizontal" role="form" method="post" action="../controler/evenement_new.ctrl.php?action=create">
       <div class="col-lg-12">
         <div class="panel panel-default">
           <div class="panel-heading">Creation evenement</div>
@@ -88,9 +88,9 @@ header("Location:"."../");
           </div>
 
           <div class="form-group">
-            <label class="control-label col-sm-4" for="dated">Genre :</label>
+            <label class="control-label col-sm-4" for="genre">Genre :</label>
             <div class="col-sm-8">
-              <input type="text" id="dated" name="dated" required="required" class="form-control" />
+              <input type="text" id="genre" name="genre"  class="form-control" />
             </div>
           </div>
 
@@ -113,36 +113,36 @@ header("Location:"."../");
             </div>
           </div>
           <div class="form-group">
-            <label class="control-label col-sm-4" for="des">Lieu :</label>
+            <label class="control-label col-sm-4" >Lieu :</label>
             <div class="col-sm-8 well">
 
-              <label class="control-label col-sm-2" for="des">Adresse :</label>
+              <label class="control-label col-sm-2" for="adresse">Adresse :</label>
               <div class="col-sm-10">
-                <input type="text" id="datef" name="datef" required="required" class="form-control" />
+                <input type="text" id="adresse" name="adresse" required="required" class="form-control" />
               </div>
-              <label class="control-label col-sm-2" for="des">Code postal :</label>
+              <label class="control-label col-sm-2" for="codepostal">Code postal :</label>
               <div class="col-sm-2">
-                <input type="text" id="datef" name="datef" required="required" class="form-control" />
+                <input type="text" id="codepostal" name="codepostal" required="required" class="form-control" />
               </div>
-              <label class="control-label col-sm-2" for="des">Ville :</label>
+              <label class="control-label col-sm-2" for="ville">Ville :</label>
               <div class="col-sm-6">
-                <input type="text" id="datef" name="datef" required="required" class="form-control" />
+                <input type="text" id="ville" name="ville" required="required" class="form-control" />
               </div>
-              <label class="control-label col-sm-2" for="des">Region :</label>
+              <label class="control-label col-sm-2" for="region">Region :</label>
               <div class="col-sm-4">
-                <input type="text" id="datef" name="datef" required="required" class="form-control" />
+                <input type="text" id="region" name="region"  class="form-control" />
               </div>
-              <label class="control-label col-sm-2" for="des">Pays :</label>
+              <label class="control-label col-sm-2" for="pays">Pays :</label>
               <div class="col-sm-4">
-                <input type="text" id="datef" name="datef" required="required" class="form-control"  />
+                <input type="text" id="pays" name="pays" required="required" class="form-control"  />
               </div>
-              <label class="control-label col-sm-2" for="des">Latitude :</label>
+              <label class="control-label col-sm-2" for="latitude">Latitude :</label>
               <div class="col-sm-4">
-                <input type="text" id="datef" name="datef" required="required" class="form-control" />
+                <input type="text" id="latitude" name="latitude"  class="form-control" />
               </div>
-              <label class="control-label col-sm-2" for="des">Longitude :</label>
+              <label class="control-label col-sm-2" for="longitude">Longitude :</label>
               <div class="col-sm-4">
-                <input type="text" id="datef" name="datef" required="required" class="form-control" />
+                <input type="text" id="longitude" name="longitude" class="form-control" />
               </div>
             </div>
 

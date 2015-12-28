@@ -2461,7 +2461,7 @@ class DAO {
       }
 
       function createGroupeGenre($idGroupe,$nomg) {
-         $g = $this->db->readGroupeGenreByPrimary($idGroupe,$>nomg);
+         $g = $this->db->readGroupeGenreByPrimary($idGroupe,$nomg);
          if ($g == null) {
             $sql = "INSERT INTO Groupe_Genre(idGroupe,nomg) VALUES (?,?)";
             $req = $this->db->prepare($sql);
@@ -2519,6 +2519,23 @@ class DAO {
       // ===================== Manifestation_Genre =====================
 
       // Manifestation_Genre(idManif,nomGenre)
+
+      function readManifestationGenreByPrimary($idManif, $nomg) {
+         $sql = "SELECT * FROM Manifestation_Genre WHERE  idManif=? AND nomg=?" ; // requête
+         $req = $this->db->prepare($sql);
+         $params = array(
+            $idManif,
+            $nomg
+         );
+         $res = $req->execute($params);
+         if ($res === FALSE) {
+            die("readManifestationGenreByPrimary : Requête impossible !"); // erreur dans la requête
+         }
+         $res = $req->fetchAll(PDO::FETCH_ASSOC);
+         return (isset($res)?$res:null);
+      }
+
+
       function readManifestationGenreByidManif($idManif) {
          $sql = "SELECT * FROM Manifestation_Genre WHERE  idManif=?"; // requête
          $req = $this->db->prepare($sql);
@@ -2527,7 +2544,7 @@ class DAO {
          );
          $res = $req->execute($params);
          if ($res === FALSE) {
-            die("readManifestationGenreByPrimary : Requête impossible !"); // erreur dans la requête
+            die("readManifestationGenreByidManif : Requête impossible !"); // erreur dans la requête
          }
          $res = $req->fetchAll(PDO::FETCH_ASSOC);
          return (isset($res)?$res:null);
@@ -2541,16 +2558,16 @@ class DAO {
          );
          $res = $req->execute($params);
          if ($res === FALSE) {
-            die("readManifestationGenreByPrimary : Requête impossible !"); // erreur dans la requête
+            die("readManifestationByGenre : Requête impossible !"); // erreur dans la requête
          }
          $res = $req->fetchAll(PDO::FETCH_ASSOC);
          return (isset($res)?$res:null);
       }
 
       function createManifestationGenre($idManif,$nomg) {
-         $m = $this->db->readManifestationGenreByPrimary($idManif,$nomg);
+         $m = $this->readManifestationGenreByPrimary($idManif,$nomg);
          if ($m == null) {
-            $sql = "INSERT INTO Manifestation_Genre(idManif,nomGenre) VALUES (?,?)";
+            $sql = "INSERT INTO Manifestation_Genre(idManif,nomg) VALUES (?,?)";
             $req = $this->db->prepare($sql);
             $params = array(
                $idManif,
@@ -2560,14 +2577,14 @@ class DAO {
             if ($res === FALSE) {
                die("createManifestationGenre : Requête impossible !");
             }
-            return $this->db->readManifestationGenreByPrimary($idManif,$nomg);
+            return $this->readManifestationGenreByPrimary($idManif,$nomg);
          } else {
             throw DAOException("Manifestation_Genre déjà présente dans la base");
          }
       }
 
       function deleteManifestationGenreByPrimary($idManif, $nomGenre) {
-         $m = $this->db->readManifestationGenreByPrimary($idManif,$nomGenre);
+         $m = $this->readManifestationGenreByPrimary($idManif,$nomGenre);
          if ($m != null) {
             $sql = "DELETE FROM Manifestation_Genre where idManif=? and nomg=?";
             $req = $this->db->prepare($sql);
