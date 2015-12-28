@@ -71,7 +71,13 @@ if($user != NULL){ // SI c'est un organisateur
           $region = $_POST["region"];
           $pays = $_POST["pays"];
           $latitude = $_POST["latitude"];
+          if(empty($latitude)){
+            $latitude = NULL;
+          }
           $longitude = $_POST["longitude"];
+          if(empty($longitude)){
+            $longitude = NULL;
+          }
 
           $lieu->setPays($pays);
           $lieu->setRegion($region);
@@ -81,12 +87,12 @@ if($user != NULL){ // SI c'est un organisateur
           $lieu->setLatitude($latitude);
           $lieu->setLongitude($longitude);
 
-          var_dump($lieu);
+
           $dao->updateManifestation($evt);
           $dao->updateLieu($lieu);
 
 
-          header("Location: ../controler/evenement.ctrl.php?id=".$manif->getidManif()."");
+          header("Location: ../controler/evenement.ctrl.php?id=".$evt->getidManif()."");
         }else {
           $data['error']['title'] = "Acces Interdit";
           $data['error']['message'] = "Vous ne pouvez pas modifier une manifestation qui ne vous appartient pas !";
