@@ -1852,7 +1852,7 @@ class DAO {
       }
 
       function createGroupeArtiste($idGroupe,$idArtiste) {
-         $c = $this->db->readCreneauByPrimary($idGroupe,$idArtiste);
+         $c = $this->readCreneauByPrimary($idGroupe,$idArtiste);
          if ($c == null) {
             $sql = "INSERT INTO Groupe_Artiste(idGroupe,idArtiste) VALUES (?,?)";
             $req = $this->db->prepare($sql);
@@ -1864,14 +1864,14 @@ class DAO {
             if ($res === FALSE) {
                die("createGroupeArtiste : Requête impossible !");
             }
-            return $this->db->readGroupeArtisteByPrimary($idGroupe,$idArtiste);
+            return $this->readGroupeArtisteByPrimary($idGroupe,$idArtiste);
          } else {
             throw DAOException("Groupe_Artiste déjà présent dans la base");
          }
       }
 
       function deleteGroupeArtisteByIdArtiste($idArtiste) {
-        $g = $this->db->readListGroupeByArtiste ($idArtiste);
+        $g = $this->readListGroupeByArtiste ($idArtiste);
         if ($g != null) {
           $sql = "DELETE FROM Groupe_Artiste where idArtiste = ?";
           $req = $this->db->prepare($sql);
@@ -1889,7 +1889,7 @@ class DAO {
       }
 
       function deleteGroupeArtisteByIdGroupe($idGroupe) {
-        $g = $this->db->readArtisteByGroupe($idGroupe);
+        $g = $this->readArtisteByGroupe($idGroupe);
         if ($g != null) {
           $sql = "DELETE FROM Groupe_Artiste where idGroupe = ?";
           $req = $this->db->prepare($sql);
@@ -1952,7 +1952,7 @@ class DAO {
       }
 
       function createNegociation($negociation) {
-         $n = $this->db->readNegociationById($negociation->idNegociation);
+         $n = $this->readNegociationById($negociation->idNegociation);
          if ($n == null) {
             $sql = "INSERT INTO Negociation(idBooker,idManif,idGroupe,idOrganisateur,etat) VALUES (?,?,?,?,?)";
             $req = $this->db->prepare($sql);
@@ -1967,14 +1967,14 @@ class DAO {
             if ($res === FALSE) {
                die("createNegociation : Requête impossible !");
             }
-            return $this->db->readNegociationById($negociation->idNegociation);
+            return $this->readNegociationById($negociation->idNegociation);
          } else {
             throw DAOException("Negociation déjà présente dans la base");
          }
       }
 
       function updateNegociation($negociation) {
-         $n = $this->db->readNegociationById($negociation->idNegociation);
+         $n = $this->readNegociationById($negociation->idNegociation);
          if ($n != null) {
             $sql = "UPDATE Negociation set (idBooker,idManif,idGroupe,idOrganisateur,etat) = (?,?,?,?,?) where idNegociation = ?";
             $req = $this->db->prepare($sql);
@@ -1990,21 +1990,21 @@ class DAO {
             if ($res === FALSE) {
                die("updateNegociation : Requête impossible !");
             }
-            return $this->db->readNegociationById($negociation->idNegociation);
+            return $this->readNegociationById($negociation->idNegociation);
          } else {
             throw DAOException("Negociation non présente dans la base");
          }
       }
 
       function deleteNegociationByIdBooker($idBooker) {
-        $n = $this->db->readNegociationByIdBooker($idBooker);
+        $n = $this->readNegociationByIdBooker($idBooker);
         if ($n != null) {
           foreach ($n as $negociation) {
             try {
-              $this->db->deleteNegociationMessagesByIdNegociation($negociation->idNegociation);
+              $this->deleteNegociationMessagesByIdNegociation($negociation->idNegociation);
             } catch (DAOException $e) {}
             try {
-              $this->db->deleteNegociationDocumentsByIdNegociation($negociation->idNegociation);
+              $this->deleteNegociationDocumentsByIdNegociation($negociation->idNegociation);
             } catch (DAOException $e) {}
           }
 
@@ -2024,14 +2024,14 @@ class DAO {
       }
 
       function deleteNegociationByIdOrganisateur($idOrganisateur) {
-        $n = $this->db->readNegociationByIdOrganisateur($idOrganisateur);
+        $n = $this->readNegociationByIdOrganisateur($idOrganisateur);
         if ($n != null) {
           foreach ($n as $negociation) {
             try {
-              $this->db->deleteNegociationMessagesByIdNegociation($negociation->idNegociation);
+              $this->deleteNegociationMessagesByIdNegociation($negociation->idNegociation);
             } catch (DAOException $e) {}
             try {
-              $this->db->deleteNegociationDocumentsByIdNegociation($negociation->idNegociation);
+              $this->deleteNegociationDocumentsByIdNegociation($negociation->idNegociation);
             } catch (DAOException $e) {}
           }
 
