@@ -148,7 +148,7 @@ header("Location:"."../");
 
             <div class="pull-right">
               <input class="btn btn-default" type="button"  value="Annuler">
-              <input class="btn btn-primary" type="Submit"  value="Suivant">
+              <input class="btn btn-primary" type="Submit"  value="Ajouter">
             </div>
           </div>
         </div>
