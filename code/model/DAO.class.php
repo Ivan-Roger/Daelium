@@ -784,10 +784,12 @@ class DAO {
       }
 
       function updateLieu($lieu) {
-         $l = $this->db->readLieuById($lieu->idLieu);
+         $l = $this->readLieuById($lieu->getIdLieu());
+
          if ($l != null) {
             $sql = "UPDATE Lieu set (noml,description,pays,region,ville,codePostal,adresse,latitude,longitude) = (?,?,?,?,?,?,?,?,?) where idLieu = ?";
             $req = $this->db->prepare($sql);
+
             $params = array(
               $lieu->getnoml(),
               $lieu->getDescription(),
@@ -802,9 +804,9 @@ class DAO {
             );
             $res = $req->execute($params);
             if ($res === FALSE) {
-               die("updateUtilisateur : Requête impossible !");
+               die("updateLieu : Requête impossible !");
             }
-            return $this->readLieuById($utilisateur->idUtilisateur);
+            return $this->readLieuById($lieu->getIdLieu());
          } else {
             throw DAOException("Lieu non présent dans la base de données !");
          }
@@ -906,7 +908,7 @@ class DAO {
       }
 
       function updateManifestation($manifestation) {
-         $m = $this->readManifestationById($manifestation->idManif);
+         $m = $this->readManifestationById($manifestation->getidManif());
          if ($m != null) {
             $sql = "UPDATE Manifestation set (nom,type,description,datedebut,datefin,lienImageOfficiel,facebook,google,twitter,ficheCom,createur,lieu) = (?,?,?,?,?,?,?,?,?,?,?,?) where idManif = ?";
             $req = $this->db->prepare($sql);
@@ -929,7 +931,7 @@ class DAO {
             if ($res === FALSE) {
                die("updateManifestation : Requête impossible !");
             }
-            return $this->readManifestationById($manifestation->idManif);
+            return $this->readManifestationById($manifestation->getidManif());
          } else {
             throw DAOException("Manifestation non présent dans la base de données !");
          }
@@ -2615,7 +2617,7 @@ class DAO {
                die("deleteManifestationGenreByIdManif : Requête impossible !");
             }
             return true;
-         } 
+         }
       }
 
 
