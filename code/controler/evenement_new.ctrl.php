@@ -11,6 +11,14 @@ $userid= $_SESSION["user"]["ID"];
 $user = $dao->readOrganisateurById($userid);
 
 if($user != NULL){ // SI c'est un organisateur
+  $listeevtdejacree = $dao->readIdManifestationByCreateur($userid);
+  foreach ($listeevtdejacree as $key => $value) {
+    $evt = $dao->readManifestationById($value["idmanif"]);
+    $data["evenements"][$key]["nom"]= $evt->getNom();
+  }
+
+
+
   include("../view/evenement_new.view.php");
 }else {
   $data['error']['title'] = "Acces Interdit";
