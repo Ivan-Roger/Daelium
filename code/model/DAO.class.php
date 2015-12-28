@@ -346,7 +346,7 @@ class DAO {
 
 
    function createBooker($booker) {
-      $b = $this->db->readBookerById($booker->idBooker);
+      $b = $this->db->readBookerById($booker->getIdPersonne());
       if ($b == null) {
          $this->createUtilisateur($booker);
          $sql = "INSERT INTO Booker(idBooker) VALUES (?)";
@@ -620,29 +620,31 @@ class DAO {
     }
 
     function createArtiste($artiste) {
-       $a = $this->db->readArtisteById($artiste->idArtiste);
+       $a = $this->readArtisteById($artiste->getIdPersonne());
        if ($a == null) {
           $this->createPersonne($artiste);
-          $sql = "INSERT INTO Artiste(dateNaissance, paiement, rib, ordreCheque) VALUES (?,?,?,?)";
+          $sql = "INSERT INTO Artiste(idArtiste,dateNaissance, paiement, rib, ordreCheque) VALUES (?,?,?,?) RETURNING idArtiste";
           $req = $this->db->prepare($sql);
           $params = array(
-             $artiste->dateNaissance,
-             $artiste->paiement,
-             $artiste->rib,
-             $artiste->ordreCheque
+            $artiste->getIdPersonne()
+             $artiste->getDateNaissance(),
+             $artiste->getPaiement(),
+             $artiste->getRib(),
+             $artiste->getOrdreCheque()
           );
           $res = $req->execute($params);
           if ($res === FALSE) {
              die("createArtiste : Requête impossible !");
           }
-          return $this->db->readUserById($artiste->idArtiste);
+          $ret = $req->fetchColumn();
+          return $this->readUserById($ret);
        } else {
           throw DAOException("Artiste déjà présent dans la base");
        }
     }
 
     function updateArtiste($artiste) {
-       $a = $this->db->readArtisteById($utilisateur->idUtilisateur);
+       $a = $this->readArtisteById($utilisateur->idUtilisateur);
        if ($a != null) {
           $this->updatePersonne($artiste);
           $sql = "UPDATE Artiste set (dateNaissance, paiement, rib, ordreCheque) = (?,?,?,?) where idArtiste = ?";
@@ -658,14 +660,14 @@ class DAO {
           if ($res === FALSE) {
              die("updateArtiste : Requête impossible !");
           }
-          return $this->db->updateArtiste($utilisateur->idUtilisateur);
+          return $this->updateArtiste($utilisateur->idUtilisateur);
        } else {
           throw DAOException("Artiste non présent dans la base de données !");
        }
     }
 
     function deleteArtisteById($idArtiste) {
-      $b = $this->db->readArtisteById($idArtiste);
+      $b = $this->readArtisteById($idArtiste);
       if ($b != null) {
 
         $this->db->deleteGroupeArtisteByIdArtiste($idArtiste);
@@ -686,7 +688,7 @@ class DAO {
     }
 
     function deleteArtisteByTop($idArtiste) {
-      $b = $this->db->readArtisteById($idArtiste);
+      $b = $this->readArtisteById($idArtiste);
       if ($b != null) {
         $this->db->deletePersonneById($idArtiste);
         return true;
@@ -2463,7 +2465,7 @@ class DAO {
       }
 
       function createGroupeGenre($idGroupe,$nomg) {
-         $g = $this->db->readGroupeGenreByPrimary($idGroupe,$nomg);
+         $g = $this->readGroupeGenreByPrimary($idGroupe,$nomg);
          if ($g == null) {
             $sql = "INSERT INTO Groupe_Genre(idGroupe,nomg) VALUES (?,?)";
             $req = $this->db->prepare($sql);
@@ -2475,14 +2477,14 @@ class DAO {
             if ($res === FALSE) {
                die("createGroupeGenre : Requête impossible !");
             }
-            return $this->db->readGroupeGenreByPrimary($idGroupe,$nomg);
+            return $this->readGroupeGenreByPrimary($idGroupe,$nomg);
          } else {
             throw DAOException("Groupe_Genre déjà présente dans la base");
          }
       }
 
       function deleteGroupeGenreByPrimary($idGroupe, $nomGrenre) {
-         $g = $this->db->readGroupeGenreByPrimary($idGroupe,$nomg);
+         $g = $this->readGroupeGenreByPrimary($idGroupe,$nomg);
          if ($g != null) {
             $sql = "DELETE FROM Groupe_Genre WHERE idGroupe = ? and nomg = ?";
             $req = $this->db->prepare($sql);
