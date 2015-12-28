@@ -756,9 +756,9 @@ class DAO {
       }
 
       function createLieu($lieu) {
-         $l = $this->db->readLieuById($lieu->idLieu);
+         $l = $this->readLieuById($lieu->getIdLieu());
          if ($l == null) {
-            $sql = "INSERT INTO Lieu(noml,description,pays,region,ville,codePostal,adresse,latitude,longitude) VALUES (?,?,?,?,?,?,?,?,?)";
+            $sql = "INSERT INTO Lieu(noml,description,pays,region,ville,codePostal,adresse,latitude,longitude) VALUES (?,?,?,?,?,?,?,?,?) RETURNING idLieu";
             $req = $this->db->prepare($sql);
             $params = array(
                $lieu->getnoml(),
@@ -775,7 +775,9 @@ class DAO {
             if ($res === FALSE) {
                die("createLieu : Requête impossible !");
             }
-            return $this->db->readUserById($utilisateur->idUtilisateur);
+            $ret=$req->fetchColumn();
+            var_dump($ret);
+            return $this->readLieuById($ret);
          } else {
             throw DAOException("Lieu déjà présent dans la base (l'id en tous cas)");
          }
@@ -802,7 +804,7 @@ class DAO {
             if ($res === FALSE) {
                die("updateUtilisateur : Requête impossible !");
             }
-            return $this->db->readLieuById($utilisateur->idUtilisateur);
+            return $this->readLieuById($utilisateur->idUtilisateur);
          } else {
             throw DAOException("Lieu non présent dans la base de données !");
          }
@@ -873,9 +875,9 @@ class DAO {
       }
 
       function createManifestation($manifestation) {
-         $m = $this->db->readManifestationById($manifestation->idManif);
+         $m = $this->readManifestationById($manifestation->getIdManif());
          if ($m == null) {
-            $sql = "INSERT INTO Manifestation(nom,type,description,datedebut,datefin,lienImageOfficiel,facebook,google,twitter,ficheCom,createur,lieu) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+            $sql = "INSERT INTO Manifestation(nom,type,description,datedebut,datefin,lienImageOfficiel,facebook,google,twitter,ficheCom,createur,lieu) VALUES (?,?,?,?,?,?,?,?,?,?,?,?) RETURNING idManif";
             $req = $this->db->prepare($sql);
             $params = array(
                $manifestation->getNom(),
@@ -895,14 +897,16 @@ class DAO {
             if ($res === FALSE) {
                die("createManifestation : Requête impossible !");
             }
-            return $this->db->readManifestationById($manifestation->idManif);
+            $ret = $req->fetchColumn();
+            return $this->readManifestationById($ret);
+
          } else {
             throw DAOException("Manifestation déjà présent dans la base (l'id en tous cas)");
          }
       }
 
       function updateManifestation($manifestation) {
-         $m = $this->db->readManifestationById($manifestation->idManif);
+         $m = $this->readManifestationById($manifestation->idManif);
          if ($m != null) {
             $sql = "UPDATE Manifestation set (nom,type,description,datedebut,datefin,lienImageOfficiel,facebook,google,twitter,ficheCom,createur,lieu) = (?,?,?,?,?,?,?,?,?,?,?,?) where idManif = ?";
             $req = $this->db->prepare($sql);
@@ -925,7 +929,7 @@ class DAO {
             if ($res === FALSE) {
                die("updateManifestation : Requête impossible !");
             }
-            return $this->db->readManifestationById($manifestation->idManif);
+            return $this->readManifestationById($manifestation->idManif);
          } else {
             throw DAOException("Manifestation non présent dans la base de données !");
          }
@@ -2456,20 +2460,20 @@ class DAO {
          return (isset($res[0])?$res:null);
       }
 
-      function createGroupeGenre($groupeGenre) {
-         $g = $this->db->readGroupeGenreByPrimary($groupeGenre->idGroupe,$groupeGenre->nomg);
+      function createGroupeGenre($idGroupe,$nomg) {
+         $g = $this->db->readGroupeGenreByPrimary($idGroupe,$>nomg);
          if ($g == null) {
             $sql = "INSERT INTO Groupe_Genre(idGroupe,nomg) VALUES (?,?)";
             $req = $this->db->prepare($sql);
             $params = array(
-               $groupeGenre->idGroupe,
-               $groupeGenre->nomg
+               $idGroupe,
+               $nomg
             );
             $res = $req->execute($params);
             if ($res === FALSE) {
                die("createGroupeGenre : Requête impossible !");
             }
-            return $this->db->readGroupeGenreByPrimary($groupeGenre->idGroupe,$groupeGenre->nomg);
+            return $this->db->readGroupeGenreByPrimary($idGroupe,$nomg);
          } else {
             throw DAOException("Groupe_Genre déjà présente dans la base");
          }
@@ -2543,20 +2547,20 @@ class DAO {
          return (isset($res)?$res:null);
       }
 
-      function createManifestationGenre($manifestationGenre) {
-         $m = $this->db->readManifestationGenreByPrimary($manifestationGenre->idManif,$manifestationGenre->nomg);
+      function createManifestationGenre($idManif,$nomg) {
+         $m = $this->db->readManifestationGenreByPrimary($idManif,$nomg);
          if ($m == null) {
             $sql = "INSERT INTO Manifestation_Genre(idManif,nomGenre) VALUES (?,?)";
             $req = $this->db->prepare($sql);
             $params = array(
-               $manifestationGenre->idManif,
-               $manifestationGenre->nomg
+               $idManif,
+               $nomg
             );
             $res = $req->execute($params);
             if ($res === FALSE) {
                die("createManifestationGenre : Requête impossible !");
             }
-            return $this->db->readManifestationGenreByPrimary($manifestationGenre->idManif,$manifestationGenre->nomg);
+            return $this->db->readManifestationGenreByPrimary($idManif,$nomg);
          } else {
             throw DAOException("Manifestation_Genre déjà présente dans la base");
          }

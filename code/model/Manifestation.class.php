@@ -14,7 +14,7 @@
     private $createur; // Organisateur de l'evt
     private $lieu;
 
-    function __construct($idmanif = NULL,$nom = NULL,$type = NULL,$email = NULL,$description = NULL,$datedebut = NULL,$datefin = NULL,$lienimageofficiel = NULL,$facebook = NULL,$google = NULL,$twitter = NULL,$fichecom = NULL,$createur = NULL,$lieu = NULL) {
+    function __construct($idmanif = NULL,$nom = NULL,$type = NULL,$description = NULL,$datedebut = NULL,$datefin = NULL,$lienimageofficiel = NULL,$facebook = NULL,$google = NULL,$twitter = NULL,$fichecom = NULL,$createur = NULL,$lieu = NULL) {
       if (!isset($this->idmanif)) {
          $this->idmanif = $idmanif;
       }
@@ -23,9 +23,6 @@
       }
       if ($type != NULL) {
          $this->type = $type;
-      }
-      if ($email != NULL) {
-         $this->email = $email;
       }
       if ($description != NULL) {
          $this->description = $description;
@@ -59,8 +56,8 @@
       }
 
     }
-    
-    
+
+
     // ********************************
     //        Fonctions getter
     // ********************************
@@ -117,7 +114,7 @@
       return $this->lieu;
     }
 
-    
+
     // ********************************
     //        Fonctions setter
     // ********************************
