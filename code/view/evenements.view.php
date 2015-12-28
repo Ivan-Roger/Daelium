@@ -22,7 +22,7 @@
           </div>
         <?php } } ?>
         <div  class="col-xs-2">
-          <a href="../controler/evenement.ctrl.php?action=new" id="pic" class="thumbnail">
+          <a href="../controler/evenement_new.ctrl.php" id="pic" class="thumbnail">
             <img class="category-banner img-responsive" src="../data/img/icons/plus.png" alt="...">
             <div class="OverlayText ">Ajouter un evenement</div>
           </a>

@@ -60,6 +60,7 @@ header("Location:"."../");
               </div>
             </div>
 
+
             <div class="form-group">
               <label class="control-label col-sm-4" for="dated">Date de debut :</label>
               <div class="col-sm-8">
@@ -81,7 +82,7 @@ header("Location:"."../");
 
             <div class="form-group">
               <label class="control-label col-sm-4" for="des">Lieu :</label>
-              <div class="col-sm-8">
+              <div class="col-sm-8 well">
 
                 <label class="control-label col-sm-2" for="des">Adresse :</label>
                 <div class="col-sm-10">
@@ -111,27 +112,28 @@ header("Location:"."../");
                 <div class="col-sm-4">
                   <input type="text" id="datef" name="datef" required="required" class="form-control" value="<?=$data['evenement']['lieu']['longitude']?>" />
                 </div>
-            </div>
+              </div>
 
-            <div class="form-group">
+              <!--
+              <div class="form-group">
               <label class="control-label col-sm-4" for="img">Image officielle :</label>
               <div class="col-sm-8">
-                <input type="file" id="img" name="img"/>
-              </div>
-            </div>
-
-            <div class="pull-right">
-              <input class="btn btn-default" type="button"  value="Annuler">
-              <input class="btn btn-primary" type="Submit"  value="Suivant">
+              <input type="file" id="img" name="img"/>
             </div>
           </div>
+        -->
+        <div class="pull-right">
+          <input class="btn btn-default" type="button"  value="Annuler">
+          <input class="btn btn-primary" type="Submit"  value="Suivant">
         </div>
       </div>
-      <!-- Si groupe alors Demander plusieurs fois les infos sur les different membres -->
-      <input type="hidden" name="id" value="<?= $data['evenement']['id'] ?>"/>
-      <input type="hidden" name="action" value="form2"/>
-    </form>
-  </section>
-  <?php include("../view/include/footer.view.php"); ?>
+    </div>
+  </div>
+  <!-- Si groupe alors Demander plusieurs fois les infos sur les different membres -->
+  <input type="hidden" name="id" value="<?= $data['evenement']['id'] ?>"/>
+  <input type="hidden" name="action" value="form2"/>
+</form>
+</section>
+<?php include("../view/include/footer.view.php"); ?>
 </body>
 </html>

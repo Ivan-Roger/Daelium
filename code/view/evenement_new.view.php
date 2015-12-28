@@ -69,6 +69,13 @@
               </div>
 
               <div class="form-group">
+                <label class="control-label col-sm-4" for="dated">Genre :</label>
+                <div class="col-sm-8">
+                  <input type="text" id="dated" name="dated" required="required" class="form-control" />
+                </div>
+              </div>
+
+              <div class="form-group">
                 <label class="control-label col-sm-4" for="dated">Date de debut :</label>
                 <div class="col-sm-8">
                   <input type="date" id="dated" name="dated" required="required" class="form-control" />
@@ -87,11 +94,38 @@
                 </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-sm-4" for="img">Image officielle :</label>
-                <div class="col-sm-8">
-                  <input type="file" id="img" name="img"/>
+                <label class="control-label col-sm-4" for="des">Lieu :</label>
+                <div class="col-sm-8 well">
+
+                  <label class="control-label col-sm-2" for="des">Adresse :</label>
+                  <div class="col-sm-10">
+                    <input type="text" id="datef" name="datef" required="required" class="form-control" />
+                  </div>
+                  <label class="control-label col-sm-2" for="des">Code postal :</label>
+                  <div class="col-sm-2">
+                    <input type="text" id="datef" name="datef" required="required" class="form-control" />
+                  </div>
+                  <label class="control-label col-sm-2" for="des">Ville :</label>
+                  <div class="col-sm-6">
+                    <input type="text" id="datef" name="datef" required="required" class="form-control" />
+                  </div>
+                  <label class="control-label col-sm-2" for="des">Region :</label>
+                  <div class="col-sm-4">
+                    <input type="text" id="datef" name="datef" required="required" class="form-control" />
+                  </div>
+                  <label class="control-label col-sm-2" for="des">Pays :</label>
+                  <div class="col-sm-4">
+                    <input type="text" id="datef" name="datef" required="required" class="form-control"  />
+                  </div>
+                  <label class="control-label col-sm-2" for="des">Latitude :</label>
+                  <div class="col-sm-4">
+                    <input type="text" id="datef" name="datef" required="required" class="form-control" />
+                  </div>
+                  <label class="control-label col-sm-2" for="des">Longitude :</label>
+                  <div class="col-sm-4">
+                    <input type="text" id="datef" name="datef" required="required" class="form-control" />
+                  </div>
                 </div>
-              </div>
 
               <div class="pull-right">
                 <input class="btn btn-default" type="button"  value="Annuler">
@@ -101,8 +135,6 @@
           </div>
         </div>
         <!-- Si groupe alors Demander plusieurs fois les infos sur les different membres -->
-        <input type="hidden" name="id" value="<?= $data['evenement']['id'] ?>"/>
-        <input type="hidden" name="action" value="form2"/>
       </form>
     </section>
     <?php include("../view/include/footer.view.php"); ?>
