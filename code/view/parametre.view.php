@@ -6,12 +6,12 @@
 <html>
   <head>
     <?php include("../view/include/includes.view.php"); ?>
-    <title>Dælium - Profil - Edition</title>
+    <title>Dælium - Paramètres</title>
   </head>
   <body>
     <?php include("../view/include/header.view.php"); ?>
     <section class="col-lg-8 col-lg-offset-2">
-      <form class="form-horizontal" role="form" method="post" action="../controler/profil_edit.ctrl.php?action=edit">
+      <form class="form-horizontal" role="form" method="post" action="../controler/parametre.ctrl.php?action=edit">
         <div class="col-lg-12">
           <div class="panel panel-default">
             <div class="panel-heading">Mon Compte</div>
