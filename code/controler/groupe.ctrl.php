@@ -25,6 +25,8 @@ if($user != NULL){ // SI booker
       if($present){
         $listA = $dao->readArtisteByGroupe($groupeid);
         $i = 0;
+
+        if($listA != NULL){
         foreach ($listA as $key => $value) {
           $artiste = $dao->readArtisteById($value);
           $art[$i]['prenom'] = $artiste->getPrenom();
@@ -50,6 +52,10 @@ if($user != NULL){ // SI booker
           $i++;
         }
         $data['artistes']= $art;
+      }else {
+        $data['artistes'] =array();
+      }
+
         $data['groupe']['id']=$_GET['id'];
         $data['groupe']['nom'] = $groupe->getNom();
         $data['groupe']['nb']= $i;
