@@ -107,7 +107,7 @@
                     </tbody>
                   </table>
                   <div class="pull-right">
-                    <a class ="btn btn-warning" href="#"> Modifier </a>
+                    <a class ="btn btn-warning" href="../controler/artiste_edit.ctrl.php?id=<?= $art['id']?>"> Modifier </a>
                     <a class ="btn btn-danger" href="#"> Suprimer du Groupe </a>
                   </div>
                 </div>

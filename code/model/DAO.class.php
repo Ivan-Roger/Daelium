@@ -1839,7 +1839,7 @@ class DAO {
             die("readGroupeByArtiste : Requête impossible !"); // erreur dans la requête
          }
          $res = $req->fetchAll(PDO::FETCH_ASSOC);
-         return (isset($res[0])?$res[0]:null);
+         return (isset($res)?$res:null);
       }
 
       function readArtisteByGroupe($idGroupe) {
@@ -1853,7 +1853,7 @@ class DAO {
             die("readArtisteByGroupe : Requête impossible !"); // erreur dans la requête
          }
          $res = $req->fetchAll(PDO::FETCH_ASSOC);
-         return (isset($res[0])?$res[0]:null);
+         return (isset($res)?$res:null);
       }
 
       function createGroupeArtiste($idGroupe,$idArtiste) {
