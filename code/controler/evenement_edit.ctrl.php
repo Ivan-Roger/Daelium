@@ -44,8 +44,8 @@ if($user != NULL){ // SI c'est un organisateur
       if($evt != NULL){
         if($evt->getCreateur() == $userid){
 
-        $idlieu = $evt->getLieu();
-        $lieu = $dao->readLieuById($idlieu);
+          $idlieu = $evt->getLieu();
+          $lieu = $dao->readLieuById($idlieu);
 
           $nomevent = $_POST["nomevent"];
           $type = $_POST["type"];
@@ -172,19 +172,19 @@ if($user != NULL){ // SI c'est un organisateur
         include("../view/error.view.php");
       }
     }
-  else{
+    else{
       $data['error']['title'] = "Evenement inconnu";
       $data['error']['back'] = "../controler/evenements.ctrl.php";
       $data['error']['message'] = "Vous vous etes perdu ...";
       include("../view/error.view.php");
     }
-    }
-
-  }else {
-    $data['error']['title'] = "Acces Interdit";
-    $data['error']['message'] = "Vous ne pouvez pas venir ici, cet espace est reservé à l'organisateur de la manifestation.";
-    $data['error']['back'] = "../controler/main.ctrl.php";
-    include("../view/error.view.php");
   }
-  ?>
-  s
+
+}else {
+  $data['error']['title'] = "Acces Interdit";
+  $data['error']['message'] = "Vous ne pouvez pas venir ici, cet espace est reservé à l'organisateur de la manifestation.";
+  $data['error']['back'] = "../controler/main.ctrl.php";
+  include("../view/error.view.php");
+}
+?>
+s

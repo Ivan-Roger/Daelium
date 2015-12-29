@@ -39,7 +39,12 @@ if($user != NULL){ // SI booker
             $lieu = $dao->readLieuById($idlieu);
             $art[$i]['adresse'] =  $lieu->getAdresse().", ".$lieu->getcodepostal().", ".$lieu->getVille().", ".$lieu->getPays();
           }
-          $art[$i]['paiement'] = $artiste->getPaiement();
+          if($artiste->getPaiement() == 0){
+            $art[$i]['paiement'] = "Cheque";
+          }else {
+            $art[$i]['paiement'] = "Virement";
+
+          }
           $art[$i]['IBAN'] = $artiste->getRib();
           $art[$i]['ordre'] = $artiste->getOrdreCheque();
           $i++;
