@@ -11,7 +11,39 @@ $user = $dao->readBookerById($userid);
 
 if($user != NULL){ // SI booker
   if(isset($_GET["action"]) && $_GET["action"]=="remove"){// Si on supprime #######################################################################################################################################################
+    if(isset($_POST["idgroupe"])){
+      $groupeid = $_POST['idgroupe'];
+      $groupe = $dao->readGroupeById($groupeid);
+      if($groupe != NULL){
+        $listegroupeuser = $dao->readListGroupeByBooker($userid);
+        if($listegroupeuser != NULL){ // Si l'organisateur a au moins un evt.
+          $present = $user->possedeGroupe($groupeid,$listegroupeuser);
+        }else {
+          $present = false;
+        }
+        if($present){
+          $dao->deleteGroupeByIdGroupe($groupeid);
+          header("Location: ../controler/groupes.ctrl.php");
 
+        }else {
+          $data['error']['title'] = "Acces Interdit";
+          $data['error']['message'] = "Vous ne pouvez pas modifier un groupe qui ne vous appartient pas !";
+          $data['error']['back'] = "../controler/groupes.ctrl.php";
+          include("../view/error.view.php");
+        }
+      }else {
+        $data['error']['title'] = "Groupe inconnu";
+        $data['error']['back'] = "../controler/groupes.ctrl.php";
+        $data['error']['message'] = "Le Groupe que vous essayez de modifier n'existe pas !";
+        include("../view/error.view.php");
+      }
+
+    }else {
+      $data['error']['title'] = "Groupe inconnu";
+      $data['error']['back'] = "../controler/groupes.ctrl.php";
+      $data['error']['message'] = "Le Groupe que vous essayez de modifier n'existe pas !";
+      include("../view/error.view.php");
+    }
   }else if(isset($_GET["action"]) && $_GET["action"]=="edit"){ // Si on Modifie #######################################################################################################################################################
     if(isset($_POST["idgroupe"])){
       $groupeid = $_POST['idgroupe'];

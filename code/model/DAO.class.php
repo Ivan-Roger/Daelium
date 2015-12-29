@@ -137,7 +137,7 @@ class DAO {
          }
          return $this->readPersonneById($personne->id);
       } else {
-         throw DAOException("La personne n'existe pas");
+         throw new DAOException("La personne n'existe pas");
       }
    }
 
@@ -163,7 +163,7 @@ class DAO {
        }
        return true;
      } else {
-       throw DAOException("Personne non présent dans la base, supression impossible");
+       throw new DAOException("Personne non présent dans la base, supression impossible");
      }
    }
 
@@ -260,7 +260,7 @@ class DAO {
          }
          return $this->db->readUserById($utilisateur->idUtilisateur);
       } else {
-         throw DAOException("utilisateur déjà présent dans la base (l'id en tous cas)");
+         throw new DAOException("utilisateur déjà présent dans la base (l'id en tous cas)");
       }
    }
 
@@ -281,7 +281,7 @@ class DAO {
          }
          return $this->db->readUserById($utilisateur->idUtilisateur);
       } else {
-         throw DAOException("Utilisateur non présent dans la base de données !");
+         throw new DAOException("Utilisateur non présent dans la base de données !");
       }
    }
 
@@ -319,7 +319,7 @@ class DAO {
        }
        return true;
      } else {
-       throw DAOException("Utilisateur non présent dans la base, supression impossible");
+       throw new DAOException("Utilisateur non présent dans la base, supression impossible");
      }
    }
 
@@ -362,7 +362,7 @@ class DAO {
          $ret = $req->fetchColumn();
          return $this->readBookerById($ret);
       } else {
-         throw DAOException("Booker déjà présent dans la base");
+         throw new DAOException("Booker déjà présent dans la base");
       }
    }
 
@@ -389,7 +389,7 @@ class DAO {
        }
        return true;
      } else {
-       throw DAOException("Booker non présent dans la base, supression impossible");
+       throw new DAOException("Booker non présent dans la base, supression impossible");
      }
    }
 
@@ -399,7 +399,7 @@ class DAO {
        $this->db->deletePersonneById($idBooker);
        return true;
      } else {
-       throw DAOException("Booker non présent dans la base, supression impossible");
+       throw new DAOException("Booker non présent dans la base, supression impossible");
      }
    }
 
@@ -438,7 +438,7 @@ class DAO {
          }
          return $this->db->createOrganisateur($organisateur->id);
       } else {
-         throw DAOException("Organisateur déjà présent dans la base");
+         throw new DAOException("Organisateur déjà présent dans la base");
       }
    }
 
@@ -466,7 +466,7 @@ class DAO {
        }
        return true;
      } else {
-       throw DAOException("Organisateur non présent dans la base, supression impossible");
+       throw new DAOException("Organisateur non présent dans la base, supression impossible");
      }
    }
 
@@ -476,7 +476,7 @@ class DAO {
        $this->db->deletePersonneById($idOrganisateur);
        return true;
      } else {
-       throw DAOException("Organisateur non présent dans la base, supression impossible");
+       throw new DAOException("Organisateur non présent dans la base, supression impossible");
      }
    }
 
@@ -536,7 +536,7 @@ class DAO {
          $ret = $req->fetchColumn();
          return $this->readGroupeById($ret);
       } else {
-         throw DAOException("Groupe déjà présent dans la base");
+         throw new DAOException("Groupe déjà présent dans la base");
       }
    }
 
@@ -563,12 +563,12 @@ class DAO {
          }
          return $this->readGroupeById($groupe->idGroupe);
       } else {
-         throw DAOException("Groupe non présent dans la base de données !");
+         throw new DAOException("Groupe non présent dans la base de données !");
       }
    }
 
    function deleteGroupeByIdGroupe($idGroupe) {
-     $b = $this->readListGroupeByBooker($idGroupe);
+     $b = $this->readGroupeById($idGroupe);
      if ($b != null) {
        try {
           $this->deleteBookerGroupeByIdGroupe($idGroupe);
@@ -594,7 +594,7 @@ class DAO {
        }
        return true;
      } else {
-       throw DAOException("Groupe non présent dans la base, supression impossible");
+       throw new DAOException("Groupe non présent dans la base, supression impossible");
      }
    }
 
@@ -645,7 +645,7 @@ class DAO {
           $ret = $req->fetchColumn();
           return $this->readArtisteById($ret);
        } else {
-          throw DAOException("Artiste déjà présent dans la base");
+          throw new DAOException("Artiste déjà présent dans la base");
        }
     }
 
@@ -668,7 +668,7 @@ class DAO {
           }
           return $this->updateArtiste($utilisateur->idUtilisateur);
        } else {
-          throw DAOException("Artiste non présent dans la base de données !");
+          throw new DAOException("Artiste non présent dans la base de données !");
        }
     }
 
@@ -689,7 +689,7 @@ class DAO {
         }
         return true;
       } else {
-        throw DAOException("Artiste non présent dans la base, supression impossible");
+        throw new DAOException("Artiste non présent dans la base, supression impossible");
       }
     }
 
@@ -699,7 +699,7 @@ class DAO {
         $this->db->deletePersonneById($idArtiste);
         return true;
       } else {
-        throw DAOException("Artiste non présent dans la base, supression impossible");
+        throw new DAOException("Artiste non présent dans la base, supression impossible");
       }
     }
 
@@ -786,7 +786,7 @@ class DAO {
             $ret=$req->fetchColumn();
             return $this->readLieuById($ret);
          } else {
-            throw DAOException("Lieu déjà présent dans la base (l'id en tous cas)");
+            throw new DAOException("Lieu déjà présent dans la base (l'id en tous cas)");
          }
       }
 
@@ -815,7 +815,7 @@ class DAO {
             }
             return $this->readLieuById($lieu->getIdLieu());
          } else {
-            throw DAOException("Lieu non présent dans la base de données !");
+            throw new DAOException("Lieu non présent dans la base de données !");
          }
       }
 
@@ -833,7 +833,7 @@ class DAO {
           }
           return true;
         } else {
-          throw DAOException("Lieu non présente dans la base, supression impossible");
+          throw new DAOException("Lieu non présente dans la base, supression impossible");
         }
       }
 
@@ -910,7 +910,7 @@ class DAO {
             return $this->readManifestationById($ret);
 
          } else {
-            throw DAOException("Manifestation déjà présent dans la base (l'id en tous cas)");
+            throw new DAOException("Manifestation déjà présent dans la base (l'id en tous cas)");
          }
       }
 
@@ -940,7 +940,7 @@ class DAO {
             }
             return $this->readManifestationById($manifestation->getidManif());
          } else {
-            throw DAOException("Manifestation non présent dans la base de données !");
+            throw new DAOException("Manifestation non présent dans la base de données !");
          }
       }
 
@@ -966,7 +966,7 @@ class DAO {
           }
           return true;
         } else {
-          throw DAOException("Manifestation non présent dans la base, supression impossible");
+          throw new DAOException("Manifestation non présent dans la base, supression impossible");
         }
       }
 
@@ -1022,7 +1022,7 @@ class DAO {
             }
             return $this->db->readUserById($document->idDoc);
          } else {
-            throw DAOException("Document déjà présent dans la base (l'id en tous cas)");
+            throw new DAOException("Document déjà présent dans la base (l'id en tous cas)");
          }
       }
 
@@ -1046,7 +1046,7 @@ class DAO {
             }
             return $this->db->readDocumentById($document->idDoc);
          } else {
-            throw DAOException("Document non présent dans la base de données !");
+            throw new DAOException("Document non présent dans la base de données !");
          }
       }
 
@@ -1064,7 +1064,7 @@ class DAO {
           }
           return true;
         } else {
-          throw DAOException("Document non présente dans la base, supression impossible");
+          throw new DAOException("Document non présente dans la base, supression impossible");
         }
       }
 
@@ -1089,7 +1089,7 @@ class DAO {
           }
           return true;
         } else {
-          throw DAOException("Document non présente dans la base, supression impossible");
+          throw new DAOException("Document non présente dans la base, supression impossible");
         }
       }
 
@@ -1176,7 +1176,7 @@ class DAO {
             }
             return true;
          } else {
-            throw DAOException("Evenement déjà présent dans la base (l'id en tous cas)");
+            throw new DAOException("Evenement déjà présent dans la base (l'id en tous cas)");
          }
       }
 
@@ -1201,7 +1201,7 @@ class DAO {
             }
             return true;
          } else {
-            throw DAOException("Evenement non présent dans la base de données !");
+            throw new DAOException("Evenement non présent dans la base de données !");
          }
       }
 
@@ -1223,7 +1223,7 @@ class DAO {
           }
           return true;
         } else {
-          throw DAOException("Evenement non présent dans la base, supression impossible");
+          throw new DAOException("Evenement non présent dans la base, supression impossible");
         }
       }
 
@@ -1275,7 +1275,7 @@ class DAO {
             }
             return $this->db->readContactByPrimary($contact->idContact,$contact->proprietaire);
          } else {
-            throw DAOException("Contact déjà présent dans la base (l'id en tous cas)");
+            throw new DAOException("Contact déjà présent dans la base (l'id en tous cas)");
          }
       }
 
@@ -1295,7 +1295,7 @@ class DAO {
             }
             return $this->db->readContactByPrimary($contact->idContact,$contact->proprietaire);
          } else {
-            throw DAOException("Contact non présent dans la base");
+            throw new DAOException("Contact non présent dans la base");
          }
       }
 
@@ -1327,7 +1327,7 @@ class DAO {
           }
           return true;
         } else {
-          throw DAOException("Contact non présent dans la base, supression impossible");
+          throw new DAOException("Contact non présent dans la base, supression impossible");
         }
       }
 
@@ -1380,7 +1380,7 @@ class DAO {
             }
             return $this->db->readContactSystemByPrimary($contactSyst->contactProprietaire,$contactSyst->idContact);
          } else {
-            throw DAOException("Contact_Systeme déjà présent dans la base");
+            throw new DAOException("Contact_Systeme déjà présent dans la base");
          }
       }
 
@@ -1400,7 +1400,7 @@ class DAO {
             }
             return $this->db->readContactSystemByPrimary($contactSyst->contactProprietaire,$contactSyst->idContact);
          } else {
-            throw DAOException("Contact_Systeme non présent dans la base");
+            throw new DAOException("Contact_Systeme non présent dans la base");
          }
       }
 
@@ -1419,7 +1419,7 @@ class DAO {
             }
             return true;
          } else {
-            throw DAOException("Contact_Systeme non présent dans la base, supression impossible");
+            throw new DAOException("Contact_Systeme non présent dans la base, supression impossible");
          }
       }
 
@@ -1438,7 +1438,7 @@ class DAO {
             }
             return true;
          } else {
-            throw DAOException("Contact_Systeme non présent dans la base, supression impossible");
+            throw new DAOException("Contact_Systeme non présent dans la base, supression impossible");
          }
       }
 
@@ -1493,7 +1493,7 @@ class DAO {
             }
             return $this->db->readContactExterieurByPrimary($contactSyst->contactProprietaire,$contactSyst->idContact);
          } else {
-            throw DAOException("Contact_exterieur déjà présent dans la base");
+            throw new DAOException("Contact_exterieur déjà présent dans la base");
          }
       }
 
@@ -1515,7 +1515,7 @@ class DAO {
             }
             return $this->db->readContactExterieurByPrimary($contactSyst->contactProprietaire,$contactSyst->idContact);
          } else {
-            throw DAOException("Contact_exterieur non présent dans la base");
+            throw new DAOException("Contact_exterieur non présent dans la base");
          }
       }
 
@@ -1534,7 +1534,7 @@ class DAO {
             }
             return true;
          } else {
-            throw DAOException("Contact_exterieur non présent dans la base");
+            throw new DAOException("Contact_exterieur non présent dans la base");
          }
       }
 
@@ -1553,7 +1553,7 @@ class DAO {
             }
             return true;
          } else {
-            throw DAOException("Contact_exterieur non présent dans la base");
+            throw new DAOException("Contact_exterieur non présent dans la base");
          }
       }
 
@@ -1621,7 +1621,7 @@ class DAO {
             }
             return $this->db->readContactEvenementByPrimary($contactEven->proprietaire,$contactEven->idContact,$contactEven->idEvene);
          } else {
-            throw DAOException("Contact_Evenement déjà présent dans la base");
+            throw new DAOException("Contact_Evenement déjà présent dans la base");
          }
       }
 
@@ -1639,7 +1639,7 @@ class DAO {
           }
           return true;
         } else {
-          throw DAOException("Contact_Evenement non présent dans la base, supression impossible");
+          throw new DAOException("Contact_Evenement non présent dans la base, supression impossible");
         }
       }
 
@@ -1658,7 +1658,7 @@ class DAO {
           }
           return true;
         } else {
-          throw DAOException("Contact_Evenement non présent dans la base, supression impossible");
+          throw new DAOException("Contact_Evenement non présent dans la base, supression impossible");
         }
       }
 
@@ -1727,7 +1727,7 @@ class DAO {
 
 
       function createCreneau($creneau) {
-         $c = $this->db->readCreneauByPrimary($creneau->idManif,$creneau->idGroupe,$creneau->heureDebut);
+         $c = $this->readCreneauByPrimary($creneau->idManif,$creneau->idGroupe,$creneau->heureDebut);
          if ($c == null) {
             $sql = "INSERT INTO Creneau(idManif,idGroupe,heureDebut,heureFin,lieu,heureDebutTest,heureFinTest) VALUES (?,?,?,?,?,?,?)";
             $req = $this->db->prepare($sql);
@@ -1744,14 +1744,14 @@ class DAO {
             if ($res === FALSE) {
                die("createCreneau : Requête impossible !");
             }
-            return $this->db->readCreneauByPrimary($creneau->idManif,$creneau->idGroupe,$creneau->heureDebut);
+            return $this->readCreneauByPrimary($creneau->idManif,$creneau->idGroupe,$creneau->heureDebut);
          } else {
-            throw DAOException("Creneau déjà présent dans la base");
+            throw new DAOException("Creneau déjà présent dans la base");
          }
       }
 
       function updateCreneau($creneau) {
-         $c = $this->db->readCreneauByPrimary($creneau->idManif,$creneau->idGroupe,$creneau->heureDebut);
+         $c = $this->readCreneauByPrimary($creneau->idManif,$creneau->idGroupe,$creneau->heureDebut);
          if ($c != null) {
             $sql = "UPDATE Creneau set (heureFin,lieu,heureDebutTest,heureFinTest) = (?,?,?,?) where idManif=? and idGroupe=? and heureDebut = ?";
             $req = $this->db->prepare($sql);
@@ -1768,14 +1768,14 @@ class DAO {
             if ($res === FALSE) {
                die("updateCreneau : Requête impossible !");
             }
-            return $this->db->readCreneauByPrimary($creneau->idManif,$creneau->idGroupe,$creneau->heureDebut);
+            return $this->readCreneauByPrimary($creneau->idManif,$creneau->idGroupe,$creneau->heureDebut);
          } else {
-            throw DAOException("Creneau non présent dans la base");
+            throw new DAOException("Creneau non présent dans la base");
          }
       }
 
       function deleteCreneauByIdGroupe($idGroupe) {
-        $b = $this->db->readCreneauByidGroupe($idGroupe);
+        $b = $this->readCreneauByidGroupe($idGroupe);
         if ($b != null) {
           $sql = "DELETE FROM Creneau where idGroupe = ?";
           $req = $this->db->prepare($sql);
@@ -1788,12 +1788,12 @@ class DAO {
           }
           return true;
         } else {
-          throw DAOException("Creneau non présent dans la base, supression impossible");
+          throw new DAOException("Creneau non présent dans la base, supression impossible");
         }
       }
 
       function deleteCreneauByIdManif($idManif) {
-        $b = $this->db->readCreneauByidManif($idManif);
+        $b = $this->readCreneauByidManif($idManif);
         if ($b != null) {
           $sql = "DELETE FROM Creneau where idManif = ?";
           $req = $this->db->prepare($sql);
@@ -1806,7 +1806,7 @@ class DAO {
           }
           return true;
         } else {
-          throw DAOException("Creneau non présent dans la base, supression impossible");
+          throw new DAOException("Creneau non présent dans la base, supression impossible");
         }
       }
 
@@ -1871,7 +1871,7 @@ class DAO {
             }
             return $this->readGroupeArtisteByPrimary($idGroupe,$idArtiste);
          } else {
-            throw DAOException("Groupe_Artiste déjà présent dans la base");
+            throw new DAOException("Groupe_Artiste déjà présent dans la base");
          }
       }
 
@@ -1889,7 +1889,7 @@ class DAO {
           }
           return true;
         } else {
-          throw DAOException("Groupe_Artiste non présent dans la base, supression impossible");
+          throw new DAOException("Groupe_Artiste non présent dans la base, supression impossible");
         }
       }
 
@@ -1907,7 +1907,7 @@ class DAO {
           }
           return true;
         } else {
-          throw DAOException("Groupe_Artiste non présent dans la base, supression impossible");
+          throw new DAOException("Groupe_Artiste non présent dans la base, supression impossible");
         }
       }
 
@@ -1974,7 +1974,7 @@ class DAO {
             }
             return $this->readNegociationById($negociation->idNegociation);
          } else {
-            throw DAOException("Negociation déjà présente dans la base");
+            throw new DAOException("Negociation déjà présente dans la base");
          }
       }
 
@@ -1997,7 +1997,7 @@ class DAO {
             }
             return $this->readNegociationById($negociation->idNegociation);
          } else {
-            throw DAOException("Negociation non présente dans la base");
+            throw new DAOException("Negociation non présente dans la base");
          }
       }
 
@@ -2024,7 +2024,7 @@ class DAO {
           }
           return true;
         } else {
-          throw DAOException("Negociation non présente dans la base, supression impossible");
+          throw new DAOException("Negociation non présente dans la base, supression impossible");
         }
       }
 
@@ -2051,7 +2051,7 @@ class DAO {
           }
           return true;
         } else {
-          throw DAOException("Negociation non présente dans la base, supression impossible");
+          throw new DAOException("Negociation non présente dans la base, supression impossible");
         }
       }
 
@@ -2102,7 +2102,7 @@ class DAO {
             }
             return $this->db->readNegociationDocumentsByPrimary($negociationDoc->idNegociation,$negociationDoc->idDoc);
          } else {
-            throw DAOException("Negociation_Documents déjà présente dans la base");
+            throw new DAOException("Negociation_Documents déjà présente dans la base");
          }
       }
 
@@ -2125,7 +2125,7 @@ class DAO {
           }
           return true;
         } else {
-          throw DAOException("Negociation_Documents non présente dans la base, supression impossible");
+          throw new DAOException("Negociation_Documents non présente dans la base, supression impossible");
         }
       }
 
@@ -2143,7 +2143,7 @@ class DAO {
           }
           return true;
         } else {
-          throw DAOException("Negociation_Documents non présente dans la base, supression impossible");
+          throw new DAOException("Negociation_Documents non présente dans la base, supression impossible");
         }
       }
 
@@ -2208,7 +2208,7 @@ class DAO {
             }
             return $this->db->readNegociationMessagesByPrimary($negociationMess->idNegociation,$negociationMess->idMessage);
          } else {
-            throw DAOException("Negociation_Messages déjà présente dans la base");
+            throw new DAOException("Negociation_Messages déjà présente dans la base");
          }
       }
 
@@ -2231,7 +2231,7 @@ class DAO {
           }
           return true;
         } else {
-          throw DAOException("Negociation_Messages non présente dans la base, supression impossible");
+          throw new DAOException("Negociation_Messages non présente dans la base, supression impossible");
         }
       }
 
@@ -2249,7 +2249,7 @@ class DAO {
           }
           return true;
         } else {
-          throw DAOException("Negociation_Messages non présente dans la base, supression impossible");
+          throw new DAOException("Negociation_Messages non présente dans la base, supression impossible");
         }
       }
 
@@ -2300,7 +2300,7 @@ class DAO {
             }
             return $this->db->readMessageTagByPrimary($nomt,$idMessage);
          } else {
-            throw DAOException("Message_Tag déjà présent dans la base");
+            throw new DAOException("Message_Tag déjà présent dans la base");
          }
       }
 
@@ -2319,7 +2319,7 @@ class DAO {
             }
             return true;
          } else {
-            throw DAOException("Message_Tag non présent dans la base, supression impossible");
+            throw new DAOException("Message_Tag non présent dans la base, supression impossible");
          }
       }
 
@@ -2337,7 +2337,7 @@ class DAO {
             }
             return true;
          } else {
-            throw DAOException("Message_Tag non présent dans la base, supression impossible");
+            throw new DAOException("Message_Tag non présent dans la base, supression impossible");
          }
       }
 
@@ -2403,7 +2403,7 @@ class DAO {
             }
             return $this->readBookerGroupeByPrimary($idBooker,$idGroupe);
          } else {
-            throw DAOException("Booker_Groupe déjà présente dans la base");
+            throw new DAOException("Booker_Groupe déjà présente dans la base");
          }
       }
 
@@ -2421,7 +2421,7 @@ class DAO {
           }
           return true;
         } else {
-          throw DAOException("Booker_Groupe non présent dans la base, supression impossible");
+          throw new DAOException("Booker_Groupe non présent dans la base, supression impossible");
         }
       }
 
@@ -2431,7 +2431,7 @@ class DAO {
           $this->deleteGroupeByIdGroupe($idGroupe);
           return true;
         } else {
-          throw DAOException("Booker_Groupe non présent dans la base, supression impossible");
+          throw new DAOException("Booker_Groupe non présent dans la base, supression impossible");
         }
       }
 
@@ -2484,7 +2484,7 @@ class DAO {
             }
             return $this->readGroupeGenreByPrimary($idGroupe,$nomg);
          } else {
-            throw DAOException("Groupe_Genre déjà présente dans la base");
+            throw new DAOException("Groupe_Genre déjà présente dans la base");
          }
       }
 
@@ -2503,7 +2503,7 @@ class DAO {
             }
             return true;
          } else {
-            throw DAOException("Groupe_Genre non présente dans la base, suppression impossible");
+            throw new DAOException("Groupe_Genre non présente dans la base, suppression impossible");
          }
       }
 
@@ -2521,7 +2521,7 @@ class DAO {
             }
             return true;
          } else {
-            throw DAOException("Groupe_Genre non présente dans la base, suppression impossible");
+            throw new DAOException("Groupe_Genre non présente dans la base, suppression impossible");
          }
       }
 
@@ -2588,7 +2588,7 @@ class DAO {
             }
             return $this->readManifestationGenreByPrimary($idManif,$nomg);
          } else {
-            throw DAOException("Manifestation_Genre déjà présente dans la base");
+            throw new DAOException("Manifestation_Genre déjà présente dans la base");
          }
       }
 
@@ -2607,7 +2607,7 @@ class DAO {
             }
             return true;
          } else {
-            throw DAOException("Manifestation_Genre non présente dans la base, supression impossible");
+            throw new DAOException("Manifestation_Genre non présente dans la base, supression impossible");
          }
       }
 
@@ -2678,7 +2678,7 @@ class DAO {
             }
             return $this->db->readContactTagByPrimary($contactTag->nomt,$contactTag->idContact,$contactTag->proprietaire);
          } else {
-            throw DAOException("Contact_Tag déjà présente dans la base");
+            throw new DAOException("Contact_Tag déjà présente dans la base");
          }
       }
 
@@ -2841,7 +2841,7 @@ class DAO {
           }
           return true;
         } else {
-          throw DAOException("Message non présent dans la base, supression impossible");
+          throw new DAOException("Message non présent dans la base, supression impossible");
         }
       }
 
