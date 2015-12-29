@@ -14,9 +14,10 @@
       if (!isset($this->idpersonne)) {
          $this->idpersonne = $idpersonne;
       }
-      if ($type != NULL) {
+
+
          $this->type = $type;
-      }
+
       if ($nom != NULL) {
          $this->nom = $nom;
       }
@@ -124,6 +125,9 @@
     // setter de l'adresse de la personne
     function setAdresse($adresse) {
         $this->adresse = $adresse;
+    }
+    function setDescription($description) {
+        $this->description = $description;
     }
 
   }

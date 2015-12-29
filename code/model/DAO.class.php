@@ -48,11 +48,11 @@ class DAO {
          $id // l'id de l'utilisateur
       );
       $res = $req->execute($params);
+
       if ($res === FALSE) {
          die("readPersonneById : Requête impossible !"); // erreur dans la requête
       }
       $res = $req->fetchAll(PDO::FETCH_ASSOC);
-
       if(isset($res[0]["type"])){
          $type = (int) $res[0]["type"];
          if($type == 0){
@@ -184,11 +184,11 @@ class DAO {
       }
       //plus complexe !
       $pers = $this->readPersonneByIdNoClass($id);
-
       $res = $req->fetchAll(PDO::FETCH_ASSOC);
       if(isset($res[0]) && isset( $pers)){
          $Utilisateur = new Utilisateur($pers["idpersonne"],$pers["type"],$pers["nom"], $pers["prenom"], $pers["emailcontact"], $pers["tel"], $pers["adresse"],$res[0]["emailcompte"],$res[0]["mdp"],$res[0]["googletoken"]);
          return $Utilisateur;
+
       }else{
          return NULL;
       }
@@ -244,10 +244,10 @@ class DAO {
    }
 
    private function createUtilisateur($utilisateur) { // peut etre mettre une personne en paramettre
-      $u = $this->db->readUserByEmail($utilisateur->email);
+      $u = $this->db->readUtilisateurById($utilisateur->getIdPersonne());
       if ($u == null) {
          $this->createPersonne($utilisateur);
-         $sql = "INSERT INTO Users(emailCompte,mdp,googletoken) VALUES (?,?,?)";
+         $sql = "INSERT INTO Utilisateur(emailCompte,mdp,googletoken) VALUES (?,?,?)";
          $req = $this->db->prepare($sql);
          $params = array(
             $utilisateur->getEmailCompte(),
@@ -265,7 +265,7 @@ class DAO {
    }
 
    function updateUtilisateur($utilisateur) {
-      $u = $this->db->readUserByEmail($utilisateur->email);
+      $u = $this->readUtilisateurById($utilisateur->getIdPersonne());
       if ($u != null) {
          $this->updatePersonne($utilisateur);
          $sql = "UPDATE Utilisateur set (emailCompte,mdp) = (?,?) where idUtilisateur = ?";
@@ -273,13 +273,13 @@ class DAO {
          $params = array(
             $utilisateur->getEmailCompte(),
             $utilisateur->getMdp(),
-            $utilisateur->getIdUtilisateur()
+            $utilisateur->getIdPersonne()
          );
          $res = $req->execute($params);
          if ($res === FALSE) {
             die("updateUtilisateur : Requête impossible !");
          }
-         return $this->db->readUserById($utilisateur->idUtilisateur);
+         return $this->readUtilisateurById($utilisateur->getIdPersonne());
       } else {
          throw new DAOException("Utilisateur non présent dans la base de données !");
       }
@@ -661,7 +661,6 @@ class DAO {
              $artiste->getOrdreCheque(),
              $artiste->getIdPersonne()
           );
-                    var_dump($params);
           $res = $req->execute($params);
           if ($res === FALSE) {
              die("updateArtiste : Requête impossible !");

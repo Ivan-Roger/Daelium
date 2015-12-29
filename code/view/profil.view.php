@@ -18,7 +18,7 @@
         <h3 class="col-xs-8"><?= $data["nomcomplet"] ?>    (<?= $data["typename"]?>)</h3>
         <?php if($data["owner"]){ ?>
         <div class="controls col-xs-2 text-right">
-          <a class="btn btn-primary" href="#">Editer</a>
+          <a class="btn btn-primary" href="../controler/profil_edit.ctrl.php">Editer</a>
         </div>
         <?php } ?>
       </div>

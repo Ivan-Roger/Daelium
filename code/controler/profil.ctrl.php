@@ -17,7 +17,6 @@ if(isset($_GET["id"])){
 
 $dao = new DAO();
 if(isset($userpid)){
-
   $user = $dao->readPersonneByIdGoodClasse($userpid);
 
 

@@ -26,9 +26,6 @@
     //        Fonctions getter
     // ********************************
     // getter de l'id de l'utilisateur
-    function getIdUtilisateur() {
-      return $this->idutilisateur;
-    }
 
     // getter de l'adresse mail de l'utilisateur
     function getEmailCompte() {
