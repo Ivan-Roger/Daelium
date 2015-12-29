@@ -1875,6 +1875,25 @@ class DAO {
          }
       }
 
+      function deleteGroupeArtisteByIdArtisteIdGroupe($idGroupe,$idArtiste) {
+        $g = $this->readListGroupeByArtiste ($idArtiste);
+        if ($g != null) {
+          $sql = "DELETE FROM Groupe_Artiste where idGroupe=? AND idArtiste = ?";
+          $req = $this->db->prepare($sql);
+          $params = array(
+            $idGroupe,
+            $idArtiste
+          );
+          $res = $req->execute($params);
+          if ($res === FALSE) {
+            die("deleteGroupeArtisteByIdArtisteIdGroupe : Requête impossible !");
+          }
+          return true;
+        } else {
+          throw new DAOException("Groupe_Artiste non présent dans la base, supression impossible");
+        }
+      }
+
       function deleteGroupeArtisteByIdArtiste($idArtiste) {
         $g = $this->readListGroupeByArtiste ($idArtiste);
         if ($g != null) {
