@@ -190,4 +190,3 @@ if($user != NULL){ // SI c'est un organisateur
   include("../view/error.view.php");
 }
 ?>
-s
