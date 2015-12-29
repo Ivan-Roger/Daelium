@@ -14,7 +14,7 @@
     if($groupelist != NULL){ // Si il possede au moins un groupe
       $data["asgroupe"] = true;
       foreach ($groupelist as $key => $value) {
-        $groupe =$dao->readGroupeById($value);
+        $groupe =$dao->readGroupeById($value['idgroupe']);
         $data["groupes"][$key]["id"] = $groupe->getIdGroupe();
         $data["groupes"][$key]["name"] = $groupe->getNom();
         if($groupe->getLienImageOfficiel() == NULL){

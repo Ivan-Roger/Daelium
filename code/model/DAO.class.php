@@ -2370,7 +2370,7 @@ class DAO {
             die("readListGroupeByBooker : Requête impossible !"); // erreur dans la requête
          }
          $res = $req->fetchAll(PDO::FETCH_ASSOC);
-         return (isset($res[0])?$res[0]:null);
+         return (isset($res)?$res:null);
       }
 
       function readListBookerByGroupe($idGroupe) {
