@@ -6,7 +6,6 @@
 <html>
   <head>
     <?php include("../view/include/includes.view.php"); ?>
-    <link rel="stylesheet" href="../data/css/profile.css">
     <title>Dælium - Profil - Edition</title>
   </head>
   <body>
