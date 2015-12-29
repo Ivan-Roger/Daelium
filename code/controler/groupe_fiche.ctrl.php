@@ -16,7 +16,7 @@
     $listA = $dao->readArtisteByGroupe($idgroupe);
     $i = 0;
     foreach ($listA as $key => $value) {
-      $artiste = $dao->readArtisteById($value);
+      $artiste = $dao->readArtisteById($value["idartiste"]);
       $art[$i]['prenom'] = $artiste->getPrenom();
       $art[$i]['nom'] = $artiste->getNom();
       if($artiste->getDescription() == NULL){
