@@ -18,8 +18,8 @@ class Booker extends Utilisateur {
     return $this->listgroupes;
   }
 
-  function possedeGroupe($idGroupe,$listeGroupe){
-    foreach ($listeGroupe as $key => $value) {
+  function possedeGroupe($idGroupe){
+    foreach ($this->getListeGroupe() as $key => $value) {
       if($value['idgroupe'] == $idGroupe){
         return true;
       }

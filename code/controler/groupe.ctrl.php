@@ -17,11 +17,9 @@ if($user != NULL){ // SI booker
     if($groupe != NULL){
 
       $listegroupeuser = $dao->readListGroupeByBooker($userid);
-      if($listegroupeuser != NULL){ // Si l'organisateur a au moins un evt.
-        $present = $user->possedeGroupe($groupeid,$listegroupeuser);
-      }else {
-        $present = false;
-      }
+
+      $present = $user->possedeGroupe($groupeid);
+
       if($present){
         $listA = $dao->readArtisteByGroupe($groupeid);
         $i = 0;

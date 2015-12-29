@@ -113,9 +113,13 @@
                 </div>
             </div>
           <?php }  ?>
+          <a class ="btn btn-primary" href="../controler/artiste_edit.ctrl.php?idgroupe=<?= $data["groupe"]['id']?>&action=create"> Ajouter un Artiste </a>
         </div>
         <!-- Fin Information principals -->
+
       </article>
+
+
 
       <!-- Fin affichage des membre du groupe -->
       </section>
