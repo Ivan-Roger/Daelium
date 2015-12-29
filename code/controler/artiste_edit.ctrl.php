@@ -104,12 +104,48 @@ if($user != NULL){ // SI booker
   }else{// Si on lis #########################################################################################################################################################################################################
     if(isset($_GET['id'])){
       $artisteid = $_GET['id'];
-      $Artiste = $dao->readArtisteById($artisteid);
-      if($Artiste != NULL){
-
-
+      $artiste = $dao->readArtisteById($artisteid);
+      if($artiste != NULL){
         $ok = $user->userinmanagedgroupok($artisteid);
         if($ok){
+
+          $data['id'] = $artisteid;
+          $data['prenom'] = $artiste->getPrenom();
+          $data['nom'] = $artiste->getNom();
+          $data['dateNaissance'] = $artiste->getDateNaissance();
+          $data['email'] = $artiste->getEmailcontact();
+          $data['telephone'] = $artiste->getTel();
+          $idlieu = $artiste->getAdresse();
+
+          if(($idlieu) == NULL){
+            $data['adresse'] = "";
+            $data['codepostal'] = "";
+            $data['ville'] = "";
+            $data['pays'] = "";
+            $data['region'] = "";
+            $data['latitude'] = "";
+            $data['longitude'] = "";
+          }else{
+            $lieu = $dao->readLieuById($idlieu);
+            $data['adresse'] = $lieu->getAdresse();
+            $data['codepostal'] = $lieu->getcodepostal();
+            $data['ville'] = $lieu->getVille();
+            $data['pays'] = $lieu->getPays();
+            $data['region'] = $lieu->getRegion();
+            $data['latitude'] = $lieu->getLatitude();
+            $data['longitude'] = $lieu->getLongitude();
+          }
+
+
+          if($artiste->getPaiement() == 0){
+            $data['paiement'] = "Cheque";
+          }else {
+            $data['paiement'] = "Virement";
+
+          }
+          $data['IBAN'] = $artiste->getRib();
+          $data['ordre'] = $artiste->getOrdreCheque();
+        }
 
 
           include("../view/artiste_edit.view.php");
@@ -132,12 +168,7 @@ if($user != NULL){ // SI booker
 
 
 
-    }else{
-      $data['error']['title'] = "Groupe inconnu";
-      $data['error']['back'] = "../controler/groupes.ctrl.php";
-      $data['error']['message'] = "Vous vous etes perdu ...";
-      include("../view/error.view.php");
-    }
+
   }
 }else {
   $data['error']['title'] = "Acces Interdit";
