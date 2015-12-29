@@ -10,7 +10,7 @@
     function possedeGroupe($idGroupe,$listeGroupe){
 
       foreach ($listeGroupe as $key => $value) {
-        if($value == $idGroupe){
+        if($value['idgroupe'] == $idGroupe){
           return true;
         }
       }

@@ -80,7 +80,7 @@
               <label class="control-label col-sm-4" >Lieu :</label>
               <div class="col-sm-8 well">
 
-                <label class="control-label col-sm-2" for="adresse">Adresse :</label>
+                <label class="control-label col-sm-2" for="adresse"></label>
                 <div class="col-sm-10">
                   <input type="text" id="adresse" name="adresse"  class="form-control" />
                 </div>
@@ -108,13 +108,14 @@
                 <div class="col-sm-4">
                   <input type="text" id="longitude" name="longitude" class="form-control" />
                 </div>
+
               </div>
           </div>
           </div>
         </div>
       </div>
       <!-- Si groupe alors Demander plusieurs fois les infos sur les different membres -->
-      <?php for ($i = 0 ; $i<2 ; $i++): ?>
+      <?php for ($i = 0 ; $i<1 ; $i++): ?>
         <div class="col-lg-6">
         <div class="panel panel-default">
           <div class="panel-heading">Artiste <?= $i ?></div>
@@ -158,34 +159,36 @@
               <label class="control-label col-sm-3" for="adrr">Adresse :</label>
               <div class="col-sm-9 well">
 
-                <label class="control-label col-sm-2" for="adresse"></label>
+                <label class="control-label col-sm-2" for="adresse">Adresse :</label>
                 <div class="col-sm-10">
-                  <input type="text" id="adresse" name="adresse"  class="form-control" />
+                  <input type="text" id="adresse" name="person[<?= $i ?>][adresse]"  class="form-control" />
                 </div>
                 <label class="control-label col-sm-2" for="codepostal">Code postal :</label>
                 <div class="col-sm-2">
-                  <input type="text" id="codepostal" name="codepostal"  class="form-control" />
+                  <input type="text" id="codepostal" name="person[<?= $i ?>][codepostal]"  class="form-control" />
                 </div>
                 <label class="control-label col-sm-2" for="ville">Ville * :</label>
                 <div class="col-sm-6">
-                  <input type="text" id="ville" name="ville" required="required" class="form-control" />
+                  <input type="text" id="ville" name="person[<?= $i ?>][ville]" required="required" class="form-control" />
                 </div>
                 <label class="control-label col-sm-2" for="region">Region :</label>
                 <div class="col-sm-4">
-                  <input type="text" id="region" name="region"  class="form-control" />
+                  <input type="text" id="region" name="person[<?= $i ?>][region]"  class="form-control" />
                 </div>
                 <label class="control-label col-sm-2" for="pays">Pays * :</label>
                 <div class="col-sm-4">
-                  <input type="text" id="pays" name="pays" required="required" class="form-control"  />
+                  <input type="text" id="pays" name="person[<?= $i ?>][pays]" required="required" class="form-control"  />
                 </div>
                 <label class="control-label col-sm-2" for="latitude">Latitude :</label>
                 <div class="col-sm-4">
-                  <input type="text" id="latitude" name="latitude"  class="form-control" />
+                  <input type="text" id="latitude" name="person[<?= $i ?>][latitude]"  class="form-control" />
                 </div>
                 <label class="control-label col-sm-2" for="longitude">Longitude :</label>
                 <div class="col-sm-4">
-                  <input type="text" id="longitude" name="longitude" class="form-control" />
+                  <input type="text" id="longitude" name="person[<?= $i ?>][longitude]" class="form-control" />
                 </div>
+
+
               </div>
             </div>
 

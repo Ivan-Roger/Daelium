@@ -35,30 +35,57 @@ if($user != NULL){ // SI booker
     $longitude = $_POST["longitude"];
 
     $artistes = $_POST["person"];
-    var_dump($artistes);
 
     $lieu = new Lieu(NULL,$nomlieu,NULL,$pays,$region,$ville,$codepostal,$adresse,$latitude,$longitude);
     $lieu2 =  $dao->createLieu($lieu);
-    if(isset($lieu2)){
-      $groupe = new Group(NULL,$nomscene,$email,$des,$img,NULL,NULL,NULL,NULL,NULL,NULL,$lieu2->getIdLieu());
+    if(isset($lieu2)){ // Si le lieu est cree on peut cree le groupe
+      $groupe = new Group(NULL,$nomscene,$mail,$des,$img,NULL,NULL,NULL,NULL,NULL,NULL,$lieu2->getIdLieu());
       $groupe2 = $dao->createGroupe($groupe);
-      if(isset($groupe2)){
+
+      if(isset($groupe2)){ // Si le groupe est cree, on peut cree les artistes
+      $dao->createBookerGroupe($userid,$groupe2->getIdGroupe());
         foreach ($artistes as $key => $value) {
-          $unartiste = new Artist(NULL,$value["name"],$value["pname"],$value["pname"],$value["mail"],$value["ntel"],$lieu2->getIdLieu(),$value["daten"],$value["payment"],$value["vir"],$value["ord"]);
-          $unartiste2 = $dao->createArtiste($unartiste);
-          $dao->createGroupeArtiste($groupe2->getIdGroupe(),$unartiste2->getIdPersonne());
-        }
+          $adresseartiste = new Lieu(NULL,"Adresse de ".$value["name"],NULL,$value["pays"],$value["region"],$value["ville"],$value["codepostal"],$value["adresse"],$value["latitude"],$value["longitude"]);
+          $adresseartiste2 =  $dao->createLieu($adresseartiste);
+          if(isset($adresseartiste2)){ //Si le lieu des Artiste est cree on peut cree les artiste
+            if($value["payment"] == "ch"){
+              $paiment = 0;
+            }else {
+              $paiment = 1;
+            }
+            $unartiste = new Artist(NULL,$value["name"],$value["pname"],$value["mail"],$value["ntel"],$adresseartiste2->getIdLieu(),$value["daten"],$paiment,$value["vir"],$value["ord"]);
+            $unartiste2 = $dao->createArtiste($unartiste);
+            if(isset($unartiste2)){ // Si l'artiste est cree, on lie Artiste et groupe
+              $dao->createGroupeArtiste($groupe2->getIdGroupe(),$unartiste2->getIdPersonne());
 
-
-
-
-
-        foreach ($genres as $key => $value) {
-          if(!empty($value)){
-            $dao->createGroupeGenre($genres->getIdGroupe(),$value);
+            }else {
+              // Il y a eu une erreur
+              $dao->deleteLieuById($unartiste2->getIdLieu());
+            }
+          }else {
+            // Il y a eu une erreur
+            // Juste le groupe est cree mais pas les artistes liés.
           }
         }
-    }}
+
+
+
+        foreach ($genres as $key => $value) { // Creation des genres pour le groupe.
+          if(!empty($value)){
+            $dao->createGroupeGenre($groupe2->getIdGroupe(),$value);
+          }
+        }
+        header("Location: ../controler/groupe.ctrl.php?id=".$groupe2->getidGroupe()."");
+
+      }else {
+        // Il y a eu une erreur
+        // le lieu a ete cree mais pas le groupe donc on supprime le lieu
+        $dao->deleteLieuById($lieu2->getIdLieu());
+      }
+    }else {
+      // Il y a eu une erreur
+      // Rien n'a ete cree
+    }
 
 
   }else {
