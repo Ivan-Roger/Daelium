@@ -28,8 +28,8 @@ if($user != NULL){ // SI booker
 
         if($listA != NULL){
         foreach ($listA as $key => $value) {
-          $artiste = $dao->readArtisteById($value);
-          $art[$i]['id'] = $value;
+          $artiste = $dao->readArtisteById($value['idartiste']);
+          $art[$i]['id'] = $value['idartiste'];
           $art[$i]['prenom'] = $artiste->getPrenom();
           $art[$i]['nom'] = $artiste->getNom();
           $art[$i]['dateNaissance'] = $artiste->getDateNaissance();

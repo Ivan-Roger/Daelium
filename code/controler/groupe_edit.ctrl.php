@@ -100,6 +100,7 @@ if($user != NULL){ // SI booker
           // Fin mise a jour groupe
 
 
+
           header("Location: ../controler/groupe.ctrl.php?id=".$groupe->getidGroupe()."");
         }else {
           $data['error']['title'] = "Acces Interdit";

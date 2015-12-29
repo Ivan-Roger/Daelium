@@ -119,7 +119,7 @@ class DAO {
    private function updatePersonne($personne) {
       $p = $this->readPersonneById($personne->getIdPersonne());
       if ($p != null) {
-         $sql = "UPDATE Personne set (type,nom, prenom, tel, emailContact, adresse,description) = (?,?,?,?,?,?,?) where id = ?";
+         $sql = "UPDATE Personne set (type,nom, prenom, tel, emailContact, adresse,description) = (?,?,?,?,?,?,?) where idPersonne = ?";
          $req = $this->db->prepare($sql);
          $params = array(
             $personne->getType(),
@@ -135,7 +135,7 @@ class DAO {
          if ($res === FALSE) {
             die("updatePersonne : Requête impossible !");
          }
-         return $this->readPersonneById($personne->id);
+         return $this->readPersonneById($personne->getIdPersonne());
       } else {
          throw new DAOException("La personne n'existe pas");
       }
@@ -637,7 +637,6 @@ class DAO {
              $artiste->getRib(),
              $artiste->getOrdreCheque()
           );
-          var_dump($params);
           $res = $req->execute($params);
           if ($res === FALSE) {
              die("createArtiste : Requête impossible !");
@@ -650,23 +649,24 @@ class DAO {
     }
 
     function updateArtiste($artiste) {
-       $a = $this->readArtisteById($utilisateur->idUtilisateur);
+       $a = $this->readArtisteById($artiste->getIdPersonne());
        if ($a != null) {
           $this->updatePersonne($artiste);
           $sql = "UPDATE Artiste set (dateNaissance, paiement, rib, ordreCheque) = (?,?,?,?) where idArtiste = ?";
           $req = $this->db->prepare($sql);
           $params = array(
-             $artiste->dateNaissance,
-             $artiste->paiement,
-             $artiste->rib,
-             $artiste->ordreCheque,
-             $artiste->idArtiste
+             $artiste->getDateNaissance(),
+             $artiste->getPaiement(),
+             $artiste->getRib(),
+             $artiste->getOrdreCheque(),
+             $artiste->getIdPersonne()
           );
+                    var_dump($params);
           $res = $req->execute($params);
           if ($res === FALSE) {
              die("updateArtiste : Requête impossible !");
           }
-          return $this->updateArtiste($utilisateur->idUtilisateur);
+          return $this->readArtisteById($artiste->getIdPersonne());
        } else {
           throw new DAOException("Artiste non présent dans la base de données !");
        }
@@ -809,6 +809,7 @@ class DAO {
               $lieu->getLongitude(),
                $lieu->getIdLieu()
             );
+
             $res = $req->execute($params);
             if ($res === FALSE) {
                die("updateLieu : Requête impossible !");

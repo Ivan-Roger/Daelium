@@ -50,8 +50,10 @@ if($user != NULL){ // SI booker
           if(isset($adresseartiste2)){ //Si le lieu des Artiste est cree on peut cree les artiste
             if($value["payment"] == "ch"){
               $paiment = 0;
-            }else {
+            }else if($value["payment"] == "vi"){
               $paiment = 1;
+            }else {
+              $paiment = 2;
             }
             $unartiste = new Artist(NULL,$value["name"],$value["pname"],$value["mail"],$value["ntel"],$adresseartiste2->getIdLieu(),$value["daten"],$paiment,$value["vir"],$value["ord"]);
             $unartiste2 = $dao->createArtiste($unartiste);

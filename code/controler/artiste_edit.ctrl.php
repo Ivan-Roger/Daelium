@@ -53,34 +53,84 @@ if($user != NULL){ // SI booker
       include("../view/error.view.php");
     }
   }else if(isset($_GET["action"]) && $_GET["action"]=="edit"){ // Si on Modifie #######################################################################################################################################################
-    if(isset($_POST["idgroupe"]) && isset($_POST["idartiste"])){
-      $groupeid = $_POST['idgroupe'];
-      $aristeid = $_POST['idartiste'];
-      $Artiste = $dao->readArtisteById($aristeid);
-      $groupe = $dao->readGroupeById($groupeid);
+    if(isset($_POST["idartiste"])){
+      $artisteid = $_POST['idartiste'];
+      $Artiste = $dao->readArtisteById($artisteid);
 
-      if($groupe != NULL && $Artiste != NULL){
+      if($Artiste != NULL){
 
-        $listegroupeArtiste = $Artiste->getListeGroupe();
-        $listegroupeuser = $dao->readListGroupeByBooker($userid);
-        if($listegroupeuser != NULL){
-          $present = $user->possedeGroupe($groupeid,$listegroupeuser);
-        }else {
-          $present = false;
-        }
-        if($present && $Artiste->estDansGroupe($groupeid)){
+        $ok = $user->userinmanagedgroupok($artisteid);
+        if($ok){
+          $idlieu = $Artiste->getAdresse();
+          $lieu = $dao->readLieuById($idlieu);
 
+          if($lieu != NULL){
+          // Mise a jour du Lieu
+          $adresse = $_POST["adresse"];
+          $codepostal = $_POST["codepostal"];
+          $ville = $_POST["ville"];
+          $region = $_POST["region"];
+          $pays = $_POST["pays"];
+          $latitude = $_POST["latitude"];
+          if(empty($latitude)){
+            $latitude = NULL;
+          }
+          $longitude = $_POST["longitude"];
+          if(empty($longitude)){
+            $longitude = NULL;
+          }
 
-          //Lieu
+          $lieu->setPays($pays);
+          $lieu->setRegion($region);
+          $lieu->setVille($ville);
+          $lieu->setcodepostal($codepostal);
+          $lieu->setAdresse($adresse);
+          $lieu->setLatitude($latitude);
+          $lieu->setLongitude($longitude);
+
+          $dao->updateLieu($lieu);
+          }
+          //Fin mise a jour Lieu
 
 
           //Artiste
+          $nom = $_POST["name"];
+          $prenom =$_POST["pname"];
+          $daten =$_POST["daten"];
+          if(empty($daten)){
+            $daten = NULL;
+          }
+          $email = $_POST["mail"];
+          $ntel = $_POST["ntel"];
+          if(empty($ntel)){
+            $ntel =NULL;
+          }
+
+          if($_POST["payment"] == "ch"){
+            $paiment = 0;
+          }else if($_POST["payment"] == "vi"){
+            $paiment = 1;
+          }else {
+            $paiment = 2;
+          }
+          $ordre =  $_POST["ord"];
+          $rib =  $_POST["vir"];
+
+          $Artiste->setPaiement($paiment);
+          $Artiste->setRib($rib);
+          $Artiste->setOrdreCheque($ordre);
+          $Artiste->setNom($nom);
+          $Artiste->setPrenom($prenom);
+          $Artiste->setDateNaissance($daten);
+          $Artiste->setEmailcontact($email);
+          $Artiste->setTel($ntel);
+          $dao->updateArtiste($Artiste);
 
 
 
 
 
-          header("Location: ../controler/groupe.ctrl.php?id=".$groupeid."");
+          header("Location: ../controler/groupes.ctrl.php"); // A modifier par la suite
 
         }else {
           $data['error']['title'] = "Acces Interdit";

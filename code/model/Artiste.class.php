@@ -66,7 +66,7 @@ require_once('../model/DAO.class.php');
 
 
     // ********************************
-    //        Fonctions getter
+    //        Fonctions setter
     // ********************************
     // setter de la date de naissance de l'artiste
     function setDateNaissance($dateNaissance) {
