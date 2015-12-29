@@ -2508,7 +2508,7 @@ class DAO {
       }
 
       function deleteGroupeGenreIdGroupe($idGroupe) {
-         $g = $this->db->readGroupeGenreByIdGroupe($idGroupe);
+         $g = $this->readGroupeGenreByIdGroupe($idGroupe);
          if ($g != null) {
             $sql = "DELETE FROM Groupe_Genre WHERE idGroupe = ?";
             $req = $this->db->prepare($sql);

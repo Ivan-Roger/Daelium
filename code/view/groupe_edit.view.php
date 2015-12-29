@@ -83,7 +83,7 @@
           </div>
         </div>
       </div>
-      <input type="hidden" name="idmanif" value="<?= $data['groupe']['id'] ?>"/>
+      <input type="hidden" name="idgroupe" value="<?= $data['groupe']['id'] ?>"/>
       <div class="pull-right">
         <input class="btn btn-default" type="button" onclick="alert('Hello World!')" value="Annuler">
         <input class="btn btn-primary" type="submit" onclick="alert('Hello World!')" value="Modifier">

@@ -13,7 +13,82 @@ if($user != NULL){ // SI booker
   if(isset($_GET["action"]) && $_GET["action"]=="remove"){// Si on supprime #######################################################################################################################################################
 
   }else if(isset($_GET["action"]) && $_GET["action"]=="edit"){ // Si on Modifie #######################################################################################################################################################
+    if(isset($_POST["idgroupe"])){
+      $groupeid = $_POST['idgroupe'];
+      $groupe = $dao->readGroupeById($groupeid);
+      if($groupe != NULL){
+        $listegroupeuser = $dao->readListGroupeByBooker($userid);
+        if($listegroupeuser != NULL){ // Si l'organisateur a au moins un evt.
+          $present = $user->possedeGroupe($groupeid,$listegroupeuser);
+        }else {
+          $present = false;
+        }
+        if($present){ // Si c'est le booker du groupe
+          $idlieu = $groupe->getAdresse();
+          $lieu = $dao->readLieuById($idlieu);
 
+          // Mise a jour du Lieu
+          $adresse = $_POST["adresse"];
+          $codepostal = $_POST["codepostal"];
+          $ville = $_POST["ville"];
+          $region = $_POST["region"];
+          $pays = $_POST["pays"];
+          $latitude = $_POST["latitude"];
+          if(empty($latitude)){
+            $latitude = NULL;
+          }
+          $longitude = $_POST["longitude"];
+          if(empty($longitude)){
+            $longitude = NULL;
+          }
+
+          $lieu->setPays($pays);
+          $lieu->setRegion($region);
+          $lieu->setVille($ville);
+          $lieu->setcodepostal($codepostal);
+          $lieu->setAdresse($adresse);
+          $lieu->setLatitude($latitude);
+          $lieu->setLongitude($longitude);
+
+          $dao->updateLieu($lieu);
+          //Fin mise a jour Lieu
+
+          //Mise a jour Groupe
+          $nomscene = $_POST["nomscene"];
+          $genre = $_POST["genre"];
+          $genres = explode(",",$genre);
+          $des = $_POST["des"];
+          $mail = $_POST["mail"];
+
+          $groupe->setNom($nomscene);
+          $groupe->setDescription($des);
+          $groupe->setEmail($mail);
+
+          $dao->updateGroupe($groupe);
+          // Fin mise a jour groupe
+
+
+          header("Location: ../controler/groupe.ctrl.php?id=".$groupe->getidGroupe()."");
+        }else {
+          $data['error']['title'] = "Acces Interdit";
+          $data['error']['message'] = "Vous ne pouvez pas modifier un groupe qui ne vous appartient pas !";
+          $data['error']['back'] = "../controler/groupes.ctrl.php";
+          include("../view/error.view.php");
+        }
+      }else {
+        $data['error']['title'] = "Groupe inconnu";
+        $data['error']['back'] = "../controler/groupes.ctrl.php";
+        $data['error']['message'] = "Le Groupe que vous essayez de modifier n'existe pas !";
+        include("../view/error.view.php");
+      }
+
+
+    }else {
+      $data['error']['title'] = "Groupe inconnu";
+      $data['error']['back'] = "../controler/groupes.ctrl.php";
+      $data['error']['message'] = "Le Groupe que vous essayez de modifier n'existe pas !";
+      include("../view/error.view.php");
+    }
 
 
   }else{// Si on lis #########################################################################################################################################################################################################

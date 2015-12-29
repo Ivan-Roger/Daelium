@@ -47,6 +47,7 @@ if($user != NULL){ // SI c'est un organisateur
           $idlieu = $evt->getLieu();
           $lieu = $dao->readLieuById($idlieu);
 
+          //Mise a jour Groupe
           $nomevent = $_POST["nomevent"];
           $type = $_POST["type"];
           $autre = $_POST["autre"];
@@ -64,7 +65,8 @@ if($user != NULL){ // SI c'est un organisateur
           $evt->setDescription($des);
           $evt->setDateDebut($dated);
           $evt->setDateFin($datef);
-
+          //Fin Mise a jour Groupe
+          // mise a jour Lieu
           $adresse = $_POST["adresse"];
           $codepostal = $_POST["codepostal"];
           $ville = $_POST["ville"];
@@ -86,6 +88,7 @@ if($user != NULL){ // SI c'est un organisateur
           $lieu->setAdresse($adresse);
           $lieu->setLatitude($latitude);
           $lieu->setLongitude($longitude);
+          //Fin mise a jour Lieu
 
 
           $dao->updateManifestation($evt);
