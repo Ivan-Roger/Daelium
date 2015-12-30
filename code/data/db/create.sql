@@ -1,12 +1,12 @@
 CREATE TABLE Lieu (
   idLieu        SERIAL PRIMARY KEY,
   noml          VARCHAR(255) NOT NULL,
-  description   VARCHAR(1000),
-  pays          VARCHAR(255) NOT NULL,
+  description   TEXT,
+  pays          VARCHAR(255),
   region        VARCHAR(255),
-  ville         VARCHAR(255) NOT NULL,
-  codePostal    numeric(5) NOT NULL,
-  adresse       VARCHAR(255) NOT NULL,
+  ville         VARCHAR(255),
+  codePostal    VARCHAR(5),
+  adresse       VARCHAR(255),
   latitude      decimal,
   longitude     decimal
 );
@@ -16,7 +16,7 @@ CREATE TABLE Personne (
   nom            VARCHAR (255) NOT NULL,
   prenom         VARCHAR (255),
   emailcontact   VARCHAR (255) NOT NULL,
-  tel            numeric(10),
+  tel            VARCHAR (12),
   adresse        BIGINT,
   description    TEXT,
   FOREIGN KEY (adresse) references Lieu(idLieu)
@@ -27,7 +27,6 @@ CREATE TABLE Utilisateur (
   emailCompte VARCHAR(255) NOT NULL,
   mdp VARCHAR(255) NOT NULL,
   googleToken TEXT,
-  lastconnection DATE,
   FOREIGN KEY (idUtilisateur) references Personne(idPersonne)
 );
 
@@ -270,5 +269,6 @@ CREATE TABLE notification (
   idnotif SERIAL PRIMARY KEY,
   etat INTEGER,
   destinataire BIGINT references Utilisateur(idUtilisateur),
-  direction INTEGER
+  direction INTEGER,
+  idelem BIGINT
 );

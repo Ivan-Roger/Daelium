@@ -34,7 +34,7 @@
           $this->codepostal = $codepostal;
       }
       if ($adresse != NULL) {
-          $this->adresse = $adresse;
+          $this->adresse = stripslashes($adresse);
       }
       if ($latitude != NULL) {
           $this->latitude = $latitude;

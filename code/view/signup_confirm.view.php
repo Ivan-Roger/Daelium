@@ -16,40 +16,41 @@
     <div class="card card-container">
         <h2>Verification des Informations </h2>
         <HR>
-          <form class="form-signin" action="../view/signup_confirm2.view.php">
+          <form class="form-signin" action="../controler/inscription.ctrl.php" method="POST">
             <div class="row">
             <div class="col-xs-6">
             <label for="nom">Nom :</label>
-            <input type="text" class="form-control" id="nom"  value="Blanchon" required>
+            <input type="text" class="form-control" id="nom" name="nom" value="<?= $data["nom"] ?>" required>
             </div>
             <div class="col-xs-6">
             <label for="prenom">Prenom :</label>
-            <input type="text" class="form-control" id="prenom"  value="Toto" required>
+            <input type="text" class="form-control" id="prenom" name="prenom"  value="<?= $data["prenom"] ?>" required>
             </div>
             <label for="email">Mail :</label>
-            <input type="email" class="form-control" id="email"  value="blanchon.toto@gmail.com" required>
+            <input type="email" class="form-control" id="mailcompte" name="mailcompte" value="<?= $data["mail"] ?>" required>
             <label for="phone">Téléphone :</label>
-            <input type="tel" class="form-control" id="phone"  value="0606060606"/>
-            <div class="col-xs-10">
-            <label for="rue">Rue :</label>
-            <input type="text" class="form-control" id="rue" >
+            <input type="tel" class="form-control" id="ntel" name="ntel" value="<?= $data["tel"] ?>"/>
+            <div class="col-xs-8">
+            <label for="rue">N° & Rue :</label>
+            <input type="text" class="form-control" name="adresse"id="adresse" >
             </div>
-            <div class="col-xs-2">
-            <label for="num">N° :</label>
-            <input type="text" class="form-control" id="num" >
+            <div class="col-xs-4">
+            <label for="num">Code postal :</label>
+            <input type="text" class="form-control"name="codepostal" id="codepostal" >
             </div>
             <div class="col-xs-4">
             <label for="ville">Ville :</label>
-            <input type="text" class="form-control" id="ville" >
+            <input type="text" class="form-control" name="ville"id="ville" >
             </div>
             <div class="col-xs-4">
-            <label for="cp">Code postal :</label>
-            <input type="text" class="form-control" id="cp" >
+            <label for="cp">Region :</label>
+            <input type="text" class="form-control"name="region" id="region" >
             </div>
             <div class="col-xs-4">
             <label for="pays">Pays :</label>
-            <input type="text" class="form-control" id="pays" >
+            <input type="text" class="form-control"name="pays" id="pays" >
             </div>
+            <input type="hidden" name="etape" value="1"/>
           <HR>
           <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Suivant</button>
         </div>

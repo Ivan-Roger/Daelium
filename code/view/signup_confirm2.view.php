@@ -16,16 +16,17 @@
     <div class="card card-container">
       <h2>Vous êtes ?</h2>
       <HR>
-        <form class="form-signin">
+        <form class="form-signin" action="../controler/inscription.ctrl.php" method="POST">
           <div class="fonction">
           <div class="btn-group" data-toggle="buttons" id="fonction">
             <label class="btn btn-success active">
-              <input type="radio" name="options" id="option1" value="on" checked> Booker
+              <input type="radio" name="typeuser" id="option1" value="0" checked> Booker
             </label>
             <label class="btn btn-success">
-              <input type="radio" name="options" id="option2" value="off"> Organisateur
+              <input type="radio" name="typeuser" id="option2" value="1"> Organisateur
             </label>
           </div>
+          <input type="hidden" name="etape" value="2"/>
           <HR>
             <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Suivant</button>
           </div>

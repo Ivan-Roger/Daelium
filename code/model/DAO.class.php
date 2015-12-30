@@ -122,6 +122,7 @@ class DAO {
          $personne->getAdresse(),
          $personne->getDescription()
       );
+      var_dump($params);
       $res = $req->execute($params);
       if ($res === FALSE) {
          die("createPersonne : Requête impossible !");
@@ -264,7 +265,7 @@ class DAO {
     }
 
    private function createUtilisateur($utilisateur) { // peut etre mettre une personne en paramettre
-      $u = $this->db->readUtilisateurById($utilisateur->getIdPersonne());
+      $u = $this->readUtilisateurById($utilisateur->getIdPersonne());
       if ($u == null) {
          $this->createPersonne($utilisateur);
          $sql = "INSERT INTO Utilisateur(emailCompte,mdp,googletoken) VALUES (?,?,?)";
@@ -278,7 +279,7 @@ class DAO {
          if ($res === FALSE) {
             die("createUser : Requête impossible !");
          }
-         return $this->db->readUserById($utilisateur->idUtilisateur);
+         return $this->readUtilisateurById($utilisateur->getIdPersonne());
       } else {
          throw new DAOException("utilisateur déjà présent dans la base (l'id en tous cas)");
       }
@@ -367,7 +368,7 @@ class DAO {
 
 
    function createBooker($booker) {
-      $b = $this->db->readBookerById($booker->getIdPersonne());
+      $b = $this->readBookerById($booker->getIdPersonne());
       if ($b == null) {
          $utilisateur = $this->createUtilisateur($booker);
          $sql = "INSERT INTO Booker(idBooker) VALUES (?) RETURNING idBooker";
@@ -387,7 +388,7 @@ class DAO {
    }
 
    function deleteBookerById($idBooker) {
-     $b = $this->db->readBookerById($idBooker);
+     $b = $this->readBookerById($idBooker);
      if ($b != null) {
        $supr = $this->db->readListGroupeByBooker($idBooker);
        foreach ($supr as $Groupe) {
@@ -444,26 +445,27 @@ class DAO {
 
 
    function createOrganisateur($organisateur) {
-      $o = $this->db->readBookerById($organisateur->$idOrganisateur);
+      $o = $this->readOrganisateurById($organisateur->getIdPersonne());
       if ($o == null) {
          $this->createUtilisateur($organisateur);
-         $sql = "INSERT INTO $organisateur(idOrganisateur) VALUES (?)";
+         $sql = "INSERT INTO $organisateur(idOrganisateur) VALUES (?)  RETURNING idOrganisateur";
          $req = $this->db->prepare($sql);
          $params = array(
-            $organisateur->idOrganisateur
+            $organisateur->getIdPersonne()
          );
          $res = $req->execute($params);
          if ($res === FALSE) {
             die("createOrganisateur : Requête impossible !");
          }
-         return $this->db->createOrganisateur($organisateur->id);
+         $ret = $req->fetchColumn();
+         return $this->readOrganisateurById($ret);
       } else {
          throw new DAOException("Organisateur déjà présent dans la base");
       }
    }
 
    function deleteOrganisateurById($idOrganisateur) {
-     $o = $this->db->readOrganisateurById($idOrganisateur);
+     $o = $this->readOrganisateurById($idOrganisateur);
      if ($o != null) {
        $supr = $this->db->readManifestationByCreateur($idOrganisateur);
        foreach ($supr as $Manif) {

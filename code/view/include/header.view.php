@@ -83,7 +83,8 @@
             <ul class="dropdown-menu">
               <li><a href="../controler/profil.ctrl.php">Voir le profil</a></li>
               <li><a href="../controler/profil_edit.ctrl.php">Modifier le profil</a></li>
-              <li><a href="../controler/parametre.ctrl.php">Paramétres du Compte </a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="../controler/parametre.ctrl.php"><span class="glyphicon glyphicon-cog"></span>Paramétres du Compte </a></li>
               <li role="separator" class="divider"></li>
               <li><a id="logoutBtn" href="#"><span class="glyphicon glyphicon-off"></span>Déconnexion</a></li>
             </ul>
