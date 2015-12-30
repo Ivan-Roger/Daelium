@@ -2,7 +2,7 @@ INSERT INTO Lieu VALUES(1,'Maison',NULL,'FRANCE','Rhone-Alpes','Grenoble',38000,
 INSERT INTO Lieu VALUES(3,'Maison',NULL,'FRANCE','Rhone-Alpes','Grenoble',38000,'111 place doyen gosses',NULL,NULL);
 INSERT INTO Lieu VALUES(4,'Maison',NULL,'FRANCE','Rhone-Alpes','Grenoble',38000,'112 place doyen gosses',NULL,NULL);
 INSERT INTO Lieu VALUES(5,'Maison',NULL,'FRANCE','Rhone-Alpes','Grenoble',38000,'113 place doyen gosses',NULL,NULL);
-INSERT INTO Lieu VALUES(6,'Maison',NULL,'FRANCE','Rhone-Alpes','Grenoble',38000,'113 place doyen gosses',NULL,NULL);
+INSERT INTO Lieu VALUES(0,'Maison',NULL,'FRANCE','Rhone-Alpes','Grenoble',38000,'113 place doyen gosses',NULL,NULL);
 
 INSERT INTO Lieu VALUES(2,'Mairie de Grenoble',NULL,'FRANCE','Rhone-Alpes','Grenoble',38000,'4 rue des tulipes',NULL,NULL);
 
@@ -10,9 +10,9 @@ INSERT INTO Personne VALUES(1,0,'Dupuis','Marc','marc.dupuis@gmail.com','0675757
 INSERT INTO Utilisateur VALUES(1,'marc.dupuis@gmail.com','azerty');
 INSERT INTO Booker VALUES(1);
 
-INSERT INTO Personne VALUES(5,0,'Roger','Ivan','ivan.bob.emile@gmail.com','0607754241',3); -- 0 si booker
-INSERT INTO Utilisateur VALUES(5,'ivan.bob.emile@gmail.com','ploy!');
-INSERT INTO Booker VALUES(5);
+INSERT INTO Personne VALUES(0,0,'Roger','Ivan','ivan.bob.emile@gmail.com','0607754241',3); -- 0 si booker
+INSERT INTO Utilisateur VALUES(0,'ivan.bob.emile@gmail.com','ploy!');
+INSERT INTO Booker VALUES(0);
 
 INSERT INTO Personne VALUES(2,1,'Lopez','Patrick','patrick.lopez@gmail.com','0675757575',4); -- 1 si organ
 INSERT INTO Utilisateur VALUES(2,'plopez@gmail.com','azerty');
@@ -20,7 +20,7 @@ INSERT INTO Organisateur VALUES(2);
 
 INSERT INTO Personne VALUES(3,2,'Jean','Jack','jean.jack@gmail.com','0675757575',5); -- 2 si artiste
 INSERT INTO Artiste VALUES(3,'06/12/2015',0,NULL,'JeanJack');
-INSERT INTO Personne VALUES(4,2,'Jules','Domartin','jules.domartin@gmail.com','0675757575',6); -- 2 si artiste
+INSERT INTO Personne VALUES(4,2,'Jules','Domartin','jules.domartin@gmail.com','0675757575',0); -- 2 si artiste
 INSERT INTO Artiste VALUES(4,'06/12/2015',1,'AGSTBD154711744',NULL);
 
 INSERT INTO Groupe VALUES(1,'Les beaux gosses','lbg@gmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);

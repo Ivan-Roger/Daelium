@@ -23,8 +23,8 @@ CREATE TABLE Personne (
 );
 
 CREATE TABLE Utilisateur (
-  idUtilisateur SERIAL PRIMARY KEY,
-  emailCompte VARCHAR(255) NOT NULL,
+  idUtilisateur BIGINT PRIMARY KEY,
+  emailCompte VARCHAR(255) UNIQUE NOT NULL,
   mdp VARCHAR(255) NOT NULL,
   googleToken TEXT,
   FOREIGN KEY (idUtilisateur) references Personne(idPersonne)
@@ -269,6 +269,6 @@ CREATE TABLE notification (
   idnotif SERIAL PRIMARY KEY,
   etat INTEGER,
   destinataire BIGINT references Utilisateur(idUtilisateur),
-  direction INTEGER,
-  idelem BIGINT
+  type INTEGER,
+  Message Text
 );

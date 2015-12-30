@@ -2979,6 +2979,65 @@ class DAO {
          }
       }
 
+      function readNotificationById($idNotification){
+        $sql = "SELECT * FROM Notification WHERE idnotif = ?"; // requête
+        $req = $this->db->prepare($sql);
+        $params = array( // paramétres
+           $idNotification
+        );
+        $res = $req->execute($params);
+        if ($res === FALSE) {
+           die("readNotificationById : Requête impossible !"); // erreur dans la requête
+        }
+        $res = $req->fetchAll(PDO::FETCH_CLASS,"Notification");
+        return (isset($res[0])?$res[0]:null); // retourne le premier resultat s'il existe, sinon null
+      }
+      function updateNotification($notification){
+        $n = $this->readNotificationById($notification->getIdNotification());
+        if ($n != null) {
+           $sql = "UPDATE Notification set (etat,destinataire,type,Message) = (?,?,?,?) where idnotif=?";
+           $req = $this->db->prepare($sql);
+           $params = array(
+              $notification->getEtat(),
+              $notification->getDestinataire(),
+              $notification->getType(),
+              $notification->getMessage()
+              $notification->getIdNotification()
+           );
+           $res = $req->execute($params);
+           if ($res === FALSE) {
+              die("updateNotification : Requête impossible !");
+           }
+           return $this->readNotificationById($notification->getIdNotification());
+        } else {
+           throw new DAOException("La notif n'existe pas");
+        }
+      }
+      function createNotification($notification){
+        $n = $this->readNotificationById($notification->getIdNotification());
+        if ($n != null) {
+           $sql = "INSERT INTO Notification(etat,destinataire,type,Message) VALUES (?,?,?,?) RETURNING idnotif";
+           $req = $this->db->prepare($sql);
+           $params = array(
+              $notification->getEtat(),
+              $notification->getDestinataire(),
+              $notification->getType(),
+              $notification->getMessage()
+           );
+           $res = $req->execute($params);
+           if ($res === FALSE) {
+              die("createNotification : Requête impossible !");
+           }
+           $ret = $req->fetchColumn();
+           return $this->readNotificationById($ret);
+        } else {
+           throw new DAOException("Notif deja presente dans la base");
+        }
+      }
+      function deleteNotification($notification){
+        // A faire
+      }
+
    }
 
    ?>
