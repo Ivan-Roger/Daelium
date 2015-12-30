@@ -11,6 +11,7 @@ require_once("Conversation.class.php");
 require_once("Evenement.class.php");
 require_once("Manifestation.class.php");
 require_once("Creneau.class.php");
+require_once("Notification.class.php");
 
 
 class DAO {
@@ -2984,6 +2985,32 @@ class DAO {
         $req = $this->db->prepare($sql);
         $params = array( // paramétres
            $idNotification
+        );
+        $res = $req->execute($params);
+        if ($res === FALSE) {
+           die("readNotificationById : Requête impossible !"); // erreur dans la requête
+        }
+        $res = $req->fetchAll(PDO::FETCH_CLASS,"Notification");
+        return (isset($res[0])?$res[0]:null); // retourne le premier resultat s'il existe, sinon null
+      }
+      function readListeNotificationUserid($idUser){
+        $sql = "SELECT * FROM Notification WHERE destinataire = ?"; // requête
+        $req = $this->db->prepare($sql);
+        $params = array( // paramétres
+           $idUser
+        );
+        $res = $req->execute($params);
+        if ($res === FALSE) {
+           die("readNotificationById : Requête impossible !"); // erreur dans la requête
+        }
+        $res = $req->fetchAll(PDO::FETCH_CLASS,"Notification");
+        return (isset($res[0])?$res[0]:null); // retourne le premier resultat s'il existe, sinon null
+      }
+      function readListeNotificationUseridNoRead($idUser){
+        $sql = "SELECT * FROM Notification WHERE destinataire = ? AND etat=0"; // requête
+        $req = $this->db->prepare($sql);
+        $params = array( // paramétres
+           $idUser
         );
         $res = $req->execute($params);
         if ($res === FALSE) {
