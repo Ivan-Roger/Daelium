@@ -7,9 +7,15 @@
 
   $dao = new DAO();
 
-
   $listenotif = $dao->readListeNotificationUserid( $_SESSION["user"]["ID"]);
-  var_dump($listenotif);
+
+
+  foreach ($listenotif as $key => $value) {
+    $data["notifs"][$key]['etat'] = $value->getEtatEcrit();
+    $data["notifs"][$key]['titre'] = $value->getTypeEcrit();
+    $data["notifs"][$key]['message'] = $value->getMessage();
+  }
+
 
 
   include("../view/notifications.view.php");

@@ -29,11 +29,29 @@
     function getEtat(){
       return $this->etat;
     }
+    function getEtatEcrit(){
+      if($this->etat == 0){
+        return "new";
+      }else {
+        return "old";
+
+      }
+    }
     function getDestinataire(){
       return $this->destinataire;
     }
     function getType(){
       return $this->type;
+    }
+    function getTypeEcrit(){
+      if($this->type == 0){
+        return "Message";
+      }elseif ($this->type == 1) {
+        return "Demmande de Groupe";
+      }elseif ($this->type == 2) {
+        return "Demmande participation à un evenement";
+      }
+      //Liste non exaustive
     }
     function getMessage(){
       return $this->message;
