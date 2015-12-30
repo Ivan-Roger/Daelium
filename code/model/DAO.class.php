@@ -3004,7 +3004,7 @@ class DAO {
            die("readNotificationById : Requête impossible !"); // erreur dans la requête
         }
         $res = $req->fetchAll(PDO::FETCH_CLASS,"Notification");
-        return (isset($res[0])?$res[0]:null); // retourne le premier resultat s'il existe, sinon null
+        return (isset($res)?$res:null); // retourne le premier resultat s'il existe, sinon null
       }
       function readListeNotificationUseridNoRead($idUser){
         $sql = "SELECT * FROM Notification WHERE destinataire = ? AND etat=0"; // requête
@@ -3017,7 +3017,7 @@ class DAO {
            die("readNotificationById : Requête impossible !"); // erreur dans la requête
         }
         $res = $req->fetchAll(PDO::FETCH_CLASS,"Notification");
-        return (isset($res[0])?$res[0]:null); // retourne le premier resultat s'il existe, sinon null
+        return (isset($res)?$res:null); // retourne le premier resultat s'il existe, sinon null
       }
       function updateNotification($notification){
         $n = $this->readNotificationById($notification->getIdNotification());

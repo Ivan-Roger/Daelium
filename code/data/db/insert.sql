@@ -87,3 +87,8 @@ INSERT INTO Negociation_Documents VALUES(1,2);
 
 INSERT INTO Negociation_Messages VALUES(1,1);
 INSERT INTO Negociation_Messages VALUES(1,2);
+
+
+INSERT INTO notification(etat, destinataire, type, Message) VALUES(0,5,1,'Nouveau message de .....');
+INSERT INTO notification(etat, destinataire, type, Message) VALUES(0,5,0,'Machin veux votre groupe pour');
+INSERT INTO notification(etat, destinataire, type, Message) VALUES(1,5,1,'Nouveau message de .....');
