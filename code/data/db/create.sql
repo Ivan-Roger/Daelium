@@ -265,3 +265,10 @@ CREATE TABLE journalDeConnexion (
   support varchar(255),
   PRIMARY KEY (idUtilisateur,moment)
 );
+
+CREATE TABLE notification (
+  idnotif SERIAL PRIMARY KEY,
+  etat INTEGER,
+  destinataire BIGINT references Utilisateur(idUtilisateur),
+  direction INTEGER
+);

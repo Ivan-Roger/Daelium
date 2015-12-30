@@ -31,9 +31,9 @@
               </div>
 
               <div class="form-group">
-                <label class="control-label col-sm-3" for="emailc">Email Compte :</label>
+                <label class="control-label col-sm-3" for="emailcompte">Email Compte :</label>
                 <div class="col-sm-9">
-                  <input type="email" id="emailc" name="email" class="form-control" value="<?= $data['emailc']?>"  readonly/>
+                  <input type="email" id="emailc" name="emailcompte" class="form-control" value="<?= $data['emailcompte']?>"  readonly/>
                 </div>
               </div>
 

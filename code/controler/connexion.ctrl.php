@@ -45,7 +45,7 @@
         if($user->getMdp() == $_POST["mdp"]){
           $_SESSION["user"]["mail"]=$mail;
           $_SESSION["user"]["loginTime"]=date("");
-          $_SESSION["user"]["ID"]=$user->getIdUtilisateur();
+          $_SESSION["user"]["ID"]=$user->getIdPersonne();
           //$_SESSION["userLoginName"]=$user->getNom(); // NOM
 
           header("Location:"."../controler/main.ctrl.php?login");

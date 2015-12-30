@@ -1,3 +1,4 @@
+DROP TABLE notification;
 DROP TABLE journalDeConnexion;
 DROP TABLE Manifestation_Genre;
 DROP TABLE Groupe_Genre;

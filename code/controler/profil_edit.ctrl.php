@@ -39,7 +39,7 @@ if(isset($_GET["action"]) && $_GET["action"]=="edit"){
 
     $nom = $_POST["name"];
     $prenom =$_POST["pname"];
-    $email =$_POST["email"];
+    $email =$_POST["mail"];
     $ntel =$_POST["ntel"];
     $description =$_POST["des"];
     if(empty($description)){
@@ -67,7 +67,7 @@ if(isset($_GET["action"]) && $_GET["action"]=="edit"){
   $data['prenom'] = $user->getPrenom();
   $data['nom'] = $user->getNom();
   $data['email'] = $user->getEmailcontact();
-  $data['emailc'] = $user->getEmailCompte();
+  $data['emailcompte'] = $user->getEmailCompte();
   $data['telephone'] = $user->getTel();
   $data['des'] = $user->getDescription();
 

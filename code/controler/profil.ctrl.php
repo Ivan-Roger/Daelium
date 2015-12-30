@@ -64,7 +64,7 @@ if(isset($userpid)){
     $listidgroupe = $dao->readListGroupeByBooker($user->getIdPersonne());
     if($listidgroupe != NULL){
       foreach ($listidgroupe as $key => $value) {
-        $groupe = $dao->readGroupeById((int) $value);
+        $groupe = $dao->readGroupeById((int) $value['idgroupe']);
         $data["list"][$key]["nom"] = $groupe->getNom();
         $data["list"][$key]["id"] = $groupe->getIdGroupe();
       }
@@ -100,7 +100,7 @@ if(isset($userpid)){
     $listidgroupe = $dao->readListGroupeByArtiste($user->getIdPersonne());
     if($listidgroupe != NULL){
       foreach ($listidgroupe as $key => $value) {
-        $groupe = $dao->readGroupeById((int) $value);
+        $groupe = $dao->readGroupeById((int) $value['idgroupe']);
         $data["list"][$key]["nom"] = $groupe->getNom();
         $data["list"][$key]["id"] = $groupe->getIdGroupe();
       }
