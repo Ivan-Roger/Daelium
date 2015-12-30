@@ -16,12 +16,8 @@ if($user != NULL){ // SI c'est un organisateur
     $evt = $dao->readManifestationById($evtid);// Recupérer les données depuis la BD avec l'id ($_GET['id'])
     if($evt != NULL){ // Si existe dans BD
       //On verifie que la manifestation appartient bien a l'organisateur.
-      $listeevtuser = $dao->readIdManifestationByCreateur($userid);
-      if($listeevtuser != NULL){ // Si l'organisateur a au moins un evt.
-        $present = $user->possedeManif($evtid,$listeevtuser);
-      }else {
-        $present = false;
-      }
+        $present = $user->possedeManif($evtid);
+
 
       if($present){ //Si il est le proprietaire de l'evt alors on affiche. sinon message d'erreur
         //Information sur l'evt !
