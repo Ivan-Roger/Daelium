@@ -1,10 +1,21 @@
 <?php
+require_once("../model/DAO.class.php");
   /***************
    *    Utils    *
    ***************/
 
    function initPage($page,$alerts=null) {
      $data['page']=$page;
+     $dao = new DAO();
+
+     $listenotif = array();
+     $listenotif = $dao->readListeNotificationUseridNoRead( $_SESSION["user"]["ID"]);
+
+     $data["notifications"] = array();
+       foreach ($listenotif as $key => $value) {
+         $data["notifications"][$key]['titre'] = $value->getTypeEcrit();
+       }
+
      $data['alerts']=array();
      if ($alerts!=null)
        $data['alerts'] = array_merge($data['alerts'],$alerts);
@@ -13,6 +24,7 @@
        $data['type'] = $_SESSION['user']['type'];
      else
        $data['type'] = "booker";
+
 
      return $data;
    }

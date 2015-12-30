@@ -48,9 +48,9 @@
               <li class="notifs-menu">
                   <a href="../controler/notifications.ctrl.php">Notifications</a>
                   <ul class="list-group">
-                    <a href="#" class="notif-item bg-info"><span class="icon"><span class="fa fa-question"></span></span>Invitation</a>
-                    <a href="#" class="notif-item bg-info"><span class="icon"><span class="fa fa-quote-right"></span></span>Message</a>
-                    <a href="#" class="notif-item bg-warning"><span class="icon"><span class="fa fa-exclamation"></span></span>Rappel</a>
+                    <?php foreach ($data["notifications"] as $key => $value): ?>
+                      <a href="#" class="notif-item bg-info"><span class="icon"><span class="fa fa-question"></span></span><?= $value["titre"] ?></a>
+                    <?php endforeach; ?>
                   </ul>
                </li>
             </ul>
