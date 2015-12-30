@@ -124,6 +124,7 @@ class DAO {
          $personne->getAdresse(),
          $personne->getDescription()
       );
+      var_dump($params);
       $respersonne = $reqpersonne->execute($params);
       if ($respersonne === FALSE) {
          die("createPersonne : Requête impossible !");
