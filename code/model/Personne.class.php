@@ -14,8 +14,9 @@ class Personne {
     if (!isset($this->idpersonne)) {
       $this->idpersonne = $idpersonne;
     }
-
+      if ($type != NULL) {
       $this->type = $type;
+      }
     if ($nom != NULL) {
       $this->nom = $nom;
     }

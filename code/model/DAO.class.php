@@ -42,6 +42,19 @@ class DAO {
       return (isset($res[0])?$res[0]:null); // retourne le premier resultat s'il existe, sinon null
    }
 
+   function readAllPersonne() {
+      $sql = "SELECT * FROM Personne WHERE type = 1 OR type = 0"; // requête
+      $req = $this->db->prepare($sql);
+      $params = array( // paramétres
+      );
+      $res = $req->execute($params);
+      if ($res === FALSE) {
+         die("readPersonneById : Requête impossible !"); // erreur dans la requête
+      }
+      $res = $req->fetchAll(PDO::FETCH_CLASS,"Personne");
+      return (isset($res)?$res:null); // retourne le premier resultat s'il existe, sinon null
+   }
+
    function readPersonneByIdGoodClasse($id) {
       $sql = "SELECT type FROM Personne WHERE idPersonne = ?"; // requête
       $req = $this->db->prepare($sql);
@@ -214,6 +227,7 @@ class DAO {
       }
       // retourne le premier resultat s'il existe, sinon null
    }
+
 
    private function readUtilisateurByIdNoClasse($id) {
       $sql = "SELECT * FROM Utilisateur WHERE idUtilisateur = ?"; // requête
@@ -524,6 +538,20 @@ class DAO {
       $res = $req->fetchAll(PDO::FETCH_CLASS,"Group");
       return (isset($res[0])?$res[0]:null); // retourne le premier resultat s'il existe, sinon null
    }
+
+   function readAllGroupe() {
+      $sql = "SELECT * FROM Groupe ORDER BY nomg"; // requête
+      $req = $this->db->prepare($sql);
+      $params = array( // paramétres
+      );
+      $res = $req->execute($params);
+      if ($res === FALSE) {
+         die("readAllGroupe : Requête impossible !"); // erreur dans la requête
+      }
+      $res = $req->fetchAll(PDO::FETCH_CLASS,"Group");
+      return (isset($res)?$res:null); // retourne le premier resultat s'il existe, sinon null
+   }
+
 
    function readGroupeByMail($email) {
       $sql = "SELECT * FROM Groupe WHERE emailGroupe = ?"; // requête
@@ -880,6 +908,21 @@ class DAO {
          }
          $res = $req->fetchAll(PDO::FETCH_CLASS,"Manifestation");
          return (isset($res[0])?$res[0]:null); // retourne le premier resultat s'il existe, sinon null
+
+      }
+
+
+      function readAllManifestation() {
+         $sql = "SELECT * FROM Manifestation WHERE dateDebut >= current_date ORDER BY nom"; // requête
+         $req = $this->db->prepare($sql);
+         $params = array( // paramétres
+         );
+         $res = $req->execute($params);
+         if ($res === FALSE) {
+            die("readManifestationById : Requête impossible !"); // erreur dans la requête
+         }
+         $res = $req->fetchAll(PDO::FETCH_CLASS,"Manifestation");
+         return (isset($res)?$res:null); // retourne le premier resultat s'il existe, sinon null
 
       }
 

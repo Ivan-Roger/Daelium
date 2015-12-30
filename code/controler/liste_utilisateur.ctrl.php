@@ -7,7 +7,8 @@
 
   $dao = new DAO();
 
-
+  $data["users"] = array();
+  $data["users"] = $dao->readAllPersonne();
 
 
   include("../view/liste_utilisateur.view.php");

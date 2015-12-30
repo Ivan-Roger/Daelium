@@ -7,6 +7,8 @@
 
   $dao = new DAO();
 
+  $data["groupes"] = array();
+  $data["groupes"] = $dao->readAllGroupe();
 
 
 
