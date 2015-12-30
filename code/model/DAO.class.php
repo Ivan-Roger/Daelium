@@ -12,6 +12,7 @@ require_once("Evenement.class.php");
 require_once("Manifestation.class.php");
 require_once("Creneau.class.php");
 require_once("Notification.class.php");
+require_once("Negociation.class.php");
 
 
 class DAO {

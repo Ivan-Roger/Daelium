@@ -14,7 +14,7 @@
   if(isset($_GET["action"]) && $_GET["action"] == "create"){
     if($type == 0){
       if($user->possedeGroupe($_GET["choix"])){
-
+        $negociation = new Negociation(NULL,$iduser)
 
       }else {
         $data['error']['title'] = "Action impossible";
