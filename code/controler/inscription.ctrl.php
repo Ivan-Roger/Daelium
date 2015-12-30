@@ -52,17 +52,24 @@ $noml = "Adresse de ".$info["nom"];
 
 $Adresse1= new Lieu(NULL,$noml,NULL,$info["pays"],$info["region"],$info["ville"],$info["codepostal"],$info["adresse"],NULL,NULL);
 $Adresse = $dao->createLieu($Adresse1);
+if(isset($Adresse)){
   if($_POST["typeuser"] == 0){ //Booker
     $booker = new Booker(NULL,$info["nom"],$info["prenom"],$info["mail"],$info["tel"],$Adresse->getIdLieu(),$info["mail"],$info["mdp"],$info["googletoken"]);
-    var_dump($booker);
-    $dao->createBooker($booker);
+    $user = $booker2 = $dao->createBooker($booker);
   }else { //Organisateur
-    $organisateur = new Organisateur(NULL,$info["nom"],$info["prenom"],$info["mail"],$info["tel"],$Adresse,$info["mail"],$info["mdp"],$info["googletoken"]);
-    $dao->createOrganisateur($organisateur);
+    $organisateur = new Organisateur(NULL,$info["nom"],$info["prenom"],$info["mail"],$info["tel"],$Adresse->getIdLieu(),$info["mail"],$info["mdp"],$info["googletoken"]);
+    $user = $organisateur2 = $dao->createOrganisateur($organisateur);
+  }
+  if(!(isset($organisateur2) || isset($booker2))){
+    $dao->deleteLieuById($Adresse->getIdLieu());
+  }else {
+    $_SESSION["user"]["mail"]=$info["mail"];
+    $_SESSION["user"]["loginTime"]=date("");
+    $_SESSION["user"]["ID"]=$user->getIdPersonne();
   }
 
   header("Location: ../controler/main.ctrl.php");
-
+  }
 } else { // Si on commence l'inscription
   include("../view/signup.view.php");
 }

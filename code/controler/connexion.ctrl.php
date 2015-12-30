@@ -22,7 +22,7 @@
       } else {
         $_SESSION["user"]["mail"]=$mail;
         $_SESSION["user"]["loginTime"]=date("");
-        $_SESSION["user"]["ID"]=$user->getIdUtilisateur();
+        $_SESSION["user"]["ID"]=$user->getIdPersonne();
         /*
         $id_user = $user->getIdUtilisateur();
         var_dump($id_user);

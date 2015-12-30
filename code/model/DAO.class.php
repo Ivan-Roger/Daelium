@@ -111,8 +111,10 @@ class DAO {
 
    // vérif or not vérif this->db is the question (si la personne est déjà présente)
    private function createPersonne($personne) {
+     $p = $this->readPersonneById($personne->getIdPersonne());
+     if($p == NULL){
       $sql = "INSERT INTO Personne(type,nom,prenom,tel,emailContact,adresse,description) VALUES (?,?,?,?,?,?,?) RETURNING idPersonne";
-      $req = $this->db->prepare($sql);
+      $reqpersonne = $this->db->prepare($sql);
       $params = array(
          $personne->getType(),
          $personne->getNom(),
@@ -122,13 +124,15 @@ class DAO {
          $personne->getAdresse(),
          $personne->getDescription()
       );
-      var_dump($params);
-      $res = $req->execute($params);
-      if ($res === FALSE) {
+      $respersonne = $reqpersonne->execute($params);
+      if ($respersonne === FALSE) {
          die("createPersonne : Requête impossible !");
       }
-      $ret = $req->fetchColumn();
-      return $this->readPersonneById($ret);
+      $retpersonne = $reqpersonne->fetchColumn();
+      return $this->readPersonneById($retpersonne);
+      }else {
+         throw new DAOException("personne déjà présent dans la base");
+      }
    }
 
    private function updatePersonne($personne) {
@@ -267,19 +271,21 @@ class DAO {
    private function createUtilisateur($utilisateur) { // peut etre mettre une personne en paramettre
       $u = $this->readUtilisateurById($utilisateur->getIdPersonne());
       if ($u == null) {
-         $this->createPersonne($utilisateur);
-         $sql = "INSERT INTO Utilisateur(emailCompte,mdp,googletoken) VALUES (?,?,?)";
+         $personne = $this->createPersonne($utilisateur);
+         $sql = "INSERT INTO Utilisateur(idUtilisateur,emailCompte,mdp,googletoken) VALUES (?,?,?,?)";
          $req = $this->db->prepare($sql);
          $params = array(
+            $personne->getIdPersonne(),
             $utilisateur->getEmailCompte(),
             $utilisateur->getMdp(),
             $utilisateur->getGoogleToken()
          );
+         var_dump($params);
          $res = $req->execute($params);
          if ($res === FALSE) {
             die("createUser : Requête impossible !");
          }
-         return $this->readUtilisateurById($utilisateur->getIdPersonne());
+         return $this->readUtilisateurById($personne->getIdPersonne());
       } else {
          throw new DAOException("utilisateur déjà présent dans la base (l'id en tous cas)");
       }
@@ -371,17 +377,16 @@ class DAO {
       $b = $this->readBookerById($booker->getIdPersonne());
       if ($b == null) {
          $utilisateur = $this->createUtilisateur($booker);
-         $sql = "INSERT INTO Booker(idBooker) VALUES (?) RETURNING idBooker";
-         $req = $this->db->prepare($sql);
+         $sql = "INSERT INTO Booker(idBooker) VALUES (?)";
+         $reqbooker = $this->db->prepare($sql);
          $params = array(
             $utilisateur->getIdPersonne()
          );
-         $res = $req->execute($params);
-         if ($res === FALSE) {
+         $resbooker = $reqbooker->execute($params);
+         if ($resbooker === FALSE) {
             die("createBooker : Requête impossible !");
          }
-         $ret = $req->fetchColumn();
-         return $this->readBookerById($ret);
+         return $this->readBookerById($utilisateur->getIdPersonne());
       } else {
          throw new DAOException("Booker déjà présent dans la base");
       }
@@ -447,18 +452,17 @@ class DAO {
    function createOrganisateur($organisateur) {
       $o = $this->readOrganisateurById($organisateur->getIdPersonne());
       if ($o == null) {
-         $this->createUtilisateur($organisateur);
-         $sql = "INSERT INTO $organisateur(idOrganisateur) VALUES (?)  RETURNING idOrganisateur";
-         $req = $this->db->prepare($sql);
+         $utilisateur = $this->createUtilisateur($organisateur);
+         $sql = "INSERT INTO Organisateur(idOrganisateur) VALUES (?)";
+         $reqorganisateur = $this->db->prepare($sql);
          $params = array(
-            $organisateur->getIdPersonne()
+            $utilisateur->getIdPersonne()
          );
-         $res = $req->execute($params);
-         if ($res === FALSE) {
+         $resorganisateur = $reqorganisateur->execute($params);
+         if ($resorganisateur === FALSE) {
             die("createOrganisateur : Requête impossible !");
          }
-         $ret = $req->fetchColumn();
-         return $this->readOrganisateurById($ret);
+         return $this->readOrganisateurById($utilisateur->getIdPersonne());
       } else {
          throw new DAOException("Organisateur déjà présent dans la base");
       }
@@ -788,7 +792,7 @@ class DAO {
          $l = $this->readLieuById($lieu->getIdLieu());
          if ($l == null) {
             $sql = "INSERT INTO Lieu(noml,description,pays,region,ville,codePostal,adresse,latitude,longitude) VALUES (?,?,?,?,?,?,?,?,?) RETURNING idLieu";
-            $req = $this->db->prepare($sql);
+            $reqlieu = $this->db->prepare($sql);
             $params = array(
                $lieu->getnoml(),
                $lieu->getDescription(),
@@ -800,12 +804,12 @@ class DAO {
                $lieu->getLatitude(),
                $lieu->getLongitude()
             );
-            $res = $req->execute($params);
-            if ($res === FALSE) {
+            $reslieu = $reqlieu->execute($params);
+            if ($reslieu === FALSE) {
                die("createLieu : Requête impossible !");
             }
-            $ret=$req->fetchColumn();
-            return $this->readLieuById($ret);
+            $retlieu=$reqlieu->fetchColumn();
+            return $this->readLieuById($retlieu);
          } else {
             throw new DAOException("Lieu déjà présent dans la base (l'id en tous cas)");
          }
