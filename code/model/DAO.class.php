@@ -3028,7 +3028,7 @@ class DAO {
               $notification->getEtat(),
               $notification->getDestinataire(),
               $notification->getType(),
-              $notification->getMessage()
+              $notification->getMessage(),
               $notification->getIdNotification()
            );
            $res = $req->execute($params);
