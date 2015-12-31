@@ -18,13 +18,14 @@
           <div class="panel-body">
 
             <div class="form-group">
-              <label class="control-label col-sm-3" for="pname">Liste de mes <?= $data['typerech']?>s :</label>
+              <label class="control-label col-sm-3" for="choix">Liste de mes <?= $data['typerech']?>s :</label>
               <div class="col-sm-9">
-                <select class=form-control>
+                <select name="choix" class=form-control>
                   <?php foreach ($data["list"] as $key => $value): ?>
-                    <option name="choix" value=<?= $value["id"] ?>><?= $value["nom"] ?></option>
+                    <option  value=<?= $value["id"] ?>><?= $value["nom"] ?></option>
                   <?php endforeach; ?>
                 </select>
+                <input type="hidden" name="cible" value="<?= $data["id"] ?>">
               </div>
             </div>
 

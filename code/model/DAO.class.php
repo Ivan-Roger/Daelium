@@ -2049,45 +2049,47 @@ class DAO {
       }
 
       function createNegociation($negociation) {
-         $n = $this->readNegociationById($negociation->idNegociation);
+         $n = $this->readNegociationById($negociation->getIdNegociation());
          if ($n == null) {
-            $sql = "INSERT INTO Negociation(idBooker,idManif,idGroupe,idOrganisateur,etat) VALUES (?,?,?,?,?)";
+            $sql = "INSERT INTO Negociation(idBooker,idManif,idGroupe,idOrganisateur,etat) VALUES (?,?,?,?,?) RETURNING idNegociation";
             $req = $this->db->prepare($sql);
             $params = array(
-               $negociation->idBooker,
-               $negociation->idManif,
-               $negociation->idGroupe,
-               $negociation->idOrganisateur,
-               $negociation->etat,
+               $negociation->getIdBooker(),
+               $negociation->getIdManif(),
+               $negociation->getIdGroupe(),
+               $negociation->getIdOrganisateur(),
+               $negociation->getetat()
             );
+            var_dump($params);
             $res = $req->execute($params);
             if ($res === FALSE) {
                die("createNegociation : Requête impossible !");
             }
-            return $this->readNegociationById($negociation->idNegociation);
+            $ret = $req->fetchColumn();
+            return $this->readNegociationById($ret);
          } else {
             throw new DAOException("Negociation déjà présente dans la base");
          }
       }
 
       function updateNegociation($negociation) {
-         $n = $this->readNegociationById($negociation->idNegociation);
+         $n = $this->readNegociationById($negociation->getIdNegociation());
          if ($n != null) {
             $sql = "UPDATE Negociation set (idBooker,idManif,idGroupe,idOrganisateur,etat) = (?,?,?,?,?) where idNegociation = ?";
             $req = $this->db->prepare($sql);
             $params = array(
-               $negociation->idBooker,
-               $negociation->idManif,
-               $negociation->idGroupe,
-               $negociation->idOrganisateur,
-               $negociation->etat,
-               $negociation->idNegociation
+              $negociation->getIdBooker(),
+              $negociation->getIdManif(),
+              $negociation->getIdGroupe(),
+              $negociation->getIdOrganisateur(),
+              $negociation->getetat(),
+               $negociation->getIdNegociation()
             );
             $res = $req->execute($params);
             if ($res === FALSE) {
                die("updateNegociation : Requête impossible !");
             }
-            return $this->readNegociationById($negociation->idNegociation);
+            return $this->readNegociationById($negociation->getIdNegociation());
          } else {
             throw new DAOException("Negociation non présente dans la base");
          }
@@ -2465,7 +2467,7 @@ class DAO {
          return (isset($res)?$res:null);
       }
 
-      function readListBookerByGroupe($idGroupe) {
+      function readBookerByGroupe($idGroupe) {
          $sql = "SELECT idBooker FROM Booker_Groupe WHERE  idGroupe=?"; // requête
          $req = $this->db->prepare($sql);
          $params = array(
@@ -2473,7 +2475,7 @@ class DAO {
          );
          $res = $req->execute($params);
          if ($res === FALSE) {
-            die("readListBookerByGroupe : Requête impossible !"); // erreur dans la requête
+            die("readBookerByGroupe : Requête impossible !"); // erreur dans la requête
          }
          $res = $req->fetchAll(PDO::FETCH_ASSOC);
          return (isset($res[0])?$res[0]:null);
@@ -2500,7 +2502,7 @@ class DAO {
       }
 
       function deleteBookerGroupeByIdGroupe($idGroupe) {
-        $b = $this->readListBookerByGroupe($idGroupe);
+        $b = $this->readBookerByGroupe($idGroupe);
         if ($b != null) {
           $sql = "DELETE FROM Booker_Groupe where idGroupe = ?";
           $req = $this->db->prepare($sql);
@@ -2518,7 +2520,7 @@ class DAO {
       }
 
       function deleteBookerGroupeByTop($idGroupe) {
-        $b = $this->readListBookerByGroupe($idGroupe);
+        $b = $this->readBookerByGroupe($idGroupe);
         if ($b != null) {
           $this->deleteGroupeByIdGroupe($idGroupe);
           return true;
@@ -3086,7 +3088,7 @@ class DAO {
       }
       function createNotification($notification){
         $n = $this->readNotificationById($notification->getIdNotification());
-        if ($n != null) {
+        if ($n == null) {
            $sql = "INSERT INTO Notification(etat,destinataire,type,Message) VALUES (?,?,?,?) RETURNING idnotif";
            $req = $this->db->prepare($sql);
            $params = array(
@@ -3095,6 +3097,7 @@ class DAO {
               $notification->getType(),
               $notification->getMessage()
            );
+
            $res = $req->execute($params);
            if ($res === FALSE) {
               die("createNotification : Requête impossible !");

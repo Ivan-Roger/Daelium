@@ -34,13 +34,12 @@
     $data['groupe']['nb']= $i;
 
 
-    $bookeridlist = $dao->readListBookerByGroupe($idgroupe);
-    foreach ($bookeridlist as $key => $value) {
-      $booker = $dao->readBookerById($value);
-      $data["booker"][$key]["id"] = $value;
-      $data["booker"][$key]["nom"] = $booker->getNom();
-      $data["booker"][$key]["prenom"] = $booker->getPrenom();
-    }
+    $bookerid = $dao->readBookerByGroupe($idgroupe);
+      $booker = $dao->readBookerById($bookerid);
+      $data["booker"]["id"] = $bookerid;
+      $data["booker"]["nom"] = $booker->getNom();
+      $data["booker"]["prenom"] = $booker->getPrenom();
+
 
     if($groupe->getFacebook() == NULL &&  $groupe->getTwitter() == NULL && $groupe->getGoogle() == NULL){
       $data['evenement']["facebook"] = NULL;
@@ -63,7 +62,7 @@
     $data['lineUp'][] = $lineUp;
 
     //envoie les données pour un artiste
-    include("../view/groupe_fiche.view.php");
+    include("../view/groupe_fiche_edit.view.php");
   }else{
     $data['error']['title'] = "Groupe Inconnu";
     $data['error']['back'] = "../controler/main.ctrl.php";

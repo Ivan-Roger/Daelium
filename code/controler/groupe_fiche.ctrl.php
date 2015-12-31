@@ -34,13 +34,12 @@
     $data['groupe']['nb']= $i;
 
 
-    $bookeridlist = $dao->readListBookerByGroupe($idgroupe);
-    foreach ($bookeridlist as $key => $value) {
-      $booker = $dao->readBookerById($value);
-      $data["booker"][$key]["id"] = $value;
-      $data["booker"][$key]["nom"] = $booker->getNom();
-      $data["booker"][$key]["prenom"] = $booker->getPrenom();
-    }
+    $bookerid = $dao->readBookerByGroupe($idgroupe);
+      $booker = $dao->readBookerById($bookerid);
+      $data["booker"]["id"] = $bookerid;
+      $data["booker"]["nom"] = $booker->getNom();
+      $data["booker"]["prenom"] = $booker->getPrenom();
+
 
     if($groupe->getFacebook() == NULL &&  $groupe->getTwitter() == NULL && $groupe->getGoogle() == NULL){
       $data['evenement']["facebook"] = NULL;

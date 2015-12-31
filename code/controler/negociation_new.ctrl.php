@@ -13,8 +13,20 @@
 
   if(isset($_GET["action"]) && $_GET["action"] == "create"){
     if($type == 0){
-      if($user->possedeGroupe($_GET["choix"])){
-        $negociation = new Negociation(NULL,$iduser)
+      if($user->possedeGroupe($_POST["choix"])){
+        $manif = $dao->readManifestationById($_POST['cible']);
+        $groupe = $dao->readGroupeById($_POST["choix"]);
+        $organisateur = $manif->getCreateur();
+        $negociation = new Negociation(NULL,$iduser,$_POST['cible'],$_POST["choix"],$organisateur,1);
+        $negociation2 = $dao->createNegociation($negociation);
+        $nomuser = $user->getNomComplet();
+        $nomgroupe = $groupe->getNom();
+        $nommanif = $manif->getNom();
+        $idNegociation = $negociation2->getIdNegociation();
+        $notification = new Notification(NULL,0,$organisateur,2,$nomuser." souhaite que son groupe ".$nomgroupe." participe à votre Manifestation : ".$nommanif.".  <a href='../controler/negociation.ctrl.php?id=".$idNegociation."' > Voir </a>");
+        var_dump($notification);
+        $dao->createNotification($notification);
+        header("Location: ../controler/negociation.ctrl.php?id=$idNegociation");
 
       }else {
         $data['error']['title'] = "Action impossible";
@@ -24,6 +36,18 @@
       }
     }elseif ($type == 1) {
       if($user->possedeManif($_GET["choix"])){
+        $bookerid = $dao->readBookerByGroupe($_POST["cible"]);
+        $manif = $dao->readManifestationById($_POST['choix']);
+        $groupe = $dao->readGroupeById($_POST["cible"]);
+        $negociation = new Negociation(NULL,$bookerid,$_POST['choix'],$_POST["cible"],$iduser,1);
+        $negociation2 = $dao->createNegociation($negociation);
+        $nomuser = $user->getNomComplet();
+        $nomgroupe = $groupe->getNom();
+        $nommanif = $manif->getNom();
+        $idNegociation = $negociation2->getIdNegociation();
+        $notification = new Notification(NULL,0,$bookerid,2,$nomuser." souhaite que votre groupe ".$nomgroupe." participe à sa Manifestation : ".$nommanif.".  <a href='../controler/negociation.ctrl.php?id=".$idNegociation."' > Voir </a>");
+        $dao->createNotification($notification);
+        header("Location: ../controler/negociation.ctrl.php?id=$idNegociation");
 
 
       }else {
@@ -43,7 +67,7 @@
     if(isset($groupe)){
       $data["type"] = "le Groupe";
       $data["typerech"] = "Manifestation";
-
+      $data["id"] = $_GET["idGroupe"];
       $data["nom"] = $groupe->getNom();
       $list = array();
       $list = $dao->readManifestationByCreateur($iduser);
@@ -64,7 +88,7 @@
     if(isset($manif)){
       $data["type"] = "la Manifestation";
       $data["typerech"] = "Groupe";
-
+      $data["id"] = $_GET["idManifestation"];
       $data["nom"] = $manif->getNom();
       $list = array();
       $groupesid = $dao->readListGroupeByBooker($iduser);

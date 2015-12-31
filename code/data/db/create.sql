@@ -235,7 +235,7 @@ CREATE TABLE Negociation_Messages (
 
 CREATE TABLE Booker_Groupe (
   idBooker BIGINT,
-  idGroupe BIGINT,
+  idGroupe BIGINT UNIQUE, --Un groupe ne peut avoir qu'un booker
   PRIMARY KEY (idBooker,idGroupe),
   FOREIGN KEY (idBooker) references Booker(idBooker),
   FOREIGN KEY (idGroupe) references Groupe(idGroupe)

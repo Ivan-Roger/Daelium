@@ -37,9 +37,8 @@ header("Location:"."../");
             <span class="col-sm-4 text-right">Genre</span><b class="col-sm-8 text-left" id="mailAccount">A mettre</b>
           </div>
           <div class="row">
-            <span class="col-sm-4 text-right">Booker(s) en charge</span><?php foreach ($data["booker"] as $key => $value) { ?>
-              <b class="col-sm-8 text-left" id="mailAccount"><?= $value["prenom"]." ".$value["nom"] ?> <a class="btn btn-primary" href="../controler/profil.ctrl.php?id=<?= $value['id'] ?>">Voir Profil</a></b>
-              <?php  } ?>
+            <span class="col-sm-4 text-right">Booker en charge</span>
+              <b class="col-sm-8 text-left" id="mailAccount"><?=   $data["booker"]["prenom"]." ".  $data["booker"]["nom"] ?> <a class="btn btn-primary" href="../controler/profil.ctrl.php?id=<?=   $data["booker"]['id'] ?>">Voir Profil</a></b>
             </div>
         </div>
         <!-- Fin Infos -->
