@@ -375,10 +375,10 @@ class DAO {
       $params = array( // paramétres
          $id // l'id de l'utilisateur
       );
-
       $res = $req->execute($params);
       if ($res === FALSE) {
-         die("readBookerById : Requête impossible !"); // erreur dans la requête
+        var_dump($this->db->errorInfo()[2]);
+        die("readBookerById : Requête impossible !"); // erreur dans la requête
       }
 
       $user = $this->readUtilisateurByIdNoClasse($id);
@@ -2493,7 +2493,7 @@ class DAO {
             die("readBookerByGroupe : Requête impossible !"); // erreur dans la requête
          }
          $res = $req->fetchAll(PDO::FETCH_ASSOC);
-         return (isset($res[0])?$res[0]:null);
+         return (isset($res[0])?$res[0]['idbooker']:null);
       }
 
 
@@ -3055,7 +3055,7 @@ class DAO {
         return (isset($res[0])?$res[0]:null); // retourne le premier resultat s'il existe, sinon null
       }
       function readListeNotificationUserid($idUser){
-        $sql = "SELECT * FROM Notification WHERE destinataire = ?"; // requête
+        $sql = "SELECT * FROM Notification WHERE destinataire = ? ORDER BY idNotif"; // requête
         $req = $this->db->prepare($sql);
         $params = array( // paramétres
            $idUser
@@ -3068,7 +3068,7 @@ class DAO {
         return (isset($res)?$res:null); // retourne le premier resultat s'il existe, sinon null
       }
       function readListeNotificationUseridNoRead($idUser){
-        $sql = "SELECT * FROM Notification WHERE destinataire = ? AND etat=0"; // requête
+        $sql = "SELECT * FROM Notification WHERE destinataire = ? AND etat=0 ORDER BY idNotif"; // requête
         $req = $this->db->prepare($sql);
         $params = array( // paramétres
            $idUser

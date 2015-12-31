@@ -9,6 +9,8 @@
   $listenotif = array();
   $listenotif = $dao->readListeNotificationUserid( $_SESSION["user"]["ID"]);
 
+  // Si $_GET['id'] est set et qu'elle correspon au bon utilisateur alors marquer la notification correspondante comme lue
+
   $data["notifs"] = array();
   foreach ($listenotif as $key => $value) {
     switch ($value->getType()) {
@@ -26,9 +28,6 @@
     $data["notifs"][$key]['titre'] = $value->getTypeEcrit();
     $data["notifs"][$key]['message'] = $value->getMessage();
   }
-
-  $DEBUG['markAsRead'] = $_GET['id'];
-
 
   include("../view/notifications.view.php");
 ?>

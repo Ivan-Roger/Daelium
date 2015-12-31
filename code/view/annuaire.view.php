@@ -50,7 +50,7 @@
                   <div class="btn-group" role="group" aria-label="...">
                     <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-star-empty no-margin"></button>
                     <a href="messages.ctrl.php" type="button" class="btn btn-default"><span class="glyphicon glyphicon-envelope no-margin"></a>
-                    <a href="profile.ctrl.php" type="button" class="btn btn-default"><span class="glyphicon glyphicon-user no-margin"></a>
+                    <a href="profil.ctrl.php" type="button" class="btn btn-default"><span class="glyphicon glyphicon-user no-margin"></a>
                     <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil no-margin"></button>
                     <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash no-margin"></button>
                   </div>
@@ -59,7 +59,7 @@
                   <div class="btn-group" role="group" aria-label="...">
                     <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-star-empty no-margin"></button>
                     <a href="messages.ctrl.php" type="button" class="btn btn-default"><span class="glyphicon glyphicon-envelope no-margin"></a>
-                    <a href="profile.ctrl.php" type="button" class="btn btn-default"><span class="glyphicon glyphicon-user no-margin"></a>
+                    <a href="profil.ctrl.php" type="button" class="btn btn-default"><span class="glyphicon glyphicon-user no-margin"></a>
                     <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil no-margin"></button>
                     <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash no-margin"></button>
                   </div></td></tr>
@@ -104,7 +104,7 @@
                         <div class="btn-group" role="group" aria-label="...">
                           <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-star no-margin"></button>
                           <a href="messages.ctrl.php" type="button" class="btn btn-default"><span class="glyphicon glyphicon-envelope no-margin"></a>
-                          <a href="profile.ctrl.php" type="button" class="btn btn-default"><span class="glyphicon glyphicon-user no-margin"></a>
+                          <a href="profil.ctrl.php" type="button" class="btn btn-default"><span class="glyphicon glyphicon-user no-margin"></a>
                           <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil no-margin"></button>
                           <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash no-margin"></button>
                         </div>
@@ -115,7 +115,7 @@
                         <div class="btn-group" role="group" aria-label="...">
                           <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-star no-margin"></button>
                           <a href="messages.ctrl.php" type="button" class="btn btn-default"><span class="glyphicon glyphicon-envelope no-margin"></a>
-                          <a href="profile.ctrl.php" type="button" class="btn btn-default"><span class="glyphicon glyphicon-user no-margin"></a>
+                          <a href="profil.ctrl.php" type="button" class="btn btn-default"><span class="glyphicon glyphicon-user no-margin"></a>
                           <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil no-margin"></button>
                           <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash no-margin"></button>
                         </div>
@@ -143,7 +143,7 @@
                         <div class="btn-group" role="group" aria-label="...">
                           <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-star no-margin"></button>
                           <a href="messages.ctrl.php" type="button" class="btn btn-default"><span class="glyphicon glyphicon-envelope no-margin"></a>
-                          <a href="profile.ctrl.php" type="button" class="btn btn-default"><span class="glyphicon glyphicon-user no-margin"></a>
+                          <a href="profil.ctrl.php" type="button" class="btn btn-default"><span class="glyphicon glyphicon-user no-margin"></a>
                           <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil no-margin"></button>
                           <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash no-margin"></button>
                         </div>
@@ -176,7 +176,7 @@
                         <div class="btn-group" role="group" aria-label="...">
                           <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-star no-margin"></button>
                           <a href="messages.ctrl.php" type="button" class="btn btn-default"><span class="glyphicon glyphicon-envelope no-margin"></a>
-                          <a href="profile.ctrl.php" type="button" class="btn btn-default"><span class="glyphicon glyphicon-user no-margin"></a>
+                          <a href="profil.ctrl.php" type="button" class="btn btn-default"><span class="glyphicon glyphicon-user no-margin"></a>
                           <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil no-margin"></button>
                           <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash no-margin"></button>
                         </div>

@@ -12,6 +12,10 @@ header {
   z-index: 20;
 }
 
+header nav {
+  border-bottom: 1px solid #DDD;
+}
+
 header nav .navbar-brand {
   padding: 0px;
   margin-right: 5px;
@@ -27,7 +31,7 @@ header nav .navbar-left li {
   }
 }
 
-@media (max-width: 1650px) and (min-width: 768px) {
+@media (max-width: 1690px) and (min-width: 768px) {
   header nav .navbar-brand .text {
     display: none;
   }
@@ -39,7 +43,7 @@ header nav .navbar-left li {
   }
 }
 
-@media (max-width: 1390px) and (min-width: 1085px) {
+@media (max-width: 1390px) and (min-width: 768px) {
   header nav .navbar-left li span.text {
     display: none;
   }

@@ -19,13 +19,13 @@
           <li<?php echo($data['page']=="Documents"?" class='active'":"") ?>><a href="../controler/documents.ctrl.php"><span class="glyphicon glyphicon-file"></span><span class="text">Documents</span></a></li>
           <li<?php echo($data['page']=="Agenda"?" class='active'":"") ?>><a href="../controler/agenda.ctrl.php"><span class="glyphicon glyphicon-calendar"></span><span class="text">Agenda</span></a></li>
           <li<?php echo($data['page']=="Messages"?" class='active'":"") ?>><a href="../controler/messages.ctrl.php"><span class="glyphicon glyphicon-envelope"></span><span class="text">Messagerie</span></a></li>
-          <li<?php echo($data['page']=="Annuaire"?" class='active'":"") ?>><a href="../controler/annuaire.ctrl.php"><span class="glyphicon glyphicon-list-alt"></span><span class="text">Annuaire</span></a></li>
+          <li<?php echo($data['page']=="Annuaire"?" class='active'":"") ?>><a href="../controler/annuaire.ctrl.php"><span class="fa fa-book"></span><span class="text">Annuaire</span></a></li>
           <?php if($data["type"] == "booker") { ?>
-            <li<?php echo($data['page']=="Groupes"?" class='active'":"") ?>><a href="../controler/groupes.ctrl.php"><span class="glyphicon glyphicon-music"></span><span class="text">Groupes</span></a></li>
+            <li<?php echo($data['page']=="Groupes"?" class='active'":"") ?>><a href="../controler/groupes.ctrl.php"><span class="fa fa-group"></span><span class="text">Groupes</span></a></li>
           <?php } else { ?>
-            <li<?php echo($data['page']=="Evenements"?" class='active'":"") ?>><a href="../controler/evenements.ctrl.php"><span class="glyphicon glyphicon-folder-open"></span><span class="text">Evenements</span></a></li>
+            <li<?php echo($data['page']=="Evenements"?" class='active'":"") ?>><a href="../controler/evenements.ctrl.php"><span class="glyphicon glyphicon-music"></span><span class="text">Evenements</span></a></li>
           <?php }?>
-          <li<?php echo($data['page']=="Negociations"?" class='active'":"") ?>><a href="../controler/negociations.ctrl.php"><span class="glyphicon glyphicon-list-alt"></span><span class="text">Negociations</span></a></li>
+          <li<?php echo($data['page']=="Negociations"?" class='active'":"") ?>><a href="../controler/negociations.ctrl.php"><span class="fa fa-comments"></span><span class="text">Negociations</span></a></li>
 
 
           <li id="liste" class="dropdown">
@@ -55,7 +55,7 @@
           </li>
           <!-- Menu de l'uilisateur-->
           <li id="notifs" class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-bell"></span><?php if($data['notifs-count']>0) { ?><sup><span class="badge badge-sm"><?= $data['notifs-count'] ?></span></sup><?php } ?></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-bell"></span><?php if($data['notifs-count']>0) { ?><sup><span class="label label-primary" style="font-size: 12px;"><?= $data['notifs-count'] ?></span></sup><?php } ?></a>
             <ul class="dropdown-menu">
               <li class="notifs-menu">
                   <a href="../controler/notifications.ctrl.php">Notifications</a>
