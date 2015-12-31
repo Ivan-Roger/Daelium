@@ -12,9 +12,22 @@ require_once("../model/DAO.class.php");
      $listenotif = $dao->readListeNotificationUseridNoRead( $_SESSION["user"]["ID"]);
 
      $data["notifications"] = array();
-       foreach ($listenotif as $key => $value) {
-         $data["notifications"][$key]['titre'] = $value->getTypeEcrit();
+     foreach ($listenotif as $key => $value) {
+       $data["notifications"][$key]['id'] = $value->getIdNotification();
+       switch ($value->getType()) {
+        case 0: // Message
+          $data["notifications"][$key]['icon'] = "envelope";
+          break;
+        case 1: // Demande de groupe ?!
+          $data["notifications"][$key]['icon'] = "child";
+          break;
+        case 2: // Participation a un event
+          $data["notifications"][$key]['icon'] = "question";
+          break;
        }
+       $data["notifications"][$key]['titre'] = $value->getTypeEcrit();
+     }
+     $data["notifs-count"] = count($data["notifications"]);
 
      $data['alerts']=array();
      if ($alerts!=null)

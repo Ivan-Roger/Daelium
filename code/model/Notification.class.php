@@ -7,19 +7,19 @@
     private $message;
     function __construct($idnotif = NULL, $etat = NULL, $destinataire = NULL, $type = NULL,  $message = NULL) {
       if (!isset($this->idnotif)) {
-          $this->idnotif = $idnotif;
+        $this->idnotif = $idnotif;
       }
       if ($etat != NULL) {
-          $this->etat = $etat;
+        $this->etat = $etat;
       }
       if ($destinataire != NULL) {
-          $this->destinataire = $destinataire;
+        $this->destinataire = $destinataire;
       }
       if ($type != NULL) {
-          $this->type = $type;
+        $this->type = $type;
       }
       if ($message != NULL) {
-          $this->message = $message;
+        $this->message = $message;
       }
     }
 
@@ -34,7 +34,6 @@
         return "new";
       }else {
         return "old";
-
       }
     }
     function getDestinataire(){
@@ -44,12 +43,12 @@
       return $this->type;
     }
     function getTypeEcrit(){
-      if($this->type == 0){
+      if ($this->type == 0) {
         return "Message";
-      }elseif ($this->type == 1) {
-        return "Demmande de Groupe";
-      }elseif ($this->type == 2) {
-        return "Demmande participation à un evenement";
+      } else if ($this->type == 1) {
+        return "Demande de Groupe";
+      } else if ($this->type == 2) {
+        return "Demande de participation à un evenement";
       }
       //Liste non exaustive
     }

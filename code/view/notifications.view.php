@@ -22,8 +22,8 @@
              <tbody>
                <?php foreach ($data["notifs"] as $key => $value): ?>
                  <tr class="notif-item <?= $value['etat'] ?>">
-                    <td class="bg-info text-center"><span class="fa fa-info"></span></td>   <td class="notif-item-title text-right"><?= $value['titre'] ?></td>   <td class="text-center"><span class="led <?php if($value['etat'] == "new"){ echo "led-blue "; }else{ ?>led-off<?php } ?> fa fa-circle"></span></td>
-                    <td><?= $value['message'] ?></td> <td><button type="button" class="close"><span aria-hidden="true">&times;</span></button></td>
+                    <td class="<?= ($value['etat']=="new"?"bg-info":"") ?> text-center"><span class="fa fa-<?= $value['icon'] ?>"></span></td>   <td class="notif-item-title text-right"><?= $value['titre'] ?></td>   <td class="text-center"><span class="led <?php if($value['etat'] == "new"){ echo "led-blue "; }else{ ?>led-off<?php } ?> fa fa-circle"></span></td>
+                    <td><?= $value['message'] ?></td> <td><?php if($value['etat']=="new") { ?><button type="button" class="close"><span aria-hidden="true">&times;</span></button><?php } ?></td>
                  </tr>
                <?php endforeach; ?>
              </tbody>
