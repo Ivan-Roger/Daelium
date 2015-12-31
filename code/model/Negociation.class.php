@@ -48,6 +48,19 @@
     function getetat() {
         return $this->etat;
     }
+    function getetatEcrit() {
+        if($this->etat == 0 || $this->etat == null){
+          return "En Cours";
+        }elseif ($this->etat == 1) {
+          return "Terminer";
+        }elseif ($this->etat == 2) {
+          return "Refuser";
+        }elseif ($this->etat == 3) {
+          return "Accepter";
+        }else {
+          return "Erreur Negociation.class";
+        }
+    }
 
     // ********************************
     //        Fonctions setter

@@ -13,8 +13,8 @@
   <section>
     <article class="col-lg-offset-1 col-lg-11">
 
-      <h1>Les chamions au Festival des Rouges</h1>
-      <h2>Etat de la negociation : En Cours</h2>
+      <h1><?= $data["titre"] ?></h1>
+      <h2>Etat de la negociation : <?= $data["etat"] ?></h2>
     </article>
 
 
@@ -26,11 +26,11 @@
               <h4>Informations</h4>
             </div>
             <div class="panel-body">
-              <p>Groupe : <a href="" type="button" class="btn btn-default">Voir Fiche</a> </p>
-              <p>Manifestation : <a href="" type="button" class="btn btn-default">Voir Fiche</a> </p>
-              <p>Booker : <a href="" type="button" class="btn btn-default">Voir Fiche</a></p>
-              <p>Organisateur : <a href="" type="button" class="btn btn-default">Voir Fiche</a></p>
-              <p>Dates : 01/02/2016 <p>
+              <p>Groupe : <?= $data["nomgroupe"] ?><a href="../controler/groupe_fiche.ctrl.php?id=<?= $data["idgroupe"] ?>" type="button" class="btn btn-default">Voir Fiche</a> </p>
+              <p>Manifestation : <?= $data["nommanif"] ?><a href="../controler/evenement_fiche.ctrl.php?id=<?= $data["idmanif"] ?>" type="button" class="btn btn-default">Voir Fiche</a> </p>
+              <p>Booker : <?= $data["nombooker"] ?><a href="../controler/profil.ctrl.php?id=<?= $data["idbooker"] ?>" type="button" class="btn btn-default">Voir Fiche</a></p>
+              <p>Organisateur : <?= $data["nomorga"] ?><a href="../controler/profil.ctrl.php?id=<?= $data["idorga"] ?>" type="button" class="btn btn-default">Voir Fiche</a></p>
+              <p>Dates : <?= $data["datemanif"] ?> <p>
 
 
             </div>

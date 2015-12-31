@@ -92,14 +92,14 @@ if($user != NULL){ // SI booker
         include("../view/error.view.php");
       }
     }else {
-      $data['error']['title'] = "Artiste Inconnu";
-      $data['error']['back'] = "../controler/artistes.ctrl.php";
+      $data['error']['title'] = "Groupe Inconnu";
+      $data['error']['back'] = "../controler/groupes.ctrl.php";
       $data['error']['message'] = "Vous vous etes perdu";
       include("../view/error.view.php");
     }
   }else {
-    $data['error']['title'] = "Artiste Inconnu";
-    $data['error']['back'] = "../controler/artistes.ctrl.php";
+    $data['error']['title'] = "Groupe Inconnu";
+    $data['error']['back'] = "../controler/groupes.ctrl.php";
     $data['error']['message'] = "Vous vous etes perdu";
     include("../view/error.view.php");
   }
