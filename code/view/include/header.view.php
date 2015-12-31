@@ -26,6 +26,18 @@
             <li<?php echo($data['page']=="Evenements"?" class='active'":"") ?>><a href="../controler/evenements.ctrl.php"><span class="glyphicon glyphicon-folder-open"></span><span class="text">Evenements</span></a></li>
           <?php }?>
           <li<?php echo($data['page']=="Negociations"?" class='active'":"") ?>><a href="../controler/negociations.ctrl.php"><span class="glyphicon glyphicon-list-alt"></span><span class="text">Negociations</span></a></li>
+
+
+          <li id="liste" class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-list-alt"></span><span class="text">Listes <span class="caret"></span></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="../controler/liste_groupe.ctrl.php"><span class="text">Liste Groupes</span></a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="../controler/liste_manifestation.ctrl.php"><span class="text">Liste Manifestation</span></a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="../controler/liste_utilisateur.ctrl.php"><span class="text">Liste Utilisateur</span></a></li>
+            </ul>
+          </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li>
