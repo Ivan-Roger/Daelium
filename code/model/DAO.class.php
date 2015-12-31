@@ -2021,6 +2021,21 @@ class DAO {
          return (isset($res[0])?$res[0]:null);
       }
 
+      function readNegociationByUtilisateur($idUtilisateur) {
+        $sql = "SELECT * FROM Negociation WHERE  idBooker  =? OR idOrganisateur=?"; // requête
+        $req = $this->db->prepare($sql);
+        $params = array(
+          $idUtilisateur,
+          $idUtilisateur
+        );
+        $res = $req->execute($params);
+        if ($res === FALSE) {
+          die("readNegociationByIdBooker : Requête impossible !"); // erreur dans la requête
+        }
+        $res = $req->fetchAll(PDO::FETCH_CLASS,"Negociation");
+        return (isset($res[0])?$res:null);
+      }
+
       function readNegociationByIdBooker($idBooker) {
         $sql = "SELECT * FROM Negociation WHERE  idBooker  =?"; // requête
         $req = $this->db->prepare($sql);

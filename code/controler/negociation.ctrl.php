@@ -3,7 +3,7 @@
   include("include/auth.ctrl.php");
   require_once("../model/utils.class.php");
   require_once("../model/DAO.class.php");
-  $data = initPage("Negociations");
+  $data = initPage("Negociation");
   $dao = new DAO();
 
   $userid= $_SESSION["user"]["ID"];

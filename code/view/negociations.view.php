@@ -28,54 +28,22 @@
               <tr><th>Nom du Groupe</th><th>Nom de la Manifestation</th><th>Lieu de la Manifestation</th><th>Date de la Manifestation</th><th>Etat</th><th>Actions</th></tr>
             </thead>
             <tbody>
-              <tr>
-                <th>Les Chamions</th>
-                <td>Festival des Rouges</td>
-                <td>Paris</td>
-                <td>12 Juin 2016</td>
-                <td>En cours</td>
-                <td>
-                  <div class="btn-group" role="group" aria-label="...">
-                    <a href="../controler/negociation.ctrl.php" type="button" class="btn btn-default"><span class="glyphicon glyphicon-option-horizontal no-margin"></span></a>
-                    <a href="" type="button" class="btn btn-default"><span class="glyphicon glyphicon-repeat no-margin"></a>
-                    <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash no-margin"></button>
-                  </div>
-                </td>
-              </tr>
-                <tr><th>Les Chamions</th>
-                <td>Festival des Rouges</td>
-                <td>Paris</td>
-                <td>12 Juin 2016</td>
-                <td>Passé</td><td>
-                  <div class="btn-group" role="group" aria-label="...">
-                    <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-option-horizontal no-margin"></button>
-                    <a href="" type="button" class="btn btn-default"><span class="glyphicon glyphicon-repeat no-margin"></a>
-                    <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash no-margin"></button>
-                  </div>
-                  </div></td>
-                </tr>
-                  <tr><th>Les Chamions</th>
-                  <td>Festival des Rouges</td>
-                  <td>Paris</td>
-                  <td>12 Juin 2016</td>
-                  <td>Terminé</td><td>
+              <?php foreach ($data['nego'] as $key => $value): ?>
+                <tr>
+                  <th><?= $value["nomgroupe"] ?></th>
+                  <td><?= $value["nommanif"] ?></td>
+                  <td><?= $value["villemanif"] ?></td>
+                  <td><?= $value["datemanif"] ?></td>
+                  <td><?= $value["etat"] ?></td>
+                  <td>
                     <div class="btn-group" role="group" aria-label="...">
-                      <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-option-horizontal no-margin"></button>
+                      <a href="../controler/negociation.ctrl.php?id=<?= $value["id"] ?>" type="button" class="btn btn-default"><span class="glyphicon glyphicon-option-horizontal no-margin"></span></a>
                       <a href="" type="button" class="btn btn-default"><span class="glyphicon glyphicon-repeat no-margin"></a>
                       <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash no-margin"></button>
                     </div>
-                    </div></td></tr>
-                    <tr><th>Les Chamions</th>
-                    <td>Festival des Rouges</td>
-                    <td>Paris</td>
-                    <td>12 Juin 2016</td>
-                    <td>Negocié</td><td>
-                      <div class="btn-group" role="group" aria-label="...">
-                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-option-horizontal no-margin"></button>
-                        <a href="" type="button" class="btn btn-default"><span class="glyphicon glyphicon-repeat no-margin"></a>
-                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash no-margin"></button>
-                      </div>
-                      </div></td></tr>
+                  </td>
+                </tr>
+              <?php endforeach; ?>
               </tobdy>
             </table>
           </div>
