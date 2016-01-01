@@ -97,22 +97,22 @@
             <div class="img-circle"><span class="icon-img icon-adjustments"></span></div>
           </a>
           <h2>Adaptable</h2>
-          <p>Votre outil ci-présent à été pensé pour être paramétrable sur la plupart des fonctionnalités présentes.</p>
+          <p>Dælium s'adaptera à tout vos besoins. L'outil ci-présent à été pensé pour être paramétrable sur la plupart des fonctionnalités proposées. De plus il s'adaptera à tout type de plateforme (tablette, smartphone...) et sur la majorité des navigateurs web.</p>
           <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
       </div><!-- /.row -->
       <div id="troops" class="row">
         <div id="troop_1" class="col-lg-4 text-center" style="display: none;">
           <h2 class="text-left">En marche</h2>
-          <p>Le cébébre groupe En marche fait parti de notre projet, alors vous aussi rejoignez la communauté. Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod.</p>
+          <p>Le célèbre groupe "En marche" fait parti de notre site, alors vous aussi, rejoignez Dælium !</p>
         </div><!-- /.col-lg-4 -->
         <div id="troop_2" class="col-lg-4 text-center" style="display: none;">
           <h2 class="text-left">Batoucada</h2>
-          <p>La Batoucada soutient notre site. Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+          <p>La "Batoucada" soutient notre site. Elle fais partie de la grande communauté qui s'aggrandie de jour en jour. Venez apporter votre contribution à celle-ci en y adhérant !</p>
         </div><!-- /.col-lg-4 -->
         <div id="troop_3" class="col-lg-4 text-center" style="display: none;">
           <h2 class="text-left">Berlondon</h2>
-          <p>Le groupe Berlino-Londonnien est membre de Dælium depuis déjà 5 ans. Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod.</p>
+          <p>Le groupe "Berlino-Londonnien" est inscrit sur Dælium depuis sa création. Faites comme eux, incrivez-vous, ajoutez vos artistes ou vos évènements et envoyez les sur le devant de la scène !</p>
         </div><!-- /.col-lg-4 -->
       </div><!-- /.row -->
       <div id="counters" class="row">
