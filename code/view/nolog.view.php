@@ -150,15 +150,17 @@
       <div class="row">
         <div class="col-lg-8">
           <h2>Rejoindre Dælium</h2>
-          <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rhoncus vulputate tellus, eget ornare nibh eleifend sed. Etiam efficitur nisi sit amet laoreet efficitur. Maecenas sit amet scelerisque erat, sit amet facilisis erat. Praesent facilisis, elit sed posuere faucibus, risus eros pulvinar ex, nec ornare sapien enim id nulla.</p>
-          <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
+          <p>Vous voulez nous rejoindre ?</p>
+          <p>Vous pensez avoir des compétences ou des qualités utile à mettre en oeuvre pour le bien de Dælium ?</p>
+          <p>Alors envoyez vos intentions et votre CV à l'adresse mail suivante : </p>
+          <p>recrutement@daelium.fr</p>
           <p class="text-right"><a class="btn btn-default btn-lg" href="#" role="button">Inscription &raquo;</a><br/><a style="font-size: 10px;" href="#" role="button">Connexion &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
           <h2>Contact</h2>
-          <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rhoncus vulputate tellus, eget ornare nibh eleifend sed. Etiam efficitur nisi sit amet laoreet efficitur. Maecenas sit amet scelerisque erat, sit amet facilisis erat. Praesent facilisis, elit sed posuere faucibus, risus eros pulvinar ex, nec ornare sapien enim id nulla.</p>
+          <p>Des questions sur le fonctionnement du site ? Vous rencontrez des problèmes durant votre utilisation ?</p>
+         <p>Des suggestions à faire pour nous améliorer ? Des critiques ? Envoyez-nous un mail à cette adresse : </p>
+          <p>contact@daelium.fr</p>
           <p><a class="btn btn-default" href="#" role="button">Nous contacter &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
       </div><!-- /.row -->
