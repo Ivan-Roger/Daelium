@@ -38,14 +38,14 @@
               <!--<img src="../data/img/fotolia_musique.jpg" style="position: relative; bottom: 500px;"/>-->
               <div class="carousel-caption">
                 <h1>Bienvenue sur <b>Dælium</b></h1>
-                <p>Bienvenue sur le site de gestion musical. Oui je vais mettre la barre en haut !</p>
+                <p>Bienvenue sur le site de gestion musical !</p>
               </div>
             </div>
             <div class="slide-full item">
               <!--<img src="../data/img/fotolia_musique.jpg" style="position: relative; bottom: 500px;"/>-->
               <div class="carousel-caption">
-                <h1>Another example headline.</h1>
-                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                <h1>Bienvenue sur <b>Dælium</b></h1>
+                <p>Vous êtes à la recherche d'un outil performant pour gérer vos artistes ? Ou vous souhaitez organiser un évènement particulier ? Alors rejoignez notre site ! C'est rapide, et gratuit !</p>
                 <p><a id="sliderButton" class="btn btn-lg btn-primary" href="#navbar" role="button">Je veux en savoir plus !</a></p>
               </div>
             </div>
