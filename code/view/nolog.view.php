@@ -72,7 +72,7 @@
     <div class="container marketing">
       <div class="row">
         <blockquote>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rhoncus vulputate tellus, eget ornare nibh eleifend sed. Etiam efficitur nisi sit amet laoreet efficitur. Maecenas sit amet scelerisque erat, sit amet facilisis erat. Praesent facilisis, elit sed posuere faucibus, risus eros pulvinar ex, nec ornare sapien enim id nulla. Aliquam at lacinia quam. Fusce laoreet ultricies enim, eu elementum nunc venenatis non. Aenean molestie enim nec dui consequat interdum. Morbi ipsum nisl, bibendum non eros in, gravida hendrerit purus. Donec orci risus, consequat at nisl eu, maximus ullamcorper erat. Nam in libero diam. Quisque et molestie sem, non tempor turpis. Aliquam erat volutpat.
+        Dælium est un outil intuitif et performant pour vous aider à gérer vos artistes, il vous permettra de prendre du recul sur leurs statuts et les aideras à accéder au monde du spectacle ! Il intègre des fonctionnalités d'agenda, une messagerie interne et permet une meilleure communication entre booker et organisateur.
         </blockquote>
       </div>
       <div class="row">
@@ -81,23 +81,23 @@
             <div class="img-circle"><span class="icon-img icon-gift"></span></div>
           </a>
           <h2>Gratuit</h2>
-          <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+          <p>L'inscription à Dælium est entièrement gratuite, de même que son utilisation. Aucun paiement ne vous sera demandé en contrepartie de l'utilisation que vous ferez du site.</p>
+          <p><a class="btn btn-default" href="#" role="button">Voir les détails &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4 text-center">
           <a href="#">
             <div class="img-circle"><span class="icon-img icon-tools2"></span></div>
           </a>
           <h2>Innovant</h2>
-          <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+          <p>Dælium est un outil innovant et utilise les technologies les plus adéquates pour permettre une meilleure gestion de vos besoins.</p>
+          <p><a class="btn btn-default" href="#" role="button">Voir les détails &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4 text-center">
           <a href="#">
             <div class="img-circle"><span class="icon-img icon-adjustments"></span></div>
           </a>
           <h2>Adaptable</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+          <p>Votre outil ci-présent à été pensé pour être paramétrable sur la plupart des fonctionnalités présentes.</p>
           <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
       </div><!-- /.row -->
