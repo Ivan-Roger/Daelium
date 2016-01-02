@@ -151,9 +151,9 @@
         <div class="col-lg-8">
           <h2>Rejoindre Dælium</h2>
           <p>Vous voulez nous rejoindre ?</p>
-          <p>Vous pensez avoir des compétences ou des qualités utile à mettre en oeuvre pour le bien de Dælium ?</p>
-          <p>Alors envoyez vos intentions et votre CV à l'adresse mail suivante : </p>
-          <p>recrutement@daelium.fr</p>
+          <p>Vous souhaitez ajouter vos artistes pour qu'ils rejoingent notre grande communauté ?</p>
+          <p>Vous voulez organiser un festival et vous ne trouvez pas d'artistes ?  </p>
+          <p>Alors, retournez en haut de la page et cliquez sur "S'inscrire" ! Rapide et gratuit !</p>
           <p class="text-right"><a class="btn btn-default btn-lg" href="#" role="button">Inscription &raquo;</a><br/><a style="font-size: 10px;" href="#" role="button">Connexion &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
