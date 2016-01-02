@@ -36,7 +36,7 @@
     Choix du player, reseaux, Concert passer et a venir et fiche technique (oui /non)
     position du module en haut, en bas.
     -->
-      <form class="form-horizontal" role="form">
+      <form class="form-horizontal" role="form" method="post" action="../controler/groupe_fiche.ctrl.php?action=edit">
           <h2>Fiche de "<?= $data["groupe"]['nom']?>"</h2>
         <article class="col-lg-offset-2 col-lg-10">
           <div class="navbar navbar-right">
@@ -45,13 +45,13 @@
             <input class ="btn btn-primary" type="submit" name="nom" value="Enregistrer">
           </div>
         </article>
-        <div class="col-lg-12">
+        <div class="col-lg-4">
           <div class="panel panel-default">
-            <div class="panel-heading">Elements/Position</div>
+            <div class="panel-heading">Elements</div>
             <div class="panel-body">
               <div class="form-group">
-                <label class="control-label col-sm-3" for="rs">Panneau Reseaux sociaux :</label>
-                <div class="col-sm-3 btn-group" data-toggle="buttons" id="fonction">
+                <label class="control-label col-sm-8" for="rs">Panneau Reseaux sociaux :</label>
+                <div class="col-sm-4 btn-group" data-toggle="buttons" id="fonction">
                   <label class="btn btn-default active">
                     <input type="radio" name="rsa" id="option1" value="on" checked > Actif
                   </label>
@@ -62,20 +62,20 @@
               </div>
               <hr>
               <div class="form-group">
-                <label class="control-label col-sm-3" for="lec">Panneau Lecteur :</label>
-                  <div class="col-sm-3 btn-group" data-toggle="buttons" id="fonction">
+                <label class="control-label col-sm-8" for="lart">Liste Artistes :</label>
+                  <div class="col-sm-4 btn-group" data-toggle="buttons" id="fonction">
                     <label class="btn btn-default active">
-                      <input type="radio" name="leca" id="option1" value="on" checked > Actif
+                      <input type="radio" name="lart" id="option1" value="on" checked > Actif
                     </label>
                     <label class="btn btn-default">
-                      <input type="radio" name="leca" id="option2" value="off" > Inactif
+                      <input type="radio" name="lart" id="option2" value="off" > Inactif
                     </label>
                   </div>
               </div>
               <hr>
               <div class="form-group">
-                <label class="control-label col-sm-3" for="conc">Panneau Concert passé/futur :</label>
-                <div class="col-sm-3 btn-group" data-toggle="buttons" id="fonction">
+                <label class="control-label col-sm-8" for="conc">Panneau Concert passé/futur :</label>
+                <div class="col-sm-4 btn-group" data-toggle="buttons" id="fonction">
                   <label class="btn btn-default active">
                     <input type="radio" name="conc" id="option1" value="on" checked > Actif
                   </label>
@@ -89,95 +89,58 @@
           </div>
         </div>
 
-        <div class="col-lg-12">
-          <div class="panel panel-default">
-            <div class="panel-heading">Image de couverture</div>
-            <div class="panel-body">
-              Choisir un fichier ou l'envoyer
-            </div>
-          </div>
-        </div>
 
-        <div class="col-lg-12">
+
+        <div class="col-lg-8">
           <div class="panel panel-default">
             <div class="panel-heading">Reseaux sociaux</div>
             <div class="panel-body">
               <div class="form-group">
                 <label class="control-label col-sm-2" for="face">Facebook :</label>
-                <div class="col-sm-8">
-                  <input type="text" id="face" name="face" class="form-control" />
-                </div>
-                <div class="col-sm-2 btn-group" data-toggle="buttons" id="fonction">
-                  <label class="btn btn-default active">
-                    <input type="radio" name="facea" id="option1" value="on" checked="checked" > Actif
-                  </label>
-                  <label class="btn btn-default">
-                    <input type="radio" name="facea" id="option2" value="off" > Inactif
-                  </label>
+                <div class="col-sm-10">
+                  <input type="text" id="face" name="face" class="form-control" value="<?= $data['groupe']['facebook'] ?>" />
                 </div>
               </div> <!-- /form-group -->
 
               <div class="form-group">
                 <label class="control-label col-sm-2" for="twt">Twitter :</label>
-                <div class="col-sm-8">
-                  <input type="text" id="face" name="twt" class="form-control" />
-                </div>
-                <div class="col-sm-2 btn-group" data-toggle="buttons" id="fonction">
-                  <label class="btn btn-default active">
-                    <input type="radio" name="twta" id="option1" value="on" checked="checked" > Actif
-                  </label>
-                  <label class="btn btn-default">
-                    <input type="radio" name="twta" id="option2" value="off" > Inactif
-                  </label>
+                <div class="col-sm-10">
+                  <input type="text" id="face" name="twt" class="form-control" value="<?= $data['groupe']['twitter'] ?>" />
                 </div>
               </div> <!-- /form-group -->
 
               <div class="form-group">
                 <label class="control-label col-sm-2" for="gg">Google+ :</label>
-                <div class="col-sm-8">
-                  <input type="text" id="gg" name="gg" class="form-control" />
-                </div>
-                <div class="col-sm-2 btn-group" data-toggle="buttons" id="fonction">
-                  <label class="btn btn-default active">
-                    <input type="radio" name="gga" id="option1" value="on" checked="checked" > Actif
-                  </label>
-                  <label class="btn btn-default">
-                    <input type="radio" name="gga" id="option2" value="off" > Inactif
-                  </label>
+                <div class="col-sm-10">
+                  <input type="text" id="gg" name="gg" class="form-control" value="<?= $data['groupe']['google'] ?>" />
                 </div>
               </div> <!-- /form-group -->
 
 
               <div class="form-group">
                 <label class="control-label col-sm-2" for="sc">SoundCloud :</label>
-                <div class="col-sm-8">
-                  <input type="text" id="sc" name="sc" class="form-control" />
-                </div>
-                <div class="col-sm-2 btn-group" data-toggle="buttons" id="fonction">
-                  <label class="btn btn-default active">
-                    <input type="radio" name="sca" id="option1" value="on" checked="checked" > Actif
-                  </label>
-                  <label class="btn btn-default">
-                    <input type="radio" name="sca" id="option2" value="off" > Inactif
-                  </label>
+                <div class="col-sm-10">
+                  <input type="text" id="sc" name="sc" class="form-control" value="<?= $data['groupe']['soundcloud'] ?>" />
                 </div>
               </div> <!-- /form-group -->
             </div>
           </div>
         </div>
+
         <div class="col-lg-12">
           <div class="panel panel-default">
-            <div class="panel-heading">Lecteurs</div>
+            <div class="panel-heading">Image de couverture</div>
             <div class="panel-body">
-              <textarea rows="4" cols="175%"> </textarea>
+              <input type="file" name="fichier" value="<?= $data['groupe']['imageoff'] ?>">
             </div>
           </div>
         </div>
+
         <div class="col-lg-12">
           <div class="panel panel-default">
             <div class="panel-heading">Contenu de la page</div>
             <div class="panel-body">
-              <textarea rows="4" name="editor1" id="editor1" cols="175%"> </textarea>
+              <textarea rows="4" name="pagecom" id="editor1" cols="175%"> <?= $data['groupe']['fichecom'] ?> </textarea>
               <script>
                 // Replace the <textarea id="editor1"> with a CKEditor
                 // instance, using default configuration.
@@ -186,6 +149,8 @@
             </div>
           </div>
         </div>
+        <input type="hidden" name="idgroupe" value="<?= $data['groupe']['id'] ?>"/>
+
       </form>
     </section>
     <?php include("../view/include/footer.view.php"); ?>

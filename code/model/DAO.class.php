@@ -618,7 +618,7 @@ class DAO {
          if ($res === FALSE) {
             die("readGroupeById : Requête impossible !");
          }
-         return $this->readGroupeById($groupe->idGroupe);
+         return $this->readGroupeById($groupe->getIdGroupe());
       } else {
          throw new DAOException("Groupe non présent dans la base de données !");
       }

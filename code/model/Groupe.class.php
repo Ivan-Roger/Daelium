@@ -125,7 +125,7 @@
       $this->lecteur = $lecteur;
     }
     function setFicheCom($ficheCom){
-      $this->ficheCom = $ficheCom;
+      $this->fichecom = $ficheCom;
     }
     function setAdresse($adresse){
       $this->adresse = $adresse;
