@@ -50,13 +50,13 @@ header("Location:"."../");
         <!-- Reseaux sociaux -->
         <div class="well">
           <h4>Reseaux sociaux :</h4>
-          <?= $data['evenement']["rs"] ?>
-          <?php if($data['evenement']["facebook"] != NULL){ ?>
-            <a href="<?= $data['evenement']["facebook"]  ?>">Facebook : <img src="../data/img/icons/facebook.jpg" height="50" width="50"  alt="facebook"/></a>
-            <?php } if($data['evenement']["google"] != NULL){ ?>
-              <a href="<?= $data['evenement']["google"]  ?>">Google + : <img src="../data/img/icons/google+.jpeg" height="50" width="50" alt="Google +"/></a>
-              <?php } if($data['evenement']["twitter"] != NULL){ ?>
-                <a href="<?= $data['evenement']["twitter"]  ?>">Twitter : <img src="../data/img/icons/twitter.jpg" height="50" width="50" alt="Twitter"/></a>
+          <?= $data['groupe']["rs"] ?>
+          <?php if($data['groupe']["facebook"] != NULL){ ?>
+            <a href="<?= $data['groupe']["facebook"]  ?>">Facebook : <img src="../data/img/icons/facebook.jpg" height="50" width="50"  alt="facebook"/></a>
+            <?php } if($data['groupe']["google"] != NULL){ ?>
+              <a href="<?= $data['groupe']["google"]  ?>">Google + : <img src="../data/img/icons/google+.jpeg" height="50" width="50" alt="Google +"/></a>
+              <?php } if($data['groupe']["twitter"] != NULL){ ?>
+                <a href="<?= $data['groupe']["twitter"]  ?>">Twitter : <img src="../data/img/icons/twitter.jpg" height="50" width="50" alt="Twitter"/></a>
                 <?php } ?>
                 <p></p>
               </div>
@@ -92,12 +92,8 @@ header("Location:"."../");
 
                 <div class="well">
                   <h4>Presentation :</h4>
-                  <p>Dumque ibi diu moratur commeatus opperiens, quorum translationem ex Aquitania verni imbres solito crebriores prohibebant auctique torrentes, Herculanus advenit protector domesticus, Hermogenis ex magistro equitum filius, apud Constantinopolim, ut supra rettulimus, populari quondam turbela discerpti. quo verissime referente quae Gallus egerat, damnis super praeteritis maerens et futurorum timore suspensus angorem animi quam diu potuit emendabat.<br/>
-                    Hinc ille commotus ut iniusta perferens et indigna praefecti custodiam protectoribus mandaverat fidis. quo conperto Montius tunc quaestor acer quidem sed ad lenitatem propensior, consulens in commune advocatos palatinarum primos scholarum adlocutus est mollius docens nec decere haec fieri nec prodesse addensque vocis obiurgatorio sonu quod si id placeret, post statuas Constantii deiectas super adimenda vita praefecto conveniet securius cogitari.<br/>
-                    Quam ob rem cave Catoni anteponas ne istum quidem ipsum, quem Apollo, ut ais, sapientissimum iudicavit; huius enim facta, illius dicta laudantur. De me autem, ut iam cum utroque vestrum loquar, sic habetote.<br/>
-                    Metuentes igitur idem latrones Lycaoniam magna parte campestrem cum se inpares nostris fore congressione stataria documentis frequentibus scirent, tramitibus deviis petivere Pamphyliam diu quidem intactam sed timore populationum et caedium, milite per omnia diffuso propinqua, magnis undique praesidiis conmunitam.<br/>
-                    Postremo ad id indignitatis est ventum, ut cum peregrini ob formidatam haut ita dudum alimentorum inopiam pellerentur ab urbe praecipites, sectatoribus disciplinarum liberalium inpendio paucis sine respiratione ulla extrusis, tenerentur minimarum adseclae veri, quique id simularunt ad tempus, et tria milia saltatricum ne interpellata quidem cum choris totidemque remanerent magistris.</p>
-                  </div>
+                  <?= $data['groupe']["fichecom"] ?>
+                 </div>
                   <!-- Fin Fiche Com -->
                 </article>
               </section>

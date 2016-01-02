@@ -6,7 +6,71 @@
   $data = initPage("Groupes");
   $dao = new Dao();
 
- if(isset($_GET["id"])) {
+  $userid= $_SESSION["user"]["ID"];
+  $user = $dao->readBookerById($userid);
+if(isset($_GET["action"]) && $_GET["action"] == "edit" && isset($_GET["id"])){
+  $idgroupe = $_GET['id'];
+  $groupe = $dao->readGroupeById($idgroupe);
+  if($groupe != NULL){
+    $present = $user->possedeGroupe($idgroupe);
+    if($present){
+        $data['groupe']['id']=$_GET['id'];
+        $data['groupe']['nom'] = $groupe->getNom();
+        $data['groupe']["facebook"] = $groupe->getFacebook();
+        $data['groupe']["twitter"] = $groupe->getTwitter();
+        $data['groupe']["google"] = $groupe->getGoogle();
+        $data['groupe']["soundcloud"] = $groupe->getSoundcloud();
+        $data['groupe']["imageoff"] = $groupe->getLienImageOfficiel();
+        $data['groupe']["fichecom"] = $groupe->getFicheCom();
+          include("../view/groupe_fiche_edit.view.php");
+    }else {
+      $data['error']['title'] = "Acces Interdit";
+      $data['error']['message'] = "Vous ne pouvez pas venir ici, cet espace est reservé au booker du groupe.";
+      $data['error']['back'] = "../controler/main.ctrl.php";
+      include("../view/error.view.php");
+    }
+  }else {
+    $data['error']['title'] = "Groupe Inconnu";
+    $data['error']['back'] = "../controler/groupes.ctrl.php";
+    $data['error']['message'] = "Vous vous etes perdu";
+    include("../view/error.view.php");
+  }
+
+}else if(isset($_GET["action"]) && $_GET["action"] == "edit"  && isset($_POST["idgroupe"])){
+  $userid= $_SESSION["user"]["ID"];
+  $user = $dao->readBookerById($userid);
+
+
+  $idgroupe = $_POST['idgroupe'];
+  $groupe = $dao->readGroupeById($idgroupe);
+  if($groupe != NULL){
+    $present = $user->possedeGroupe($idgroupe);
+    if($present){
+          $groupe->setFacebook($_POST["face"]);
+          $groupe->setGoogle($_POST["gg"]);
+          $groupe->setTwitter($_POST["twt"]);
+          $groupe->setSoundcloud($_POST["sc"]);
+          $groupe->setLienImageOfficiel($_POST["fichier"]);
+          $groupe->setFicheCom($_POST["pagecom"]);
+
+          $dao->updateGroupe($groupe);
+
+
+          header("Location: ../controler/groupe_fiche.ctrl.php?id=".$idgroupe."");
+
+    }else {
+      $data['error']['title'] = "Acces Interdit";
+      $data['error']['message'] = "Vous ne pouvez pas venir ici, cet espace est reservé au booker du groupe.";
+      $data['error']['back'] = "../controler/main.ctrl.php";
+      include("../view/error.view.php");
+    }
+  }else {
+    $data['error']['title'] = "Groupe Inconnu";
+    $data['error']['back'] = "../controler/groupes.ctrl.php";
+    $data['error']['message'] = "Vous vous etes perdu";
+    include("../view/error.view.php");
+  }
+}else if(isset($_GET["id"])) {
     $idgroupe = $_GET['id'];
     $groupe = $dao->readGroupeById($idgroupe);
     if($groupe != NULL){
@@ -29,6 +93,7 @@
       $data['groupe']['id']=$_GET['id'];
       $data['groupe']['nom'] = $groupe->getNom();
       $data['groupe']['nb']= $i;
+      $data['groupe']["fichecom"] = $groupe->getFicheCom();
 
       $bookerid = $dao->readBookerByGroupe($idgroupe);
       $booker = $dao->readBookerById($bookerid);
@@ -36,30 +101,22 @@
       $data["booker"]["nom"] = $booker->getNom();
       $data["booker"]["prenom"] = $booker->getPrenom();
 
-      if ($groupe->getFacebook() == NULL &&  $groupe->getTwitter() == NULL && $groupe->getGoogle() == NULL) {
-        $data['evenement']["facebook"] = NULL;
-        $data['evenement']["twitter"] = NULL;
-        $data['evenement']["google"] = NULL;
-        $data['evenement']["rs"] = "Il n'y a pas de liens vers les reseaux sociaux";
+      if ($groupe->getFacebook() == NULL &&  $groupe->getTwitter() == NULL && $groupe->getGoogle() == NULL && $groupe->getSoundcloud() == NULL) {
+        $data['groupe']["facebook"] = NULL;
+        $data['groupe']["twitter"] = NULL;
+        $data['groupe']["google"] = NULL;
+        $data['groupe']["soundcloud"] = NULL;
+        $data['groupe']["rs"] = "Il n'y a pas de liens vers les reseaux sociaux";
       } else{
-        $data['evenement']["facebook"] = $groupe->getFacebook();
-        $data['evenement']["twitter"] = $groupe->getTwitter();
-        $data['evenement']["google"] = $groupe->getGoogle();
+        $data['groupe']["facebook"] = $groupe->getFacebook();
+        $data['groupe']["twitter"] = $groupe->getTwitter();
+        $data['groupe']["google"] = $groupe->getGoogle();
+          $data['groupe']["soundcloud"] = $groupe->getSoundcloud();
         $data['evenement']["rs"] ="";
       }
 
-      $lineUp['nom'] = "Hello";
-      $lineUp['url'] = "https://www.youtube.com/embed/YQHsXMglC9A?feature=player_detailpage";
-      $data['lineUp'][] = $lineUp;
-
-      $lineUp['nom'] = "Overwerk";
-      $lineUp['url'] = "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/231318729&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true";
-      $data['lineUp'][] = $lineUp;
 
       //envoie les données pour un artiste
-      if (isset($_GET['action']) && $_GET['action']=="edit")
-        include("../view/groupe_fiche_edit.view.php");
-      else
         include("../view/groupe_fiche.view.php");
     } else{
       $data['error']['title'] = "Groupe Inconnu";

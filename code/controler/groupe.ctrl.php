@@ -87,7 +87,7 @@ if($user != NULL){ // SI booker
         include("../view/groupe.view.php");
       }else {
         $data['error']['title'] = "Acces Interdit";
-        $data['error']['message'] = "Vous ne pouvez pas venir ici, cet espace est reservé à l'organisateur de la manifestation.";
+        $data['error']['message'] = "Vous ne pouvez pas venir ici, cet espace est reservé au booker du groupe.";
         $data['error']['back'] = "../controler/main.ctrl.php";
         include("../view/error.view.php");
       }
@@ -105,7 +105,7 @@ if($user != NULL){ // SI booker
   }
 }else {
   $data['error']['title'] = "Acces Interdit";
-  $data['error']['message'] = "Vous ne pouvez pas venir ici, cet espace est reservé à l'organisateur de la manifestation.";
+  $data['error']['message'] = "Vous ne pouvez pas venir ici, cet espace est reservé au booker du groupe..";
   $data['error']['back'] = "../controler/main.ctrl.php";
   include("../view/error.view.php");
 }
