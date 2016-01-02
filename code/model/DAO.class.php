@@ -1044,127 +1044,88 @@ class DAO {
 
 
 
-      // ===================== Document =====================
+      // ===================== AccesDocument =====================
 
-      //Document(idDoc,idUtilisateur,nom,dateCreation,dateModif,emplacement)
-      function readDocumentById($idDoc) {
-         $sql = "SELECT * FROM Document WHERE idDoc = ?"; // requête
+      //Acces_Document(token,document,expire)
+      function readAccesDocumentByToken($token) {
+         $sql = "SELECT * FROM Acces_Document WHERE token = ?"; // requête
          $req = $this->db->prepare($sql);
          $params = array( // paramétres
-            $idDoc // l'id de l'utilisateur
+            $token
          );
          $res = $req->execute($params);
          if ($res === FALSE) {
-            die("readDocumentById : Requête impossible !"); // erreur dans la requête
+            die("readAccesDocumentByPath : Requête impossible !"); // erreur dans la requête
          }
-         $res = $req->fetchAll(PDO::FETCH_CLASS,"Document");
+         $res = $req->fetchAll(PDO::FETCH_ASSOC);
          return (isset($res[0])?$res[0]:null); // retourne le premier resultat s'il existe, sinon null
       }
 
-      function readDocumentByIdUtilisateur($idUtilisateur) {
-         $sql = "SELECT * FROM Document WHERE idUtilisateur = ?"; // requête
+      function readAccesDocumentByDoc($path) {
+         $sql = "SELECT * FROM Acces_Document WHERE document = ?"; // requête
          $req = $this->db->prepare($sql);
          $params = array( // paramétres
-            $idUtilisateur // l'id de l'utilisateur
+            $path
          );
          $res = $req->execute($params);
          if ($res === FALSE) {
-            die("readDocumentByIdUtilisateur : Requête impossible !"); // erreur dans la requête
+            die("readAccesDocumentByDoc : Requête impossible !"); // erreur dans la requête
          }
-         $res = $req->fetchAll(PDO::FETCH_CLASS,"Document");
-         return (isset($res[0])?$res:null); // retourne le premier resultat s'il existe, sinon null
+         $res = $req->fetchAll(PDO::FETCH_ASSOC);
+         return (isset($res[0])?$res:null);
       }
 
-
-      function createDocument($document) {
-         $d = $this->db->readDocumentById($document->idDoc);
-         if ($d == null) {
-            $sql = "INSERT INTO Document(idUtilisateur,nom,dateCreation,dateModif,emplacement) VALUES (?,?,?,?,?)";
-            $req = $this->db->prepare($sql);
-            $params = array(
-               $document->idUtilisateur,
-               $document->nom,
-               $document->dateCreation,
-               $document->dateModif,
-               $document->emplacement
-            );
-            $res = $req->execute($params);
-            if ($res === FALSE) {
-               die("createDocument : Requête impossible !");
-            }
-            return $this->db->readUserById($document->idDoc);
-         } else {
-            throw new DAOException("Document déjà présent dans la base (l'id en tous cas)");
-         }
+      function createAccesDocument($document,$expire=null) {
+        $token = randomID(15);
+        $sql = "INSERT INTO Acces_Document VALUES (?,?,?)";
+        $req = $this->db->prepare($sql);
+        $params = array(
+          $document,
+          $token,
+          $expire
+        );
+        $res = $req->execute($params);
+        if ($res === FALSE) {
+          die("createAccesDocument : Requête impossible !");
+        }
+        return $token;
       }
 
-
-      function updateDocument($document) {
-         $d = $this->db->readDocumentById($document->idDoc);
-         if ($d != null) {
-            $sql = "UPDATE Document set (idUtilisateur,nom,dateCreation,dateModif,emplacement) = (?,?,?,?,?) where idDoc= ?";
-            $req = $this->db->prepare($sql);
-            $params = array(
-               $document->idUtilisateur,
-               $document->nom,
-               $document->dateCreation,
-               $document->dateModif,
-               $document->emplacement,
-               $document->idDoc
-            );
-            $res = $req->execute($params);
-            if ($res === FALSE) {
-               die("updateDocument : Requête impossible !");
-            }
-            return $this->db->readDocumentById($document->idDoc);
-         } else {
-            throw new DAOException("Document non présent dans la base de données !");
-         }
-      }
-
-      function deleteDocumentsById($idDoc) {
-        $n = $this->db->readDocumentById($idDoc);
+      function deleteAccesDocument($token) {
+        $n = $this->db->readAccesDocumentByToken($token);
         if ($n != null) {
-          $sql = "DELETE FROM Document where idDoc = ?";
+          $sql = "DELETE FROM Document WHERE token = ?";
           $req = $this->db->prepare($sql);
           $params = array(
-            $idDoc
+            $token
           );
           $res = $req->execute($params);
           if ($res === FALSE) {
-            die("deleteDocumentsById : Requête impossible !");
+            die("deleteAccesDocument : Requête impossible !");
           }
           return true;
         } else {
-          throw new DAOException("Document non présente dans la base, supression impossible");
+          throw new DAOException("Acces_Document non présent dans la base, supression impossible");
         }
       }
 
-      function deleteDocumentsByIdUtilisateur($idUtilisateur) {
-        $n = $this->db->readDocumentByIdUtilisateur($idUtilisateur);
+      function deleteAccesDocumentByDoc($path) {
+        $n = $this->db->readAccesDocumentByPath($path);
         if ($n != null) {
-
-          foreach ($n as $neg) {
-            try {
-              $this->db->deleteNegociationDocumentsByIdDoc($neg->getIdDoc());
-            } catch(DAOException $e) {}
-          }
-
-          $sql = "DELETE FROM Document where idUtilisateur = ?";
+          $sql = "DELETE FROM Document WHERE document = ?";
           $req = $this->db->prepare($sql);
           $params = array(
-            $idUtilisateur
+            $path
           );
           $res = $req->execute($params);
           if ($res === FALSE) {
-            die("deleteDocumentsByIdUtilisateur : Requête impossible !");
+            die("deleteAccesDocumentByDoc : Requête impossible !");
           }
           return true;
         } else {
-          throw new DAOException("Document non présente dans la base, supression impossible");
+          throw new DAOException("Acces_Document non présent dans la base, supression impossible");
         }
       }
-
 
       // ===================== Evenement =====================
 

@@ -5,6 +5,10 @@ require_once("../model/DAO.class.php");
    ***************/
 
    function initPage($page,$alerts=null) {
+     if (isset($_GET['ajax'])) {
+       return Array();
+     }
+     
      $data['page']=$page;
      $dao = new DAO();
 
@@ -95,4 +99,10 @@ require_once("../model/DAO.class.php");
      $data['message'] = $message;
      return $data;
    }
+
+  function human_filesize($bytes, $decimals = 2) {
+    $sz = 'BKMGTP';
+    $factor = floor((strlen($bytes) - 1) / 3);
+    return sprintf("%.{$decimals}f", $bytes / pow(1024, $factor)) . @$sz[$factor];
+  }
 ?>

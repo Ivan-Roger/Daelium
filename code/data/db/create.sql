@@ -111,14 +111,10 @@ CREATE TABLE Groupe (
   FOREIGN KEY (adresse) references Lieu(idLieu)
 );
 
-CREATE TABLE Document (
-  idDoc           SERIAL PRIMARY KEY,
-  idUtilisateur   BIGINT,
-  nom             VARCHAR(255) NOT NULL,
-  dateCreation    DATE,
-  datemodif       DATE,
-  emplacement     varchar(255),
-  FOREIGN KEY (idUtilisateur) references Utilisateur(idUtilisateur)
+CREATE TABLE Acces_Document (
+  token         VARCHAR(30) PRIMARY KEY NOT NULL,
+  document      TEXT NOT NULL,
+  expire        DATE,
 );
 
 CREATE TABLE Evenement (

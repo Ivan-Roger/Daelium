@@ -1,3 +1,14 @@
 div.panel-body.no-padding {
   padding: 0px;
 }
+
+.loader {
+   height: 2px;
+   width: 0%;
+   background-color: #29F;
+   overflow: hidden;
+}
+
+.loader.done {
+  width: 100%;
+}

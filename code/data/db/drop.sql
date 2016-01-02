@@ -15,7 +15,7 @@ DROP TABLE Groupe_Artiste;
 DROP TABLE Creneau;
 DROP TABLE Contact_Evenement;
 DROP TABLE Evenement;
-DROP TABLE Document;
+DROP TABLE Acces_Documents;
 DROP TABLE Groupe;
 DROP TABLE Manifestation;
 DROP TABLE Contact_exterieur;
