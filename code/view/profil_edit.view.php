@@ -69,11 +69,11 @@
                   </div>
                   <label class="control-label col-sm-2" for="region">Region :</label>
                   <div class="col-sm-4">
-                    <input type="text" id="region" name="region"  class="form-control" value="<?= $data['pays']?>" />
+                    <input type="text" id="region" name="region"  class="form-control" value="<?= $data['region']?>" />
                   </div>
                   <label class="control-label col-sm-2" for="pays">Pays * :</label>
                   <div class="col-sm-4">
-                    <input type="text" id="pays" name="pays" required="required" class="form-control"  value="<?= $data['region']?>"/>
+                    <input type="text" id="pays" name="pays" required="required" class="form-control"  value="<?= $data['pays']?>"/>
                   </div>
                   <label class="control-label col-sm-2" for="latitude">Latitude :</label>
                   <div class="col-sm-4">
