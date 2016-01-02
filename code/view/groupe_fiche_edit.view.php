@@ -7,6 +7,7 @@
 <head>
   <?php include("../view/include/includes.view.php"); ?>
   <link rel="stylesheet" href="../data/css/artiste_fiche.css">
+  <script src="../ckeditor/ckeditor.js"></script>
   <title>Dælium - Artiste - <?= $data['groupe']['nom']?> - Edition</title>
 </head>
 <body>
@@ -247,7 +248,12 @@
           <div class="panel panel-default">
             <div class="panel-heading">Contenu de la page</div>
             <div class="panel-body">
-              <textarea rows="4" cols="175%"> </textarea>
+              <textarea rows="4" name="editor1" id="editor1" cols="175%"> </textarea>
+              <script>
+                // Replace the <textarea id="editor1"> with a CKEditor
+                // instance, using default configuration.
+                CKEDITOR.replace( 'editor1' );
+            </script>
             </div>
           </div>
         </div>

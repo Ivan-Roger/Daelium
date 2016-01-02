@@ -38,14 +38,14 @@
               <!--<img src="../data/img/fotolia_musique.jpg" style="position: relative; bottom: 500px;"/>-->
               <div class="carousel-caption">
                 <h1>Bienvenue sur <b>Dælium</b></h1>
-                <p>Bienvenue sur le site de gestion musical. Oui je vais mettre la barre en haut !</p>
+                <p>Bienvenue sur le site de gestion musical !</p>
               </div>
             </div>
             <div class="slide-full item">
               <!--<img src="../data/img/fotolia_musique.jpg" style="position: relative; bottom: 500px;"/>-->
               <div class="carousel-caption">
-                <h1>Another example headline.</h1>
-                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                <h1>Bienvenue sur <b>Dælium</b></h1>
+                <p>Vous êtes à la recherche d'un outil performant pour gérer vos artistes ? Ou vous souhaitez organiser un évènement particulier ? Alors rejoignez notre site ! C'est rapide, et gratuit !</p>
                 <p><a id="sliderButton" class="btn btn-lg btn-primary" href="#navbar" role="button">Je veux en savoir plus !</a></p>
               </div>
             </div>
@@ -72,7 +72,7 @@
     <div class="container marketing">
       <div class="row">
         <blockquote>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rhoncus vulputate tellus, eget ornare nibh eleifend sed. Etiam efficitur nisi sit amet laoreet efficitur. Maecenas sit amet scelerisque erat, sit amet facilisis erat. Praesent facilisis, elit sed posuere faucibus, risus eros pulvinar ex, nec ornare sapien enim id nulla. Aliquam at lacinia quam. Fusce laoreet ultricies enim, eu elementum nunc venenatis non. Aenean molestie enim nec dui consequat interdum. Morbi ipsum nisl, bibendum non eros in, gravida hendrerit purus. Donec orci risus, consequat at nisl eu, maximus ullamcorper erat. Nam in libero diam. Quisque et molestie sem, non tempor turpis. Aliquam erat volutpat.
+        Dælium est un outil intuitif et performant pour vous aider à gérer vos artistes, il vous permettra de prendre du recul sur leurs statuts et les aideras à accéder au monde du spectacle ! Il intègre des fonctionnalités d'agenda, une messagerie interne et permet une meilleure communication entre booker et organisateur.
         </blockquote>
       </div>
       <div class="row">
@@ -81,38 +81,38 @@
             <div class="img-circle"><span class="icon-img icon-gift"></span></div>
           </a>
           <h2>Gratuit</h2>
-          <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+          <p>L'inscription à Dælium est entièrement gratuite, de même que son utilisation. Aucun paiement ne vous sera demandé en contrepartie de l'utilisation que vous ferez du site.</p>
+          <p><a class="btn btn-default" href="#" role="button">Voir les détails &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4 text-center">
           <a href="#">
             <div class="img-circle"><span class="icon-img icon-tools2"></span></div>
           </a>
           <h2>Innovant</h2>
-          <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+          <p>Dælium est un outil innovant et utilise les technologies les plus adéquates pour permettre une meilleure gestion de vos besoins.</p>
+          <p><a class="btn btn-default" href="#" role="button">Voir les détails &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4 text-center">
           <a href="#">
             <div class="img-circle"><span class="icon-img icon-adjustments"></span></div>
           </a>
           <h2>Adaptable</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+          <p>Dælium s'adaptera à tout vos besoins. L'outil ci-présent à été pensé pour être paramétrable sur la plupart des fonctionnalités proposées. De plus il s'adaptera à tout type de plateforme (tablette, smartphone...) et sur la majorité des navigateurs web.</p>
           <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
       </div><!-- /.row -->
       <div id="troops" class="row">
         <div id="troop_1" class="col-lg-4 text-center" style="display: none;">
           <h2 class="text-left">En marche</h2>
-          <p>Le cébébre groupe En marche fait parti de notre projet, alors vous aussi rejoignez la communauté. Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod.</p>
+          <p>Le célèbre groupe "En marche" fait parti de notre site, alors vous aussi, rejoignez Dælium !</p>
         </div><!-- /.col-lg-4 -->
         <div id="troop_2" class="col-lg-4 text-center" style="display: none;">
           <h2 class="text-left">Batoucada</h2>
-          <p>La Batoucada soutient notre site. Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+          <p>La "Batoucada" soutient notre site. Elle fais partie de la grande communauté qui s'aggrandie de jour en jour. Venez apporter votre contribution à celle-ci en y adhérant !</p>
         </div><!-- /.col-lg-4 -->
         <div id="troop_3" class="col-lg-4 text-center" style="display: none;">
           <h2 class="text-left">Berlondon</h2>
-          <p>Le groupe Berlino-Londonnien est membre de Dælium depuis déjà 5 ans. Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod.</p>
+          <p>Le groupe "Berlino-Londonnien" est inscrit sur Dælium depuis sa création. Faites comme eux, incrivez-vous, ajoutez vos artistes ou vos évènements et envoyez les sur le devant de la scène !</p>
         </div><!-- /.col-lg-4 -->
       </div><!-- /.row -->
       <div id="counters" class="row">
@@ -150,15 +150,17 @@
       <div class="row">
         <div class="col-lg-8">
           <h2>Rejoindre Dælium</h2>
-          <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rhoncus vulputate tellus, eget ornare nibh eleifend sed. Etiam efficitur nisi sit amet laoreet efficitur. Maecenas sit amet scelerisque erat, sit amet facilisis erat. Praesent facilisis, elit sed posuere faucibus, risus eros pulvinar ex, nec ornare sapien enim id nulla.</p>
-          <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
+          <p>Vous voulez nous rejoindre ?</p>
+          <p>Vous souhaitez ajouter vos artistes pour qu'ils rejoingent notre grande communauté ?</p>
+          <p>Vous voulez organiser un festival et vous ne trouvez pas d'artistes ?  </p>
+          <p>Alors, retournez en haut de la page et cliquez sur "S'inscrire" ! Rapide et gratuit !</p>
           <p class="text-right"><a class="btn btn-default btn-lg" href="#" role="button">Inscription &raquo;</a><br/><a style="font-size: 10px;" href="#" role="button">Connexion &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
           <h2>Contact</h2>
-          <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rhoncus vulputate tellus, eget ornare nibh eleifend sed. Etiam efficitur nisi sit amet laoreet efficitur. Maecenas sit amet scelerisque erat, sit amet facilisis erat. Praesent facilisis, elit sed posuere faucibus, risus eros pulvinar ex, nec ornare sapien enim id nulla.</p>
+          <p>Des questions sur le fonctionnement du site ? Vous rencontrez des problèmes durant votre utilisation ?</p>
+         <p>Des suggestions à faire pour nous améliorer ? Des critiques ? Envoyez-nous un mail à cette adresse : </p>
+          <p>contact@daelium.fr</p>
           <p><a class="btn btn-default" href="#" role="button">Nous contacter &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
       </div><!-- /.row -->
