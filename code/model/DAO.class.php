@@ -263,6 +263,7 @@ class DAO {
       // retourne le premier resultat s'il existe, sinon null
    }
    function readUtilisateurByEmail($email) {
+
          $sql = "SELECT * FROM Utilisateur WHERE emailCompte = ?"; // requête
          $req = $this->db->prepare($sql);
          $params = array( // paramétres
@@ -273,9 +274,15 @@ class DAO {
             echo("Error: ".$this->db->errorInfo()[2]."<br/>\n");
             die("readUserByEmail : Requête impossible !"); // erreur dans la requête
          }
-         $res = $req->fetchAll(PDO::FETCH_CLASS,"Utilisateur");
-         return (isset($res[0])?$res[0]:null); // retourne le premier resultat s'il existe, sinon null
-      }
+         $res = $req->fetchAll(PDO::FETCH_ASSOC);
+         $pers = $this->readPersonneByIdNoClass($res[0]["idutilisateur"]);
+            if(isset($res[0]) && isset( $pers)){
+              $Utilisateur = new Utilisateur($pers["idpersonne"],$pers["type"],$pers["nom"], $pers["prenom"], $pers["emailcontact"], $pers["tel"], $pers["adresse"],$res[0]["emailcompte"],$res[0]["mdp"],$res[0]["googletoken"]);
+              return $Utilisateur;
+           }else{
+              return NULL;
+          }
+          }
 
    private function createUtilisateur($utilisateur) { // peut etre mettre une personne en paramettre
       $u = $this->readUtilisateurById($utilisateur->getIdPersonne());
