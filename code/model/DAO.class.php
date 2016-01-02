@@ -3083,13 +3083,10 @@ class DAO {
       function updateNotification($notification){
         $n = $this->readNotificationById($notification->getIdNotification());
         if ($n != null) {
-           $sql = "UPDATE Notification set (etat,destinataire,type,Message) = (?,?,?,?) where idnotif=?";
+           $sql = "UPDATE Notification set etat = ? where idnotif=?";
            $req = $this->db->prepare($sql);
            $params = array(
               $notification->getEtat(),
-              $notification->getDestinataire(),
-              $notification->getType(),
-              $notification->getMessage(),
               $notification->getIdNotification()
            );
            $res = $req->execute($params);
@@ -3112,7 +3109,6 @@ class DAO {
               $notification->getType(),
               $notification->getMessage()
            );
-
            $res = $req->execute($params);
            if ($res === FALSE) {
               die("createNotification : Requête impossible !");

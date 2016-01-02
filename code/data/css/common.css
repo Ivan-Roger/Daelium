@@ -71,6 +71,10 @@ header nav form.navbar-form a.collapsed {
   display: inline-block;
 }
 
+nav #notifs .notifs-menu ul {
+  padding: 0px;
+}
+
 nav #notifs .notifs-menu .notif-item {
    display: block;
    color: #333;
