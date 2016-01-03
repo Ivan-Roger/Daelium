@@ -14,7 +14,11 @@ if(isset($_GET["action"]) && $_GET["action"] == "edit" && isset($_GET["id"])){
 $idevt = $_GET['id'];
 $evt = $dao->readManifestationById($idevt);
 if($idevt != NULL){
-  $present = $user->possedeManif($idevt);
+  if($user != NULL){
+    $present = $user->possedeManif($idevt);
+  }else {
+    $present = false;
+  }
   if($present){
       $data['evenement']['id']=$_GET['id'];
       $data['evenement']['nom'] = $evt->getNom();
@@ -43,7 +47,11 @@ if($idevt != NULL){
 $idevt = $_POST['idmanif'];
 $evt = $dao->readManifestationById($idevt);
 if($evt != NULL){
-  $present = $user->possedeManif($idevt);
+  if($user != NULL){
+    $present = $user->possedeManif($idevt);
+  }else {
+    $present = false;
+  }
   if($present){
         $evt->setFacebook($_POST["face"]);
         $evt->setGoogle($_POST["gg"]);
@@ -77,6 +85,12 @@ if($evt != NULL){
   if($evt != NULL){
     $idcreateur = $evt->getCreateur();
     $organisateur = $dao->readOrganisateurById($idcreateur);
+
+    if($user != NULL){
+      $data["isOrga"] = $user->possedeManif($idevt);
+    }else {
+      $data["isOrga"] = false;
+    }
 
     $data['evenement']['idorganisateur'] = $idcreateur;
     $data['evenement']['organisateur'] = $organisateur->getPrenom()." ".$organisateur->getNom();

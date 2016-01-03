@@ -16,9 +16,11 @@ header("Location:"."../");
     <div class="groupInfo col-lg-10 col-lg-offset-1">
       <div class="groupPic col-sm-1 text-right"><img src="../data/img/icons/Group_64px.png" alt="Image de Profil"></div>
       <h3 class="col-sm-9"><?= $data['groupe']['nom'] ?></h3>
-      <div class="controls col-sm-2 text-right">
-        <a class="btn btn-primary" href="../controler/groupe_fiche.ctrl.php?id=<?= $data['groupe']['id'] ?>&action=edit">Editer</a>
-      </div>
+      <?php if ($data['isbooker']): ?>
+        <div class="controls col-sm-2 text-right">
+          <a class="btn btn-primary" href="../controler/groupe_fiche.ctrl.php?id=<?= $data['groupe']['id'] ?>&action=edit">Editer</a>
+        </div>
+      <?php endif; ?>
     </div>
   </div>
   <section class="col-lg-10 col-lg-offset-1">

@@ -7,7 +7,7 @@ header("Location:"."../");
 <head>
   <?php include("../view/include/includes.view.php"); ?>
   <link rel="stylesheet" href="../data/css/groupe.css">
-  <title>Dælium - Evenement - <?= $data['evenement']['nom'] ?></title>
+  <title>Dælium - Manifestation - <?= $data['evenement']['nom'] ?></title>
 </head>
 <body>
   <?php include("../view/include/header.view.php"); ?>
@@ -16,9 +16,12 @@ header("Location:"."../");
     <div class="groupInfo col-lg-10 col-lg-offset-1">
       <div class="groupPic col-sm-1 text-right"><img src="<?= $data['evenement']['img']  ?>" alt="Image de Profil"></div>
       <h3 class="col-sm-9"><?= $data['evenement']['nom'] ?> (<?= $data['evenement']['type'] ?>)</h3>
-      <div class="controls col-sm-2 text-right">
-        <a class="btn btn-primary" href="../controler/evenement_fiche.ctrl.php?id=<?= $data['evenement']['id'] ?>&action=edit">Editer</a>
-      </div>
+      <?php if ($data["isOrga"]): ?>
+        <div class="controls col-sm-2 text-right">
+          <a class="btn btn-primary" href="../controler/evenement_fiche.ctrl.php?id=<?= $data['evenement']['id'] ?>&action=edit">Editer</a>
+        </div>
+      <?php endif; ?>
+
     </div>
   </div>
   <section class="col-lg-10 col-lg-offset-1">

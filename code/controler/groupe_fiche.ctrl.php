@@ -12,7 +12,11 @@ if(isset($_GET["action"]) && $_GET["action"] == "edit" && isset($_GET["id"])){
   $idgroupe = $_GET['id'];
   $groupe = $dao->readGroupeById($idgroupe);
   if($groupe != NULL){
-    $present = $user->possedeGroupe($idgroupe);
+    if($user != NULL){
+      $present = $user->possedeGroupe($idgroupe);
+    }else {
+      $present = false;
+    }
     if($present){
         $data['groupe']['id']=$_GET['id'];
         $data['groupe']['nom'] = $groupe->getNom();
@@ -42,7 +46,11 @@ if(isset($_GET["action"]) && $_GET["action"] == "edit" && isset($_GET["id"])){
   $idgroupe = $_POST['idgroupe'];
   $groupe = $dao->readGroupeById($idgroupe);
   if($groupe != NULL){
-    $present = $user->possedeGroupe($idgroupe);
+    if($user != NULL){
+      $present = $user->possedeGroupe($idgroupe);
+    }else {
+      $present = false;
+    }
     if($present){
           $groupe->setFacebook($_POST["face"]);
           $groupe->setGoogle($_POST["gg"]);
@@ -84,6 +92,12 @@ if(isset($_GET["action"]) && $_GET["action"] == "edit" && isset($_GET["id"])){
           $art[$i]['description'] = $artiste->getDescription();
         }
         $i++;
+      }
+
+      if($user != NULL){
+        $data['isbooker'] = $user->possedeGroupe($idgroupe);
+      }else {
+        $data['isbooker'] = false;
       }
 
       $data['artistes']= $art;
