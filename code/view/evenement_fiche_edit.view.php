@@ -1,131 +1,161 @@
 <?php
-if (!isset($data))
-header("Location:"."../");
+   if (!isset($data))
+      header("Location:"."../");
 ?>
 <!DOCTYPE html>
 <html>
 <head>
   <?php include("../view/include/includes.view.php"); ?>
-  <link rel="stylesheet" href="../data/css/groupe.css">
-  <title>Dælium - Evenement - <?= $data['evenement']['nom'] ?></title>
+  <link rel="stylesheet" href="../data/css/artiste_fiche.css">
+  <script src="../ckeditor/ckeditor.js"></script>
+  <title>Dælium - Manifestation - <?= $data['groupe']['nom']?> - Edition</title>
 </head>
 <body>
+  <!-- Cette page est acessible par tout les Organisateur et Non inscrit , Cependant le booker a possibiliter de modifier la page -->
   <?php include("../view/include/header.view.php"); ?>
-  <div class="heading full">
-    <img class="wall-pic" src="https://cdn2.artstation.com/p/assets/images/images/001/023/866/large/samma-van-klaarbergen-patrick-watson2.jpg?1438415706"/>
-    <div class="groupInfo col-lg-10 col-lg-offset-1">
-      <div class="groupPic col-sm-1 text-right"><img src="<?= $data['evenement']['img']  ?>" alt="Image de Profil"></div>
-      <h3 class="col-sm-9"><?= $data['evenement']['nom'] ?> (<?= $data['evenement']['type'] ?>)</h3>
-      <div class="controls col-sm-2 text-right">
-        <a class="btn btn-primary" href="../controler/evenement.ctrl.php?id=<?= $data['evenement']['id'] ?>&action=edit">Editer</a>
-      </div>
-    </div>
-  </div>
-  <section class="col-lg-10 col-lg-offset-1">
-    <article class="col-lg-6 infoProfile">
+  <section class="col-lg-offset-1 col-lg-10">
+    <!--
+    Si Affichage de la fiche.
 
-      <!-- Info -->
-      <div class="well">
-        <h4>Informations générales :</h4>
-        <div class="row">
-          <span class="col-sm-4 text-right">Organisateur</span><b class="col-sm-8 text-left" id="mailAccount"> <?= $data['evenement']['organisateur'] ?> <a class="btn btn-primary" href="../controler/profil.ctrl.php?id=<?= $data['evenement']['idorganisateur']?>">Voir Profil</a></b>
-        </div>
-        <div class="row">
-          <span class="col-sm-4 text-right">Lieu</span><b class="col-sm-8 text-left" id="mailAccount"><?= $data['evenement']['lieu']['adresse'] ?> <?php if($data['evenement']['lieu']['googlemaps'] != NULL){ ?><a href="<?=  $data['evenement']['lieu']['googlemaps'] ?>" target="_blank">
-            (Voir sur google maps)
-          </a><?php }?></b>
-        </div>
-        <div class="row">
-          <span class="col-sm-4 text-right">Date de début</span><b class="col-sm-8 text-left" id="mailAccount"> <?= $data['evenement']['dated'] ?></b>
-        </div>
-        <div class="row">
-          <span class="col-sm-4 text-right">Date de fin</span><b class="col-sm-8 text-left" id="mailAccount"><?= $data['evenement']['datef'] ?></b>
-        </div>
-      </div>
-      <!-- Fin Info -->
+    Libre:
+    Photo du groupe
+    Biographie
+    Album / EP / Titre Populaire , Explication
+    Line Up (Video, clip)
+
+    Fixe:
+    - Photo du groupe (plus petite)
+
+    - Player Audio
+    - Reseaux sociaux
+    - Concert passer et à venir
+    (si organisateur sur site -> fiche technique)
 
 
-
-
-      </article>
-      <article class="col-lg-6">
-
-        <!-- Reseaux sociaux -->
-        <div class="well">
-          <h4>Reseaux sociaux :</h4>
-          <?= $data['evenement']["rs"] ?>
-          <?php if($data['evenement']["facebook"] != NULL){ ?>
-            <a href="<?= $data['evenement']["facebook"]  ?>">Facebook : <img src="../data/img/icons/facebook.jpg" height="50" width="50"  alt="facebook"/></a>
-            <?php } if($data['evenement']["google"] != NULL){ ?>
-              <a href="<?= $data['evenement']["google"]  ?>">Google + : <img src="../data/img/icons/google+.jpeg" height="50" width="50" alt="Google +"/></a>
-              <?php } if($data['evenement']["twitter"] != NULL){ ?>
-                <a href="<?= $data['evenement']["twitter"]  ?>">Twitter : <img src="../data/img/icons/twitter.jpg" height="50" width="50" alt="Twitter"/></a>
-                <?php } ?>
-                <p></p>
-              </div>
-              <!-- FIN Reseaux sociaux -->
-
-              <!-- Progarmation -->
-              <div class="col-lg-12 well">
-                <h4>Programation : </h4>
-                <div class="panel-group" id="accordion" role="tablist">
-                  <?php foreach($data['passages'] as $key => $pas) { ?>
-                    <div class="panel panel-default">
-                      <div class="panel-heading" role="tab" id="headingPassage<?= $key ?>">
-                        <h4 class="panel-title">
-                          <a  class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapsePassage<?= $key ?>" aria-expanded="false" aria-controls="collapsePassage<?= $key ?>">
-                            <?= $pas['date'] ?> - <?= $pas['groupe']['nom'] ?>
-                          </a>
-                        </h4>
-                      </div>
-                      <div id="collapsePassage<?= $key ?>" class="panel-collapse collapse" aria-expanded="false" role="tabpanel" aria-labelledby="headingArtist<?= $key ?>">
-                        <div class="panel-body">
-                          <a class="btn btn-primary" href="../controler/groupe_fiche.ctr.php?id=<?= $pas['groupe']['id']?>">Voir Fiche</a></br>
-                          <?= $pas['groupe']['description'] ?>
-                        </div>
-                      </div>
-                    </div>
-                    <?php } ?>
-                  </div>
+    Si Modif de la fiche.
+    Choix du player, reseaux, Concert passer et a venir et fiche technique (oui /non)
+    position du module en haut, en bas.
+    -->
+      <form class="form-horizontal" role="form" method="post" action="../controler/evenement_fiche.ctrl.php?action=edit">
+          <h2>Fiche de "<?= $data["evenement"]['nom']?>"</h2>
+        <article class="col-lg-offset-2 col-lg-10">
+          <div class="navbar navbar-right">
+            <a class ="btn btn-default" href="../controler/evenement_fiche.ctrl.php?id=<?= $data['evenement']['id']?>"> Retour </a>
+            <input class ="btn btn-warning" type="reset" name="nom" value="Annuler">
+            <input class ="btn btn-primary" type="submit" name="nom" value="Enregistrer">
+          </div>
+        </article>
+        <div class="col-lg-4">
+          <div class="panel panel-default">
+            <div class="panel-heading">Elements</div>
+            <div class="panel-body">
+              <div class="form-group">
+                <label class="control-label col-sm-8" for="rs">Panneau Reseaux sociaux :</label>
+                <div class="col-sm-4 btn-group" data-toggle="buttons" id="fonction">
+                  <label class="btn btn-default active">
+                    <input type="radio" name="rsa" id="option1" value="on" checked > Actif
+                  </label>
+                  <label class="btn btn-default">
+                    <input type="radio" name="rsa" id="option2" value="off" > Inactif
+                  </label>
                 </div>
-                <!-- FIN Progarmation -->
+              </div>
+              <hr>
+              <div class="form-group">
+                <label class="control-label col-sm-8" for="lart">Liste Artistes :</label>
+                  <div class="col-sm-4 btn-group" data-toggle="buttons" id="fonction">
+                    <label class="btn btn-default active">
+                      <input type="radio" name="lart" id="option1" value="on" checked > Actif
+                    </label>
+                    <label class="btn btn-default">
+                      <input type="radio" name="lart" id="option2" value="off" > Inactif
+                    </label>
+                  </div>
+              </div>
+              <hr>
+              <div class="form-group">
+                <label class="control-label col-sm-8" for="conc">Panneau Concert passé/futur :</label>
+                <div class="col-sm-4 btn-group" data-toggle="buttons" id="fonction">
+                  <label class="btn btn-default active">
+                    <input type="radio" name="conc" id="option1" value="on" checked > Actif
+                  </label>
+                  <label class="btn btn-default ">
+                    <input type="radio" name="conc" id="option2" value="off" > Inactif
+                  </label>
+                </div>
 
-                <!-- Media  -->
-                <?php if (isset($data['medias'][0])) { ?>
-                  <div class="col-lg-12 well" id="medias">
-                    <h4>Medias : </h4>
-                    <p>Habens perpendiculum exaedificavit Octaviani sibi Herodes Ascalonem abundans quam ad egregias Caesaream Herodes cedentem aemulas: honorem est vicissim Gazam magna.</p>
-                    <div class="frames">
-                      <div id="frameList" class="col-xs-3">
-                        <ul class="nav nav-pills nav-stacked">
-                          <?php foreach($data['medias'] as $key => $medias) { ?>
-                            <li <?php echo($key==0?"class='active'":"");?>><a class="btn btn-default" data-url="<?= $lineUp['url'] ?>"><?= $medias['nom'] ?></a></li>
-                            <?php } ?>
-                          </ul>
-                        </div>
-                        <div class="col-md-9" style="width: 420px; height: 215px;">
-                          <iframe id="frameContent" width="100%" height="100%" src="<?= $data['lineUp'][0]['url'] ?>" frameborder="0" allowfullscreen></iframe>
-                        </div>
-                      </div>
-                    </div>
-                    <?php } ?>
-                    <!-- Fin Media  -->
+              </div>
+            </div>
+          </div>
+        </div>
 
-                  </article>
-                  <article class="col-lg-12">
-                    <!-- Fiche Com -->
-                    <div class="well">
-                      <h4>Presentation :</h4>
-                      <p>Dumque ibi diu moratur commeatus opperiens, quorum translationem ex Aquitania verni imbres solito crebriores prohibebant auctique torrentes, Herculanus advenit protector domesticus, Hermogenis ex magistro equitum filius, apud Constantinopolim, ut supra rettulimus, populari quondam turbela discerpti. quo verissime referente quae Gallus egerat, damnis super praeteritis maerens et futurorum timore suspensus angorem animi quam diu potuit emendabat.<br/>
-                        Hinc ille commotus ut iniusta perferens et indigna praefecti custodiam protectoribus mandaverat fidis. quo conperto Montius tunc quaestor acer quidem sed ad lenitatem propensior, consulens in commune advocatos palatinarum primos scholarum adlocutus est mollius docens nec decere haec fieri nec prodesse addensque vocis obiurgatorio sonu quod si id placeret, post statuas Constantii deiectas super adimenda vita praefecto conveniet securius cogitari.<br/>
-                        Quam ob rem cave Catoni anteponas ne istum quidem ipsum, quem Apollo, ut ais, sapientissimum iudicavit; huius enim facta, illius dicta laudantur. De me autem, ut iam cum utroque vestrum loquar, sic habetote.<br/>
-                        Metuentes igitur idem latrones Lycaoniam magna parte campestrem cum se inpares nostris fore congressione stataria documentis frequentibus scirent, tramitibus deviis petivere Pamphyliam diu quidem intactam sed timore populationum et caedium, milite per omnia diffuso propinqua, magnis undique praesidiis conmunitam.<br/>
-                        Postremo ad id indignitatis est ventum, ut cum peregrini ob formidatam haut ita dudum alimentorum inopiam pellerentur ab urbe praecipites, sectatoribus disciplinarum liberalium inpendio paucis sine respiratione ulla extrusis, tenerentur minimarum adseclae veri, quique id simularunt ad tempus, et tria milia saltatricum ne interpellata quidem cum choris totidemque remanerent magistris.</p>
-                      </div>
-                      <!-- FIN Fiche Com -->
-                  </article>
-                </section>
-                <?php include("../view/include/footer.view.php"); ?>
-                <script src="../data/js/groupe.js"></script>
-              </body>
-              </html>
+
+
+        <div class="col-lg-8">
+          <div class="panel panel-default">
+            <div class="panel-heading">Reseaux sociaux</div>
+            <div class="panel-body">
+              <div class="form-group">
+                <label class="control-label col-sm-2" for="face">Facebook :</label>
+                <div class="col-sm-10">
+                  <input type="text" id="face" name="face" class="form-control" value="<?= $data['evenement']['facebook'] ?>" />
+                </div>
+              </div> <!-- /form-group -->
+
+              <div class="form-group">
+                <label class="control-label col-sm-2" for="twt">Twitter :</label>
+                <div class="col-sm-10">
+                  <input type="text" id="face" name="twt" class="form-control" value="<?= $data['evenement']['twitter'] ?>" />
+                </div>
+              </div> <!-- /form-group -->
+
+              <div class="form-group">
+                <label class="control-label col-sm-2" for="gg">Google+ :</label>
+                <div class="col-sm-10">
+                  <input type="text" id="gg" name="gg" class="form-control" value="<?= $data['evenement']['google'] ?>" />
+                </div>
+              </div> <!-- /form-group -->
+
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">Image de couverture</div>
+            <div class="panel-body">
+              <input type="file" name="fichier" value="<?= $data['evenement']['imageoff'] ?>">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">Contenu de la page</div>
+            <div class="panel-body">
+              <textarea rows="4" name="pagecom" id="editor1" cols="175%"> <?= $data['evenement']['fichecom'] ?> </textarea>
+              <script>
+                // Replace the <textarea id="editor1"> with a CKEditor
+                // instance, using default configuration.
+                CKEDITOR.replace( 'editor1' );
+            </script>
+            </div>
+          </div>
+        </div>
+        <input type="hidden" name="idmanif" value="<?= $data['evenement']['id'] ?>"/>
+
+      </form>
+    </section>
+    <?php include("../view/include/footer.view.php"); ?>
+    <div id="fb-root"></div>
+    <script>
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.5";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
+  </body>
+</html>

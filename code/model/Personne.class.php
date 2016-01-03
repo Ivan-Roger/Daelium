@@ -17,9 +17,9 @@ class Personne {
     if ($type != NULL) {
       $this->type = $type;
     }
-    if ($type == 0) {
-      $this->type = 0;  // Correction du bug du 0 = null....
-    }
+    // if ($type == 0) {
+    //   $this->type = 0;  // Correction du bug du 0 = null....
+    // }
     if ($nom != NULL) {
       $this->nom = $nom;
     }
