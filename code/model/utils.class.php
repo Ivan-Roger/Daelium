@@ -1,5 +1,5 @@
 <?php
-require_once("../model/DAO.class.php");
+  require_once("../model/DAO.class.php");
   /***************
    *    Utils    *
    ***************/
@@ -8,7 +8,7 @@ require_once("../model/DAO.class.php");
      if (isset($_GET['ajax'])) {
        return Array();
      }
-     
+
      $data['page']=$page;
      $dao = new DAO();
 
@@ -53,7 +53,7 @@ require_once("../model/DAO.class.php");
      for ($i=0; $i<$n; $i++) {
        $res[] = $chars[rand(0,count($chars)-1)];
      }
-     return $res;
+     return implode('',$res);
    }
 
    function calendar($timestamp=null) {
@@ -104,5 +104,24 @@ require_once("../model/DAO.class.php");
     $sz = 'BKMGTP';
     $factor = floor((strlen($bytes) - 1) / 3);
     return sprintf("%.{$decimals}f", $bytes / pow(1024, $factor)) . @$sz[$factor];
+  }
+
+  function recursive_remove($path, $inDB = false) {
+    if ($inDB) {$dao = new DAO();}
+    if (is_file($path)) { // Si c'est un fichier on le supprime
+      if ($inDB) {
+        try {$dao->deleteAccesDocumentByDoc($path);} catch (Exception $e) {}
+      }
+      return unlink($path);
+    } else if (is_dir($path)) { // Si c'est un dossier on supprime tout son contenu puis on le supprime
+      foreach (scandir($path) as $item) {
+        if ($item!="." && $item!="..") {
+          recursive_remove($path.'/'.$item,$inDB);
+        }
+      }
+      return rmdir($path);
+    } else { // Ni un fichier, ni un dossier, erreur !
+      return false;
+    }
   }
 ?>

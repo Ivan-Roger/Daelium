@@ -114,7 +114,7 @@ CREATE TABLE Groupe (
 CREATE TABLE Acces_Document (
   token         VARCHAR(30) PRIMARY KEY NOT NULL,
   document      TEXT NOT NULL,
-  expire        DATE,
+  expire        DATE
 );
 
 CREATE TABLE Evenement (

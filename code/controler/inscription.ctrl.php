@@ -7,7 +7,7 @@ $data = Array();
 
 if((isset($_POST['etape']) && $_POST['etape'] == 0)){ // Si on recoit le premier formulaire
 
-  if(!empty($_POST["mailcompte"]) && !empty($_POST["mailcompte"])){
+  if(!empty($_POST["mailcompte"])){
 
     $ok = $dao->readUtilisateurByEmail($_POST["mailcompte"]);
     if($ok == NULL){
@@ -48,8 +48,6 @@ if((isset($_POST['etape']) && $_POST['etape'] == 0)){ // Si on recoit le premier
 $info = $_SESSION["signup"];
 $noml = "Adresse de ".$info["nom"];
 
-
-
 $Adresse1= new Lieu(NULL,$noml,NULL,$info["pays"],$info["region"],$info["ville"],$info["codepostal"],$info["adresse"],NULL,NULL);
 $Adresse = $dao->createLieu($Adresse1);
 if(isset($Adresse)){
@@ -67,6 +65,11 @@ if(isset($Adresse)){
     $_SESSION["user"]["loginTime"]=date("");
     $_SESSION["user"]["ID"]=$user->getIdPersonne();
   }
+
+  // Création du dossier personnel et copie du fichier par défaut.
+  mkdir("../data/users/u".$user->getIdPersonne());
+  mkdir("../data/users/u".$user->getIdPersonne()."/files");
+  copy("../data/users/Bienvenue.txt","../data/users/u".$user->getIdPersonne()."/files/Bienvenue.txt");
 
   header("Location: ../controler/main.ctrl.php");
   }

@@ -1079,27 +1079,30 @@ class DAO {
         $sql = "INSERT INTO Acces_Document VALUES (?,?,?)";
         $req = $this->db->prepare($sql);
         $params = array(
-          $document,
           $token,
+          $document,
           $expire
         );
         $res = $req->execute($params);
-        if ($res === FALSE) {
-          die("createAccesDocument : Requête impossible !");
+        if ($res===FALSE) {
+          var_dump($this->db->errorInfo()[2]);
+          die("createAccesDocument : Requête impossible !"); // erreur dans la requête
         }
+          // A FAIRE (Attention aux perfs): Si le token est déjà utilisé on en recrée un ...
         return $token;
       }
 
       function deleteAccesDocument($token) {
-        $n = $this->db->readAccesDocumentByToken($token);
+        $n = $this->readAccesDocumentByToken($token);
         if ($n != null) {
-          $sql = "DELETE FROM Document WHERE token = ?";
+          $sql = "DELETE FROM Acces_Document WHERE token = ?";
           $req = $this->db->prepare($sql);
           $params = array(
             $token
           );
           $res = $req->execute($params);
           if ($res === FALSE) {
+            var_dump($this->db->errorInfo()[2]);
             die("deleteAccesDocument : Requête impossible !");
           }
           return true;
@@ -1109,15 +1112,16 @@ class DAO {
       }
 
       function deleteAccesDocumentByDoc($path) {
-        $n = $this->db->readAccesDocumentByPath($path);
+        $n = $this->readAccesDocumentByDoc($path);
         if ($n != null) {
-          $sql = "DELETE FROM Document WHERE document = ?";
+          $sql = "DELETE FROM Acces_Document WHERE document = ?";
           $req = $this->db->prepare($sql);
           $params = array(
             $path
           );
           $res = $req->execute($params);
           if ($res === FALSE) {
+            var_dump($this->db->errorInfo()[2]);
             die("deleteAccesDocumentByDoc : Requête impossible !");
           }
           return true;
