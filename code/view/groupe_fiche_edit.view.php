@@ -8,7 +8,7 @@
   <?php include("../view/include/includes.view.php"); ?>
   <link rel="stylesheet" href="../data/css/artiste_fiche.css">
   <script src="../ckeditor/ckeditor.js"></script>
-  <title>Dælium - Artiste - <?= $data['groupe']['nom']?> - Edition</title>
+  <title>Dælium - Groupe - <?= $data['groupe']['nom']?> - Edition</title>
 </head>
 <body>
   <!-- Cette page est acessible par tout les Organisateur et Non inscrit , Cependant le booker a possibiliter de modifier la page -->

@@ -17,7 +17,7 @@ header("Location:"."../");
       <div class="groupPic col-sm-1 text-right"><img src="<?= $data['evenement']['img']  ?>" alt="Image de Profil"></div>
       <h3 class="col-sm-9"><?= $data['evenement']['nom'] ?> (<?= $data['evenement']['type'] ?>)</h3>
       <div class="controls col-sm-2 text-right">
-        <a class="btn btn-primary" href="../controler/evenement.ctrl.php?id=<?= $data['evenement']['id'] ?>&action=edit">Editer</a>
+        <a class="btn btn-primary" href="../controler/evenement_fiche.ctrl.php?id=<?= $data['evenement']['id'] ?>&action=edit">Editer</a>
       </div>
     </div>
   </div>
@@ -116,11 +116,7 @@ header("Location:"."../");
                     <!-- Fiche Com -->
                     <div class="well">
                       <h4>Presentation :</h4>
-                      <p>Dumque ibi diu moratur commeatus opperiens, quorum translationem ex Aquitania verni imbres solito crebriores prohibebant auctique torrentes, Herculanus advenit protector domesticus, Hermogenis ex magistro equitum filius, apud Constantinopolim, ut supra rettulimus, populari quondam turbela discerpti. quo verissime referente quae Gallus egerat, damnis super praeteritis maerens et futurorum timore suspensus angorem animi quam diu potuit emendabat.<br/>
-                        Hinc ille commotus ut iniusta perferens et indigna praefecti custodiam protectoribus mandaverat fidis. quo conperto Montius tunc quaestor acer quidem sed ad lenitatem propensior, consulens in commune advocatos palatinarum primos scholarum adlocutus est mollius docens nec decere haec fieri nec prodesse addensque vocis obiurgatorio sonu quod si id placeret, post statuas Constantii deiectas super adimenda vita praefecto conveniet securius cogitari.<br/>
-                        Quam ob rem cave Catoni anteponas ne istum quidem ipsum, quem Apollo, ut ais, sapientissimum iudicavit; huius enim facta, illius dicta laudantur. De me autem, ut iam cum utroque vestrum loquar, sic habetote.<br/>
-                        Metuentes igitur idem latrones Lycaoniam magna parte campestrem cum se inpares nostris fore congressione stataria documentis frequentibus scirent, tramitibus deviis petivere Pamphyliam diu quidem intactam sed timore populationum et caedium, milite per omnia diffuso propinqua, magnis undique praesidiis conmunitam.<br/>
-                        Postremo ad id indignitatis est ventum, ut cum peregrini ob formidatam haut ita dudum alimentorum inopiam pellerentur ab urbe praecipites, sectatoribus disciplinarum liberalium inpendio paucis sine respiratione ulla extrusis, tenerentur minimarum adseclae veri, quique id simularunt ad tempus, et tria milia saltatricum ne interpellata quidem cum choris totidemque remanerent magistris.</p>
+                      <?=  $data['evenement']["fichecom"] ?>
                       </div>
                       <!-- FIN Fiche Com -->
                   </article>

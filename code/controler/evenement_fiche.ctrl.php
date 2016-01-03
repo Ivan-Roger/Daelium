@@ -8,7 +8,67 @@ $data = initPage("Events");
 $dao = new Dao();
 
 
-if (isset($_GET['id'])) { // Si il n'y a pas d'id alors -> message d'erreur
+$userid= $_SESSION["user"]["ID"];
+$user = $dao->readOrganisateurById($userid);
+if(isset($_GET["action"]) && $_GET["action"] == "edit" && isset($_GET["id"])){
+$idevt = $_GET['id'];
+$evt = $dao->readManifestationById($idevt);
+if($idevt != NULL){
+  $present = $user->possedeManif($idevt);
+  if($present){
+      $data['evenement']['id']=$_GET['id'];
+      $data['evenement']['nom'] = $evt->getNom();
+      $data['evenement']["facebook"] = $evt->getFacebook();
+      $data['evenement']["twitter"] = $evt->getTwitter();
+      $data['evenement']["google"] = $evt->getGoogle();
+      $data['evenement']["imageoff"] = $evt->getLienImageOfficiel();
+      $data['evenement']["fichecom"] = $evt->getFicheCom();
+        include("../view/evenement_fiche_edit.view.php");
+  }else {
+    $data['error']['title'] = "Acces Interdit";
+    $data['error']['message'] = "Vous ne pouvez pas venir ici, cet espace est reservé au booker du groupe.";
+    $data['error']['back'] = "../controler/main.ctrl.php";
+    include("../view/error.view.php");
+  }
+}else {
+  $data['error']['title'] = "Groupe Inconnu";
+  $data['error']['back'] = "../controler/groupes.ctrl.php";
+  $data['error']['message'] = "Vous vous etes perdu";
+  include("../view/error.view.php");
+}
+
+}else if(isset($_GET["action"]) && $_GET["action"] == "edit"  && isset($_POST["idmanif"])){
+
+
+$idevt = $_POST['idmanif'];
+$evt = $dao->readManifestationById($idevt);
+if($evt != NULL){
+  $present = $user->possedeManif($idevt);
+  if($present){
+        $evt->setFacebook($_POST["face"]);
+        $evt->setGoogle($_POST["gg"]);
+        $evt->setTwitter($_POST["twt"]);
+        $evt->setLienImageOfficiel($_POST["fichier"]);
+        $evt->setFicheCom($_POST["pagecom"]);
+
+        $dao->updateManifestation($evt);
+
+
+        header("Location: ../controler/evenement_fiche.ctrl.php?id=".$idevt."");
+
+  }else {
+    $data['error']['title'] = "Acces Interdit";
+    $data['error']['message'] = "Vous ne pouvez pas venir ici, cet espace est reservé au booker du groupe.";
+    $data['error']['back'] = "../controler/main.ctrl.php";
+    include("../view/error.view.php");
+  }
+}else {
+  $data['error']['title'] = "Groupe Inconnu";
+  $data['error']['back'] = "../controler/groupes.ctrl.php";
+  $data['error']['message'] = "Vous vous etes perdu";
+  include("../view/error.view.php");
+}
+}else if (isset($_GET['id'])) { // Si il n'y a pas d'id alors -> message d'erreur
 
   // Recupérer les données depuis la BD avec l'id ($_GET['id'])
   $evtid = $_GET['id'];
@@ -26,6 +86,7 @@ if (isset($_GET['id'])) { // Si il n'y a pas d'id alors -> message d'erreur
     $data['evenement']['tarif'] = $evt->getType();
     $data['evenement']['dated'] = $evt->getDateDebut();
     $data['evenement']['datef'] = $evt->getDateFin();
+    $data['evenement']["fichecom"] = $evt->getFicheCom();
     if(($idlieu = $evt->getLieu()) == NULL){
       $data['evenement']['lieu']['adresse'] = "Non indiquer";
       $data['evenement']['lieu']['googlemaps'] = NULL;

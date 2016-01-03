@@ -37,8 +37,6 @@ if(isset($_GET["action"]) && $_GET["action"] == "edit" && isset($_GET["id"])){
   }
 
 }else if(isset($_GET["action"]) && $_GET["action"] == "edit"  && isset($_POST["idgroupe"])){
-  $userid= $_SESSION["user"]["ID"];
-  $user = $dao->readBookerById($userid);
 
 
   $idgroupe = $_POST['idgroupe'];
