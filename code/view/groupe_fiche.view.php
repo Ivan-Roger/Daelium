@@ -21,6 +21,11 @@ header("Location:"."../");
           <a class="btn btn-primary" href="../controler/groupe_fiche.ctrl.php?id=<?= $data['groupe']['id'] ?>&action=edit">Editer</a>
         </div>
       <?php endif; ?>
+      <?php if ($data['canNego']): ?>
+        <div class="controls col-sm-2 text-right">
+          <a class="btn btn-primary" href="../controler/negociation_new.ctrl.php?idGroupe=<?= $data['groupe']['id'] ?>">Negocier</a>
+        </div>
+      <?php endif; ?>
     </div>
   </div>
   <section class="col-lg-10 col-lg-offset-1">

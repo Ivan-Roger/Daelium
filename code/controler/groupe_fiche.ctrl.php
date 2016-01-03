@@ -96,8 +96,10 @@ if(isset($_GET["action"]) && $_GET["action"] == "edit" && isset($_GET["id"])){
 
       if($user != NULL){
         $data['isbooker'] = $user->possedeGroupe($idgroupe);
+        $data["canNego"] = false;
       }else {
         $data['isbooker'] = false;
+        $data["canNego"] = true;
       }
 
       $data['artistes']= $art;

@@ -21,6 +21,11 @@ header("Location:"."../");
           <a class="btn btn-primary" href="../controler/evenement_fiche.ctrl.php?id=<?= $data['evenement']['id'] ?>&action=edit">Editer</a>
         </div>
       <?php endif; ?>
+      <?php if ($data["canNego"]): ?>
+        <div class="controls col-sm-2 text-right">
+          <a class="btn btn-primary" href="../controler/negociation_new.ctrl.php?idManifestation=<?= $data['evenement']['id'] ?>">Negocier</a>
+        </div>
+      <?php endif; ?>
 
     </div>
   </div>

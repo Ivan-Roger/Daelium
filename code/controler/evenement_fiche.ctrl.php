@@ -88,8 +88,10 @@ if($evt != NULL){
 
     if($user != NULL){
       $data["isOrga"] = $user->possedeManif($idevt);
+      $data["canNego"] = false;
     }else {
       $data["isOrga"] = false;
+      $data["canNego"] = true;
     }
 
     $data['evenement']['idorganisateur'] = $idcreateur;
