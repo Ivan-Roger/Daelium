@@ -23,7 +23,7 @@ require_once('../model/DAO.class.php');
       if($this->listeManif == NULL){
         $this->listeManif = $dao->readIdManifestationByCreateur($this->getIdPersonne());
       }
-      return $this->listgroupes;
+      return $this->listeManif;
     }
   }
 ?>
