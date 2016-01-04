@@ -56,6 +56,13 @@ if($user != NULL){ // SI c'est un organisateur
           }
           $genre = $_POST["genre"];
           $genres = explode(",",$genre);
+          $dao->deleteManifestationGenreByIdManif($idManif);
+          foreach ($genres as $key => $value) {
+            $dao->createManifestationGenre($idManif,$value);
+          }
+
+
+
           $dated = $_POST["dated"];
           $datef = $_POST["datef"];
           $des = $_POST["des"];
@@ -128,10 +135,13 @@ if($user != NULL){ // SI c'est un organisateur
           $data['evenement']['datef'] = $evt->getDateFin();
           $data['evenement']['type'] = $evt->getType();
           $genre = $dao->readManifestationGenreByidManif($evtid);
-          $data['evenement']['genre'] = "";
           if($genre != NULL){
             foreach ($genre as $key => $value) {
-              $data['evenement']['genre'] = $data['evenement']['genre']." ".$value['nomg'];
+              if(!empty($data['evenement']['genre'])){
+                $data['evenement']['genre'] = $data['evenement']['genre'].",".$value['nomg'];
+              }else {
+                $data['evenement']['genre'] = $value['nomg'];
+              }
             }
           }else {
             $data['evenement']['genre'] = "";
