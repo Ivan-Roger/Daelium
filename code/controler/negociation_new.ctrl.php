@@ -24,7 +24,6 @@
         $nommanif = $manif->getNom();
         $idNegociation = $negociation2->getIdNegociation();
         $notification = new Notification(NULL,0,$organisateur,2,$nomuser." souhaite que son groupe ".$nomgroupe." participe à votre Manifestation : ".$nommanif.".  <a href='../controler/negociation.ctrl.php?id=".$idNegociation."' > Voir </a>");
-        var_dump($notification);
 
         $dao->createNotification($notification);
         header("Location: ../controler/negociation.ctrl.php?id=$idNegociation");

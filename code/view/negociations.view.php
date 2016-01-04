@@ -38,7 +38,6 @@
                   <td>
                     <div class="btn-group" role="group" aria-label="...">
                       <a href="../controler/negociation.ctrl.php?id=<?= $value["id"] ?>" type="button" class="btn btn-default"><span class="glyphicon glyphicon-option-horizontal no-margin"></span></a>
-                      <a href="" type="button" class="btn btn-default"><span class="glyphicon glyphicon-repeat no-margin"></a>
                       <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash no-margin"></button>
                     </div>
                   </td>
