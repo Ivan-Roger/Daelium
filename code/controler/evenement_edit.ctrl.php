@@ -18,6 +18,8 @@ if($user != NULL){ // SI c'est un organisateur
       if($evt != NULL){
         if($evt->getCreateur() == $userid){
           $dao->deleteManifesationById($idManif);
+          $idlieu = $evt->getLieu();
+          $dao->deleteLieuById($idlieu);
           header("Location: ../controler/evenements.ctrl.php");
         }else {
           $data['error']['title'] = "Acces Interdit";
