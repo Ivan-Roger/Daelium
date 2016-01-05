@@ -33,31 +33,6 @@
 
       $data['calendar'] = calendar(mktime(0,0,0,$month,1,$year));
 
-      /* // Evenements de test
-      $evt['id'] = 2;
-      $evt['name'] = "RDV Jean-Louis";
-      $evt['day'] = "18/12/2015";
-      $evt['hour'] = "09h15";
-      $evts[$evt['id']]=$evt;
-
-      $evt['id'] = 1;
-      $evt['name'] = "RDV Marc-Henri";
-      $evt['day'] = "18/12/2015";
-      $evt['hour'] = "09h45";
-      $evts[$evt['id']]=$evt;
-
-      $evt['id'] = 3;
-      $evt['name'] = "Noël";
-      $evt['day'] = "25/12/2015";
-      $evt['hour'] = "day";
-      $evts[$evt['id']]=$evt;
-
-      $evt['id'] = 0;
-      $evt['name'] = "Nouvel An";
-      $evt['day'] = "31/12/2015";
-      $evt['hour'] = "24h00";
-      $evts[$evt['id']]=$evt;
-      */
       if (isset($_GET['next-events'])) {
          $evts = $dao->readEvenementByCreateurApresDate($_SESSION['user']['ID'],date("Y-m-d"));
          foreach($evts as $evtO) {
@@ -107,6 +82,9 @@
          $data['event']['rappels'] = $evt->getRappels();
          $data['event']['plus'] = $evt->getPlus();
       }
+   }
+   if (isset($_GET['create'])) {
+     
    }
 
    if (!isset($_GET['ajax'])) // affichage normal

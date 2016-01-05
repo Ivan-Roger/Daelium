@@ -29,6 +29,24 @@ class DAO {
 
    // ===================== Personne =====================
 
+   function createConnexionInJournal($id,$moment,$ip=null,$support=null){
+     $sql="INSERT INTO journalDeConnexion VALUES (?,?,?,?)"; // requête
+     $req = $this->db->prepare($sql);
+     $params = array( // paramétres
+        $id, // l'id de l'utilisateur
+        $moment,
+        $ip,
+        $support
+     );
+     $res = $req->execute($params);
+     if ($res === FALSE) {
+        die("createConnexionInJournal : Requête impossible !"); // erreur dans la requête
+     }
+     return true;
+   }
+
+   // ===================== Personne =====================
+
    function readPersonneById($id) {
       $sql = "SELECT * FROM Personne WHERE idPersonne = ?"; // requête
       $req = $this->db->prepare($sql);

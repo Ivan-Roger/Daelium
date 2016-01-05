@@ -47,6 +47,7 @@
           $_SESSION["user"]["loginTime"]=date("");
           $_SESSION["user"]["ID"]=$user->getIdPersonne();
           //$_SESSION["userLoginName"]=$user->getNom(); // NOM
+          $dao->createConnexionInJournal($user->getIdPersonne(),date("Y-m-d H:i:s"),$_SERVER['REMOTE_ADDR'],$_SERVER['HTTP_USER_AGENT']);
 
           header("Location:"."../controler/main.ctrl.php?login");
         } else {

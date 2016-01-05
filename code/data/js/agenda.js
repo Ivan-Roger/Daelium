@@ -306,6 +306,14 @@ function updateDayPlan(func) {
       $("#eventEdit").collapse('show');
     });
 
+    $("#eventDayLong").on('change',function(e){
+      if ($(e.currentTarget).is(":checked")) {
+        $(".hour-input").hide();
+      } else {
+        $(".hour-input").show();
+      }
+    });
+
     $("#calendar tbody td[class~='day']").on('click',clickSetDay);
 
     console.log("Agenda initialized ...");

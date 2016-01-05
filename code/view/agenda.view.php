@@ -176,20 +176,18 @@
               </div>
             </div>
             <div class="panel-body">
-              <form>
+              <form method="POST" action="?create">
                 <!-- Date debut -->
                 <div class="form-inline">
                   <label class="col-lg-2" for="eventBeginingDate">Début</label>
                   <div class="col-lg-4 input-group">
                     <input id="eventBeginingDate" name="eventBeginingDate" class="form-control" placeholder="Date"/>
-                    <!-- je sugere ici de faire un type date -->
                     <div class="input-group-addon">
                       <span class="glyphicon glyphicon-calendar no-margin"></span>
                     </div>
                   </div>
-                  <div class="col-lg-4 input-group">
-                    <input id="eventBeginingHour" name="eventBeginingFour" class="form-control" placeholder="Heure" readonly/>
-                    <!-- je sugere ici de faire un type time -->
+                  <div class="hour-input col-lg-4 input-group">
+                    <input id="eventBeginingHour" name="eventBeginingHour" class="form-control" placeholder="Heure" readonly/>
                     <div class="input-group-addon">
                       <span class="glyphicon glyphicon-time no-margin"></span>
                     </div>
@@ -205,8 +203,8 @@
                       <span class="glyphicon glyphicon-calendar no-margin"></span>
                     </div>
                   </div>
-                  <div class="col-lg-4 input-group">
-                    <input id="eventEndingHour" name="eventEndingFour" class="form-control" placeholder="Heure" readonly/>
+                  <div class="hour-input col-lg-4 input-group">
+                    <input id="eventEndingHour" name="eventEndingHour" class="form-control" placeholder="Heure" readonly/>
                     <div class="input-group-addon">
                       <span class="glyphicon glyphicon-time no-margin"></span>
                     </div>
@@ -216,7 +214,7 @@
                 <div class="form-inline">
                   <div class="col-lg-9 col-lg-offset-2 checkbox">
                     <label>
-                      <input type="checkbox" name="eventDayLong"/>
+                      <input id="eventDayLong" type="checkbox" name="eventDayLong"/>
                       Journée entière
                     </label>
                   </div>

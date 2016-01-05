@@ -137,7 +137,7 @@
       } else {
         $data['dir'][$key]['type'] = "file";
         $data['dir'][$key]['date'] = date("d/m/Y H:i:s", filectime($ROOT.$dirPath.'/'.$elem));
-        $data['dir'][$key]['size'] = human_filesize(filesize($ROOT.$dirPath.'/'.$elem)).'o';
+        $data['dir'][$key]['size'] = human_filesize(filesize($ROOT.$dirPath.'/'.$elem));
         $data['dir'][$key]['link'] = "?file=".$dirPath.'/'.$elem;
       }
       $data['dir'][$key]['name'] = $elem;
