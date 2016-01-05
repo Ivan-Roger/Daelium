@@ -6,7 +6,7 @@ header("Location:"."../");
 <html>
 <head>
   <?php include("../view/include/includes.view.php"); ?>
-  <title>Dælium - Annuaire</title>
+  <title>Dælium - Negociation</title>
 </head>
 <body>
   <?php include("../view/include/header.view.php"); ?>
@@ -42,7 +42,7 @@ header("Location:"."../");
 
           <div class="panel panel-default">
             <div class="panel-heading">
-              <h4>Documents</h4>
+              <h4>Creneau</h4>
             </div>
             <div class="panel-body">
 
@@ -95,10 +95,10 @@ header("Location:"."../");
         </div>
       </article>
 
-      <article class="col-lg-offset-1 col-lg-10">
+      <!-- <article class="col-lg-offset-1 col-lg-10">
         <div class="info">
 
-          <!-- <div class="panel panel-default">
+        <div class="panel panel-default">
             <div class="panel-heading">
               <h4>Historique</h4>
             </div>
@@ -107,9 +107,9 @@ header("Location:"."../");
 
 
             </div>
-          </div> -->
+          </div>
         </div>
-      </article>
+      </article> -->
 
       <article class="message col-lg-offset-1 col-lg-10">
         <div class="panel panel-default">

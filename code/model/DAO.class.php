@@ -2000,6 +2000,22 @@ class DAO {
         return (isset($res[0])?$res:null);
       }
 
+      function readNegociationByOrganisateurGroupeManif($idOrga,$idGroupe,$idManif) {
+        $sql = "SELECT * FROM Negociation WHERE idOrganisateur=? AND idGroupe = ? AND idManif = ?"; // requête
+        $req = $this->db->prepare($sql);
+        $params = array(
+          $idUtilisateur,
+          $idGroupe,
+          $idManif
+        );
+        $res = $req->execute($params);
+        if ($res === FALSE) {
+          die("readNegociationByIdBooker : Requête impossible !"); // erreur dans la requête
+        }
+        $res = $req->fetchAll(PDO::FETCH_CLASS,"Negociation");
+        return (isset($res[0])?$res:null);
+      }
+
       function readNegociationByIdBooker($idBooker) {
         $sql = "SELECT * FROM Negociation WHERE  idBooker  =?"; // requête
         $req = $this->db->prepare($sql);

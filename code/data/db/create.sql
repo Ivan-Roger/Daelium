@@ -149,7 +149,8 @@ CREATE TABLE Creneau (
   heureFin        TIME(6),
   heureDebutTest  TIME(6),
   heureFinTest    TIME(6),
-  PRIMARY KEY (idManif,idGroupe,heureDebut),
+  etat            INTEGER,
+  PRIMARY KEY (idManif,idGroupe),
   FOREIGN KEY (idManif) references Manifestation(idManif),
   FOREIGN KEY (idGroupe) references Groupe(idGroupe)
 );

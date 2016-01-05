@@ -6,7 +6,7 @@
 <html>
 <head>
   <?php include("../view/include/includes.view.php"); ?>
-  <title>Dælium - Annuaire</title>
+  <title>Dælium - Nouvelle - Negociation</title>
 </head>
 <body>
   <?php include("../view/include/header.view.php"); ?>
