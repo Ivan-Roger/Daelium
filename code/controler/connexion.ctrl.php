@@ -23,6 +23,8 @@
         $_SESSION["user"]["mail"]=$mail;
         $_SESSION["user"]["loginTime"]=date("");
         $_SESSION["user"]["ID"]=$user->getIdPersonne();
+        $dao->createConnexionInJournal($user->getIdPersonne(),date("Y-m-d H:i:s"),$_SERVER['REMOTE_ADDR'],$_SERVER['HTTP_USER_AGENT']);
+        
         /*
         $id_user = $user->getIdUtilisateur();
         var_dump($id_user);

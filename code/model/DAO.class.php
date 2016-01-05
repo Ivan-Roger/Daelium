@@ -29,6 +29,21 @@ class DAO {
 
    // ===================== Personne =====================
 
+    function readConnexionsInJournalByUtilisateur($id) {
+      $sql = "SELECT * FROM journalDeConnexion WHERE idutilisateur = ? ORDER BY moment DESC LIMIT 20"; // requête
+      $req = $this->db->prepare($sql);
+      $params = array( // paramétres
+         $id // l'id de l'utilisateur
+      );
+      $res = $req->execute($params);
+      if ($res === FALSE) {
+        var_dump($this->db->errorInfo()[2]);
+        die("readConnexionsInJournalByUtilisateur : Requête impossible !"); // erreur dans la requête
+      }
+      $res = $req->fetchAll(PDO::FETCH_ASSOC);
+      return (isset($res[0])?$res:null);
+    }
+
    function createConnexionInJournal($id,$moment,$ip=null,$support=null){
      $sql="INSERT INTO journalDeConnexion VALUES (?,?,?,?)"; // requête
      $req = $this->db->prepare($sql);
@@ -157,9 +172,9 @@ class DAO {
          $personne->getAdresse(),
          $personne->getDescription()
       );
-      var_dump($params);
       $respersonne = $reqpersonne->execute($params);
       if ($respersonne === FALSE) {
+        var_dump($this->db->errorInfo()[2]);
          die("createPersonne : Requête impossible !");
       }
       $retpersonne = $reqpersonne->fetchColumn();

@@ -49,7 +49,16 @@
             <input class="btn btn-default" type="button" onclick="alert('Hello World!')" value="Annuler">
             <input class="btn btn-primary" type="submit" onclick="alert('Hello World!')" value="Modifier">
           </div>
-  </form>
+        </form>
+        <div class="col-lg-10 col-lg-offset-1">
+          <h3>Journal de connexions :</h3>
+          <table class="table">
+            <tr><th>IP</th><th>Moment</th><th>Support</th></tr>
+            <?php foreach($data['journal'] as $co) { ?>
+            <tr><td><?= $co['IP'] ?></td><td><?= $co['moment'] ?></td><td><?= $co['support'] ?></td></tr>
+            <?php } ?>
+          </table>
+        </div>
     </section>
     <?php include("../view/include/footer.view.php"); ?>
   </body>
