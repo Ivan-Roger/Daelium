@@ -21,7 +21,7 @@
         <form class="navbar-form navbar-right" method="GET" action="#">
           <!-- Menu de l'uilisateur-->
             <a href="../controler/connexion.ctrl.php" type="button" class="btn btn-primary">Se connecter</a>
-            <a href="../controler/inscription.ctrl.php" type="button" class="btn btn-warning">Je m'inscrit maintenant !</a>
+            <a href="../controler/inscription.ctrl.php" type="button" class="btn btn-warning">Je m'inscris maintenant !</a>
         </form>
       </nav>
       <div id="carousel">
@@ -38,14 +38,14 @@
               <!--<img src="../data/img/fotolia_musique.jpg" style="position: relative; bottom: 500px;"/>-->
               <div class="carousel-caption">
                 <h1>Bienvenue sur <b>Dælium</b></h1>
-                <p>Bienvenue sur le site de gestion musical !</p>
+                <p>Bienvenue sur le site de gestion musicale !</p>
               </div>
             </div>
             <div class="slide-full item">
               <!--<img src="../data/img/fotolia_musique.jpg" style="position: relative; bottom: 500px;"/>-->
               <div class="carousel-caption">
                 <h1>Bienvenue sur <b>Dælium</b></h1>
-                <p>Vous êtes à la recherche d'un outil performant pour gérer vos artistes ? Ou vous souhaitez organiser un évènement particulier ? Alors rejoignez notre site ! C'est rapide, et gratuit !</p>
+                <p>Vous êtes à la recherche d'un outil performant pour gérer vos artistes ? Ou vous souhaitez organiser un événement particulier ? Alors rejoignez notre site ! C'est rapide, et gratuit !</p>
                 <p><a id="sliderButton" class="btn btn-lg btn-primary" href="#navbar" role="button">Je veux en savoir plus !</a></p>
               </div>
             </div>
@@ -72,33 +72,33 @@
     <div class="container marketing">
       <div class="row">
         <blockquote>
-        Dælium est un outil intuitif et performant pour vous aider à gérer vos artistes, il vous permettra de prendre du recul sur leurs statuts et les aideras à accéder au monde du spectacle ! Il intègre des fonctionnalités d'agenda, une messagerie interne et permet une meilleure communication entre booker et organisateur.
+        Dælium est un outil intuitif et performant pour vous aider à gérer vos artistes, il vous permettra de prendre du recul sur leurs statuts et les aidera à accéder au monde du spectacle ! Il intègre des fonctionnalités d'agenda, une messagerie interne et permet une meilleure communication entre booker et organisateur.
         </blockquote>
       </div>
       <div class="row">
         <div class="col-lg-4 text-center">
-          <a href="#">
+          <!-- <a href="#"> -->
             <div class="img-circle"><span class="icon-img icon-gift"></span></div>
-          </a>
+          <!-- </a> -->
           <h2>Gratuit</h2>
           <p>L'inscription à Dælium est entièrement gratuite, de même que son utilisation. Aucun paiement ne vous sera demandé en contrepartie de l'utilisation que vous ferez du site.</p>
-          <p><a class="btn btn-default" href="#" role="button">Voir les détails &raquo;</a></p>
+          <!-- <p><a class="btn btn-default" href="#" role="button">Voir les détails &raquo;</a></p> -->
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4 text-center">
-          <a href="#">
+          <!-- <a href="#"> -->
             <div class="img-circle"><span class="icon-img icon-tools2"></span></div>
-          </a>
+          <!-- </a> -->
           <h2>Innovant</h2>
           <p>Dælium est un outil innovant et utilise les technologies les plus adéquates pour permettre une meilleure gestion de vos besoins.</p>
-          <p><a class="btn btn-default" href="#" role="button">Voir les détails &raquo;</a></p>
+          <!-- <p><a class="btn btn-default" href="#" role="button">Voir les détails &raquo;</a></p> -->
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4 text-center">
-          <a href="#">
+          <!-- <a href="#"> -->
             <div class="img-circle"><span class="icon-img icon-adjustments"></span></div>
-          </a>
+          <!-- </a> -->
           <h2>Adaptable</h2>
           <p>Dælium s'adaptera à tout vos besoins. L'outil ci-présent à été pensé pour être paramétrable sur la plupart des fonctionnalités proposées. De plus il s'adaptera à tout type de plateforme (tablette, smartphone...) et sur la majorité des navigateurs web.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+          <!-- <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p> -->
         </div><!-- /.col-lg-4 -->
       </div><!-- /.row -->
       <div id="troops" class="row">
@@ -108,7 +108,7 @@
         </div><!-- /.col-lg-4 -->
         <div id="troop_2" class="col-lg-4 text-center" style="display: none;">
           <h2 class="text-left">Batoucada</h2>
-          <p>La "Batoucada" soutient notre site. Elle fais partie de la grande communauté qui s'aggrandie de jour en jour. Venez apporter votre contribution à celle-ci en y adhérant !</p>
+          <p>La "Batoucada" soutient notre site. Elle fait partie de la grande communauté qui s'agrandit de jour en jour. Venez apporter votre contribution à celle-ci en y adhérant !</p>
         </div><!-- /.col-lg-4 -->
         <div id="troop_3" class="col-lg-4 text-center" style="display: none;">
           <h2 class="text-left">Berlondon</h2>
@@ -151,17 +151,17 @@
         <div class="col-lg-8">
           <h2>Rejoindre Dælium</h2>
           <p>Vous voulez nous rejoindre ?</p>
-          <p>Vous souhaitez ajouter vos artistes pour qu'ils rejoingent notre grande communauté ?</p>
-          <p>Vous voulez organiser un festival et vous ne trouvez pas d'artistes ?  </p>
+          <p>Vous souhaitez ajouter vos artistes pour qu'ils rejoignent notre grande communauté ?</p>
+          <p>Vous voulez organiser un festival et vous ne trouvez pas d'artiste ?  </p>
           <p>Alors cliquez sur le bouton "Inscription" à coté ! C'est rapide et gratuit !</p>
-          <p class="text-right"><a class="btn btn-default btn-lg" href="#" role="button">Inscription &raquo;</a><br/><a style="font-size: 10px;" href="#" role="button">Connexion &raquo;</a></p>
+          <p class="text-right"><a class="btn btn-warning btn-lg" href="../controler/inscription.ctrl.php" role="button">Inscription &raquo;</a><br/><a style="font-size: 10px;" href="../controler/connexion.ctrl.php" role="button">Connexion &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
           <h2>Contact</h2>
           <p>Des questions sur le fonctionnement du site ? Vous rencontrez des problèmes durant votre utilisation ?</p>
          <p>Des suggestions à faire pour nous améliorer ? Des critiques ? Envoyez-nous un mail à cette adresse : </p>
           <p>contact@daelium.fr</p>
-          <p><a class="btn btn-default" href="#" role="button">Nous contacter &raquo;</a></p>
+          <!-- <p><a class="btn btn-default" href="#" role="button">Nous contacter &raquo;</a></p> -->
         </div><!-- /.col-lg-4 -->
       </div><!-- /.row -->
     </div>

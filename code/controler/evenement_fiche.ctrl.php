@@ -87,7 +87,7 @@ if($evt != NULL){
     $organisateur = $dao->readOrganisateurById($idcreateur);
 
     if($user != NULL){
-      $data["isOrga"] = $user->possedeManif($idevt);
+      $data["isOrga"] = $user->possedeManif($evtid);
       $data["canNego"] = false;
     }else {
       $data["isOrga"] = false;
@@ -127,6 +127,7 @@ if($evt->getFacebook() == NULL &&  $evt->getTwitter() == NULL && $evt->getGoogle
 
 
     $creneaux = $dao->readCreneauByidManif($evtid);
+    $data['passages'] = array();
     foreach ($creneaux as $key => $value) {
       $data['passages'][$key]['date'] = $value->getDate()." ".$value->getHeureDebut();
       $idgroupe = $value->getidGroupe();

@@ -33,9 +33,9 @@
             <ul class="dropdown-menu">
               <li><a href="../controler/liste_groupe.ctrl.php"><span class="text">Liste Groupes</span></a></li>
               <li role="separator" class="divider"></li>
-              <li><a href="../controler/liste_manifestation.ctrl.php"><span class="text">Liste Manifestation</span></a></li>
+              <li><a href="../controler/liste_manifestation.ctrl.php"><span class="text">Liste Manifestations</span></a></li>
               <li role="separator" class="divider"></li>
-              <li><a href="../controler/liste_utilisateur.ctrl.php"><span class="text">Liste Utilisateur</span></a></li>
+              <li><a href="../controler/liste_utilisateur.ctrl.php"><span class="text">Liste Utilisateurs</span></a></li>
             </ul>
           </li>
         </ul>
