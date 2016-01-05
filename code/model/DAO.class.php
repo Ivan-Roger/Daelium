@@ -2128,7 +2128,6 @@ class DAO {
                $negociation->getIdOrganisateur(),
                $negociation->getetat()
             );
-            var_dump($params);
             $res = $req->execute($params);
             if ($res === FALSE) {
                die("createNegociation : Requête impossible !");
