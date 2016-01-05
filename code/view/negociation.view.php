@@ -126,7 +126,7 @@ header("Location:"."../");
         </div>
       </article> -->
 
-      <article class="message col-lg-offset-1 col-lg-10">
+      <!-- <article class="message col-lg-offset-1 col-lg-10">
         <div class="panel panel-default">
           <div class="panel-heading">
             <h4>Messagerie Directe</h4>
@@ -198,7 +198,7 @@ header("Location:"."../");
                 </div>
               </div>
             </div>
-          </article>
+          </article> -->
         </section>
         <?php include("../view/include/footer.view.php"); ?>
       </body>
