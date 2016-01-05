@@ -6,7 +6,7 @@
 <html>
 <header>
   <meta charset="utf-8"/>
-  <title>Daelium | Work in Progress</title>
+  <title>Daelium | Inscription</title>
   <link rel="stylesheet" href="../data/css/bootstrap.min.css"/>
   <link rel="stylesheet" href="../data/css/signup.css"/>
   <link rel="icon" type="image/png" href="../data/img/D.png" />
@@ -43,12 +43,12 @@
             <input type="text" class="form-control" name="ville"id="ville" >
             </div>
             <div class="col-xs-4">
-            <label for="cp">Region :</label>
-            <input type="text" class="form-control"name="region" id="region" >
+            <label for="cp">Region *:</label>
+            <input type="text" class="form-control"name="region" id="region" required>
             </div>
             <div class="col-xs-4">
-            <label for="pays">Pays :</label>
-            <input type="text" class="form-control"name="pays" id="pays" >
+            <label for="pays">Pays *:</label>
+            <input type="text" class="form-control"name="pays" id="pays" required>
             </div>
             <input type="hidden" name="etape" value="1"/>
           <HR>

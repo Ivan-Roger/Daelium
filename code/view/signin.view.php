@@ -6,7 +6,7 @@
 <html>
 <header>
   <meta charset="utf-8"/>
-  <title>Daelium | Work in Progress</title>
+  <title>Daelium | Connexion</title>
   <link rel="stylesheet" href="../data/css/bootstrap.min.css"/>
   <link rel="stylesheet" href="../data/css/signin.css"/>
   <meta name="google-signin-scope" content="profile email">

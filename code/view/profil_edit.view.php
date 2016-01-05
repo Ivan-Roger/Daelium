@@ -17,16 +17,16 @@
             <div class="panel-heading">Mon profil</div>
             <div class="panel-body">
               <div class="form-group">
-                <label class="control-label col-sm-3" for="name">Nom :</label>
+                <label class="control-label col-sm-3" for="name">Nom *:</label>
                 <div class="col-sm-9">
-                  <input type="text" id="name" name="name" class="form-control" placeholder="Nom" value="<?= $data['nom']?>"/>
+                  <input type="text" id="name" name="name" class="form-control" required placeholder="Nom" value="<?= $data['nom']?>"/>
                 </div>
               </div>
 
               <div class="form-group">
-                <label class="control-label col-sm-3" for="pname">Prenom :</label>
+                <label class="control-label col-sm-3" for="pname">Prenom *:</label>
                 <div class="col-sm-9">
-                  <input type="text" id="pname" name="pname" class="form-control" placeholder="Prenom" value="<?= $data['prenom']?>"/>
+                  <input type="text" id="pname" name="pname" class="form-control" required placeholder="Prenom" value="<?= $data['prenom']?>"/>
                 </div>
               </div>
 
