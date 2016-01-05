@@ -138,7 +138,25 @@
                 </div>
                 <div class="rappels row">
                    <h4>Rappels</h4>
-                   <button class="btn btn-default">Voir les rappels</button>
+                   <button type="button" class="btn btn-default" data-toggle="modal" data-target="#voirRappels">Voir les rappels</button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="voirRappels" tabindex="-1" role="dialog" aria-labelledby="voirRappelsLabel">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="voirRappelsLabel">Rappels</h4>
+                          </div>
+                          <div class="modal-body">
+                            ...
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                 </div>
              </div>
             <div class="col-lg-6">
