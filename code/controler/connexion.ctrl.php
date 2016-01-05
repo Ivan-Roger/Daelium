@@ -23,6 +23,7 @@
         $_SESSION["user"]["mail"]=$mail;
         $_SESSION["user"]["loginTime"]=date("");
         $_SESSION["user"]["ID"]=$user->getIdPersonne();
+        $_SESSION["user"]["type"]=$user->getType();
         $dao->createConnexionInJournal($user->getIdPersonne(),date("Y-m-d H:i:s"),$_SERVER['REMOTE_ADDR'],$_SERVER['HTTP_USER_AGENT']);
 
         /*
@@ -48,6 +49,8 @@
           $_SESSION["user"]["mail"]=$mail;
           $_SESSION["user"]["loginTime"]=date("");
           $_SESSION["user"]["ID"]=$user->getIdPersonne();
+          $_SESSION["user"]["type"]=$user->getType();
+          
           //$_SESSION["userLoginName"]=$user->getNom(); // NOM
           $dao->createConnexionInJournal($user->getIdPersonne(),date("Y-m-d H:i:s"),$_SERVER['REMOTE_ADDR'],$_SERVER['HTTP_USER_AGENT']);
 

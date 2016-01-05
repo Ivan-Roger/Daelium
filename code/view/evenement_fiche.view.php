@@ -14,7 +14,7 @@ header("Location:"."../");
   <div class="heading full">
     <img class="wall-pic" src="https://cdn2.artstation.com/p/assets/images/images/001/023/866/large/samma-van-klaarbergen-patrick-watson2.jpg?1438415706"/>
     <div class="groupInfo col-lg-10 col-lg-offset-1">
-      <div class="groupPic col-sm-1 text-right"><img src="<?= $data['evenement']['img']  ?>" alt="Image de Profil"></div>
+      <!-- <div class="groupPic col-sm-1 text-right"><img src="<?= $data['evenement']['img']  ?>" alt="Image de Profil"></div> -->
       <h3 class="col-sm-9"><?= $data['evenement']['nom'] ?> (<?= $data['evenement']['type'] ?>)</h3>
       <?php if ($data["isOrga"]): ?>
         <div class="controls col-sm-2 text-right">
@@ -36,18 +36,18 @@ header("Location:"."../");
       <div class="well">
         <h4>Informations générales :</h4>
         <div class="row">
-          <span class="col-sm-4 text-right">Organisateur</span><b class="col-sm-8 text-left" id="mailAccount"> <?= $data['evenement']['organisateur'] ?> <a class="btn btn-primary" href="../controler/profil.ctrl.php?id=<?= $data['evenement']['idorganisateur']?>">Voir Profil</a></b>
+          <span class="col-sm-4 text-right">Organisateur :</span><b class="col-sm-8 text-left" id="mailAccount"> <?= $data['evenement']['organisateur'] ?> <a class="btn btn-primary" href="../controler/profil.ctrl.php?id=<?= $data['evenement']['idorganisateur']?>">Voir Profil</a></b>
         </div>
         <div class="row">
-          <span class="col-sm-4 text-right">Lieu</span><b class="col-sm-8 text-left" id="mailAccount"><?= $data['evenement']['lieu']['adresse'] ?> <?php if($data['evenement']['lieu']['googlemaps'] != NULL){ ?><a href="<?=  $data['evenement']['lieu']['googlemaps'] ?>" target="_blank">
+          <span class="col-sm-4 text-right">Lieu :</span><b class="col-sm-8 text-left" id="mailAccount"><?= $data['evenement']['lieu']['adresse'] ?> <?php if($data['evenement']['lieu']['googlemaps'] != NULL){ ?><a href="<?=  $data['evenement']['lieu']['googlemaps'] ?>" target="_blank">
             (Voir sur google maps)
           </a><?php }?></b>
         </div>
         <div class="row">
-          <span class="col-sm-4 text-right">Date de début</span><b class="col-sm-8 text-left" id="mailAccount"> <?= $data['evenement']['dated'] ?></b>
+          <span class="col-sm-4 text-right">Date de début :</span><b class="col-sm-8 text-left" id="mailAccount"> <?= $data['evenement']['dated'] ?></b>
         </div>
         <div class="row">
-          <span class="col-sm-4 text-right">Date de fin</span><b class="col-sm-8 text-left" id="mailAccount"><?= $data['evenement']['datef'] ?></b>
+          <span class="col-sm-4 text-right">Date de fin :</span><b class="col-sm-8 text-left" id="mailAccount"><?= $data['evenement']['datef'] ?></b>
         </div>
       </div>
       <!-- Fin Info -->

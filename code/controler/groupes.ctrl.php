@@ -8,8 +8,6 @@
 
   $userid= $_SESSION["user"]["ID"];
   $user = $dao->readPersonneById($userid);
-  var_dump($user);
-  var_dump($userid);
   if($user->getType() == 0){ // SI booker
 
     $groupelist = $dao->readListGroupeByBooker($userid);

@@ -31,8 +31,6 @@ header("Location:"."../");
             <p>Booker : <?= $data["nombooker"] ?><a href="../controler/profil.ctrl.php?id=<?= $data["idbooker"] ?>" type="button" class="btn btn-default">Voir Fiche</a></p>
             <p>Organisateur : <?= $data["nomorga"] ?><a href="../controler/profil.ctrl.php?id=<?= $data["idorga"] ?>" type="button" class="btn btn-default">Voir Fiche</a></p>
             <p>Dates : <?= $data["datemanif"] ?> <p>
-
-
             </div>
           </div>
         </div>
@@ -42,7 +40,7 @@ header("Location:"."../");
 
           <div class="panel panel-default">
             <div class="panel-heading">
-              <h4>Creneaux</h4>
+              <h4>Creneau</h4>
 
             </div>
             <div class="panel-body">
@@ -56,11 +54,14 @@ header("Location:"."../");
                   <div class="col-lg-6"><b>Heure de fin de test: </b><?= $value["hft"] ?></div>
                   <div class="col-lg-12"><b>Lieu :</b><?= $value["lieu"] ?></div>
                   <div class="pull-right">
-                  <a href="../controler/creneau.ctrl.php?idmanif= &idgroupe=" type="button" class="btn btn-warning">Modifier</a>
-                  <a href="../controler/creneau.ctrl.php?idmanif= &idgroupe=" type="button" class="btn btn-danger">Supprimer</a>
+                  <!-- <a href="../controler/creneau.ctrl.php?idmanif=<?= $data['idmanif'] ?>&idgroupe=<?= $data['idgroupe'] ?>&idnego=<?= $data['idnego'] ?>" type="button" class="btn btn-warning">Modifier</a> -->
+                  <a href="../controler/creneau.ctrl.php?action=delete&idmanif=<?= $data['idmanif'] ?>&idgroupe=<?= $data['idgroupe'] ?>&idnego=<?= $data['idnego'] ?>" type="button" class="btn btn-danger">Supprimer</a>
                 </div>
               </div>
               <?php endforeach; ?>
+              <?php if (empty($data["creneau"])): ?>
+                <a href="../controler/creneau_new.ctrl.php?idNego=<?= $data['idnego'] ?>" type="button" class="btn btn-primary">Ajouter le creneau</a>
+              <?php endif; ?>
 
             </div>
           </div>
@@ -125,7 +126,7 @@ header("Location:"."../");
         </div>
       </article> -->
 
-      <article class="message col-lg-offset-1 col-lg-10">
+      <!-- <article class="message col-lg-offset-1 col-lg-10">
         <div class="panel panel-default">
           <div class="panel-heading">
             <h4>Messagerie Directe</h4>
@@ -197,7 +198,7 @@ header("Location:"."../");
                 </div>
               </div>
             </div>
-          </article>
+          </article> -->
         </section>
         <?php include("../view/include/footer.view.php"); ?>
       </body>

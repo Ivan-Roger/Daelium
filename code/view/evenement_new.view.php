@@ -35,7 +35,7 @@ header("Location:"."../");
 
 
           <div class="form-group">
-            <label class="control-label col-sm-4" for="nomevent">Nom de l'évènement :</label>
+            <label class="control-label col-sm-4" for="nomevent">Nom de l'évènement *:</label>
             <div class="col-sm-8">
               <select name="select" class="form-control">
                 <?php foreach (  $data["evenements"] as $key => $value): ?>
@@ -47,7 +47,7 @@ header("Location:"."../");
 
 
           <div class="form-group">
-            <label class="control-label col-sm-4" for="nomevent">Nom de l'évènement :</label>
+            <label class="control-label col-sm-4" for="nomevent">Nom de l'évènement *:</label>
             <div class="col-sm-8">
               <input id="nomevent" name="nomevent" class="form-control" required="required" placeholder="Nom de l'evenement"/>
             </div>
@@ -95,13 +95,13 @@ header("Location:"."../");
           </div>
 
           <div class="form-group">
-            <label class="control-label col-sm-4" for="dated">Date de debut :</label>
+            <label class="control-label col-sm-4" for="dated">Date de debut *:</label>
             <div class="col-sm-8">
               <input type="date" id="dated" name="dated" required="required" class="form-control" />
             </div>
           </div>
           <div class="form-group">
-            <label class="control-label col-sm-4" for="datef">Date de fin :</label>
+            <label class="control-label col-sm-4" for="datef">Date de fin *:</label>
             <div class="col-sm-8">
               <input type="date" id="datef" name="datef" required="required" class="form-control" />
             </div>
@@ -116,15 +116,15 @@ header("Location:"."../");
             <label class="control-label col-sm-4" >Lieu :</label>
             <div class="col-sm-8 well">
 
-              <label class="control-label col-sm-2" for="adresse">Adresse :</label>
+              <label class="control-label col-sm-2" for="adresse">Adresse *:</label>
               <div class="col-sm-10">
                 <input type="text" id="adresse" name="adresse" required="required" class="form-control" />
               </div>
-              <label class="control-label col-sm-2" for="codepostal">Code postal :</label>
+              <label class="control-label col-sm-2" for="codepostal">Code postal *:</label>
               <div class="col-sm-2">
                 <input type="text" id="codepostal" name="codepostal" required="required" class="form-control" />
               </div>
-              <label class="control-label col-sm-2" for="ville">Ville :</label>
+              <label class="control-label col-sm-2" for="ville">Ville *:</label>
               <div class="col-sm-6">
                 <input type="text" id="ville" name="ville" required="required" class="form-control" />
               </div>
@@ -132,7 +132,7 @@ header("Location:"."../");
               <div class="col-sm-4">
                 <input type="text" id="region" name="region"  class="form-control" />
               </div>
-              <label class="control-label col-sm-2" for="pays">Pays :</label>
+              <label class="control-label col-sm-2" for="pays">Pays *:</label>
               <div class="col-sm-4">
                 <input type="text" id="pays" name="pays" required="required" class="form-control"  />
               </div>

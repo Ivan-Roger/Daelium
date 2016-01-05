@@ -6,7 +6,7 @@
 <html>
 <header>
   <meta charset="utf-8"/>
-  <title>Daelium | Work in Progress</title>
+  <title>Daelium | Inscription</title>
   <link rel="stylesheet" href="../data/css/bootstrap.min.css"/>
   <link rel="stylesheet" href="../data/css/signin.css"/>
   <link rel="icon" type="image/png" href="../data/img/D.png" />

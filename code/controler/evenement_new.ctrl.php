@@ -61,8 +61,6 @@ if($user != NULL){ // SI c'est un organisateur
 
 
 
-    var_dump($manif);
-
 
 
 

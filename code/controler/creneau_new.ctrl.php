@@ -22,13 +22,13 @@
 
         if($nego != NULL){
           if($userid == $nego->getIdOrganisateur()){
-            if(isset($_POST["test"])){
+            if(isset($_POST["tests"]) && $_POST["tests"]==1){
               $hdt = $_POST["hdt"];
               $hft = $_POST["hft"];
             }else {
               $hdt = $hft =NULL;
             }
-              $Creneau = new Creneau($idManif,$idGroupe, $_POST["lieu"], $_POST["hd"], $_POST["hf"],$hdt,$hft);
+              $Creneau = new Creneau($idManif,$idGroupe, $_POST["lieu"],$_POST["select"],$_POST["hd"], $_POST["hf"],$hdt,$hft);
               $dao->createCreneau($Creneau);
               header("Location: ../controler/negociation.ctrl.php?id=$idnego"); // A modifier par la suite
           }else {

@@ -5,8 +5,27 @@
   require_once("../model/DAO.class.php");
   $data = initPage("Compte");
   $dao = new DAO();
+  $userid = $_SESSION['user']['ID'];
+  $user = $dao->readUtilisateurById($userid);
+  $data["erreur"] = "";
+  if(isset($_GET["action"]) && $_GET["action"] == "edit"){
+    if($user->getMdp() == $_POST["amdp"]){
+      if($_POST["nmdp"] == $_POST["cnmdp"]){
+        $user->setMdp($_POST["nmdp"]);
+        $dao->updateUtilisateur($user);
+      }else {
+        $data["erreur"] = "Les deux mots de passe ne sont pas indentique";
+        // erreur mot passe non identique
+      }
+    }else {
+      $data["erreur"] = "Le mots de passe courant n'est pas bon";
 
-  $connexions = $dao->readConnexionsInJournalByUtilisateur($_SESSION['user']['ID']);
+      // mauvais mot de passe
+    }
+  }
+
+  $data['useremail'] = $user->getEmailCompte();
+  $connexions = $dao->readConnexionsInJournalByUtilisateur($userid);
   $data['journal'] = Array();
   if ($connexions!=null) {
     foreach($connexions as $key => $co) {

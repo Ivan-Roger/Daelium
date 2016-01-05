@@ -6,7 +6,7 @@
 <html>
 <header>
   <meta charset="utf-8"/>
-  <title>Daelium | Work in Progress</title>
+  <title>Daelium | Inscription</title>
   <link rel="stylesheet" href="../data/css/bootstrap.min.css"/>
   <link rel="stylesheet" href="../data/css/signin.css"/>
   <link rel="icon" type="image/png" href="../data/img/D.png" />
@@ -34,7 +34,6 @@
         </form><!-- /form -->
       </div><!-- /card-container -->
     </div><!-- /container -->
-    <?php include("../view/include/footer.view.php"); ?>
     <script src="../data/js/jQuery.min.js"></script>
         <script src="../data/js/bootstrap.min.js"></script>
   </body>
