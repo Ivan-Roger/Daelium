@@ -275,14 +275,18 @@ class DAO {
             die("readUserByEmail : Requête impossible !"); // erreur dans la requête
          }
          $res = $req->fetchAll(PDO::FETCH_ASSOC);
-         $pers = $this->readPersonneByIdNoClass($res[0]["idutilisateur"]);
-            if(isset($res[0]) && isset( $pers)){
+          if(isset($res[0])) {
+            $pers = $this->readPersonneByIdNoClass($res[0]["idutilisateur"]);
+            if ($pers!=null){
               $Utilisateur = new Utilisateur($pers["idpersonne"],$pers["type"],$pers["nom"], $pers["prenom"], $pers["emailcontact"], $pers["tel"], $pers["adresse"],$res[0]["emailcompte"],$res[0]["mdp"],$res[0]["googletoken"]);
               return $Utilisateur;
-           }else{
+            } else {
               return NULL;
+            }
+          } else {
+            return NULL;
           }
-          }
+      }
 
    private function createUtilisateur($utilisateur) { // peut etre mettre une personne en paramettre
       $u = $this->readUtilisateurById($utilisateur->getIdPersonne());

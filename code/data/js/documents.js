@@ -11,6 +11,7 @@ function upload(upURL) {
   });
   xhr.addEventListener('load', function(e) {
     $("#uploadPanel .loader").addClass('done');
+    console.log(this.responseText);
     var res = JSON.parse(this.responseText);
     if (res.request.code==200) {
       console.log('Succés!');
