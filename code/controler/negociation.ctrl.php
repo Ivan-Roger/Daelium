@@ -165,19 +165,22 @@
       $creneau = $dao->readCreneauByidManif($idManif);
       $data["creneau"] = array();
       foreach ($creneau as $key => $value) {
-        $data["creneau"][$key]["lieu"] = $value->getLieu();
-        $data["creneau"][$key]["date"] = $value->getDate();
-        $data["creneau"][$key]["hd"] = $value->getHeureDebut();
-        $data["creneau"][$key]["hf"] = $value->getHeureFin();
-        $data["creneau"][$key]["idmanif"] = $value->getidManif();
-        $data["creneau"][$key]["idgroupe"] = $value->getidGroupe();
-        if($value->getHeureDebutTest() == NULL){
-          $data["creneau"][$key]["hdt"] =  "Pas de tests";
-          $data["creneau"][$key]["hft"] = "Pas de tests";
-        }else {
-          $data["creneau"][$key]["hdt"] = $value->getHeureDebutTest();
-          $data["creneau"][$key]["hft"] = $value->getHeureFinTest();
+        if($value->getidGroupe() == $idGroupe){
+          $data["creneau"][$key]["lieu"] = $value->getLieu();
+          $data["creneau"][$key]["date"] = $value->getDate();
+          $data["creneau"][$key]["hd"] = $value->getHeureDebut();
+          $data["creneau"][$key]["hf"] = $value->getHeureFin();
+          $data["creneau"][$key]["idmanif"] = $value->getidManif();
+          $data["creneau"][$key]["idgroupe"] = $value->getidGroupe();
+          if($value->getHeureDebutTest() == NULL){
+            $data["creneau"][$key]["hdt"] =  "Pas de tests";
+            $data["creneau"][$key]["hft"] = "Pas de tests";
+          }else {
+            $data["creneau"][$key]["hdt"] = $value->getHeureDebutTest();
+            $data["creneau"][$key]["hft"] = $value->getHeureFinTest();
+          }
         }
+
 
       }
 

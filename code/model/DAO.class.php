@@ -1817,11 +1817,12 @@ class DAO {
       function createCreneau($creneau) {
          $c = $this->readCreneauByPrimary($creneau->getidManif(),$creneau->getidGroupe());
          if ($c == null) {
-            $sql = "INSERT INTO Creneau(idManif,idGroupe,heureDebut,heureFin,lieu,heureDebutTest,heureFinTest) VALUES (?,?,?,?,?,?,?)";
+            $sql = "INSERT INTO Creneau(idManif,idGroupe,datec,heureDebut,heureFin,lieu,heureDebutTest,heureFinTest) VALUES (?,?,?,?,?,?,?,?)";
             $req = $this->db->prepare($sql);
             $params = array(
                $creneau->getidManif(),
                $creneau->getidGroupe(),
+               $creneau->getDate(),
                $creneau->getHeureDebut(),
                $creneau->getHeureFin(),
                $creneau->getLieu(),
@@ -1841,9 +1842,10 @@ class DAO {
       function updateCreneau($creneau) {
          $c = $this->readCreneauByPrimary($creneau->getidManif(),$creneau->getidGroupe());
          if ($c != null) {
-            $sql = "UPDATE Creneau set (heureDebut,heureFin,lieu,heureDebutTest,heureFinTest) = (?,?,?,?,?) where idManif=? and idGroupe=?";
+            $sql = "UPDATE Creneau set (datec,heureDebut,heureFin,lieu,heureDebutTest,heureFinTest) = (?,?,?,?,?,?) where idManif=? and idGroupe=?";
             $req = $this->db->prepare($sql);
             $params = array(
+              $creneau->getDate(),
               $creneau->getHeureDebut(),
               $creneau->getHeureFin(),
               $creneau->getLieu(),
@@ -1869,6 +1871,25 @@ class DAO {
           $req = $this->db->prepare($sql);
           $params = array(
             $idGroupe
+          );
+          $res = $req->execute($params);
+          if ($res === FALSE) {
+            die("deleteCreneauByIdGroupe : Requête impossible !");
+          }
+          return true;
+        } else {
+          throw new DAOException("Creneau non présent dans la base, supression impossible");
+        }
+      }
+
+      function deleteCreneau($creneau) {
+        $b = $this->readCreneauByPrimary($creneau->getidManif(),$creneau->getidGroupe());
+        if ($b != null) {
+          $sql = "DELETE FROM Creneau where idGroupe = ? AND idManif = ?";
+          $req = $this->db->prepare($sql);
+          $params = array(
+            $creneau->getidGroupe(),
+            $creneau->getidManif()
           );
           $res = $req->execute($params);
           if ($res === FALSE) {

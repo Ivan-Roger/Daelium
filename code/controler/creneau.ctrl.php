@@ -10,76 +10,119 @@
   $userid= $_SESSION["user"]["ID"];
   $user = $dao->readOrganisateurById($userid);
   if($user != NULL){
-    if(isset($_GET["action"]) && $_GET["action"] == "edit" && $_POST["idNego"]){
-      $data['idNego'] = $_POST["idNego"];
-      $idnego =$_POST["idNego"];
-      $nego = $dao->readNegociationById($_POST["idNego"]);
-      $idGroupe = $nego->getIdGroupe();
-      $idManif = $nego->getIdManif();
+    if(isset($_GET["action"]) && $_GET["action"] == "delete" && isset($_GET["idgroupe"]) && isset($_GET["idmanif"])){
+      $idmanif = $_GET["idmanif"];
+      $idGroupe = $_GET["idgroupe"];
+      $creneau = $dao->readCreneauByPrimary($idmanif,$idGroupe);
+      if($creneau != NULL){
+          if($user->possedeManif($idmanif)){
 
-      $groupe = $dao->readGroupeById($idGroupe);
-      $manif = $dao->readManifestationById($idManif);
+            $dao->deleteCreneau($creneau);
 
-        if($nego != NULL){
-          if($userid == $nego->getIdOrganisateur()){
-            if(isset($_POST["test"])){
-              $hdt = $_POST["hdt"];
-              $hft = $_POST["hft"];
-            }else {
-              $hdt = $hft =NULL;
-            }
-              $Creneau = new Creneau($idManif,$idGroupe, $_POST["lieu"], $_POST["hd"], $_POST["hf"],$hdt,$hft);
-              $dao->createCreneau($Creneau);
+            if(isset($_GET["idnego"])){
+              $idnego = $_GET["idnego"];
               header("Location: ../controler/negociation.ctrl.php?id=$idnego"); // A modifier par la suite
+          }else{
+            header("Location: ../controler/negociations.ctrl.php");
+          }
+
+
           }else {
             $data['error']['title'] = "Acces Interdit";
-            $data['error']['message'] = "Vous ne pouvez pas ajouter un Creneau si vous n'êtes pas Organisateur de la Manifestation !";
+            $data['error']['message'] = "Vous ne pouvez pas modifier un Creneau si vous n'êtes pas Organisateur de la Manifestation !";
             $data['error']['back'] = "../controler/negociations.ctrl.php";
             include("../view/error.view.php");
           }
-        }else {
-          $data['error']['title'] = "Negociation inconnu";
-          $data['error']['back'] = "../controler/negociations.ctrl.php";
-          $data['error']['message'] = "La Manifestation est inconnu.";
-          include("../view/error.view.php");
-        }
+      }else {
+        $data['error']['title'] = "Creneau inconnu";
+        $data['error']['back'] = "../controler/negociations.ctrl.php";
+        $data['error']['message'] = "La Creneau est inconnu.";
+        include("../view/error.view.php");
+      }
+    }else if(isset($_GET["action"]) && $_GET["action"] == "edit" && isset($_POST["idgroupe"]) && isset($_POST["idmanif"])){
+      $idmanif = $_POST["idmanif"];
+      $idGroupe = $_POST["idgroupe"];
+      $creneau = $dao->readCreneauByPrimary($idmanif,$idGroupe);
+      if($creneau != NULL){
+          if($user->possedeManif($idmanif)){
 
-    }else if(isset($_GET["idNego"])){
-      $data['idNego'] = $_GET["idNego"];
-      $nego = $dao->readNegociationById($_GET["idNego"]);
-      $idGroupe = $nego->getIdGroupe();
-      $idManif = $nego->getIdManif();
+            $data['idNego'] = $_POST["idnego"];
+            $idnego =$_POST["idnego"];
 
 
+            $creneau->setDate($_POST["date"]);
+            $creneau->setHeureDebut($_POST["hd"]);
+            $creneau->setHeureFin($_POST["hf"]);
+            $creneau->setHeureDebutTest($_POST["hdt"]);
+            $creneau->setHeureFinTest($_POST["hft"]);
+            $creneau->setLieu($_POST["lieu"]);
+
+            $dao->updateCreneau($creneau);
+
+            header("Location: ../controler/negociation.ctrl.php?id=$idnego"); // A modifier par la suite
+
+
+          }else {
+            $data['error']['title'] = "Acces Interdit";
+            $data['error']['message'] = "Vous ne pouvez pas modifier un Creneau si vous n'êtes pas Organisateur de la Manifestation !";
+            $data['error']['back'] = "../controler/negociations.ctrl.php";
+            include("../view/error.view.php");
+          }
+      }else {
+        $data['error']['title'] = "Creneau inconnu";
+        $data['error']['back'] = "../controler/negociations.ctrl.php";
+        $data['error']['message'] = "La Creneau est inconnu.";
+        include("../view/error.view.php");
+      }
+
+
+    }else if(isset($_GET["idgroupe"]) && isset($_GET["idmanif"])){
+      $idmanif = $_GET["idmanif"];
+      $idGroupe = $_GET["idgroupe"];
+      $manif = $dao->readManifestationById($idmanif);
       $groupe = $dao->readGroupeById($idGroupe);
-      $manif = $dao->readManifestationById($idManif);
+      $creneau = $dao->readCreneauByPrimary($idmanif,$idGroupe);
+      if($creneau != NULL){
+        if($user->possedeManif($idmanif)){
+          $data["nomgroupe"] = $groupe->getNom();
+          $data["idgroupe"] = $idGroupe;
+          $data["idmanif"] = $idmanif;
+          $data["nommanif"] = $manif->getNom();
+          $data["hd"]  = $creneau->getHeureDebut();
+          $data["hf"] = $creneau->getHeureFin();
+          $data["hdt"] = $creneau->getHeureDebutTest();
+          $data["hft"] = $creneau->getHeureFinTest();
+          $data["lieu"] = $creneau->getLieu();
+          $data["date"] = $creneau->getDate();
+          if(isset($_GET["idnego"])){
+          $data["idnego"] = $_GET["idnego"];
+        }else{
+          $data["idnego"]= -2;
+        }
 
-      $data['nomgroupe'] =$groupe->getNom();
-      $data['nommanif'] =$manif->getNom();
+        include_once("../view/creneau.view.php");
 
-        if($nego != NULL){
-          if($userid == $nego->getIdOrganisateur()){
-            $manif = $dao->readManifestationById($idManif);
-            $dates = $manif->getDates();
-            $data["dates"] = $dates;
-              include("../view/creneau_new.view.php");
-          }else {
-            $data['error']['title'] = "Acces Interdit";
-            $data['error']['message'] = "Vous ne pouvez pas ajouter un Creneau si vous n'êtes pas Organisateur de la Manifestation !";
-            $data['error']['back'] = "../controler/negociations.ctrl.php";
-            include("../view/error.view.php");
-          }
         }else {
-          $data['error']['title'] = "Negociation inconnu";
+          $data['error']['title'] = "Acces Interdit";
+          $data['error']['message'] = "Vous ne pouvez pas modifier un Creneau si vous n'êtes pas Organisateur de la Manifestation !";
           $data['error']['back'] = "../controler/negociations.ctrl.php";
-          $data['error']['message'] = "La Manifestation est inconnu.";
           include("../view/error.view.php");
         }
+
+
+
+      }else {
+        $data['error']['title'] = "Creneau inconnu";
+        $data['error']['back'] = "../controler/negociations.ctrl.php";
+        $data['error']['message'] = "La Creneau est inconnu.";
+        include("../view/error.view.php");
+      }
+
 
     }else {
       $data['error']['title'] = "Argument manquant";
       $data['error']['back'] = "../controler/negociations.ctrl.php";
-      $data['error']['message'] = "L'id de la Negociation n'est pas renseigné.";
+      $data['error']['message'] = "L'id du groupe et l'id de la manifestation ne sont pas renseignée.";
       include("../view/error.view.php");
     }
   }else {
