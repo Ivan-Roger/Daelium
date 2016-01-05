@@ -876,7 +876,7 @@ class DAO {
                die("createLieu : Requête impossible !");
             }
             $retlieu=$reqlieu->fetchColumn();
-            return $retlieu;
+            return $this->readLieuById($retlieu);;
          } else {
             throw new DAOException("Lieu déjà présent dans la base (l'id en tous cas)");
          }

@@ -124,7 +124,7 @@ header("Location:"."../");
         -->
         <input type="hidden" name="idmanif" value="<?= $data['evenement']['id'] ?>"/>
         <div class="pull-right">
-          <input class="btn btn-default" type="button"  value="Retour">
+          <a href="../controler/evenement.ctrl.php?id=<?= $data['evenement']['id'] ?>" class="btn btn-default" >Retour </a>
           <input class="btn btn-primary" type="Submit"  value="Modifier">
         </div>
       </div>
