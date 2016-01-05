@@ -39,7 +39,7 @@
             </ul>
           </li>
         </ul>
-        <ul class="nav navbar-nav navbar-right">
+        <ul class="nav navbar-nav navbar-right"><!--
           <li>
             <form class="navbar-form navbar-right" method="GET" action="#">
               <a class="btn btn-default collapsed" role="button" data-toggle="collapse" href="#searchBarCollapse" aria-expanded="false" aria-controls="searchBarCollapse"><span class="glyphicon glyphicon-search no-margin"></span></a>
@@ -52,7 +52,7 @@
                 </div>
               </div>
             </form>
-          </li>
+          </li>-->
           <!-- Menu de l'uilisateur-->
           <li id="notifs" class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-bell"></span><?php if($data['notifs-count']>0) { ?><sup><span class="notifs-count label label-primary" style="font-size: 12px;"><?= $data['notifs-count'] ?></span></sup><?php } ?></a>
@@ -66,7 +66,7 @@
                   </ul>
                 </li>
             </ul>
-          </li>
+          </li><!--
           <li id="settings" class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-cog"></span><span class="text">Paramétres <span class="caret"></span></span></a>
             <ul class="dropdown-menu">
@@ -89,7 +89,7 @@
               <li role="separator" class="divider"></li>
               <li><a href="#">One more separated link</a></li>
             </ul>
-          </li>
+          </li>-->
           <li id="profile" class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span><span class="text">Compte <span class="caret"></span></span></a>
             <ul class="dropdown-menu">
