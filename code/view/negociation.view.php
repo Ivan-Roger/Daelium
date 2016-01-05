@@ -55,7 +55,10 @@ header("Location:"."../");
                   <div class="col-lg-6"><b>Heure de debut de test :</b> <?= $value["hdt"] ?></div>
                   <div class="col-lg-6"><b>Heure de fin de test: </b><?= $value["hft"] ?></div>
                   <div class="col-lg-12"><b>Lieu :</b><?= $value["lieu"] ?></div>
-
+                  <div class="pull-right">
+                  <a href="../controler/creneau.ctrl.php?idmanif= &idgroupe=" type="button" class="btn btn-warning">Modifier</a>
+                  <a href="../controler/creneau.ctrl.php?idmanif= &idgroupe=" type="button" class="btn btn-danger">Supprimer</a>
+                </div>
               </div>
               <?php endforeach; ?>
 

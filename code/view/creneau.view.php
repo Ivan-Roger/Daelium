@@ -12,7 +12,7 @@
 <body>
   <?php include("../view/include/header.view.php"); ?>
   <section class="col-lg-offset-2 col-lg-8">
-    <form class="form-horizontal" role="form" method="post" action="../controler/creneau_new.ctrl.php?action=new">
+    <form class="form-horizontal" role="form" method="post" action="../controler/creneau_new.ctrl.php?action=edit">
       <div class="col-lg-12">
         <div class="panel panel-default">
           <div class="panel-heading">Nouveau Creneau pour <?= $data["nomgroupe"] ?> au <?= $data["nommanif"] ?></div>
@@ -66,7 +66,7 @@
             </div>
         </div>
       </div>
-      <input type="hidden" name="idnego" value="<?= $data['idNego'] ?>"/>
+      <input type="hidden" name="idgroupe" value="<?= $data['idNego'] ?>"/>
       <div class="pull-right">
         <input class="btn btn-default" type="button" onclick="alert('Hello World!')" value="Annuler">
         <input class="btn btn-primary" type="submit" onclick="alert('Hello World!')" value="Créer">
