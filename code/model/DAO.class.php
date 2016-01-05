@@ -1754,13 +1754,12 @@ class DAO {
       // ===================== Creneau =====================
 
       // Creneau(idManif,idGroupe,heureDebut,heureFin,lieu,heureDebutTest,heureFinTest)
-      function readCreneauByPrimary($idManif, $idGroupe, $heureDebut) {
-         $sql = "SELECT * FROM Creneau WHERE idManif=? and idGroupe=? and heureDebut = ?"; // requête
+      function readCreneauByPrimary($idManif, $idGroupe) {
+         $sql = "SELECT * FROM Creneau WHERE idManif=? and idGroupe=?"; // requête
          $req = $this->db->prepare($sql);
          $params = array(
             $idManif,
-            $idGroupe,
-            $heureDebut
+            $idGroupe
          );
          $res = $req->execute($params);
          if ($res === FALSE) {
@@ -1816,48 +1815,48 @@ class DAO {
 
 
       function createCreneau($creneau) {
-         $c = $this->readCreneauByPrimary($creneau->idManif,$creneau->idGroupe,$creneau->heureDebut);
+         $c = $this->readCreneauByPrimary($creneau->getidManif(),$creneau->getidGroupe());
          if ($c == null) {
             $sql = "INSERT INTO Creneau(idManif,idGroupe,heureDebut,heureFin,lieu,heureDebutTest,heureFinTest) VALUES (?,?,?,?,?,?,?)";
             $req = $this->db->prepare($sql);
             $params = array(
-               $creneau->idManif,
-               $creneau->idGroupe,
-               $creneau->heureDebut,
-               $creneau->heureFin,
-               $creneau->lieu,
-               $creneau->heureDebutTest,
-               $creneau->heureFinTest
+               $creneau->getidManif(),
+               $creneau->getidGroupe(),
+               $creneau->getHeureDebut(),
+               $creneau->getHeureFin(),
+               $creneau->getLieu(),
+               $creneau->getHeureDebutTest(),
+               $creneau->getHeureFinTest()
             );
             $res = $req->execute($params);
             if ($res === FALSE) {
                die("createCreneau : Requête impossible !");
             }
-            return $this->readCreneauByPrimary($creneau->idManif,$creneau->idGroupe,$creneau->heureDebut);
+            return $this->readCreneauByPrimary($creneau->getidManif(),$creneau->getidGroupe());
          } else {
             throw new DAOException("Creneau déjà présent dans la base");
          }
       }
 
       function updateCreneau($creneau) {
-         $c = $this->readCreneauByPrimary($creneau->idManif,$creneau->idGroupe,$creneau->heureDebut);
+         $c = $this->readCreneauByPrimary($creneau->getidManif(),$creneau->getidGroupe());
          if ($c != null) {
-            $sql = "UPDATE Creneau set (heureFin,lieu,heureDebutTest,heureFinTest) = (?,?,?,?) where idManif=? and idGroupe=? and heureDebut = ?";
+            $sql = "UPDATE Creneau set (heureDebut,heureFin,lieu,heureDebutTest,heureFinTest) = (?,?,?,?,?) where idManif=? and idGroupe=?";
             $req = $this->db->prepare($sql);
             $params = array(
-               $creneau->heureFin,
-               $creneau->lieu,
-               $creneau->heureDebutTest,
-               $creneau->heureFinTest,
-               $creneau->idManif,
-               $creneau->idGroupe,
-               $creneau->heureDebut
+              $creneau->getHeureDebut(),
+              $creneau->getHeureFin(),
+              $creneau->getLieu(),
+              $creneau->getHeureDebutTest(),
+              $creneau->getHeureFinTest(),
+              $creneau->getidManif(),
+              $creneau->getidGroupe()
             );
             $res = $req->execute($params);
             if ($res === FALSE) {
                die("updateCreneau : Requête impossible !");
             }
-            return $this->readCreneauByPrimary($creneau->idManif,$creneau->idGroupe,$creneau->heureDebut);
+            return $this->readCreneauByPrimary($creneau->getidManif(),$creneau->getidGroupe());
          } else {
             throw new DAOException("Creneau non présent dans la base");
          }

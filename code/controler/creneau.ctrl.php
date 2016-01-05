@@ -10,10 +10,10 @@
   $userid= $_SESSION["user"]["ID"];
   $user = $dao->readOrganisateurById($userid);
   if($user != NULL){
-    if(isset($_GET["action"]) && $_GET["action"] == "new" && $_POST["idnego"]){
-      $data['idNego'] = $_POST["idnego"];
-      $idnego =$_POST["idnego"];
-      $nego = $dao->readNegociationById($_POST["idnego"]);
+    if(isset($_GET["action"]) && $_GET["action"] == "edit" && $_POST["idNego"]){
+      $data['idNego'] = $_POST["idNego"];
+      $idnego =$_POST["idNego"];
+      $nego = $dao->readNegociationById($_POST["idNego"]);
       $idGroupe = $nego->getIdGroupe();
       $idManif = $nego->getIdManif();
 
