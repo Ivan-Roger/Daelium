@@ -47,7 +47,7 @@
             </div>
           </div>
           <div class="pull-right">
-            <input class="btn btn-primary" type="submit" onclick="alert('Vous allez changer de mot de passe !')" value="Modifier">
+            <input class="btn btn-primary" type="submit" onclick="confirm('Vous allez changer de mot de passe !')" value="Modifier">
           </div>
         </form>
         <div class="col-lg-10 col-lg-offset-1">
@@ -59,6 +59,15 @@
             <?php } ?>
           </table>
         </div>
+        <div class="col-lg-12">
+          <div class="pull-right">
+            <form class="" action="../controler/parametre.ctrl.php" method="post">
+              <input type="hidden" name="action" value="delete">
+              <input class="btn btn-danger" type="submit" onclick="confirm('Vous allez supprimer votre compte !')" value="Supprimer mon compte">
+            </form>
+      </div>
+      </div>
+
     </section>
     <?php include("../view/include/footer.view.php"); ?>
   </body>

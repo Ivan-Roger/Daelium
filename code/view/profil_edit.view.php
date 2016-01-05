@@ -96,8 +96,8 @@
             </div>
           </div>
           <div class="pull-right">
-            <input class="btn btn-default" type="button" onclick="alert('Hello World!')" value="Annuler">
-            <input class="btn btn-primary" type="submit" onclick="alert('Hello World!')" value="Modifier">
+            <a href="../controler/profil.ctrl.php" class="btn btn-default">Retour</a>
+            <input class="btn btn-primary" type="submit"  value="Modifier">
           </div>
   </form>
     </section>

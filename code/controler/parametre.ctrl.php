@@ -8,6 +8,11 @@
   $userid = $_SESSION['user']['ID'];
   $user = $dao->readUtilisateurById($userid);
   $data["erreur"] = "";
+  if(isset($_POST["action"]) && $_POST["action"] == "delete"){ // Si je supprime le compte
+
+
+    header("Location: ../controler/nolog.ctrl.php");
+  }
   if(isset($_GET["action"]) && $_GET["action"] == "edit"){
     if($user->getMdp() == $_POST["amdp"]){
       if($_POST["nmdp"] == $_POST["cnmdp"]){

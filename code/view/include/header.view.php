@@ -23,7 +23,7 @@
           <?php if($data["type"] == "booker") { ?>
             <li<?php echo($data['page']=="Groupes"?" class='active'":"") ?>><a href="../controler/groupes.ctrl.php"><span class="fa fa-group"></span><span class="text">Groupes</span></a></li>
           <?php } else { ?>
-            <li<?php echo($data['page']=="Evenements"?" class='active'":"") ?>><a href="../controler/evenements.ctrl.php"><span class="glyphicon glyphicon-music"></span><span class="text">Evenements</span></a></li>
+            <li<?php echo($data['page']=="Evenements"?" class='active'":"") ?>><a href="../controler/evenements.ctrl.php"><span class="glyphicon glyphicon-music"></span><span class="text">Manifestations</span></a></li>
           <?php }?>
           <li<?php echo($data['page']=="Negociations"?" class='active'":"") ?>><a href="../controler/negociations.ctrl.php"><span class="fa fa-comments"></span><span class="text">Negociations</span></a></li>
 
