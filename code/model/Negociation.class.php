@@ -52,11 +52,11 @@
         if($this->etat == 0 || $this->etat == null){
           return "En Cours";
         }elseif ($this->etat == 1) {
-          return "Terminer";
+          return "Terminée";
         }elseif ($this->etat == 2) {
-          return "Refuser";
+          return "Refusée";
         }elseif ($this->etat == 3) {
-          return "Accepter";
+          return "Acceptée";
         }else {
           return "Erreur Negociation.class";
         }

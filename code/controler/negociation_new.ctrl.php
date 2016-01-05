@@ -17,14 +17,13 @@
         $manif = $dao->readManifestationById($_POST['cible']);
         $groupe = $dao->readGroupeById($_POST["choix"]);
         $organisateur = $manif->getCreateur();
-        $negociation = new Negociation(NULL,$iduser,$_POST['cible'],$_POST["choix"],$organisateur,1);
+        $negociation = new Negociation(NULL,$iduser,$_POST['cible'],$_POST["choix"],$organisateur,0);
         $negociation2 = $dao->createNegociation($negociation);
         $nomuser = $user->getNomComplet();
         $nomgroupe = $groupe->getNom();
         $nommanif = $manif->getNom();
         $idNegociation = $negociation2->getIdNegociation();
         $notification = new Notification(NULL,0,$organisateur,2,$nomuser." souhaite que son groupe ".$nomgroupe." participe à votre Manifestation : ".$nommanif.".  <a href='../controler/negociation.ctrl.php?id=".$idNegociation."' > Voir </a>");
-        var_dump($notification);
 
         $dao->createNotification($notification);
         header("Location: ../controler/negociation.ctrl.php?id=$idNegociation");
@@ -40,7 +39,7 @@
         $bookerid = $dao->readBookerByGroupe($_POST["cible"]);
         $manif = $dao->readManifestationById($_POST['choix']);
         $groupe = $dao->readGroupeById($_POST["cible"]);
-        $negociation = new Negociation(NULL,$bookerid,$_POST['choix'],$_POST["cible"],$iduser,1);
+        $negociation = new Negociation(NULL,$bookerid,$_POST['choix'],$_POST["cible"],$iduser,0);
         $negociation2 = $dao->createNegociation($negociation);
         $nomuser = $user->getNomComplet();
         $nomgroupe = $groupe->getNom();

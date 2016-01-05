@@ -89,6 +89,11 @@ if($user != NULL){ // SI booker
           $nomscene = $_POST["nomscene"];
           $genre = $_POST["genre"];
           $genres = explode(",",$genre);
+          $dao->deleteGroupeGenreIdGroupe($groupeid);
+          foreach ($genres as $key => $value) {
+            $dao->createGroupeGenre($groupeid,$value);
+          }
+
           $des = $_POST["des"];
           $mail = $_POST["mail"];
 
@@ -144,11 +149,14 @@ if($user != NULL){ // SI booker
           }else {
             $data['groupe']['description'] = $groupe->getDescription();
           }
-          $genre = $dao->readManifestationGenreByidManif($_GET['id']);
-          $data['groupe']['genre'] = "";
+          $genre = $dao->readGroupeGenreByIdGroupe($_GET['id']);
           if($genre != NULL){
             foreach ($genre as $key => $value) {
-              $data['groupe']['genre'] = $data['groupe']['genre']." ".$value['nomg'];
+              if(!empty($data['groupe']['genre'])){
+                $data['groupe']['genre'] = $data['groupe']['genre'].",".$value['nomg'];
+              }else {
+                  $data['groupe']['genre'] = $value['nomg'];
+              }
             }
           }else {
             $data['groupe']['genre'] = "";

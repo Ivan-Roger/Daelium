@@ -6,7 +6,7 @@
 <html>
 <head>
   <?php include("../view/include/includes.view.php"); ?>
-  <title>Dælium - Annuaire</title>
+  <title>Dælium - Negociations</title>
 </head>
 <body>
   <?php include("../view/include/header.view.php"); ?>
@@ -37,9 +37,7 @@
                   <td><?= $value["etat"] ?></td>
                   <td>
                     <div class="btn-group" role="group" aria-label="...">
-                      <a href="../controler/negociation.ctrl.php?id=<?= $value["id"] ?>" type="button" class="btn btn-default"><span class="glyphicon glyphicon-option-horizontal no-margin"></span></a>
-                      <a href="" type="button" class="btn btn-default"><span class="glyphicon glyphicon-repeat no-margin"></a>
-                      <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash no-margin"></button>
+                      <a href="../controler/negociation.ctrl.php?id=<?= $value["id"] ?>" type="button" class="btn btn-default">Details</a>
                     </div>
                   </td>
                 </tr>

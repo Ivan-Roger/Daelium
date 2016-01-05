@@ -28,7 +28,7 @@
         $lieu = $dao->readLieuById();
         $data['nego'][$key]['villemanif'] = $lieu->getVille();
       }else {
-        $data['nego'][$key]['villemanif'] = "Inconue";
+        $data['nego'][$key]['villemanif'] = "Inconu";
       }
       $data['nego'][$key]['etat'] = $nego->getetatEcrit();
       $data['nego'][$key]['id'] = $nego->getIdNegociation();
