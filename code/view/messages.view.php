@@ -8,20 +8,21 @@ header("Location:"."../");
    <?php include("../view/include/includes.view.php"); ?>
    <link rel="stylesheet" href="../data/css/messages.css">
    <script src="../data/js/messages.js"></script>
+   <script src="../ckeditor/ckeditor.js"></script>
    <title>Dælium - Messagerie</title>
 </head>
 <body>
    <?php include("../view/include/header.view.php"); ?>
    <section class="col-lg-12">
       <article class="col-lg-offset-1 col-lg-10">
-         <div class="navbar navbar-form navbar-right">
+         <div class="navbar navbar-form navbar-right"><!--
             <div class="input-group">
                <input type="text" class="form-control"/>
                <div class="input-group-btn">
                   <a href="#" class="btn btn-default">Rechercher</a>
                </div>
-            </div>
-            <a class="btn btn-primary">Nouveau message</a>
+            </div>-->
+            <a id="openEditor" class="btn btn-primary">Nouveau message</a>
          </div>
       </article>
       <div class="row">
@@ -135,6 +136,43 @@ header("Location:"."../");
                            <a href="#" class="btn btn-default full-width">Editeur</a><br/>
                            <button class="btn btn-primary btn-lg full-width">Envoyer</button>
                         </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div id="editFrame" class="col-lg-offset-1 col-lg-10 collapse collapsed">
+               <div class="panel panel-default empty">
+                  <div class="panel-heading">
+                     <div class="row">
+                        <div class="col-sm-8">
+                           <h4>Message : <input type="text" class="form-control" name="messageTitle" placeholder="Sujet"/></h4>
+                        </div>
+                        <div class="col-lg-12">
+                           <div class="col-sm-8">
+                              <div class="col-sm-3">
+                                 <small>à : <input type="text" class="form-control auto-complete" data-complete="users" name="messageRecipient" placeholder="Destinataires"/></small>
+                              </div>
+                              <ul id="messageTags" class="col-sm-9 list-inline">
+                                 <!--<li><a class="btn btn-default" href="#"><span class="glyphicon glyphicon-tag no-margin"></span> Festival du lac</a></li>-->
+                              </ul>
+                           </div>
+                           <div class="col-sm-4 text-right">
+                              <div class="btn-group">
+                                 <a class="btn btn-default" title="Enregistrer"><span class="glyphicon glyphicon-floppy-disk no-margin"></span></a>
+                                 <a class="btn btn-primary" title="Envoyer"><span class="glyphicon glyphicon-send"></span>Envoyer</a>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="panel-body">
+                     <div class="content">
+                        <textarea rows="4" name="editMessageContent" id="editor1" cols="175%"><?= NULL ?></textarea>
+                        <script>
+                          // Replace the <textarea id="editor1"> with a CKEditor
+                          // instance, using default configuration.
+                          CKEDITOR.replace( 'editor1' );
+                        </script>
                      </div>
                   </div>
                </div>

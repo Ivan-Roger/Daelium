@@ -75,7 +75,16 @@ function addMessageReadListener() {
    $(".showMessage.not-shown").on('click',showMessage);
    console.log("Message Read Listener added !");
 }
+function addEditorListener() {
+   $(".editMessage.not-open").on('click',editMessage);
+   console.log("Message Edit Listener added !");
+}
 
 document.addEventListener("DOMContentLoaded", function() {
   addMessageReadListener();
+  addEditorListener();
+  $("#openEditor").on('click',function(){
+    $("#messageFrame").collapse('hide');
+    $("#editFrame").collapse('show');
+  })
 });

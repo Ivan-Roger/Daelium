@@ -46,9 +46,9 @@
       if ($this->type == 0) {
         return "Message";
       } else if ($this->type == 1) {
-        return "Demande de Groupe";
+        return "Groupe";
       } else if ($this->type == 2) {
-        return "Demande de participation à un evenement";
+        return "Évenement";
       }
       //Liste non exaustive
     }
