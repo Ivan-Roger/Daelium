@@ -92,7 +92,8 @@
    }
    if (isset($_GET['create'])) {
      $lieu = new Lieu(NULL,'Lieu de '.$_POST['eventName'],NULL,$_POST['pays'],$_POST['region'],$_POST['ville'],$_POST['codepostal'],$_POST['adresse']);
-     $idLieu = $dao->createLieu($lieu);
+     $Lieu = $dao->createLieu($lieu);
+     $idLieu = $Lieu->getIdLieu();
 
      $evt = new Evenement(NULL,$_SESSION['user']['ID'],$_POST['eventName'],$_POST['eventBeginingDate'],$_POST['eventBeginingHour'],($_POST['eventDayLong']=='checked'?"day":"non"),$_POST['eventEndingDate'],$_POST['eventEndingHour'],$_POST['eventDesc'],$idLieu,$_POST['eventParticipants']);
      $dao->createEvenement($evt);
