@@ -42,11 +42,22 @@ header("Location:"."../");
 
           <div class="panel panel-default">
             <div class="panel-heading">
-              <h4>Creneau</h4>
+              <h4>Creneaux</h4>
+
             </div>
             <div class="panel-body">
 
+              <?php foreach ($data["creneau"] as $key => $value): ?>
+                <div class="well col-lg-12 ">
+                  <div class="col-lg-4"><b>Date : </b><?= $value["date"] ?></div>
+                  <div class="col-lg-4"><b>Heure de debut :</b> <?= $value["hd"] ?></div>
+                  <div class="col-lg-4"><b>Heure de fin : </b><?= $value["hf"] ?></div>
+                  <div class="col-lg-6"><b>Heure de debut de test :</b> <?= $value["hdt"] ?></div>
+                  <div class="col-lg-6"><b>Heure de fin de test: </b><?= $value["hft"] ?></div>
+                  <div class="col-lg-12"><b>Lieu :</b><?= $value["lieu"] ?></div>
 
+              </div>
+              <?php endforeach; ?>
 
             </div>
           </div>

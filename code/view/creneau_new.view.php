@@ -30,13 +30,13 @@
             <div class="form-group">
               <label class="control-label col-sm-4" for="hd">Heure Debut :</label>
               <div class="col-sm-8">
-                <input type="time" id="hd" name="hd" class="form-control" />
+                <input type="time" id="hd" name="hd" class="form-control" required="required" />
               </div>
             </div>
             <div class="form-group">
               <label class="control-label col-sm-4" for="hf">Heure Fin :</label>
               <div class="col-sm-8">
-                <input type="time" id="hf" name="hf" class="form-control" />
+                <input type="time" id="hf" name="hf" class="form-control" required="required" />
               </div>
             </div>
             <div class="form-group">

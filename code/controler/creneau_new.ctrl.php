@@ -12,16 +12,25 @@
   if($user != NULL){
     if(isset($_GET["action"]) && $_GET["action"] == "edit" && $_POST["idNego"]){
       $data['idNego'] = $_POST["idNego"];
+      $idnego =$_POST["idNego"];
       $nego = $dao->readNegociationById($_POST["idNego"]);
-      $data['idgroupe'] = $nego->getIdGroupe();
-      $data['idmanif'] = $nego->getIdManif();
+      $idGroupe = $nego->getIdGroupe();
+      $idManif = $nego->getIdManif();
 
-      $groupe = $dao->readGroupeById($data['idgroupe']);
-      $manif = $dao->readManifestationById($data['idmanif']);
+      $groupe = $dao->readGroupeById($idGroupe);
+      $manif = $dao->readManifestationById($idManif);
 
         if($nego != NULL){
           if($userid == $nego->getIdOrganisateur()){
-              // Traitement du formulaire
+            if(isset($_POST["test"])){
+              $hdt = $_POST["hdt"];
+              $hft = $_POST["hft"];
+            }else {
+              $hdt = $hft =NULL;
+            }
+              $Creneau = new Creneau($idManif,$idGroupe, $_POST["lieu"], $_POST["hd"], $_POST["hf"],$hdt,$hft);
+              $dao->createCreneau($Creneau);
+              header("Location: ../controler/negociation.ctrl.php?id=$idnego"); // A modifier par la suite
           }else {
             $data['error']['title'] = "Acces Interdit";
             $data['error']['message'] = "Vous ne pouvez pas ajouter un Creneau si vous n'êtes pas Organisateur de la Manifestation !";
