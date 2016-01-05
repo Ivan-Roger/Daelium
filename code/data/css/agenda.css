@@ -1,3 +1,42 @@
+.loader {
+   height: 2px;
+   width: 0%;
+   background-color: #29F;
+   overflow: hidden;
+}
+
+@keyframes loadingStart {
+   0%    {width: 0%;}
+   100%  {width: 66%;}
+}
+
+@keyframes loadingEnd {
+   0%    {width: 66%;}
+   99%  {width: 100%;}
+   100%  {width: 0%;}
+}
+
+@keyframes loadingFail {
+   0%    {width: 66%; background-color: #29F;}
+   100%  {width: 100%; background-color: #F42;}
+}
+
+.loader.start {
+   background-color: #29F;
+   animation: loadingStart 3.5s ease-in;
+   width: 66%;
+}
+.loader.end {
+   background-color: #29F;
+   animation: loadingEnd 0.5s ease-out;
+   width: 0%;
+}
+.loader.fail {
+   animation: loadingFail 0.5s ease-out;
+   width: 100%;
+   background-color: #F42;
+}
+
 #calendar thead th {
   text-align: center;
   vertical-align: middle;
@@ -62,6 +101,10 @@ table tbody td.active {
 
 #commingNext thead th {
   text-align: center;
+}
+
+#commingNext tbody tr {
+  cursor: pointer;
 }
 
 #commingNext td.hour, td.date {

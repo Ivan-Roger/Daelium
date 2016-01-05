@@ -300,9 +300,9 @@ class DAO {
             $utilisateur->getMdp(),
             $utilisateur->getGoogleToken()
          );
-         var_dump($params);
          $res = $req->execute($params);
          if ($res === FALSE) {
+            var_dump($this->db->errorInfo()[2]);
             die("createUser : Requête impossible !");
          }
          return $this->readUtilisateurById($personne->getIdPersonne());
@@ -1175,6 +1175,22 @@ class DAO {
          if ($res === FALSE) {
             var_dump($this->db->errorInfo()[2]);
             die("readEvenementByCreateur : Requête impossible !"); // erreur dans la requête
+         }
+         $res = $req->fetchAll(PDO::FETCH_CLASS,"Evenement");
+         return (isset($res[0])?$res:null);
+      }
+
+      function readEvenementByCreateurApresDate($idCreateur,$dateDebut) {
+         $sql = "SELECT * FROM Evenement WHERE createur = ? AND datedebut >= ?"; // requête
+         $req = $this->db->prepare($sql);
+         $params = array( // paramétres
+            $idCreateur, // l'id de l'utilisateur
+            $dateDebut // la date de début
+         );
+         $res = $req->execute($params);
+         if ($res === FALSE) {
+            var_dump($this->db->errorInfo()[2]);
+            die("readEvenementByCreateurApresDate : Requête impossible !"); // erreur dans la requête
          }
          $res = $req->fetchAll(PDO::FETCH_CLASS,"Evenement");
          return (isset($res[0])?$res:null);

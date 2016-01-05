@@ -58,8 +58,8 @@
       $evt['hour'] = "24h00";
       $evts[$evt['id']]=$evt;
       */
-      if (isset($_GET['events'])) {
-         $evts = $dao->readEvenementByCreateur($_SESSION['user']['ID']);
+      if (isset($_GET['next-events'])) {
+         $evts = $dao->readEvenementByCreateurApresDate($_SESSION['user']['ID'],date("Y-m-d"));
          foreach($evts as $evtO) {
             $evt['id'] = $evtO->getID();
             $evt['name'] = $evtO->getNom();

@@ -7,12 +7,14 @@
   <head>
     <?php include("../view/include/includes.view.php"); ?>
     <link rel="stylesheet" href="../data/css/agenda.css">
+    <link rel="stylesheet" href="../data/css/jquery-ui.min.css">
     <title>Dælium - Agenda</title>
   </head>
   <body>
     <?php include("../view/include/header.view.php"); ?>
     <section class="col-lg-12">
       <div class="row">
+        <div class="loader">.</div>
         <article class="col-lg-3" style="height:400px;"> <!-- =============================================== Comming Next =============================================== -->
           <div class="panel panel-default">
             <div class="panel-heading"><h4>Prochains événements</h4></div>
@@ -49,7 +51,7 @@
                 </div>
               </div>
             </div>
-            <div class="panel-body table-responsive calendar no-padding" style="height:450px;">
+            <div class="panel-body table-responsive calendar" style="height:450px;">
               <table id="calendar" class="table table-bordered col-lg-12 text-center" data-day="<?= $data['day'] ?>" data-month="<?= $data['month'] ?>" data-year="<?= $data['year'] ?>">
                 <colgroup>
                   <col class="col-lg-1" />
@@ -67,7 +69,10 @@
                 <tbody>
                 </tbody>
               </table>
-              <button id="calendarResetToday" class="btn btn-default"><span class="glyphicon glyphicon-time"></span>Aujourd'hui</button>
+              <div class="col-lg-12 text-center">
+                  <button id="calendarResetToday" class="btn btn-default"><span class="glyphicon glyphicon-time"></span>Aujourd'hui</button>
+                  <button id="newEvent" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span>Créer un évenement</button>
+              </div>
             </div>
           </div>
         </article>
@@ -106,7 +111,7 @@
         </article>
       </div>
       <div class="row">
-        <article id="eventView" data-id="" class="collapse col-lg-10 col-lg-offset-1"> <!-- =============================================== Event Form =============================================== -->
+        <article id="eventView" data-id="" class="collapse col-lg-10 col-lg-offset-1"> <!-- =============================================== Event Display =============================================== -->
           <div class="panel panel-default">
             <div class="panel-heading">
              <div class="col-xs-11"><h3 class="eventTitle">RDV Marc-Henri</h3></div>
@@ -249,20 +254,20 @@
                 <div class="form-inline">
                   <label class="col-lg-2" for="eventReminder">Rappels</label>
                   <div class="col-lg-8 input-group">
-                    <button class="btn btn-default" name="eventReminder" id="eventReminder">Ajouter un rappel</button>
+                    <button class="btn btn-default" id="eventReminder">Ajouter un rappel</button>
                   </div>
                 </div>
                 </br>
                 <div class="form-inline">
                   <label class="col-lg-2" for="eventMore">Plus</label>
                   <div class="col-lg-8 input-group">
-                    <button class="btn btn-default" name="eventMore" id="eventMore">Ajouter un champ</button>
+                    <button class="btn btn-default" id="eventMore">Ajouter un champ</button>
                   </div>
                 </div>
                 </br>
                 <div class="form-inline text-right">
-                  <button class="btn btn-primary">Sauvegarder</button>
-                  <button class="btn btn-default">Annuler</button>
+                  <input type="submit" class="btn btn-primary">Sauvegarder</input>
+                  <input type="cancel" class="btn btn-default">Annuler</input>
                 </div>
               </form>
             </div>
@@ -271,6 +276,7 @@
       </div>
     </section>
     <?php include("../view/include/footer.view.php"); ?>
+    <script src="../data/js/jquery.scrollTo.min.js"></script>
     <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <script src="../data/js/agenda.js"></script>
     <script>
@@ -281,6 +287,7 @@
         <?= $data['month'] ?>,
         <?= $data['year'] ?>
       );
+      init();
     </script>
   </body>
 </html>

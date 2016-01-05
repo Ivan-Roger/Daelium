@@ -7,56 +7,70 @@ function frDays(day) {
 }
 
 function updateCalendar(func) {
+  $(".loader").addClass("start");
+  $(".loader").removeClass("end");
+  $(".loader").removeClass("fail");
   $("#calendarTitle").html(AgendaDate.getMonthName()+" "+AgendaDate.getYear());
   $.ajax({url: "agenda.ctrl.php?ajax&calendar&month="+AgendaDate.getMonth()+"&year="+AgendaDate.getYear(), success: function(res){
-      console.log("Update calendar !");
-      console.log(res);
-      $("#calendar tbody").html("");
-      for (var l=0; l<res.calendar.length; l++) {
-        $("#calendar tbody").append("<tr data-week=\""+res.calendar[l].id+"\" >");
-        $("#calendar tbody tr:nth-child("+(l+1)+")").append($("<th>").html(res.calendar[l].id));
-        for (var c=0; c<res.calendar[l].days.length; c++) {
-          var day = res.calendar[l].days[c];
-          var flags = " class=\"";
-          flags += (day<1?" not-hover":" day"); // ne se grise pas au survol quand la case est vide
-          var d = new Date();
-          flags += ((AgendaDate.getDay()==day)?" selected":""); // case du selectionnée bleue
-          flags += ((day==d.getDate() && AgendaDate.getMonth()==d.getMonth()+1 && AgendaDate.getYear()==d.getFullYear())?" info":""); // case du jour
-          flags += "\" data-day=\"";
-          flags += day;
-          flags += "\"";
-          $("#calendar tbody tr:nth-child("+(l+1)+")").append($("<td"+(flags!=""?flags:"")+">").html((day>0?day:"")));
-        }
+    $(".loader").addClass("end");
+    $(".loader").removeClass("start");
+    console.log("Update calendar !");
+    console.log(res);
+    $("#calendar tbody").html("");
+    for (var l=0; l<res.calendar.length; l++) {
+      $("#calendar tbody").append("<tr data-week=\""+res.calendar[l].id+"\" >");
+      $("#calendar tbody tr:nth-child("+(l+1)+")").append($("<th>").html(res.calendar[l].id));
+      for (var c=0; c<res.calendar[l].days.length; c++) {
+        var day = res.calendar[l].days[c];
+        var flags = " class=\"";
+        flags += (day<1?" not-hover":" day"); // ne se grise pas au survol quand la case est vide
+        var d = new Date();
+        flags += ((AgendaDate.getDay()==day)?" selected":""); // case du selectionnée bleue
+        flags += ((day==d.getDate() && AgendaDate.getMonth()==d.getMonth()+1 && AgendaDate.getYear()==d.getFullYear())?" info":""); // case du jour
+        flags += "\" data-day=\"";
+        flags += day;
+        flags += "\"";
+        $("#calendar tbody tr:nth-child("+(l+1)+")").append($("<td"+(flags!=""?flags:"")+">").html((day>0?day:"")));
       }
-      $("#calendar tbody td[class~='day']").click(clickSetDay);
-      if (func!=null) {
-        func();
-      }
-    }, error: function(a, b, c) {
-      console.warn("AJAX Error: couldn't update Calendar (\""+b+"\"/\""+c+"\")");
-      console.log(a.responseText);
-    }});
+    }
+    $("#calendar tbody td[class~='day']").on('click',clickSetDay);
+    if (func!=null) {
+      func();
+    }
+  }, error: function(a, b, c) {
+    $(".loader").addClass("fail");
+    $(".loader").removeClass("start");
+    console.warn("AJAX Error: couldn't update Calendar (\""+b+"\"/\""+c+"\")");
+    console.log(a.responseText);
+  }});
 }
 
 function updateCommingNext(func) {
-  $.ajax({url: "agenda.ctrl.php?ajax&events", success: function(res){
+  $(".loader").addClass("start");
+  $(".loader").removeClass("end");
+  $(".loader").removeClass("fail");
+  $.ajax({url: "agenda.ctrl.php?ajax&next-events", success: function(res){
+    $(".loader").addClass("end");
+    $(".loader").removeClass("start");
     console.log("Update Comming Next !");
     console.log(res);
     $("#commingNext tbody").html("");
     for (var id in res.events) {
-      $("#commingNext tbody").append("<tr>");
-      $("#commingNext tbody tr:last-child").append($("<td class=\"date\" data-date=\""+res.events[id].dateDebut+"\">").html(res.events[id].day));
-      if (res.events[id].day) {
-        $("#commingNext tbody tr:last-child").append($("<td class=\"hour empty\" data-hour=\""+res.events[id].hour+"\">").html("Journée"));
+      $("#commingNext tbody").append("<tr data-id=\""+res.events[id].id+"\">");
+      $("#commingNext tbody tr:last-child").append($("<td class=\"date\" data-date=\""+res.events[id].dateDebut+"\">").html(res.events[id].dateDebut));
+      if (res.events[id].journee) {
+        $("#commingNext tbody tr:last-child").append($("<td class=\"hour empty\" data-hour=\"day\">").html("Journée"));
         console.log("Day");
       } else
-        $("#commingNext tbody tr:last-child").append($("<td class=\"hour\" data-hour=\""+res.events[id].hour+"\">").html(res.events[id].hour));
+        $("#commingNext tbody tr:last-child").append($("<td class=\"hour\" data-hour=\""+res.events[id].heureDebut+"\">").html(res.events[id].heureDebut));
       $("#commingNext tbody tr:last-child").append($("<td>").html(res.events[id].name));
     }
     if (func!=null) {
       func();
     }
   }, error: function(a, b, c) {
+    $(".loader").addClass("fail");
+    $(".loader").removeClass("start");
     console.warn("AJAX Error: couldn't update Comming Next (\""+b+"\"/\""+c+"\")");
     console.log(a.responseText);
   }});
@@ -64,31 +78,39 @@ function updateCommingNext(func) {
 
 function updateEvent(id,func) {
   console.log("Open event "+id);
+  $(".loader").addClass("start");
+  $(".loader").removeClass("end");
+  $(".loader").removeClass("fail");
   $.ajax({url: "agenda.ctrl.php?ajax&event="+id, success: function(res){
-      $("#eventView").collapse('toggle');
-      console.log("Update Event !");
-      console.log(res);
-      $("#eventView").attr("data-id",res.event.id);
-      $("#eventView .eventTitle").html(res.event.name);
-      $("#eventView .horaires .debut .date").html(res.event.dateDebut);
-      $("#eventView .horaires .debut .heure").html("...");
-      $("#eventView .horaires .fin .date").html(res.event.dateFin);
-      $("#eventView .horaires .fin .heure").html("...");
-      $("#eventView .lieu .text").html(res.event.lieu);
-      $("#eventView .lieu a").attr("href","#");
-      $("#eventView .desc textarea").html(res.event.description);
-      $("#eventView .participants tbody").html("");
-      for (var id in res.event.participants) {
-         $("#eventView .participants tbody").append($("<tr data-id=\""+res.event.participants[id]+"\" >")
-            .append($("<td class=\"text-right\">").html("<span class=\"glyphicon glyphicon-user\">"))
-            .append($("<td>").html("Marc")) // Nom du participant
-            .append($("<td>").html("...")) // Notes
-         );
-      }
-      if (func!=null) {
-         func();
-      }
+    $(".loader").addClass("end");
+    $(".loader").removeClass("start");
+    $("#eventView").collapse('show');
+    $.scrollTo("#eventView");
+    console.log("Update Event !");
+    console.log(res);
+    $("#eventView").attr("data-id",res.event.id);
+    $("#eventView .eventTitle").html(res.event.name);
+    $("#eventView .horaires .debut .date").html(res.event.dateDebut);
+    $("#eventView .horaires .debut .heure").html("...");
+    $("#eventView .horaires .fin .date").html(res.event.dateFin);
+    $("#eventView .horaires .fin .heure").html("...");
+    $("#eventView .lieu .text").html(res.event.lieu);
+    $("#eventView .lieu a").attr("href","#");
+    $("#eventView .desc textarea").html(res.event.description);
+    $("#eventView .participants tbody").html("");
+    for (var id in res.event.participants) {
+       $("#eventView .participants tbody").append($("<tr data-id=\""+res.event.participants[id]+"\" >")
+          .append($("<td class=\"text-right\">").html("<span class=\"glyphicon glyphicon-user\">"))
+          .append($("<td>").html("Marc")) // Nom du participant
+          .append($("<td>").html("...")) // Notes
+       );
+    }
+    if (func!=null) {
+       func();
+    }
   }, error: function(a, b, c) {
+    $(".loader").addClass("fail");
+    $(".loader").removeClass("start");
     console.warn("AJAX Error: couldn't update Event (\""+b+"\"/\""+c+"\")");
     console.log(a.responseText);
   }});
@@ -96,7 +118,12 @@ function updateEvent(id,func) {
 
 function updateDayPlan(func) {
   $("#dayPlanTitle").html(AgendaDate.getDayName()+" "+AgendaDate.getDay()+" "+AgendaDate.getMonthName());
+  $(".loader").addClass("start");
+  $(".loader").removeClass("end");
+  $(".loader").removeClass("fail");
   $.ajax({url: "agenda.ctrl.php?ajax&events-day&day="+AgendaDate.getDay()+"&month="+AgendaDate.getMonth()+"&year="+AgendaDate.getYear(), success: function(res) {
+    $(".loader").addClass("end");
+    $(".loader").removeClass("start");
     console.log("Update Day Plan !");
     console.log(res);
     $("#dayPlan tr[data-hour=\"day\"] td.content").html("");
@@ -106,14 +133,14 @@ function updateDayPlan(func) {
     for (var id in res.events) {
       if (res.events[id].journee) {
          $("#dayPlan tr[data-hour=\"day\"] td.content").append($("<span class=\"evenement\" data-id=\""+res.events[id].id+"\">").html(res.events[id].name));
-         $("#dayPlan tr[data-hour=\"day\"] td.content span.evenement:last-child").click(function (e) {
+         $("#dayPlan tr[data-hour=\"day\"] td.content span.evenement:last-child").on('click',function (e) {
            updateEvent($(e.currentTarget).data().id);
          });
       } else {
          var hour = res.events[id].heureDebut.split(":")[0];
          hour = (hour>0?hour*1:hour);
          $("#dayPlan tr[data-hour=\""+hour+"\"] td.content").append($("<span class=\"evenement\" data-id=\""+res.events[id].id+"\">").html(res.events[id].name));
-         $("#dayPlan tr[data-hour=\""+hour+"\"] td.content span.evenement:last-child").click(function (e) {
+         $("#dayPlan tr[data-hour=\""+hour+"\"] td.content span.evenement:last-child").on('click',function (e) {
            updateEvent($(e.currentTarget).data().id);
          });
       }
@@ -124,6 +151,8 @@ function updateDayPlan(func) {
       func();
     }
   }, error: function(a, b ,c) {
+    $(".loader").addClass("fail");
+    $(".loader").removeClass("start");
     console.warn("AJAX Error: couldn't update Day Plan (\""+b+"\"/\""+c+"\")");
     console.log(a.responseText);
   }});
@@ -247,29 +276,37 @@ function updateDayPlan(func) {
   }
 
   function init() {
-    updateCommingNext();
+    updateCommingNext((function () {
+      $("#commingNext tbody tr").on('click',function (e) {
+        updateEvent($(e.currentTarget).data().id);
+      });
+    }));
 
-    $("#calendarResetToday").click(function(){
+    $("#calendarResetToday").on('click',function(){
       var d = new Date();
       AgendaDate.setDate(d.getDate(),d.getMonth()+1,d.getFullYear());
     });
 
-    $("#calendarPrev").click(function(){
+    $("#calendarPrev").on('click',function(){
       AgendaDate.prevMonth();
     });
-    $("#calendarNext").click(function(){
+    $("#calendarNext").on('click',function(){
       AgendaDate.nextMonth();
     });
 
-    $("#dayPlanPrev").click(function(){
+    $("#dayPlanPrev").on('click',function(){
       AgendaDate.prevDay();
     });
-    $("#dayPlanNext").click(function(){
+    $("#dayPlanNext").on('click',function(){
       AgendaDate.nextDay();
     });
 
+    $("#newEvent").on('click',function(){
+      $("#eventView").collapse('hide');
+      $("#eventEdit").collapse('show');
+    });
+
     $("#calendar tbody td[class~='day']").on('click',clickSetDay);
+
+    console.log("Agenda initialized ...");
   }
-
-
-init();
