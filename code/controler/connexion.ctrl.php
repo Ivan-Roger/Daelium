@@ -24,7 +24,7 @@
         $_SESSION["user"]["loginTime"]=date("");
         $_SESSION["user"]["ID"]=$user->getIdPersonne();
         $dao->createConnexionInJournal($user->getIdPersonne(),date("Y-m-d H:i:s"),$_SERVER['REMOTE_ADDR'],$_SERVER['HTTP_USER_AGENT']);
-        
+
         /*
         $id_user = $user->getIdUtilisateur();
         var_dump($id_user);
@@ -66,7 +66,9 @@
     }
   } else if (isset($_GET['logout'])) {
     // Deconnexion : vidage de $_SESSION
-    unset($_SESSION['user']);
+    session_destroy();
+    session_write_close();
+    setcookie(session_name(),'',0,'/');
     header("Location:"."../controler/nolog.ctrl.php");
   } else {
     // Pas d'action, on affiche la page

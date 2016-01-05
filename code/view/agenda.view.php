@@ -187,107 +187,125 @@
          </div>
         </article>
         <article id="eventEdit" class="collapse collapsed col-lg-10 col-lg-offset-1"> <!-- =============================================== Event Form =============================================== -->
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <div class="input-group">
-                <input name="eventname" class="form-control input-lg" value="Nouvel évènement">
+          <form method="POST" action="?create">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <div class="input-group">
+                  <input name="eventName" class="form-control input-lg" value="Nouvel évènement">
+                </div>
+              </div>
+              <div class="panel-body">
+                  <!-- Date debut -->
+                  <div class="form-inline">
+                    <label class="col-lg-2" for="eventBeginingDate">Début</label>
+                    <div class="col-lg-4 input-group">
+                      <input id="eventBeginingDate" name="eventBeginingDate" class="form-control" placeholder="Date" value="<?= date("Y-m-d") ?>"/>
+                      <div class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar no-margin"></span>
+                      </div>
+                    </div>
+                    <div class="hour-input col-lg-4 input-group">
+                      <input id="eventBeginingHour" name="eventBeginingHour" class="form-control" placeholder="Heure" value="<?= date("H:i:s") ?>"/>
+                      <div class="input-group-addon">
+                        <span class="glyphicon glyphicon-time no-margin"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <br/>
+                  <!-- Date Fin -->
+                  <div class="form-inline">
+                    <label class="col-lg-2" for="eventEndingDate">Fin</label>
+                    <div class="col-lg-4 input-group">
+                      <input id="eventEndingDate" name="eventEndingDate" class="form-control" placeholder="Date" value="<?= date("Y-m-d") ?>"/>
+                      <div class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar no-margin"></span>
+                      </div>
+                    </div>
+                    <div class="hour-input col-lg-4 input-group">
+                      <input id="eventEndingHour" name="eventEndingHour" class="form-control" placeholder="Heure" value="<?= date("H:i:s") ?>"/>
+                      <div class="input-group-addon">
+                        <span class="glyphicon glyphicon-time no-margin"></span>
+                      </div>
+                    </div>
+                  </div>
+                  </br>
+                  <div class="form-inline">
+                    <div class="col-lg-9 col-lg-offset-2 checkbox">
+                      <label>
+                        <input id="eventDayLong" type="checkbox"/>
+                        Journée entière
+                      </label>
+                    </div>
+                  </div>
+                  </br>
+                  </br>
+                  <div class="form-inline">
+                    <label class="col-lg-2" for="eventPlace">Lieu</label>
+                    <div class="form-horizontal col-lg-9">
+                      <div class="form-group">
+                        <div class="col-xs-8">
+                          <input width="60%" type="text" class="form-control" placeholder="N° & Rue" name="adresse"/>
+                        </div>
+                        <div class="col-xs-4">
+                          <input type="text" class="form-control" placeholder="Code postal" name="codepostal"/>
+                        </div>
+                      </div>
+                      <br/>
+                      <div class="form-group">
+                        <div class="col-xs-4">
+                          <input type="text" class="form-control" placeholder="Ville" name="ville"/>
+                        </div>
+                        <div class="col-xs-4">
+                          <input type="text" class="form-control" placeholder="Region / Departement" name="region"/>
+                        </div>
+                        <div class="col-xs-4">
+                          <input type="text" class="form-control" placeholder="Pays" name="pays"/>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <br/>
+                  <br/>
+                  <div class="form-inline">
+                    <label class="col-lg-2" for="eventParticipants">Participants</label>
+                    <div class="col-lg-9 input-group">
+                      <input class="form-control" type="text" name="eventParticipants" id="eventParticipants" placeholder="Participants"/>
+                      <div class="input-group-btn">
+                        <span class="btn btn-default glyphicon glyphicon-book no-margin"></span>
+                      </div>
+                    </div>
+                  </div>
+                  </br>
+                  <div class="form-inline">
+                    <label class="col-lg-2" for="eventDesc">Description</label>
+                    <div class="col-lg-8" style="padding:0px; margin-right:50px;">
+                      <textarea style="width:100%; height: 150px; margin-bottom: 25px;" class="form-control" name="eventDesc" id="eventDesc"></textarea>
+                    </div>
+                  </div>
+                  </br>
+                  </br>
+                  <div class="form-inline">
+                    <label class="col-lg-2" for="eventReminder">Rappels</label>
+                    <div class="col-lg-8 input-group">
+                      <span class="btn btn-default" id="eventReminder">Ajouter un rappel</span>
+                    </div>
+                  </div>
+                  </br>
+                  <div class="form-inline">
+                    <label class="col-lg-2" for="eventMore">Plus</label>
+                    <div class="col-lg-8 input-group">
+                      <span class="btn btn-default" id="eventMore">Ajouter un champ</span>
+                    </div>
+                  </div>
+                  </br>
+                  <div class="form-inline text-right">
+                    <input type="submit" class="btn btn-primary" value="Sauvegarder"/>
+                    <input type="reset" class="btn btn-default" value="Annuler"/>
+                  </div>
+                  <input id="eventDayLongValue" type="hidden" name="eventDayLong" value="empty"/>
               </div>
             </div>
-            <div class="panel-body">
-              <form method="POST" action="?create">
-                <!-- Date debut -->
-                <div class="form-inline">
-                  <label class="col-lg-2" for="eventBeginingDate">Début</label>
-                  <div class="col-lg-4 input-group">
-                    <input id="eventBeginingDate" name="eventBeginingDate" class="form-control" placeholder="Date"/>
-                    <div class="input-group-addon">
-                      <span class="glyphicon glyphicon-calendar no-margin"></span>
-                    </div>
-                  </div>
-                  <div class="hour-input col-lg-4 input-group">
-                    <input id="eventBeginingHour" name="eventBeginingHour" class="form-control" placeholder="Heure" readonly/>
-                    <div class="input-group-addon">
-                      <span class="glyphicon glyphicon-time no-margin"></span>
-                    </div>
-                  </div>
-                </div>
-                <br/>
-                <!-- Date Fin -->
-                <div class="form-inline">
-                  <label class="col-lg-2" for="eventEndingDate">Fin</label>
-                  <div class="col-lg-4 input-group">
-                    <input id="eventEndingDate" name="eventEndingDate" class="form-control" placeholder="Date"/>
-                    <div class="input-group-addon">
-                      <span class="glyphicon glyphicon-calendar no-margin"></span>
-                    </div>
-                  </div>
-                  <div class="hour-input col-lg-4 input-group">
-                    <input id="eventEndingHour" name="eventEndingHour" class="form-control" placeholder="Heure" readonly/>
-                    <div class="input-group-addon">
-                      <span class="glyphicon glyphicon-time no-margin"></span>
-                    </div>
-                  </div>
-                </div>
-                </br>
-                <div class="form-inline">
-                  <div class="col-lg-9 col-lg-offset-2 checkbox">
-                    <label>
-                      <input id="eventDayLong" type="checkbox" name="eventDayLong"/>
-                      Journée entière
-                    </label>
-                  </div>
-                </div>
-                </br>
-                </br>
-                <div class="form-inline">
-                  <label class="col-lg-2" for="eventPlace">Lieu</label>
-                  <div class="col-lg-9 input-group">
-                    <input class="form-control" type="text" name="eventPlace" id="eventPlace" placeholder="Lieu"/>
-                    <div class="input-group-btn">
-                      <button class="btn btn-default"><span class="glyphicon glyphicon-flag no-margin"></span></button>
-                    </div>
-                  </div>
-                </div>
-                </br>
-                <div class="form-inline">
-                  <label class="col-lg-2" for="eventParticipants">Participants</label>
-                  <div class="col-lg-9 input-group">
-                    <input class="form-control" type="text" name="eventParticipants" id="eventParticipants" placeholder="Participants"/>
-                    <div class="input-group-btn">
-                      <button class="btn btn-default"><span class="glyphicon glyphicon-book no-margin"></span></button>
-                    </div>
-                  </div>
-                </div>
-                </br>
-                <div class="form-inline">
-                  <label class="col-lg-2" for="eventDesc">Description</label>
-                  <div class="col-lg-8" style="padding:0px; margin-right:50px;">
-                    <textarea style="width:100%; height: 150px; margin-bottom: 25px;" class="form-control" name="eventDesc" id="eventDesc"></textarea>
-                  </div>
-                </div>
-                </br>
-                </br>
-                <div class="form-inline">
-                  <label class="col-lg-2" for="eventReminder">Rappels</label>
-                  <div class="col-lg-8 input-group">
-                    <button class="btn btn-default" id="eventReminder">Ajouter un rappel</button>
-                  </div>
-                </div>
-                </br>
-                <div class="form-inline">
-                  <label class="col-lg-2" for="eventMore">Plus</label>
-                  <div class="col-lg-8 input-group">
-                    <button class="btn btn-default" id="eventMore">Ajouter un champ</button>
-                  </div>
-                </div>
-                </br>
-                <div class="form-inline text-right">
-                  <input type="submit" class="btn btn-primary">Sauvegarder</input>
-                  <input type="cancel" class="btn btn-default">Annuler</input>
-                </div>
-              </form>
-            </div>
-          </div>
+          </form>
         </article>
       </div>
     </section>
@@ -296,8 +314,12 @@
     <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <script src="../data/js/agenda.js"></script>
     <script>
-      $("#eventBeginingDate").datepicker();
-      $("#eventEndingDate").datepicker();
+      $("#eventBeginingDate").datepicker({
+        dateFormat: "yy-mm-dd"
+      });
+      $("#eventEndingDate").datepicker({
+        dateFormat: "yy-mm-dd"
+      });
       AgendaDate.setDate(
         <?= $data['day'] ?>,
         <?= $data['month'] ?>,

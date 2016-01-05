@@ -77,14 +77,25 @@
             $data['event']['heureDebut'] = $evt->getHeureDebut();
             $data['event']['heureFin'] = $evt->getHeureFin();
          }
-         $data['event']['lieu'] = $evt->getLieu();
+         $idLieu = $evt->getLieu();
+         if ($idLieu!=null) {
+           $lieu = $dao->readLieuById($idLieu);
+           $data['event']['lieu'] = $lieu->toHTMLString();
+           $data['event']['lien-lieu'] = "https://www.google.fr/maps/place/".$lieu->adresseToString();
+         } else {
+           $data['event']['lieu'] = "<i>Pas de lieu spécifié pour cet évenement.</i>";
+         }
          $data['event']['participants'] = $evt->getParticipants();
          $data['event']['rappels'] = $evt->getRappels();
          $data['event']['plus'] = $evt->getPlus();
       }
    }
    if (isset($_GET['create'])) {
-     
+     $lieu = new Lieu(NULL,'Lieu de '.$_POST['eventName'],NULL,$_POST['pays'],$_POST['region'],$_POST['ville'],$_POST['codepostal'],$_POST['adresse']);
+     $idLieu = $dao->createLieu($lieu);
+
+     $evt = new Evenement(NULL,$_SESSION['user']['ID'],$_POST['eventName'],$_POST['eventBeginingDate'],$_POST['eventBeginingHour'],($_POST['eventDayLong']=='checked'?"day":"non"),$_POST['eventEndingDate'],$_POST['eventEndingHour'],$_POST['eventDesc'],$idLieu,$_POST['eventParticipants']);
+     $dao->createEvenement($evt);
    }
 
    if (!isset($_GET['ajax'])) // affichage normal

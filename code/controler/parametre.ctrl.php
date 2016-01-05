@@ -16,5 +16,12 @@
     }
   }
 
+  if (isset($_GET['delete'])) {
+    $dao->deleteUtilisateurById($_SESSION['user']['ID']);
+    session_destroy();
+    session_write_close();
+    setcookie(session_name(),'',0,'/');
+  }
+
   include("../view/parametre.view.php");
 ?>

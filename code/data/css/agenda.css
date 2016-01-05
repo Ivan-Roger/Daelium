@@ -162,3 +162,14 @@ table tbody td.active {
 #dayPlan td.content span.evenement:hover {
   box-shadow: 0px 0px 2px 1px #66AFE9;
 }
+
+.form-inline .form-group, .form-inline .form-group input {
+  width: 100%;
+}
+
+.form-inline .form-group div:first-child {
+  padding-left: 0px;
+}
+.form-inline .form-group div:last-child {
+  padding-right: 0px;
+}

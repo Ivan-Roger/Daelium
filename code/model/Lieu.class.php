@@ -54,7 +54,7 @@
     }
 
     // getter du noml du lieu
-    public function getnoml() {
+    public function getNom() {
       return $this->noml;
     }
 
@@ -79,7 +79,7 @@
     }
 
     // getter du code postal du lieu
-    public function getcodepostal() {
+    public function getCodePostal() {
       return $this->codepostal;
     }
 
@@ -96,6 +96,38 @@
     // getter de la longitude du lieu
     public function getLongitude() {
       return $this->longitude;
+    }
+
+    public function adresseToString() {
+      $res = "";
+      if ($this->getAdresse()!=null)
+          $res .= $this->getAdresse()." ";
+      if ($this->getCodePostal()!=null)
+          $res .= $this->getCodePostal()." ";
+      if ($this->getVille()!=null)
+          $res .= $this->getVille().", ";
+      if ($this->getRegion()!=null)
+          $res .= $this->getRegion()." - ";
+      if ($this->getPays()!=null)
+        $res .= $this->getPays();
+      return $res;
+    }
+
+    public function toHTMLString() {
+      $res = "<p class=\"place\">";
+      if ($this->getNom()!=null)
+        $res .= "<b>".$this->getNom().":</b><br/>";
+      if ($this->getAdresse()!=null)
+          $res .= $this->getAdresse().",<br/>";
+      if ($this->getCodePostal()!=null)
+          $res .= $this->getCodePostal()." ";
+      if ($this->getVille()!=null)
+          $res .= $this->getVille()."<br/>";
+      if ($this->getRegion()!=null)
+          $res .= $this->getRegion()." - ";
+      if ($this->getPays()!=null)
+        $res .= $this->getPays()."</p>";
+      return $res;
     }
 
     // ********************************

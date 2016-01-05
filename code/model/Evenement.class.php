@@ -107,6 +107,11 @@
       return $this->description;
 	}
 
+  // getter de la description de l'évènement
+	function getJournee() {
+      return $this->journee;
+	}
+
 	// getter du lieu de l'évènement
 	function getLieu() {
       return $this->lieu;

@@ -84,6 +84,7 @@ function updateEvent(id,func) {
   $.ajax({url: "agenda.ctrl.php?ajax&event="+id, success: function(res){
     $(".loader").addClass("end");
     $(".loader").removeClass("start");
+    $("#eventEdit").collapse('hide');
     $("#eventView").collapse('show');
     $.scrollTo("#eventView");
     console.log("Update Event !");
@@ -95,7 +96,11 @@ function updateEvent(id,func) {
     $("#eventView .horaires .fin .date").html(res.event.dateFin);
     $("#eventView .horaires .fin .heure").html("...");
     $("#eventView .lieu .text").html(res.event.lieu);
-    $("#eventView .lieu a").attr("href","#");
+    if (res.event['lien-lieu']!=undefined)
+      $("#eventView .lieu a").attr("href",res.event['lien-lieu']);
+    else
+      $("#eventView .lieu a").hide();
+
     $("#eventView .desc textarea").html(res.event.description);
     $("#eventView .participants tbody").html("");
     for (var id in res.event.participants) {
@@ -304,6 +309,7 @@ function updateDayPlan(func) {
     $("#newEvent").on('click',function(){
       $("#eventView").collapse('hide');
       $("#eventEdit").collapse('show');
+      $.scrollTo("#eventEdit");
     });
 
     $("#eventDayLong").on('change',function(e){
@@ -312,6 +318,7 @@ function updateDayPlan(func) {
       } else {
         $(".hour-input").show();
       }
+      $("#eventDayLongValue").val(($(e.currentTarget).is(":checked")?"checked":"empty"))
     });
 
     $("#calendar tbody td[class~='day']").on('click',clickSetDay);

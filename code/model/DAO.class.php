@@ -861,12 +861,12 @@ class DAO {
             $sql = "INSERT INTO Lieu(noml,description,pays,region,ville,codePostal,adresse,latitude,longitude) VALUES (?,?,?,?,?,?,?,?,?) RETURNING idLieu";
             $reqlieu = $this->db->prepare($sql);
             $params = array(
-               $lieu->getnoml(),
+               $lieu->getNom(),
                $lieu->getDescription(),
                $lieu->getPays(),
                $lieu->getRegion(),
                $lieu->getVille(),
-               $lieu->getcodepostal(),
+               $lieu->getCodePostal(),
                $lieu->getAdresse(),
                $lieu->getLatitude(),
                $lieu->getLongitude()
@@ -876,7 +876,7 @@ class DAO {
                die("createLieu : Requête impossible !");
             }
             $retlieu=$reqlieu->fetchColumn();
-            return $this->readLieuById($retlieu);
+            return $retlieu;
          } else {
             throw new DAOException("Lieu déjà présent dans la base (l'id en tous cas)");
          }
@@ -890,15 +890,15 @@ class DAO {
             $req = $this->db->prepare($sql);
 
             $params = array(
-              $lieu->getnoml(),
-              $lieu->getDescription(),
-              $lieu->getPays(),
-              $lieu->getRegion(),
-              $lieu->getVille(),
-              $lieu->getcodepostal(),
-              $lieu->getAdresse(),
-              $lieu->getLatitude(),
-              $lieu->getLongitude(),
+               $lieu->getNom(),
+               $lieu->getDescription(),
+               $lieu->getPays(),
+               $lieu->getRegion(),
+               $lieu->getVille(),
+               $lieu->getCodePostal(),
+               $lieu->getAdresse(),
+               $lieu->getLatitude(),
+               $lieu->getLongitude(),
                $lieu->getIdLieu()
             );
 
@@ -1246,21 +1246,26 @@ class DAO {
       }
 
       function createEvenement($evenement) {
-         $e = $this->db->readEvenementById($evenement->idEvene);
+         $e = $this->readEvenementById($evenement->getID());
          if ($e == null) {
-            $sql = "INSERT INTO Evenement(dateDebut,dateFin,heureDebut,heureFin,description,lieu,createur) VALUES (?,?,?,?,?,?,?)";
+            $sql = "INSERT INTO Evenement(nom,dateDebut,dateFin,heureDebut,heureFin,description,lieu,createur,journee) VALUES (?,?,?,?,?,?,?,?,?)";
             $req = $this->db->prepare($sql);
             $params = array(
+               $evenement->getNom(),
                $evenement->getDateDebut(),
                $evenement->getDateFin(),
                $evenement->getHeureDebut(),
                $evenement->getHeureFin(),
-               $evenement->description(),
+               $evenement->getDescription(),
                $evenement->getLieu(),
-               $evenement->getCreateur()
+               $evenement->getCreateur(),
+               $evenement->getJournee()
             );
             $res = $req->execute($params);
             if ($res === FALSE) {
+              var_dump($sql);
+              var_dump($params);
+              var_dump($this->db->errorInfo()[2]);
                die("createEvenement : Requête impossible !");
             }
             return true;
