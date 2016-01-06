@@ -1,10 +1,9 @@
-INSERT INTO Lieu VALUES(1,'Maison',NULL,'FRANCE','Rhone-Alpes','Grenoble',38000,'110 place doyen gosses',NULL,NULL);
-INSERT INTO Lieu VALUES(3,'Maison',NULL,'FRANCE','Rhone-Alpes','Grenoble',38000,'111 place doyen gosses',NULL,NULL);
-INSERT INTO Lieu VALUES(4,'Maison',NULL,'FRANCE','Rhone-Alpes','Grenoble',38000,'112 place doyen gosses',NULL,NULL);
-INSERT INTO Lieu VALUES(5,'Maison',NULL,'FRANCE','Rhone-Alpes','Grenoble',38000,'113 place doyen gosses',NULL,NULL);
-INSERT INTO Lieu VALUES(0,'Maison',NULL,'FRANCE','Rhone-Alpes','Grenoble',38000,'113 place doyen gosses',NULL,NULL);
-
-INSERT INTO Lieu VALUES(2,'Mairie de Grenoble',NULL,'FRANCE','Rhone-Alpes','Grenoble',38000,'4 rue des tulipes',NULL,NULL);
+INSERT INTO Lieu(noml, description, pays, region, ville, codePostal, adresse, latitude, longitude) VALUES('Maison',NULL,'FRANCE','Rhone-Alpes','Grenoble',38000,'110 place doyen gosses',NULL,NULL);
+INSERT INTO Lieu(noml, description, pays, region, ville, codePostal, adresse, latitude, longitude) VALUES('Mairie de Grenoble',NULL,'FRANCE','Rhone-Alpes','Grenoble',38000,'4 rue des tulipes',NULL,NULL);
+INSERT INTO Lieu(noml, description, pays, region, ville, codePostal, adresse, latitude, longitude) VALUES('Maison',NULL,'FRANCE','Rhone-Alpes','Grenoble',38000,'111 place doyen gosses',NULL,NULL);
+INSERT INTO Lieu(noml, description, pays, region, ville, codePostal, adresse, latitude, longitude) VALUES('Maison',NULL,'FRANCE','Rhone-Alpes','Grenoble',38000,'112 place doyen gosses',NULL,NULL);
+INSERT INTO Lieu(noml, description, pays, region, ville, codePostal, adresse, latitude, longitude) VALUES('Maison',NULL,'FRANCE','Rhone-Alpes','Grenoble',38000,'113 place doyen gosses',NULL,NULL);
+INSERT INTO Lieu(noml, description, pays, region, ville, codePostal, adresse, latitude, longitude) VALUES('Maison',NULL,'FRANCE','Rhone-Alpes','Grenoble',38000,'113 place doyen gosses',NULL,NULL);
 
 INSERT INTO Personne VALUES(1,0,'Dupuis','Marc','marc.dupuis@gmail.com','0675757575',1); -- 0 si booker
 INSERT INTO Utilisateur VALUES(1,'marc.dupuis@gmail.com','azerty');
@@ -52,16 +51,16 @@ INSERT INTO Evenement VALUES(3,'En scène','24/07/2016','26/07/2016','non','10:0
 INSERT INTO Evenement VALUES(4,'Debut Paris Live','15/01/2016','17/01/2016','non','15:00','19:45','','',NULL,1);
 
 
-INSERT INTO Contact VALUES(1,1,'Pas tres Cool');
-INSERT INTO Contact VALUES(1,2,'Sympa');
-INSERT INTO Contact VALUES(1,3,NULL);
-INSERT INTO Contact_System VALUES(1,1,3);
-INSERT INTO Contact_System VALUES(1,2,4);
-INSERT INTO Contact_exterieur VALUES(1,3,'Pierre','pierrecroce@gmail.com','0601010101');
-
-
-INSERT INTO Contact_Tag VALUES('Groupe 1',1,1);
-INSERT INTO Contact_Tag VALUES('Amis',1,3);
+-- INSERT INTO Contact VALUES(1,1,'Pas tres Cool');
+-- INSERT INTO Contact VALUES(1,2,'Sympa');
+-- INSERT INTO Contact VALUES(1,3,NULL);
+-- INSERT INTO Contact_System VALUES(1,1,3);
+-- INSERT INTO Contact_System VALUES(1,2,4);
+-- INSERT INTO Contact_exterieur VALUES(1,3,'Pierre','pierrecroce@gmail.com','0601010101');
+--
+--
+-- INSERT INTO Contact_Tag VALUES('Groupe 1',1,1);
+-- INSERT INTO Contact_Tag VALUES('Amis',1,3);
 
 
 INSERT INTO Message VALUES(1,1,2,10,'Salut tu vas bien ? On se fait une bouffe ?','2015-10-19 10:23:54');
@@ -78,15 +77,8 @@ INSERT INTO Message VALUES(5,1,2,5,'Parfait, a mardi alors.','2015-10-20 07:08:1
 INSERT INTO Conversation_Message VALUES(5,1);
 
 
-INSERT INTO Document VALUES(1,1,'Fiche Artiste','01/01/1970',NULL,'home/ficheartiste.pdf');
-INSERT INTO Document VALUES(2,1,'Fiche Groupe','01/01/1970',NULL,'home/fichegroupe.pdf');
-
 INSERT INTO Negociation VALUES(1,1,1,2,2,0);
 
-INSERT INTO Negociation_Documents VALUES(1,2);
-
-INSERT INTO Negociation_Messages VALUES(1,1);
-INSERT INTO Negociation_Messages VALUES(1,2);
 
 
 INSERT INTO notification(etat, destinataire, type, Message) VALUES(0,5,1,'Nouveau message de .....');
