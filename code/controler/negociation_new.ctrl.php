@@ -13,6 +13,7 @@
 
   if(isset($_GET["action"]) && $_GET["action"] == "create"){
     if($type == 0){
+      if($_POST["choix"] != NULL){
       if($user->possedeGroupe($_POST["choix"])){
         $manif = $dao->readManifestationById($_POST['cible']);
         $groupe = $dao->readGroupeById($_POST["choix"]);
@@ -30,11 +31,18 @@
 
       }else {
         $data['error']['title'] = "Action impossible";
-        $data['error']['message'] = "Vous ne pouvez pas demarer un groupe pour une Manifestation qui ne vous appartient pas.";
+        $data['error']['message'] = "Vous ne pouvez pas negocier un groupe pour une Manifestation qui ne vous appartient pas.";
         $data['error']['back'] = "../controler/main.ctrl.php";
         include("../view/error.view.php");
       }
+    }else {
+      $data['error']['title'] = "Action impossible";
+      $data['error']['message'] = "Vous n'avez pas sélectionné de Groupe.";
+      $data['error']['back'] = "../controler/main.ctrl.php";
+      include("../view/error.view.php");
+    }
     }elseif ($type == 1) {
+      if($_POST["choix"] != NULL){
       if($user->possedeManif($_GET["choix"])){
         $bookerid = $dao->readBookerByGroupe($_POST["cible"]);
         $manif = $dao->readManifestationById($_POST['choix']);
@@ -52,10 +60,16 @@
 
       }else {
         $data['error']['title'] = "Action impossible";
-        $data['error']['message'] = "Vous ne pouvez pas demarer une negociation pour une Manifestation qui ne vous appartient pas.";
+        $data['error']['message'] = "Vous ne pouvez pas negocier une Manifestation avec un groupe qui ne vous appartient pas.";
         $data['error']['back'] = "../controler/main.ctrl.php";
         include("../view/error.view.php");
       }
+    }else {
+      $data['error']['title'] = "Action impossible";
+      $data['error']['message'] = "Vous n'avez pas sélectionné de Manifestation.";
+      $data['error']['back'] = "../controler/main.ctrl.php";
+      include("../view/error.view.php");
+    }
     }
 
 
@@ -65,6 +79,7 @@
   }elseif(isset($_GET["idGroupe"]) && $type== 1){
     $groupe = $dao->readGroupeById($_GET["idGroupe"]);
     if(isset($groupe)){
+      $data["retour"] = "groupe";
       $data["type"] = "le Groupe";
       $data["typerech"] = "Manifestation";
       $data["id"] = $_GET["idGroupe"];
@@ -86,6 +101,7 @@
   }elseif (isset($_GET["idManifestation"]) &&  $type == 0) {
     $manif = $dao->readManifestationById($_GET["idManifestation"]);
     if(isset($manif)){
+      $data["retour"] = "evenement";
       $data["type"] = "la Manifestation";
       $data["typerech"] = "Groupe";
       $data["id"] = $_GET["idManifestation"];

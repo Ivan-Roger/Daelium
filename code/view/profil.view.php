@@ -16,11 +16,13 @@
       <div class="userInfo col-xs-10 col-xs-offset-1">
         <div class="col-xs-1 text-right profile-pic"><img src="../data/users/icons/User_64.png" alt="Image de Profil"></div>
         <h3 class="col-xs-8"><?= $data["nomcomplet"] ?>    (<?= $data["typename"]?>)</h3>
-        <?php if($data["owner"]){ ?>
         <div class="controls col-xs-2 text-right">
+        <?php if($data["owner"]){ ?>
           <a class="btn btn-primary" href="../controler/profil_edit.ctrl.php">Editer</a>
-        </div>
+        <?php } else { ?>
+          <a class="btn btn-primary" href="../controler/messages.ctrl.php?edit&recipient=<?= $data['idCompte'] ?>">Contacter</a>
         <?php } ?>
+        </div>
       </div>
     </div>
     <section class="col-lg-10 col-lg-offset-1">

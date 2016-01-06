@@ -37,10 +37,7 @@
      if ($alerts!=null)
        $data['alerts'] = array_merge($data['alerts'],$alerts);
 
-     if (isset($_SESSION['user']['type']))
-       $data['type'] = $_SESSION['user']['type'];
-     else
-       $data['type'] = "booker";
+     $data['user-type'] = $_SESSION['user']['type'];
 
 
      return $data;

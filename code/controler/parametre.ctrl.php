@@ -10,7 +10,8 @@
   $data["erreur"] = "";
   if(isset($_POST["action"]) && $_POST["action"] == "delete"){ // Si je supprime le compte
 
-
+    $dao->deleteUtilisateurById($userid);
+    unset($_SESSION);
     header("Location: ../controler/nolog.ctrl.php");
   }
   if(isset($_GET["action"]) && $_GET["action"] == "edit"){

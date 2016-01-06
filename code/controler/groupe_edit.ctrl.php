@@ -25,6 +25,10 @@ if($user != NULL){ // SI booker
           $dao->deleteGroupeByIdGroupe($groupeid);
           $idlieu = $groupe->getAdresse();
           $dao->deleteLieuById($idlieu);
+
+
+
+          
           header("Location: ../controler/groupes.ctrl.php");
 
         }else {

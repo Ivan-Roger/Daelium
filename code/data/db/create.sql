@@ -177,14 +177,6 @@ CREATE TABLE Negociation (
   FOREIGN KEY (idOrganisateur) references Organisateur(idOrganisateur)
 );
 
-CREATE TABLE Negociation_Documents (
-  idNegociation BIGINT,
-  idDoc BIGINT,
-  PRIMARY KEY (idNegociation,idDoc),
-  FOREIGN KEY (idNegociation) references Negociation(idNegociation),
-  FOREIGN KEY (idDoc) references Document(idDoc)
-);
-
 CREATE TABLE Message (                  -- à revoir
   idMessage SERIAL PRIMARY KEY,
   expediteur BIGINT REFERENCES Utilisateur(idUtilisateur),
@@ -220,15 +212,6 @@ CREATE TABLE Contact_Tag (
   PRIMARY KEY (nomt,Proprietaire,idContact),
   FOREIGN KEY (idContact,Proprietaire) references Contact(idContact,Proprietaire)
 );
-
-CREATE TABLE Negociation_Messages (
-  idNegociation BIGINT,
-  idMessage BIGINT,
-  PRIMARY KEY (idNegociation,idMessage),
-  FOREIGN KEY (idNegociation) references Negociation(idNegociation),
-  FOREIGN KEY (idMessage) references Message(idMessage)
-);
-
 
 CREATE TABLE Booker_Groupe (
   idBooker BIGINT,

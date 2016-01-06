@@ -212,7 +212,7 @@ class DAO {
      $u = $this->readPersonneById($idPersonne);
      if ($u != null) {
 
-       $type = (int) $u["type"];
+       $type = (int) $u->getType();
        if($type == 0 || $type == 1){
           $this->deleteUtilisateurById($idPersonne);
        }else {
@@ -366,26 +366,25 @@ class DAO {
    }
 
    function deleteUtilisateurById($idUtilisateur) {
-     $u = $this->db->readUtilisateurById($idUtilisateur);
+     $u = $this->readUtilisateurById($idUtilisateur);
      if ($u != null) {
-       try {
-          $this->db->deleteContactByIdProprietaire($idUtilisateur);
-       } catch (DAOException $e) {}
-       if ($this->$db->readBookerById($idUtilisateur) != null) {
+      //  try {
+      //     $this->deleteContactByIdProprietaire($idUtilisateur);
+      //  } catch (DAOException $e) {}
+
+       if ($this->readBookerById($idUtilisateur) != null) {
          try {
-           $this->db->deleteBookerById($idUtilisateur);
+           $this->deleteBookerById($idUtilisateur);
          } catch (DAOException $e) {}
        } else {
          try {
-           $this->db->deleteOrganisateurById($idUtilisateur);
+           $this->deleteOrganisateurById($idUtilisateur);
          } catch (DAOException $e) {}
        }
-       try {
-         $this->db->deleteEvenementByidCreateur($idUtilisateur);
-       } catch (DAOException $e) {}
-       try {
-         $this->db->deleteDocumentsByIdUtilisateur($idUtilisateur);
-       } catch (DAOException $e) {}
+      //  try {
+      //    $this->deleteEvenementByidCreateur($idUtilisateur);
+      //  } catch (DAOException $e) {}
+
 
 
        $sql = "DELETE FROM Utilisateur where idUtilisateur = ?";
@@ -448,14 +447,14 @@ class DAO {
    function deleteBookerById($idBooker) {
      $b = $this->readBookerById($idBooker);
      if ($b != null) {
-       $supr = $this->db->readListGroupeByBooker($idBooker);
+       $supr = $this->readListGroupeByBooker($idBooker);
        foreach ($supr as $Groupe) {
          try {
             $this->db->deleteGroupeById($Groupe->getIdGroupe());
          } catch (DAOException $e) {}
        }
 
-       $this->db->deleteNegociationByIdBooker($idBooker);
+       $this->deleteNegociationByIdBooker($idBooker);
 
        $sql = "DELETE FROM Booker where idBooker = ?";
        $req = $this->db->prepare($sql);
@@ -473,9 +472,9 @@ class DAO {
    }
 
    function deleteBookerByTop($idBooker) {
-     $b = $this->db->readBookerById($idBooker);
+     $b = $this->readBookerById($idBooker);
      if ($b != null) {
-       $this->db->deletePersonneById($idBooker);
+       $this->deletePersonneById($idBooker);
        return true;
      } else {
        throw new DAOException("Booker non présent dans la base, supression impossible");
@@ -524,14 +523,14 @@ class DAO {
    function deleteOrganisateurById($idOrganisateur) {
      $o = $this->readOrganisateurById($idOrganisateur);
      if ($o != null) {
-       $supr = $this->db->readManifestationByCreateur($idOrganisateur);
+       $supr = $this->readManifestationByCreateur($idOrganisateur);
        foreach ($supr as $Manif) {
          try {
-            $this->db->deleteManifesationById($Manif->getidManif());
+            $this->deleteManifesationById($Manif->getidManif());
          } catch (DAOException $e) {}
        }
 
-       $this->db->deleteNegociationByIdOrganisateur($idOrganisateur);
+       $this->deleteNegociationByIdOrganisateur($idOrganisateur);
 
 
        $sql = "DELETE FROM Organisateur where idOrganisateur = ?";
@@ -675,6 +674,9 @@ class DAO {
        try {
          $this->deleteCreneauByIdGroupe($idGroupe);
        } catch (DAOException $e) {}
+         try {
+           $this->deleteNegociationByIdGroupe($idGroupe);
+         } catch (DAOException $e) {}
 
        $sql = "DELETE FROM Groupe where idGroupe = ?";
        $req = $this->db->prepare($sql);
@@ -1060,7 +1062,10 @@ class DAO {
             $this->deleteManifestationGenreByIdManif($idManif);
           } catch (DAOException $e) {}
           try {
-            //$this->db->;
+            $this->deleteCreneauByIdManif($idManif);
+          } catch (DAOException $e) {}
+          try {
+            $this->deleteNegociationByIdManif($idManif);
           } catch (DAOException $e) {}
 
           $sql = "DELETE FROM Manifestation where idManif = ?";
@@ -1291,6 +1296,7 @@ class DAO {
             );
             $res = $req->execute($params);
             if ($res === FALSE) {
+              var_dump($this->db->errorInfo()[2]);
                die("updateEvenement : Requête impossible !");
             }
             return true;
@@ -1313,6 +1319,7 @@ class DAO {
           );
           $res = $req->execute($params);
           if ($res === FALSE) {
+            var_dump($this->db->errorInfo()[2]);
             die("deleteEvenementByIdCreateur : Requête impossible !");
           }
           return true;
@@ -1333,6 +1340,7 @@ class DAO {
          );
          $res = $req->execute($params);
          if ($res === FALSE) {
+           var_dump($this->db->errorInfo()[2]);
             die("readContactByPrimary : Requête impossible !"); // erreur dans la requête
          }
          $res = $req->fetchAll(PDO::FETCH_CLASS,"Contact");
@@ -1347,6 +1355,7 @@ class DAO {
         );
         $res = $req->execute($params);
         if ($res === FALSE) {
+          var_dump($this->db->errorInfo()[2]);
           die("readContactByProprietaire : Requête impossible !"); // erreur dans la requête
         }
         $res = $req->fetchAll(PDO::FETCH_CLASS,"Contact");
@@ -1365,6 +1374,7 @@ class DAO {
             );
             $res = $req->execute($params);
             if ($res === FALSE) {
+              var_dump($this->db->errorInfo()[2]);
                die("createContact : Requête impossible !");
             }
             return $this->db->readContactByPrimary($contact->idContact,$contact->proprietaire);
@@ -1385,6 +1395,7 @@ class DAO {
             );
             $res = $req->execute($params);
             if ($res === FALSE) {
+              var_dump($this->db->errorInfo()[2]);
                die("updateContact : Requête impossible !");
             }
             return $this->db->readContactByPrimary($contact->idContact,$contact->proprietaire);
@@ -1417,6 +1428,7 @@ class DAO {
           );
           $res = $req->execute($params);
           if ($res === FALSE) {
+            var_dump($this->db->errorInfo()[2]);
             die("deleteContactById : Requête impossible !");
           }
           return true;
@@ -1437,6 +1449,7 @@ class DAO {
          );
          $res = $req->execute($params);
          if ($res === FALSE) {
+           var_dump($this->db->errorInfo()[2]);
             die("readContactSystemByPrimary : Requête impossible !"); // erreur dans la requête
          }
          $res = $req->fetchAll(PDO::FETCH_CLASS,"Contact_Systeme");
@@ -1452,6 +1465,7 @@ class DAO {
          );
          $res = $req->execute($params);
          if ($res === FALSE) {
+           var_dump($this->db->errorInfo()[2]);
             die("readContactSystemById : Requête impossible !"); // erreur dans la requête
          }
          $res = $req->fetchAll(PDO::FETCH_CLASS,"Contact_Systeme");
@@ -1470,6 +1484,7 @@ class DAO {
             );
             $res = $req->execute($params);
             if ($res === FALSE) {
+              var_dump($this->db->errorInfo()[2]);
                die("createContactSystem : Requête impossible !");
             }
             return $this->db->readContactSystemByPrimary($contactSyst->contactProprietaire,$contactSyst->idContact);
@@ -1490,6 +1505,7 @@ class DAO {
             );
             $res = $req->execute($params);
             if ($res === FALSE) {
+              var_dump($this->db->errorInfo()[2]);
                die("createContactSystem : Requête impossible !");
             }
             return $this->db->readContactSystemByPrimary($contactSyst->contactProprietaire,$contactSyst->idContact);
@@ -1509,6 +1525,7 @@ class DAO {
             );
             $res = $req->execute($params);
             if ($res === FALSE) {
+              var_dump($this->db->errorInfo()[2]);
                die("deleteContactSystemByPrimary : Requête impossible !");
             }
             return true;
@@ -1528,6 +1545,7 @@ class DAO {
             );
             $res = $req->execute($params);
             if ($res === FALSE) {
+              var_dump($this->db->errorInfo()[2]);
                die("deleteContactSystemById : Requête impossible !");
             }
             return true;
@@ -1548,6 +1566,7 @@ class DAO {
          );
          $res = $req->execute($params);
          if ($res === FALSE) {
+           var_dump($this->db->errorInfo()[2]);
             die("readContactExterieurByPrimary : Requête impossible !"); // erreur dans la requête
          }
          $res = $req->fetchAll(PDO::FETCH_CLASS,"Contact_exterieur");
@@ -1563,6 +1582,7 @@ class DAO {
          );
          $res = $req->execute($params);
          if ($res === FALSE) {
+           var_dump($this->db->errorInfo()[2]);
             die("readContactExterieurById : Requête impossible !"); // erreur dans la requête
          }
          $res = $req->fetchAll(PDO::FETCH_CLASS,"Contact_exterieur");
@@ -1583,6 +1603,7 @@ class DAO {
             );
             $res = $req->execute($params);
             if ($res === FALSE) {
+              var_dump($this->db->errorInfo()[2]);
                die("createContactExterieur : Requête impossible !");
             }
             return $this->db->readContactExterieurByPrimary($contactSyst->contactProprietaire,$contactSyst->idContact);
@@ -1605,6 +1626,7 @@ class DAO {
             );
             $res = $req->execute($params);
             if ($res === FALSE) {
+              var_dump($this->db->errorInfo()[2]);
                die("updateContactExterieur : Requête impossible !");
             }
             return $this->db->readContactExterieurByPrimary($contactSyst->contactProprietaire,$contactSyst->idContact);
@@ -1624,6 +1646,7 @@ class DAO {
             );
             $res = $req->execute($params);
             if ($res === FALSE) {
+              var_dump($this->db->errorInfo()[2]);
                die("DeleteContactExterieur : Requête impossible !");
             }
             return true;
@@ -1643,6 +1666,7 @@ class DAO {
             );
             $res = $req->execute($params);
             if ($res === FALSE) {
+              var_dump($this->db->errorInfo()[2]);
                die("deleteContactExterieurById : Requête impossible !");
             }
             return true;
@@ -1664,6 +1688,7 @@ class DAO {
          );
          $res = $req->execute($params);
          if ($res === FALSE) {
+           var_dump($this->db->errorInfo()[2]);
             die("readContactEvenementByPrimary : Requête impossible !"); // erreur dans la requête
          }
          $res = $req->fetchAll(PDO::FETCH_CLASS,"Contact_Evenement");
@@ -1679,6 +1704,7 @@ class DAO {
          );
          $res = $req->execute($params);
          if ($res === FALSE) {
+           var_dump($this->db->errorInfo()[2]);
             die("readContactEvenementById : Requête impossible !"); // erreur dans la requête
          }
          $res = $req->fetchAll(PDO::FETCH_CLASS,"Contact_Evenement");
@@ -1693,6 +1719,7 @@ class DAO {
          );
          $res = $req->execute($params);
          if ($res === FALSE) {
+           var_dump($this->db->errorInfo()[2]);
             die("readContactEvenementByContactProprietaire : Requête impossible !"); // erreur dans la requête
          }
          $res = $req->fetchAll(PDO::FETCH_CLASS,"Contact_Evenement");
@@ -1711,6 +1738,7 @@ class DAO {
             );
             $res = $req->execute($params);
             if ($res === FALSE) {
+              var_dump($this->db->errorInfo()[2]);
                die("createContactEvenement : Requête impossible !");
             }
             return $this->db->readContactEvenementByPrimary($contactEven->proprietaire,$contactEven->idContact,$contactEven->idEvene);
@@ -1729,6 +1757,7 @@ class DAO {
           );
           $res = $req->execute($params);
           if ($res === FALSE) {
+            var_dump($this->db->errorInfo()[2]);
             die("deleteContactEvenementByContactProprietaire : Requête impossible !");
           }
           return true;
@@ -1748,6 +1777,7 @@ class DAO {
           );
           $res = $req->execute($params);
           if ($res === FALSE) {
+            var_dump($this->db->errorInfo()[2]);
             die("deleteContactEvenementById : Requête impossible !");
           }
           return true;
@@ -1768,6 +1798,7 @@ class DAO {
          );
          $res = $req->execute($params);
          if ($res === FALSE) {
+           var_dump($this->db->errorInfo()[2]);
             die("readCreneauByPrimary : Requête impossible !"); // erreur dans la requête
          }
          $res = $req->fetchAll(PDO::FETCH_CLASS,"Creneau");
@@ -1782,6 +1813,7 @@ class DAO {
          );
          $res = $req->execute($params);
          if ($res === FALSE) {
+           var_dump($this->db->errorInfo()[2]);
             die("readCreneauByPrimary : Requête impossible !"); // erreur dans la requête
          }
          $res = $req->fetchAll(PDO::FETCH_CLASS,"Creneau");
@@ -1796,6 +1828,7 @@ class DAO {
          );
          $res = $req->execute($params);
          if ($res === FALSE) {
+           var_dump($this->db->errorInfo()[2]);
             die("readCreneauByPrimary : Requête impossible !"); // erreur dans la requête
          }
          $res = $req->fetchAll(PDO::FETCH_CLASS,"Creneau");
@@ -1811,6 +1844,7 @@ class DAO {
          );
          $res = $req->execute($params);
          if ($res === FALSE) {
+           var_dump($this->db->errorInfo()[2]);
             die("readCreneauByPrimary : Requête impossible !"); // erreur dans la requête
          }
          $res = $req->fetchAll(PDO::FETCH_CLASS,"Creneau");
@@ -1836,6 +1870,7 @@ class DAO {
             );
             $res = $req->execute($params);
             if ($res === FALSE) {
+              var_dump($this->db->errorInfo()[2]);
                die("createCreneau : Requête impossible !");
             }
             return $this->readCreneauByPrimary($creneau->getidManif(),$creneau->getidGroupe());
@@ -1861,6 +1896,7 @@ class DAO {
             );
             $res = $req->execute($params);
             if ($res === FALSE) {
+              var_dump($this->db->errorInfo()[2]);
                die("updateCreneau : Requête impossible !");
             }
             return $this->readCreneauByPrimary($creneau->getidManif(),$creneau->getidGroupe());
@@ -1879,6 +1915,7 @@ class DAO {
           );
           $res = $req->execute($params);
           if ($res === FALSE) {
+            var_dump($this->db->errorInfo()[2]);
             die("deleteCreneauByIdGroupe : Requête impossible !");
           }
           return true;
@@ -1898,6 +1935,7 @@ class DAO {
           );
           $res = $req->execute($params);
           if ($res === FALSE) {
+            var_dump($this->db->errorInfo()[2]);
             die("deleteCreneauByIdGroupe : Requête impossible !");
           }
           return true;
@@ -1916,6 +1954,7 @@ class DAO {
           );
           $res = $req->execute($params);
           if ($res === FALSE) {
+            var_dump($this->db->errorInfo()[2]);
             die("deleteCreneauByIdManif : Requête impossible !");
           }
           return true;
@@ -1936,6 +1975,7 @@ class DAO {
          );
          $res = $req->execute($params);
          if ($res === FALSE) {
+           var_dump($this->db->errorInfo()[2]);
             die("readGroupeArtisteByPrimary : Requête impossible !"); // erreur dans la requête
          }
          $res = $req->fetchAll(PDO::FETCH_ASSOC);
@@ -1950,6 +1990,7 @@ class DAO {
          );
          $res = $req->execute($params);
          if ($res === FALSE) {
+           var_dump($this->db->errorInfo()[2]);
             die("readGroupeByArtiste : Requête impossible !"); // erreur dans la requête
          }
          $res = $req->fetchAll(PDO::FETCH_ASSOC);
@@ -1965,6 +2006,7 @@ class DAO {
          );
          $res = $req->execute($params);
          if ($res === FALSE) {
+           var_dump($this->db->errorInfo()[2]);
             die("readArtisteByGroupe : Requête impossible !"); // erreur dans la requête
          }
          $res = $req->fetchAll(PDO::FETCH_ASSOC);
@@ -1982,6 +2024,7 @@ class DAO {
             );
             $res = $req->execute($params);
             if ($res === FALSE) {
+              var_dump($this->db->errorInfo()[2]);
                die("createGroupeArtiste : Requête impossible !");
             }
             return $this->readGroupeArtisteByPrimary($idGroupe,$idArtiste);
@@ -2001,6 +2044,7 @@ class DAO {
           );
           $res = $req->execute($params);
           if ($res === FALSE) {
+            var_dump($this->db->errorInfo()[2]);
             die("deleteGroupeArtisteByIdArtisteIdGroupe : Requête impossible !");
           }
           return true;
@@ -2019,6 +2063,7 @@ class DAO {
           );
           $res = $req->execute($params);
           if ($res === FALSE) {
+            var_dump($this->db->errorInfo()[2]);
             die("deleteGroupeArtisteByIdArtiste : Requête impossible !");
           }
           return true;
@@ -2037,6 +2082,7 @@ class DAO {
           );
           $res = $req->execute($params);
           if ($res === FALSE) {
+            var_dump($this->db->errorInfo()[2]);
             die("deleteGroupeArtisteByIdGroupe : Requête impossible !");
           }
           return true;
@@ -2057,6 +2103,7 @@ class DAO {
          );
          $res = $req->execute($params);
          if ($res === FALSE) {
+           var_dump($this->db->errorInfo()[2]);
             die("readNegociationById : Requête impossible !"); // erreur dans la requête
          }
          $res = $req->fetchAll(PDO::FETCH_CLASS,"Negociation");
@@ -2072,6 +2119,7 @@ class DAO {
         );
         $res = $req->execute($params);
         if ($res === FALSE) {
+          var_dump($this->db->errorInfo()[2]);
           die("readNegociationByIdBooker : Requête impossible !"); // erreur dans la requête
         }
         $res = $req->fetchAll(PDO::FETCH_CLASS,"Negociation");
@@ -2088,6 +2136,7 @@ class DAO {
         );
         $res = $req->execute($params);
         if ($res === FALSE) {
+          var_dump($this->db->errorInfo()[2]);
           die("readNegociationByIdBooker : Requête impossible !"); // erreur dans la requête
         }
         $res = $req->fetchAll(PDO::FETCH_CLASS,"Negociation");
@@ -2102,6 +2151,7 @@ class DAO {
         );
         $res = $req->execute($params);
         if ($res === FALSE) {
+          var_dump($this->db->errorInfo()[2]);
           die("readNegociationByIdBooker : Requête impossible !"); // erreur dans la requête
         }
         $res = $req->fetchAll(PDO::FETCH_CLASS,"Negociation");
@@ -2115,7 +2165,36 @@ class DAO {
         );
         $res = $req->execute($params);
         if ($res === FALSE) {
+          var_dump($this->db->errorInfo()[2]);
           die("readNegociationByIdOrganisateur : Requête impossible !"); // erreur dans la requête
+        }
+        $res = $req->fetchAll(PDO::FETCH_CLASS,"Negociation");
+        return (isset($res[0])?$res:null);
+      }
+
+      function readNegociationByIdGroupe($idGroupe) {
+        $sql = "SELECT * FROM Negociation WHERE idGroupe  =?"; // requête
+        $req = $this->db->prepare($sql);
+        $params = array(
+          $idGroupe
+        );
+        $res = $req->execute($params);
+        if ($res === FALSE) {
+          die("readNegociationByIdOrganisateur : Requête impossible !"); // erreur dans la requête
+        }
+        $res = $req->fetchAll(PDO::FETCH_CLASS,"Negociation");
+        return (isset($res[0])?$res:null);
+      }
+
+      function readNegociationByIdManif($idManif) {
+        $sql = "SELECT * FROM Negociation WHERE idManif  =?"; // requête
+        $req = $this->db->prepare($sql);
+        $params = array(
+          $idManif
+        );
+        $res = $req->execute($params);
+        if ($res === FALSE) {
+          die("readNegociationByIdManif : Requête impossible !"); // erreur dans la requête
         }
         $res = $req->fetchAll(PDO::FETCH_CLASS,"Negociation");
         return (isset($res[0])?$res:null);
@@ -2135,6 +2214,7 @@ class DAO {
             );
             $res = $req->execute($params);
             if ($res === FALSE) {
+              var_dump($this->db->errorInfo()[2]);
                die("createNegociation : Requête impossible !");
             }
             $ret = $req->fetchColumn();
@@ -2159,6 +2239,7 @@ class DAO {
             );
             $res = $req->execute($params);
             if ($res === FALSE) {
+              var_dump($this->db->errorInfo()[2]);
                die("updateNegociation : Requête impossible !");
             }
             return $this->readNegociationById($negociation->getIdNegociation());
@@ -2170,15 +2251,6 @@ class DAO {
       function deleteNegociationByIdBooker($idBooker) {
         $n = $this->readNegociationByIdBooker($idBooker);
         if ($n != null) {
-          foreach ($n as $negociation) {
-            try {
-              $this->deleteNegociationMessagesByIdNegociation($negociation->idNegociation);
-            } catch (DAOException $e) {}
-            try {
-              $this->deleteNegociationDocumentsByIdNegociation($negociation->idNegociation);
-            } catch (DAOException $e) {}
-          }
-
           $sql = "DELETE FROM Negociation where idBooker = ?";
           $req = $this->db->prepare($sql);
           $params = array(
@@ -2186,7 +2258,46 @@ class DAO {
           );
           $res = $req->execute($params);
           if ($res === FALSE) {
+            var_dump($this->db->errorInfo()[2]);
             die("deleteNegociationByIdBooker : Requête impossible !");
+          }
+          return true;
+        } else {
+          throw new DAOException("Negociation non présente dans la base, supression impossible");
+        }
+      }
+
+      function deleteNegociationByIdGroupe($idGroupe) {
+        $n = $this->readNegociationByIdGroupe($idGroupe);
+        if ($n != null) {
+          $sql = "DELETE FROM Negociation where idGroupe = ?";
+          $req = $this->db->prepare($sql);
+          $params = array(
+            $idGroupe
+          );
+          $res = $req->execute($params);
+          if ($res === FALSE) {
+            die("deleteNegociationByIdGroupe : Requête impossible !");
+          }
+          return true;
+        } else {
+          throw new DAOException("Negociation non présente dans la base, supression impossible");
+        }
+      }
+
+      function deleteNegociationByIdManif($idManif) {
+        $n = $this->readNegociationByIdManif($idManif);
+        if ($n != null) {
+          $sql = "DELETE FROM Negociation where idManif = ?";
+          $req = $this->db->prepare($sql);
+          $params = array(
+            $idManif
+          );
+          $res = $req->execute($params);
+          if ($res === FALSE) {
+            var_dump($this->db->errorInfo()[2]);
+
+            die("deleteNegociationByIdManif : Requête impossible !");
           }
           return true;
         } else {
@@ -2197,15 +2308,6 @@ class DAO {
       function deleteNegociationByIdOrganisateur($idOrganisateur) {
         $n = $this->readNegociationByIdOrganisateur($idOrganisateur);
         if ($n != null) {
-          foreach ($n as $negociation) {
-            try {
-              $this->deleteNegociationMessagesByIdNegociation($negociation->idNegociation);
-            } catch (DAOException $e) {}
-            try {
-              $this->deleteNegociationDocumentsByIdNegociation($negociation->idNegociation);
-            } catch (DAOException $e) {}
-          }
-
           $sql = "DELETE FROM Negociation where idOrganisateur = ?";
           $req = $this->db->prepare($sql);
           $params = array(
@@ -2213,6 +2315,7 @@ class DAO {
           );
           $res = $req->execute($params);
           if ($res === FALSE) {
+            var_dump($this->db->errorInfo()[2]);
             die("deleteNegociationByIdOrganisateur : Requête impossible !");
           }
           return true;
@@ -2233,6 +2336,7 @@ class DAO {
          );
          $res = $req->execute($params);
          if ($res === FALSE) {
+           var_dump($this->db->errorInfo()[2]);
             die("readNegociationDocumentsByPrimary : Requête impossible !"); // erreur dans la requête
          }
          $res = $req->fetchAll(PDO::FETCH_CLASS,"Negociation_Documents");
@@ -2247,6 +2351,7 @@ class DAO {
         );
         $res = $req->execute($params);
         if ($res === FALSE) {
+          var_dump($this->db->errorInfo()[2]);
           die("readNegociationDocumentsByIdNegociation : Requête impossible !"); // erreur dans la requête
         }
         $res = $req->fetchAll(PDO::FETCH_CLASS,"Negociation_Documents");
@@ -2264,6 +2369,7 @@ class DAO {
             );
             $res = $req->execute($params);
             if ($res === FALSE) {
+              var_dump($this->db->errorInfo()[2]);
                die("createNegociationDocuments : Requête impossible !");
             }
             return $this->db->readNegociationDocumentsByPrimary($negociationDoc->idNegociation,$negociationDoc->idDoc);
@@ -2282,6 +2388,7 @@ class DAO {
           );
           $res = $req->execute($params);
           if ($res === FALSE) {
+            var_dump($this->db->errorInfo()[2]);
             die("deleteNegociationDocumentsByIdNegociation : Requête impossible !");
           }
           foreach ($n as $doc) {
@@ -2305,6 +2412,7 @@ class DAO {
           );
           $res = $req->execute($params);
           if ($res === FALSE) {
+            var_dump($this->db->errorInfo()[2]);
             die("deleteNegociationDocumentsByIdDoc : Requête impossible !");
           }
           return true;
@@ -2325,6 +2433,7 @@ class DAO {
          );
          $res = $req->execute($params);
          if ($res === FALSE) {
+           var_dump($this->db->errorInfo()[2]);
             die("readNegociationMessagesByPrimary : Requête impossible !"); // erreur dans la requête
          }
          $res = $req->fetchAll(PDO::FETCH_CLASS,"Negociation_Messages");
@@ -2339,6 +2448,7 @@ class DAO {
          );
          $res = $req->execute($params);
          if ($res === FALSE) {
+           var_dump($this->db->errorInfo()[2]);
             die("readNegociationMessagesByIdNegociation : Requête impossible !"); // erreur dans la requête
          }
          $res = $req->fetchAll(PDO::FETCH_CLASS,"Negociation_Messages");
@@ -2353,6 +2463,7 @@ class DAO {
          );
          $res = $req->execute($params);
          if ($res === FALSE) {
+           var_dump($this->db->errorInfo()[2]);
             die("readNegociationMessagesByIdMessage : Requête impossible !"); // erreur dans la requête
          }
          $res = $req->fetchAll(PDO::FETCH_CLASS,"Negociation_Messages");
@@ -2370,6 +2481,7 @@ class DAO {
             );
             $res = $req->execute($params);
             if ($res === FALSE) {
+              var_dump($this->db->errorInfo()[2]);
                die("createNegociationMessages : Requête impossible !");
             }
             return $this->db->readNegociationMessagesByPrimary($negociationMess->idNegociation,$negociationMess->idMessage);
@@ -2388,6 +2500,7 @@ class DAO {
           );
           $res = $req->execute($params);
           if ($res === FALSE) {
+            var_dump($this->db->errorInfo()[2]);
             die("deleteNegociationMessagesByIdNegociation : Requête impossible !");
           }
           foreach ($n as $message) {
@@ -2411,6 +2524,7 @@ class DAO {
           );
           $res = $req->execute($params);
           if ($res === FALSE) {
+            var_dump($this->db->errorInfo()[2]);
             die("deleteNegociationMessagesByIdMessage : Requête impossible !");
           }
           return true;
@@ -2431,6 +2545,7 @@ class DAO {
          );
          $res = $req->execute($params);
          if ($res === FALSE) {
+           var_dump($this->db->errorInfo()[2]);
             die("readMessageTagByPrimary : Requête impossible !"); // erreur dans la requête
          }
          $res = $req->fetchAll();
@@ -2445,6 +2560,7 @@ class DAO {
          );
          $res = $req->execute($params);
          if ($res === FALSE) {
+           var_dump($this->db->errorInfo()[2]);
             die("readMessageTagsByMessage : Requête impossible !"); // erreur dans la requête
          }
          $res = $req->fetchAll();
@@ -2462,6 +2578,7 @@ class DAO {
             );
             $res = $req->execute($params);
             if ($res === FALSE) {
+              var_dump($this->db->errorInfo()[2]);
                die("createMessageTag : Requête impossible !");
             }
             return $this->db->readMessageTagByPrimary($nomt,$idMessage);
@@ -2481,6 +2598,7 @@ class DAO {
             );
             $res = $req->execute($params);
             if ($res === FALSE) {
+              var_dump($this->db->errorInfo()[2]);
                die("deleteMessageTagByPrimary : Requête impossible !");
             }
             return true;
@@ -2499,6 +2617,7 @@ class DAO {
             );
             $res = $req->execute($params);
             if ($res === FALSE) {
+              var_dump($this->db->errorInfo()[2]);
                die("deleteMessageTagByIdMessage : Requête impossible !");
             }
             return true;
@@ -2519,6 +2638,7 @@ class DAO {
          );
          $res = $req->execute($params);
          if ($res === FALSE) {
+           var_dump($this->db->errorInfo()[2]);
             die("readBookerGroupeByPrimary : Requête impossible !"); // erreur dans la requête
          }
          $res = $req->fetchAll(PDO::FETCH_ASSOC);
@@ -2533,6 +2653,7 @@ class DAO {
          );
          $res = $req->execute($params);
          if ($res === FALSE) {
+           var_dump($this->db->errorInfo()[2]);
             die("readListGroupeByBooker : Requête impossible !"); // erreur dans la requête
          }
          $res = $req->fetchAll(PDO::FETCH_ASSOC);
@@ -2547,6 +2668,7 @@ class DAO {
          );
          $res = $req->execute($params);
          if ($res === FALSE) {
+           var_dump($this->db->errorInfo()[2]);
             die("readBookerByGroupe : Requête impossible !"); // erreur dans la requête
          }
          $res = $req->fetchAll(PDO::FETCH_ASSOC);
@@ -2565,6 +2687,7 @@ class DAO {
             );
             $res = $req->execute($params);
             if ($res === FALSE) {
+              var_dump($this->db->errorInfo()[2]);
                die("createBookerGroupe : Requête impossible !");
             }
             return $this->readBookerGroupeByPrimary($idBooker,$idGroupe);
@@ -2583,6 +2706,7 @@ class DAO {
           );
           $res = $req->execute($params);
           if ($res === FALSE) {
+            var_dump($this->db->errorInfo()[2]);
             die("deleteBookerGroupeById : Requête impossible !");
           }
           return true;
@@ -2629,6 +2753,7 @@ class DAO {
          );
          $res = $req->execute($params);
          if ($res === FALSE) {
+           var_dump($this->db->errorInfo()[2]);
             die("readGroupeGenreByIdGroupe : Requête impossible !"); // erreur dans la requête
          }
          $res = $req->fetchAll(PDO::FETCH_ASSOC);
@@ -2646,6 +2771,7 @@ class DAO {
             );
             $res = $req->execute($params);
             if ($res === FALSE) {
+              var_dump($this->db->errorInfo()[2]);
                die("createGroupeGenre : Requête impossible !");
             }
             return $this->readGroupeGenreByPrimary($idGroupe,$nomg);
@@ -2665,6 +2791,7 @@ class DAO {
             );
             $res = $req->execute($params);
             if ($res === FALSE) {
+              var_dump($this->db->errorInfo()[2]);
                die("deleteGroupeGenreByPrimary : Requête impossible !");
             }
             return true;
@@ -2683,6 +2810,7 @@ class DAO {
             );
             $res = $req->execute($params);
             if ($res === FALSE) {
+              var_dump($this->db->errorInfo()[2]);
                die("deleteGroupeGenreIdGroupe : Requête impossible !");
             }
             return true;
@@ -2704,6 +2832,7 @@ class DAO {
          );
          $res = $req->execute($params);
          if ($res === FALSE) {
+           var_dump($this->db->errorInfo()[2]);
             die("readManifestationGenreByPrimary : Requête impossible !"); // erreur dans la requête
          }
          $res = $req->fetchAll(PDO::FETCH_ASSOC);
@@ -2719,6 +2848,7 @@ class DAO {
          );
          $res = $req->execute($params);
          if ($res === FALSE) {
+           var_dump($this->db->errorInfo()[2]);
             die("readManifestationGenreByidManif : Requête impossible !"); // erreur dans la requête
          }
          $res = $req->fetchAll(PDO::FETCH_ASSOC);
@@ -2733,6 +2863,7 @@ class DAO {
          );
          $res = $req->execute($params);
          if ($res === FALSE) {
+           var_dump($this->db->errorInfo()[2]);
             die("readManifestationByGenre : Requête impossible !"); // erreur dans la requête
          }
          $res = $req->fetchAll(PDO::FETCH_ASSOC);
@@ -2750,6 +2881,7 @@ class DAO {
             );
             $res = $req->execute($params);
             if ($res === FALSE) {
+              var_dump($this->db->errorInfo()[2]);
                die("createManifestationGenre : Requête impossible !");
             }
             return $this->readManifestationGenreByPrimary($idManif,$nomg);
@@ -2787,6 +2919,7 @@ class DAO {
             );
             $res = $req->execute($params);
             if ($res === FALSE) {
+              var_dump($this->db->errorInfo()[2]);
                die("deleteManifestationGenreByIdManif : Requête impossible !");
             }
             return true;
@@ -2807,6 +2940,7 @@ class DAO {
          );
          $res = $req->execute($params);
          if ($res === FALSE) {
+           var_dump($this->db->errorInfo()[2]);
             die("readContactTagByPrimary : Requête impossible !"); // erreur dans la requête
          }
          $res = $req->fetchAll(PDO::FETCH_CLASS,"Contact_Tag");
@@ -2822,6 +2956,7 @@ class DAO {
          );
          $res = $req->execute($params);
          if ($res === FALSE) {
+           var_dump($this->db->errorInfo()[2]);
             die("readContactTagById : Requête impossible !"); // erreur dans la requête
          }
          $res = $req->fetchAll(PDO::FETCH_CLASS,"Contact_Tag");
@@ -2840,6 +2975,7 @@ class DAO {
             );
             $res = $req->execute($params);
             if ($res === FALSE) {
+              var_dump($this->db->errorInfo()[2]);
                die("createContactTag : Requête impossible !");
             }
             return $this->db->readContactTagByPrimary($contactTag->nomt,$contactTag->idContact,$contactTag->proprietaire);
@@ -2860,6 +2996,7 @@ class DAO {
             );
             $res = $req->execute($params);
             if ($res === FALSE) {
+              var_dump($this->db->errorInfo()[2]);
                die("deleteContactTagbyPrimary : Requête impossible !");
             }
             return true;
@@ -2879,6 +3016,7 @@ class DAO {
             );
             $res = $req->execute($params);
             if ($res === FALSE) {
+              var_dump($this->db->errorInfo()[2]);
                die("deleteContactTagById : Requête impossible !");
             }
             return true;
@@ -2898,6 +3036,7 @@ class DAO {
          );
          $res = $req->execute($params);
          if ($res === FALSE) {
+           var_dump($this->db->errorInfo()[2]);
             die("readMessageById : Requête impossible !"); // erreur dans la requête
          }
          $res = $req->fetchAll(PDO::FETCH_CLASS,"Message");
@@ -2912,6 +3051,7 @@ class DAO {
          );
          $res = $req->execute($params);
          if ($res === FALSE) {
+           var_dump($this->db->errorInfo()[2]);
             die("readMessagesRecusByUtilisateur : Requête impossible !"); // erreur dans la requête
          }
          $res = $req->fetchAll(PDO::FETCH_CLASS,"Message");
@@ -2926,6 +3066,7 @@ class DAO {
          );
          $res = $req->execute($params);
          if ($res === FALSE) {
+           var_dump($this->db->errorInfo()[2]);
             die("readMessagesEnvoyesByUtilisateur : Requête impossible !"); // erreur dans la requête
          }
          $res = $req->fetchAll(PDO::FETCH_CLASS,"Message");
@@ -2940,6 +3081,7 @@ class DAO {
          );
          $res = $req->execute($params);
          if ($res === FALSE) {
+           var_dump($this->db->errorInfo()[2]);
             die("readMessagesBrouillonsByUtilisateur : Requête impossible !"); // erreur dans la requête
          }
          $res = $req->fetchAll(PDO::FETCH_CLASS,"Message");
@@ -2956,10 +3098,11 @@ class DAO {
                $message->getDestinataire(),
                $message->getEtat(),
                $message->getContenu(),
-               $message->getDatenvoi()
+               $message->getDateenvoi()
             );
             $res = $req->execute($params);
             if ($res === FALSE) {
+              var_dump($this->db->errorInfo()[2]);
                die("createMessage : Requête impossible !");
             }
          } else {
@@ -2978,6 +3121,7 @@ class DAO {
             );
             $res = $req->execute($params);
             if ($res === FALSE) {
+              var_dump($this->db->errorInfo()[2]);
                die("updateMessage : Requête impossible !");
             }
          } else {
@@ -3003,6 +3147,7 @@ class DAO {
           );
           $res = $req->execute($params);
           if ($res === FALSE) {
+            var_dump($this->db->errorInfo()[2]);
             die("deleteMessageByIdMessage : Requête impossible !");
           }
           return true;
@@ -3125,7 +3270,7 @@ class DAO {
         return (isset($res)?$res:null); // retourne le premier resultat s'il existe, sinon null
       }
       function readListeNotificationUseridNoRead($idUser){
-        $sql = "SELECT * FROM Notification WHERE destinataire = ? AND etat!=1 ORDER BY idNotif"; // requête
+        $sql = "SELECT * FROM Notification WHERE destinataire = ? AND etat=0 ORDER BY idNotif DESC LIMIT 20"; // requête
         $req = $this->db->prepare($sql);
         $params = array( // paramétres
            $idUser

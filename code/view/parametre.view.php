@@ -47,7 +47,7 @@
             </div>
           </div>
           <div class="pull-right">
-            <input class="btn btn-primary" type="submit" onclick="confirm('Vous allez changer de mot de passe !')" value="Modifier">
+            <a class="btn btn-primary" id="password" onclick="confirm('Vous allez changer de mot de passe !')" > Modifier </a>
           </div>
         </form>
         <div class="col-lg-10 col-lg-offset-1">

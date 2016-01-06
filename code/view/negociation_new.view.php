@@ -34,8 +34,8 @@
             </div>
             </div>
         <div class="pull-right">
-          <input class="btn btn-default" type="button" onclick="alert('Hello World!')" value="Annuler">
-          <input class="btn btn-primary" type="submit" onclick="alert('Hello World!')" value="Negocier">
+          <a href="../controler/<?= $data["retour"] ?>_fiche.ctrl.php?id=<?= $data["id"] ?>" class="btn btn-default" >Retour</a>
+          <input class="btn btn-primary" type="submit"  value="Negocier">
         </div>
       </form>
       </section>

@@ -147,6 +147,7 @@
       $groupe = $dao->readGroupeById($idGroupe);
       $manif = $dao->readManifestationById($idManif);
       $organisateur = $dao->readOrganisateurById($idorganisateurnego);
+
       $data['idnego'] = $idnego;
       $data['nombooker']  = $booker->getNomComplet();
       $data['nomorga'] = $organisateur->getNomComplet();
@@ -187,10 +188,13 @@
 
 
       if($userid == $idbookernego){
+        $data["orga"] = false;
         $data["titre"] = "<n>".$data['nomgroupe']."</b> au ".$data['nommanif'];
 
         include("../view/negociation.view.php");
       }elseif ($userid == $idorganisateurnego) {
+        $data["orga"] = true;
+
         $data["titre"] = $data['nomgroupe']." au <b>".$data['nommanif']."</b>";
         # code...
         include("../view/negociation.view.php");

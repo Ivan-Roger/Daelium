@@ -20,6 +20,7 @@ if(isset($userpid)){
   $user = $dao->readPersonneByIdGoodClasse($userpid);
 
 
+  $data["idCompte"] = $user->getIDPersonne();
   $data["nomcomplet"] = $user->getNomComplet();
   $data["mailco"] = $user->getEmailcontact();
   $data["tel"] = $user->getTel();

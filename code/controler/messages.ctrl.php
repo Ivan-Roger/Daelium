@@ -143,6 +143,19 @@
       }
    }
 
+   if (isset($_GET['edit']) && isset($_GET['recipient'])) {
+     $data['open']['type'] = "edit";
+     $data['recipient']['id'] = $_GET['recipient'];
+     $user = $dao->readPersonneById($_GET['recipient']);
+     if ($user != null) {
+       $data['recipient']['name'] = $user->getNomComplet();
+     }
+   }
+
+   if (isset($_GET['send'])) {
+     $mess = new Message();
+   }
+
    // ------------- DISPLAY -------------
    if (isset($_GET['ajax'])) {
       header("Content-Type:"."application/json");

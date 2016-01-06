@@ -122,8 +122,7 @@ header("Location:"."../");
         </div>
         <input type="hidden" name="idartiste" value="<?= $data['id'] ?>"/>
         <div class="pull-right">
-          <input class="btn btn-default" type="button" onclick="alert('Hello World!')" value="Annuler">
-          <input class="btn btn-primary" type="submit" onclick="alert('Hello World!')" value="Modifier">
+          <input class="btn btn-primary" type="submit"  value="Modifier">
         </div>
 </form>
 </section>
