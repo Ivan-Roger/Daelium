@@ -37,11 +37,11 @@
       }
       // getter de l'expediteur du message
       function getExpediteur(){
-         return $this->expediteur;
+         return ($this->expediteur==0?0:$this->expediteur);
       }
       // getter du destinataire du message
       function getDestinataire(){
-         return $this->destinataire;
+         return ($this->destinataire==0?0:$this->destinataire);
       }
       // getter du contenu du message
       function getContenu(){

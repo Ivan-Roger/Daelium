@@ -92,26 +92,26 @@ header("Location:"."../");
             <div class="form-group">
               <label class="control-label col-sm-3" for="payment">Paiement :</label>
               <div class="col-sm-9 btn-group" data-toggle="buttons" id="fonction">
-                <label class="btn btn-default <?php if($data['paiement'] == "Cheque"){ echo "active"; } ?>">
+                <label class="payment-ch btn btn-default <?php if($data['paiement'] == "Cheque"){ echo "active"; } ?>">
                   <input type="radio" name="payment" id="payment" value="ch" <?php if($data['paiement'] == "Cheque"){ ?> checked <?php } ?>> Chèque
                 </label>
-                <label class="btn btn-default  <?php if($data['paiement'] == "Virement"){ echo "active"; } ?>">
+                <label class="payment-vi btn btn-default  <?php if($data['paiement'] == "Virement"){ echo "active"; } ?>">
                   <input type="radio" name="payment" id="payment" value="vi" <?php if($data['paiement'] == "Virement"){ ?> checked <?php } ?>>  Virement
                 </label>
-                <label class="btn btn-default <?php if($data['paiement'] == "Espece"){ echo "active"; } ?>">
+                <label class="payment-es btn btn-default <?php if($data['paiement'] == "Espece"){ echo "active"; } ?>">
                   <input type="radio" name="payment" id="payment" value="es" <?php if($data['paiement'] == "Espece"){ ?> checked <?php } ?>> Espece
                 </label>
               </div>
             </div>
 
-            <div class="form-group">
+            <div id="payment-IBAN" class="form-group">
               <label class="control-label col-sm-3" for="vir">IBAN :</label>
               <div class="col-sm-9">
                 <input type="text" id="vir" name="vir" class="form-control" placeholder="Si Virement" value="<?= $data['IBAN']?>" />
               </div>
             </div>
 
-            <div class="form-group">
+            <div id="payment-Ordre" class="form-group">
               <label class="control-label col-sm-3" for="ord">Ordre :</label>
               <div class="col-sm-9">
                 <input type="text" id="ord" name="ord" class="form-control" placeholder="Si cheque, si vide garde le nom" value="<?= $data['ordre']?>"/>
@@ -127,5 +127,6 @@ header("Location:"."../");
 </form>
 </section>
 <?php include("../view/include/footer.view.php"); ?>
+<script src="../data/js/artiste_edit.js"></script>
 </body>
 </html>

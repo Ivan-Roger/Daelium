@@ -5,6 +5,7 @@
    $data = initPage("Messages");
 
    require_once("../model/Message.class.php");
+   require_once("../model/Notification.class.php");
    require_once("../model/DAO.class.php");
 
    $userid = $_SESSION["user"]["ID"];
@@ -67,11 +68,14 @@
       if ($messagesbrouillons!=null)
       foreach ($messagesbrouillons as $key => $message) {
          $userRec = $dao->readPersonneById($message->getDestinataire());
+         $convID = $dao->readConversationByMessage($message->getID());
+         $conv = $dao->readConversationById($convID);
 
          $data["messageB"][$key]["id"] = $message->getID();
          $data["messageB"][$key]["destinataire"] = $userRec->getNomComplet(); // Mettre le nom
-         $data["messageB"][$key]["objet"] = $message->getNom();
-         $data["messageB"][$key]["parent"] = $message->getParent();
+         $data["messageB"][$key]["conversation"] = $conv->getID();
+         $data["messageB"][$key]["objet"] = $conv->getNom();
+         $data["messageB"][$key]["origine"] = $conv->getIDMessageOrigine()==$message->getID(); // Si c'est le message d'origine de la conversation
          $data["messageB"][$key]["date"] = $message->getDateenvoi();
 
          $data['count']["messageB"]++;
@@ -153,7 +157,15 @@
    }
 
    if (isset($_GET['send'])) {
-     $mess = new Message();
+     $userObj = $dao->readPersonneById($userid);
+
+     $mess = new Message(NULL,$_SESSION['user']['ID'],$_POST['recipient'],$_POST['etat'],$_POST['contenu'],date("Y-m-d H:i:s"));
+     $idM = $dao->createMessageNewConv($mess,$_POST['titre']);
+     if ($_POST['etat']>=5) {
+       $dao->createNotification(new Notification(NULL,0,$_POST['recipient'],0,"Vous avez reçu un message de ".$userObj->getNomComplet()." : <a href=\"../controler/messages.ctrl.php?id=".$idM."\">Voir</a>"));
+     }
+     $data['request']['code'] = 200;
+     $data['request']['message'] = "Success";
    }
 
    // ------------- DISPLAY -------------
