@@ -212,7 +212,7 @@ class DAO {
      $u = $this->readPersonneById($idPersonne);
      if ($u != null) {
 
-       $type = (int) $u["type"];
+       $type = (int) $u->getType();
        if($type == 0 || $type == 1){
           $this->deleteUtilisateurById($idPersonne);
        }else {
@@ -366,26 +366,25 @@ class DAO {
    }
 
    function deleteUtilisateurById($idUtilisateur) {
-     $u = $this->db->readUtilisateurById($idUtilisateur);
+     $u = $this->readUtilisateurById($idUtilisateur);
      if ($u != null) {
-       try {
-          $this->db->deleteContactByIdProprietaire($idUtilisateur);
-       } catch (DAOException $e) {}
-       if ($this->$db->readBookerById($idUtilisateur) != null) {
+      //  try {
+      //     $this->deleteContactByIdProprietaire($idUtilisateur);
+      //  } catch (DAOException $e) {}
+
+       if ($this->readBookerById($idUtilisateur) != null) {
          try {
-           $this->db->deleteBookerById($idUtilisateur);
+           $this->deleteBookerById($idUtilisateur);
          } catch (DAOException $e) {}
        } else {
          try {
-           $this->db->deleteOrganisateurById($idUtilisateur);
+           $this->deleteOrganisateurById($idUtilisateur);
          } catch (DAOException $e) {}
        }
-       try {
-         $this->db->deleteEvenementByidCreateur($idUtilisateur);
-       } catch (DAOException $e) {}
-       try {
-         $this->db->deleteDocumentsByIdUtilisateur($idUtilisateur);
-       } catch (DAOException $e) {}
+      //  try {
+      //    $this->deleteEvenementByidCreateur($idUtilisateur);
+      //  } catch (DAOException $e) {}
+
 
 
        $sql = "DELETE FROM Utilisateur where idUtilisateur = ?";
@@ -448,14 +447,14 @@ class DAO {
    function deleteBookerById($idBooker) {
      $b = $this->readBookerById($idBooker);
      if ($b != null) {
-       $supr = $this->db->readListGroupeByBooker($idBooker);
+       $supr = $this->readListGroupeByBooker($idBooker);
        foreach ($supr as $Groupe) {
          try {
             $this->db->deleteGroupeById($Groupe->getIdGroupe());
          } catch (DAOException $e) {}
        }
 
-       $this->db->deleteNegociationByIdBooker($idBooker);
+       $this->deleteNegociationByIdBooker($idBooker);
 
        $sql = "DELETE FROM Booker where idBooker = ?";
        $req = $this->db->prepare($sql);
@@ -473,9 +472,9 @@ class DAO {
    }
 
    function deleteBookerByTop($idBooker) {
-     $b = $this->db->readBookerById($idBooker);
+     $b = $this->readBookerById($idBooker);
      if ($b != null) {
-       $this->db->deletePersonneById($idBooker);
+       $this->deletePersonneById($idBooker);
        return true;
      } else {
        throw new DAOException("Booker non présent dans la base, supression impossible");
@@ -524,14 +523,14 @@ class DAO {
    function deleteOrganisateurById($idOrganisateur) {
      $o = $this->readOrganisateurById($idOrganisateur);
      if ($o != null) {
-       $supr = $this->db->readManifestationByCreateur($idOrganisateur);
+       $supr = $this->readManifestationByCreateur($idOrganisateur);
        foreach ($supr as $Manif) {
          try {
-            $this->db->deleteManifesationById($Manif->getidManif());
+            $this->deleteManifesationById($Manif->getidManif());
          } catch (DAOException $e) {}
        }
 
-       $this->db->deleteNegociationByIdOrganisateur($idOrganisateur);
+       $this->deleteNegociationByIdOrganisateur($idOrganisateur);
 
 
        $sql = "DELETE FROM Organisateur where idOrganisateur = ?";
@@ -675,6 +674,9 @@ class DAO {
        try {
          $this->deleteCreneauByIdGroupe($idGroupe);
        } catch (DAOException $e) {}
+         try {
+           $this->deleteNegociationByIdGroupe($idGroupe);
+         } catch (DAOException $e) {}
 
        $sql = "DELETE FROM Groupe where idGroupe = ?";
        $req = $this->db->prepare($sql);
@@ -1060,7 +1062,10 @@ class DAO {
             $this->deleteManifestationGenreByIdManif($idManif);
           } catch (DAOException $e) {}
           try {
-            //$this->db->;
+            $this->deleteCreneauByIdManif($idManif);
+          } catch (DAOException $e) {}
+          try {
+            $this->deleteNegociationByIdManif($idManif);
           } catch (DAOException $e) {}
 
           $sql = "DELETE FROM Manifestation where idManif = ?";
@@ -2165,6 +2170,34 @@ class DAO {
         return (isset($res[0])?$res:null);
       }
 
+      function readNegociationByIdGroupe($idGroupe) {
+        $sql = "SELECT * FROM Negociation WHERE idGroupe  =?"; // requête
+        $req = $this->db->prepare($sql);
+        $params = array(
+          $idGroupe
+        );
+        $res = $req->execute($params);
+        if ($res === FALSE) {
+          die("readNegociationByIdOrganisateur : Requête impossible !"); // erreur dans la requête
+        }
+        $res = $req->fetchAll(PDO::FETCH_CLASS,"Negociation");
+        return (isset($res[0])?$res:null);
+      }
+
+      function readNegociationByIdManif($idManif) {
+        $sql = "SELECT * FROM Negociation WHERE idManif  =?"; // requête
+        $req = $this->db->prepare($sql);
+        $params = array(
+          $idManif
+        );
+        $res = $req->execute($params);
+        if ($res === FALSE) {
+          die("readNegociationByIdManif : Requête impossible !"); // erreur dans la requête
+        }
+        $res = $req->fetchAll(PDO::FETCH_CLASS,"Negociation");
+        return (isset($res[0])?$res:null);
+      }
+
       function createNegociation($negociation) {
          $n = $this->readNegociationById($negociation->getIdNegociation());
          if ($n == null) {
@@ -2216,15 +2249,6 @@ class DAO {
       function deleteNegociationByIdBooker($idBooker) {
         $n = $this->readNegociationByIdBooker($idBooker);
         if ($n != null) {
-          foreach ($n as $negociation) {
-            try {
-              $this->deleteNegociationMessagesByIdNegociation($negociation->idNegociation);
-            } catch (DAOException $e) {}
-            try {
-              $this->deleteNegociationDocumentsByIdNegociation($negociation->idNegociation);
-            } catch (DAOException $e) {}
-          }
-
           $sql = "DELETE FROM Negociation where idBooker = ?";
           $req = $this->db->prepare($sql);
           $params = array(
@@ -2241,18 +2265,47 @@ class DAO {
         }
       }
 
+      function deleteNegociationByIdGroupe($idGroupe) {
+        $n = $this->readNegociationByIdGroupe($idGroupe);
+        if ($n != null) {
+          $sql = "DELETE FROM Negociation where idGroupe = ?";
+          $req = $this->db->prepare($sql);
+          $params = array(
+            $idGroupe
+          );
+          $res = $req->execute($params);
+          if ($res === FALSE) {
+            die("deleteNegociationByIdGroupe : Requête impossible !");
+          }
+          return true;
+        } else {
+          throw new DAOException("Negociation non présente dans la base, supression impossible");
+        }
+      }
+
+      function deleteNegociationByIdManif($idManif) {
+        $n = $this->readNegociationByIdManif($idManif);
+        if ($n != null) {
+          $sql = "DELETE FROM Negociation where idManif = ?";
+          $req = $this->db->prepare($sql);
+          $params = array(
+            $idManif
+          );
+          $res = $req->execute($params);
+          if ($res === FALSE) {
+            var_dump($this->db->errorInfo()[2]);
+
+            die("deleteNegociationByIdManif : Requête impossible !");
+          }
+          return true;
+        } else {
+          throw new DAOException("Negociation non présente dans la base, supression impossible");
+        }
+      }
+
       function deleteNegociationByIdOrganisateur($idOrganisateur) {
         $n = $this->readNegociationByIdOrganisateur($idOrganisateur);
         if ($n != null) {
-          foreach ($n as $negociation) {
-            try {
-              $this->deleteNegociationMessagesByIdNegociation($negociation->idNegociation);
-            } catch (DAOException $e) {}
-            try {
-              $this->deleteNegociationDocumentsByIdNegociation($negociation->idNegociation);
-            } catch (DAOException $e) {}
-          }
-
           $sql = "DELETE FROM Negociation where idOrganisateur = ?";
           $req = $this->db->prepare($sql);
           $params = array(
