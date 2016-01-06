@@ -150,7 +150,7 @@ header("Location:"."../");
                         <div class="col-lg-12">
                            <div class="col-sm-8">
                               <div class="col-sm-3">
-                                 <small>à : <span class="destinataire"><?= (isset($data['recipient'])?$data['recipient']['name']:"") ?></span></small>
+                                 <small>à : <span name="destinataire" data-id="<?= (isset($data['recipient'])?$data['recipient']['id']:"") ?>"><?= (isset($data['recipient'])?$data['recipient']['name']:"") ?></span></small>
                               </div>
                               <ul id="messageTags" class="col-sm-9 list-inline">
                                  <!--<li><a class="btn btn-default" href="#"><span class="glyphicon glyphicon-tag no-margin"></span> Festival du lac</a></li>-->
@@ -158,8 +158,8 @@ header("Location:"."../");
                            </div>
                            <div class="col-sm-4 text-right">
                               <div class="btn-group">
-                                 <a class="btn btn-default" title="Enregistrer"><span class="glyphicon glyphicon-floppy-disk no-margin"></span></a>
-                                 <a class="btn btn-primary" title="Envoyer"><span class="glyphicon glyphicon-send"></span>Envoyer</a>
+                                 <a id="editSaveMessage" class="btn btn-default" title="Enregistrer"><span class="glyphicon glyphicon-floppy-disk no-margin"></span></a>
+                                 <a id="editSendMessage" class="btn btn-primary" title="Envoyer"><span class="glyphicon glyphicon-send"></span>Envoyer</a>
                               </div>
                            </div>
                         </div>
@@ -167,7 +167,7 @@ header("Location:"."../");
                   </div>
                   <div class="panel-body">
                      <div class="content">
-                        <textarea rows="4" name="editMessageContent" id="editor1" cols="175%"><?= NULL ?></textarea>
+                        <textarea rows="4" name="editMessageContent" id="editor1" cols="175%"></textarea>
                         <script>
                           // Replace the <textarea id="editor1"> with a CKEditor
                           // instance, using default configuration.

@@ -1248,7 +1248,7 @@ class DAO {
       function createEvenement($evenement) {
          $e = $this->readEvenementById($evenement->getID());
          if ($e == null) {
-            $sql = "INSERT INTO Evenement(nom,dateDebut,dateFin,heureDebut,heureFin,description,lieu,createur,journee) VALUES (?,?,?,?,?,?,?,?,?)";
+            $sql = "INSERT INTO Evenement(nom,dateDebut,dateFin,heureDebut,heureFin,description,lieu,createur,journee) VALUES (?,?,?,?,?,?,?,?,?) RETURNING idEvene";
             $req = $this->db->prepare($sql);
             $params = array(
                $evenement->getNom(),
@@ -1263,8 +1263,6 @@ class DAO {
             );
             $res = $req->execute($params);
             if ($res === FALSE) {
-              var_dump($sql);
-              var_dump($params);
               var_dump($this->db->errorInfo()[2]);
                die("createEvenement : Requête impossible !");
             }
@@ -3038,7 +3036,7 @@ class DAO {
       function createMessage($message) {
          $c = $this->readMessageById($message->getID());
          if ($c == null) {
-            $sql = "INSERT INTO Message(expediteur,destinataire,etat,contenu,dateenvoi) VALUES (?,?,?,?,?)";
+            $sql = "INSERT INTO Message(expediteur,destinataire,etat,contenu,dateenvoi) VALUES (?,?,?,?,?) RETURNING idMessage";
             $req = $this->db->prepare($sql);
             $params = array(
                $message->getExpediteur(),
@@ -3052,9 +3050,17 @@ class DAO {
               var_dump($this->db->errorInfo()[2]);
                die("createMessage : Requête impossible !");
             }
+            return $req->fetchColumn();
          } else {
             throw new DAOException("idMessage déjà présente dans la base");
          }
+      }
+
+      function createMessageNewConv($message,$nom) {
+        $idM = $this->createMessage($message);
+        $idC = $this->createConversation(new Conversation(NULL,$idM,$nom));
+        $this->createMessageConversation($idC,$idM);
+        return $idM;
       }
 
       function updateMessage($message) {
@@ -3124,17 +3130,18 @@ class DAO {
       function createConversation($conversation) {
          $c = $this->readConversationById($conversation->getID());
          if ($c == null) {
-            $sql = "INSERT INTO Conversation(idConversation,idPremierMessage,nom) VALUES (?,?,?)";
+            $sql = "INSERT INTO Conversation(idPremierMessage,nom) VALUES (?,?) RETURNING idConversation";
             $req = $this->db->prepare($sql);
             $params = array(
-               $conversation->getID(),
                $conversation->getIDMessageOrigine(),
                $conversation->getNom()
             );
             $res = $req->execute($params);
             if ($res === FALSE) {
+              var_dump($this->db->errorInfo()[2]);
                die("createConversation : Requête impossible !");
             }
+            return $req->fetchColumn();
          } else {
             throw new DAOException("idConversation déjà présente dans la base");
          }
@@ -3186,7 +3193,7 @@ class DAO {
                die("createConversation : Requête impossible !");
             }
          } else {
-            throw new DAOException("idConversation non présente dans la base");
+            throw new DAOException("idConversation ($c) non présente dans la base");
          }
       }
 

@@ -66,14 +66,16 @@ function showMessage(e) {
    }});
 }
 
-function sendMessage(e) {
-
+function sendMessage(e,etat) {
   $("#messageLoading").addClass("loading-start");
   $("#messageLoading").removeClass("loading-fail");
   $("#messageLoading").removeClass("loading-end");
-  var recipientId = $(e.currentTarget).data().recipient;
   var messageData = {}; // Convertir les infos en objet
-  $.ajax({url: "../controler/messages.ctrl.php?send", method: 'POST', data: messageData, success: function(res) {
+  messageData.etat = etat;
+  messageData.recipient = $("#editFrame span[name='destinataire']").data().id;
+  messageData.titre = $("#editFrame input[name='messageTitle']").val();
+  messageData.contenu = CKEDITOR.instances.editor1.getData();
+  $.ajax({url: "../controler/messages.ctrl.php?ajax&send", method: 'POST', data: messageData, success: function(res) {
      $("#messageLoading").addClass("loading-end");
      $("#messageLoading").removeClass("loading-start");
 
@@ -91,7 +93,7 @@ function addMessageReadListener() {
    console.log("Message Read Listener added !");
 }
 function addEditorListener() {
-   $(".editMessage.not-shown").on('click',editMessage);
+   //$(".editMessage.not-shown").on('click',editMessage);
    console.log("Message Edit Listener added !");
 }
 
@@ -101,5 +103,11 @@ document.addEventListener("DOMContentLoaded", function() {
   $("#openEditor").on('click',function(){
     $("#messageFrame").collapse('hide');
     $("#editFrame").collapse('show');
-  })
+  });
+  $("#editSaveMessage").on('click',function(e){
+    sendMessage(e,0);
+  });
+  $("#editSendMessage").on('click',function(e){
+    sendMessage(e,5);
+  });
 });
