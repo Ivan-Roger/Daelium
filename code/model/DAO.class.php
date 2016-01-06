@@ -2296,6 +2296,8 @@ class DAO {
           );
           $res = $req->execute($params);
           if ($res === FALSE) {
+            var_dump($this->db->errorInfo()[2]);
+
             die("deleteNegociationByIdManif : Requête impossible !");
           }
           return true;
