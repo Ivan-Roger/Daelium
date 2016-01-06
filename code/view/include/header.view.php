@@ -55,14 +55,14 @@
           </li>-->
           <!-- Menu de l'uilisateur-->
           <li id="notifs" class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-bell"></span><?php if($data['notifs-count']>0) { ?><sup><span class="notifs-count label label-primary" style="font-size: 12px;"><?= $data['notifs-count'] ?></span></sup><?php } ?></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-bell"></span><?php if($data['notifs-menu']['count']>0) { ?><sup><span class="notifs-count label label-primary" style="font-size: 12px;"><?= $data['notifs-menu']['count'] ?></span></sup><?php } ?></a>
             <ul class="dropdown-menu">
               <li class="notifs-menu">
                   <a href="../controler/notifications.ctrl.php">Notifications</a>
                   <ul class="">
-                    <?php foreach ($data["notifications"] as $key => $value): ?>
+                    <?php foreach ($data["notifs-menu"]["list"] as $key => $value) { ?>
                       <a href="../controler/notifications.ctrl.php?id=<?= $value['id'] ?>" data-id="<?= $value['id'] ?>" class="notif-item bg-info"><span class="icon"><span class="fa fa-<?= $value['icon'] ?>"></span></span><?= $value["titre"] ?></a>
-                    <?php endforeach; ?>
+                    <?php } ?>
                   </ul>
                 </li>
             </ul>

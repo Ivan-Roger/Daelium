@@ -24,7 +24,9 @@
       $data['error']['back'] = "../controler/notifications.ctrl.php";
       $data['error']['message'] = "Vous n'avez pas le droit d'accèder a cette notification.";
     }
+    $data['notifs-menu'] = getNotifs();
   }
+
 
   if (!isset($_GET['ajax'])) {
     $listenotif = array();

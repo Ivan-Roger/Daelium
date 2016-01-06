@@ -140,7 +140,7 @@ header("Location:"."../");
                   </div>
                </div>
             </div>
-            <div id="editFrame" class="col-lg-offset-1 col-lg-10 collapse collapsed">
+            <div id="editFrame" class="col-lg-offset-1 col-lg-10 collapse collapsed messageCreate">
                <div class="panel panel-default empty">
                   <div class="panel-heading">
                      <div class="row">
@@ -150,7 +150,9 @@ header("Location:"."../");
                         <div class="col-lg-12">
                            <div class="col-sm-8">
                               <div class="col-sm-3">
-                                 <small>à : <span name="destinataire" data-id="<?= (isset($data['recipient'])?$data['recipient']['id']:"") ?>"><?= (isset($data['recipient'])?$data['recipient']['name']:"") ?></span></small>
+                                 <small class="message-recipient">à : <span name="destinataire" data-id=""><?= (isset($data['recipient'])?$data['recipient']['name']:"") ?></span>
+                                   <a class="selectRecipient btn btn-default"><span class="glyphicon glyphicon-plus no-margin"></span></a>
+                                 </small>
                               </div>
                               <ul id="messageTags" class="col-sm-9 list-inline">
                                  <!--<li><a class="btn btn-default" href="#"><span class="glyphicon glyphicon-tag no-margin"></span> Festival du lac</a></li>-->
@@ -158,14 +160,16 @@ header("Location:"."../");
                            </div>
                            <div class="col-sm-4 text-right">
                               <div class="btn-group">
-                                 <a id="editSaveMessage" class="btn btn-default" title="Enregistrer"><span class="glyphicon glyphicon-floppy-disk no-margin"></span></a>
-                                 <a id="editSendMessage" class="btn btn-primary" title="Envoyer"><span class="glyphicon glyphicon-send"></span>Envoyer</a>
+                                <a id="editSaveMessage" class="btn btn-default" title="Enregistrer"><span class="glyphicon glyphicon-floppy-disk no-margin"></span></a>
+                                <a id="editDeleteMessage" class="btn btn-danger" title="Supprimer"><span class="glyphicon glyphicon-trash no-margin"></span></a>
+                                <a id="editSendMessage" class="btn btn-primary" title="Envoyer"><span class="glyphicon glyphicon-send"></span>Envoyer</a>
                               </div>
                            </div>
                         </div>
                      </div>
                   </div>
                   <div class="panel-body">
+                     <input name="create" value="true" type="hidden"/>
                      <div class="content">
                         <textarea rows="4" name="editMessageContent" id="editor1" cols="175%"></textarea>
                         <script>
@@ -181,9 +185,14 @@ header("Location:"."../");
    </section>
    <?php include("../view/include/footer.view.php"); ?>
    <script>
-    <?php if ($data['open']['type']=="edit") { ?>
-      $("#editFrame").collapse('show');
+    function initDoc() {
+    <?php if (isset($data['open']) && $data['open']['type']=="edit") { ?>
+      createMessage();
+      <?php if (isset($data['recipient'])) { ?>
+        setEditMessageRecipient(<?= $data['recipient']['id'] ?>,"<?= $data['recipient']['name'] ?>");
+      <?php } ?>
     <?php } ?>
+    }
    </script>
 </body>
 </html>

@@ -68,24 +68,24 @@ INSERT INTO Evenement(nom, datedebut, datefin, journee, heuredebut, heurefin, de
 -- INSERT INTO Contact_Tag VALUES('Amis',1,3);
 
 
-INSERT INTO Message(expediteur, destinataire, etat, contenu, dateenvoi) VALUES(2,10,'Salut tu vas bien ? On se fait une bouffe ?','2015-10-19 10:23:54');
-INSERT INTO Message_Tag VALUES('Amis',0);
+INSERT INTO Message(expediteur, destinataire, etat, contenu, dateenvoi) VALUES(1,2,10,'Salut tu vas bien ? On se fait une bouffe ?','2015-10-19 10:23:54');
+INSERT INTO Message_Tag VALUES('Amis',1);
 INSERT INTO Conversation(idPremierMessage, nom) VALUES(1,'Rencontre');
-INSERT INTO Conversation_Message VALUES(0,1);
-
-
-INSERT INTO Message(expediteur, destinataire, etat, contenu, dateenvoi) VALUES(2,1,10,'Oui','2015-10-19 10:23:54');
 INSERT INTO Conversation_Message VALUES(1,1);
 
 
-INSERT INTO Message(expediteur, destinataire, etat, contenu, dateenvoi) VALUES(1,2,10,'On fait ça quand, t''es dispo mardi ?','2015-10-19 17:36:21');
+INSERT INTO Message(expediteur, destinataire, etat, contenu, dateenvoi) VALUES(2,1,10,'Oui','2015-10-19 10:23:54');
 INSERT INTO Conversation_Message VALUES(2,1);
 
-INSERT INTO Message(expediteur, destinataire, etat, contenu, dateenvoi) VALUES(2,1,10,'Je crois bien, oui','2015-10-19 20:37:14');
+
+INSERT INTO Message(expediteur, destinataire, etat, contenu, dateenvoi) VALUES(1,2,10,'On fait ça quand, t''es dispo mardi ?','2015-10-19 17:36:21');
 INSERT INTO Conversation_Message VALUES(3,1);
 
-INSERT INTO Message(expediteur, destinataire, etat, contenu, dateenvoi) VALUES(1,2,5,'Parfait, a mardi alors.','2015-10-20 07:08:12');
+INSERT INTO Message(expediteur, destinataire, etat, contenu, dateenvoi) VALUES(2,1,10,'Je crois bien, oui','2015-10-19 20:37:14');
 INSERT INTO Conversation_Message VALUES(4,1);
+
+INSERT INTO Message(expediteur, destinataire, etat, contenu, dateenvoi) VALUES(1,2,5,'Parfait, a mardi alors.','2015-10-20 07:08:12');
+INSERT INTO Conversation_Message VALUES(5,1);
 
 
 INSERT INTO Negociation(idBooker, idManif, idGroupe, idOrganisateur, etat) VALUES(1,1,2,2,0);

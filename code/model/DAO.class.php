@@ -3119,11 +3119,13 @@ class DAO {
       function updateMessage($message) {
          $m = $this->readMessageById($message->getID());
          if ($m != null) {
-            $sql = "UPDATE Message SET etat = ? where idMessage= ?";
+            $sql = "UPDATE Message SET etat = ?, contenu = ?, dateenvoi = ? where idMessage= ?";
             $req = $this->db->prepare($sql);
             $params = array(
-               $message->getEtat(),
-               $message->getID()
+              $message->getEtat(),
+              $message->getContenu(),
+              $message->getDateenvoi(),
+              $message->getID()
             );
             $res = $req->execute($params);
             if ($res === FALSE) {

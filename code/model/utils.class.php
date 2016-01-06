@@ -10,29 +10,7 @@
      }
 
      $data['page']=$page;
-     $dao = new DAO();
-
-     $listenotif = array();
-     $listenotif = $dao->readListeNotificationUseridNoRead( $_SESSION["user"]["ID"]);
-
-     $data["notifications"] = array();
-     foreach ($listenotif as $key => $value) {
-       $data["notifications"][$key]['id'] = $value->getIdNotification();
-       switch ($value->getType()) {
-        case 0: // Message
-          $data["notifications"][$key]['icon'] = "envelope";
-          break;
-        case 1: // Demande de groupe ?!
-          $data["notifications"][$key]['icon'] = "child";
-          break;
-        case 2: // Participation a un event
-          $data["notifications"][$key]['icon'] = "question";
-          break;
-       }
-       $data["notifications"][$key]['titre'] = $value->getTypeEcrit();
-     }
-     $data["notifs-count"] = count($data["notifications"]);
-
+     $data['notifs-menu'] = getNotifs();
      $data['alerts']=array();
      if ($alerts!=null)
        $data['alerts'] = array_merge($data['alerts'],$alerts);
@@ -41,6 +19,32 @@
 
 
      return $data;
+   }
+
+   function getNotifs() {
+      $dao = new DAO();
+
+      $listenotif = array();
+      $listenotif = $dao->readListeNotificationUseridNoRead( $_SESSION["user"]["ID"]);
+
+      $notifs["list"] = array();
+      foreach ($listenotif as $key => $value) {
+        $notifs["list"][$key]['id'] = $value->getIdNotification();
+        switch ($value->getType()) {
+         case 0: // Message
+           $notifs["list"][$key]['icon'] = "envelope";
+           break;
+         case 1: // Demande de groupe ?!
+           $notifs["list"][$key]['icon'] = "child";
+           break;
+         case 2: // Participation a un event
+           $notifs["list"][$key]['icon'] = "question";
+           break;
+        }
+        $notifs["list"][$key]['titre'] = $value->getTypeEcrit();
+      }
+      $notifs["count"] = count($notifs['list']);
+      return $notifs;
    }
 
    function randomId($n = 20) {

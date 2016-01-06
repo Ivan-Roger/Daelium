@@ -95,10 +95,12 @@
             if (isset($_GET['setState'])) {
                $message->setEtat($_GET['setState']);
                $dao->updateMessage($message);
+               $data['info'] = "Set state to ".$_GET['setState'];
             }
             $data['message']['id'] = $message->getID();
             $data['message']["me"] = ($message->getExpediteur()==$userid?'E':'D'); // Je suis Expediteur ou Destinataire ?
             $data['message']["destinataire"] = $userDes->getNomComplet();
+            $data['message']["destinataire-id"] = $message->getDestinataire();
             $data['message']["expediteur"] = $userExp->getNomComplet();
             $data['message']["date"] = $message->getDateenvoi();
             $data["message"]["conversation"] = $conv->getID();
@@ -126,8 +128,6 @@
       if ($conv != null) {
          $pMessage = $dao->readMessageById($conv->getIDMessageOrigine());
          if ($pMessage->getExpediteur()==$userid || $pMessage->getDestinataire()==$userid) {
-            $convID = $dao->readConversationByMessage($message->getID());
-            $conv = $dao->readConversationById($convID);
             $data['conversation']['id'] = $conv->getID();
             $data['conversation']["me"] = ($pMessage->getExpediteur()==$userid?'E':'D'); // Je suis Expediteur ou Destinataire ?
             $data["conversation"]["objet"] = $conv->getNom();
@@ -156,7 +156,7 @@
      }
    }
 
-   if (isset($_GET['send'])) {
+   if (isset($_GET['send']) && isset($_GET['create'])) {
      $userObj = $dao->readPersonneById($userid);
 
      $mess = new Message(NULL,$_SESSION['user']['ID'],$_POST['recipient'],$_POST['etat'],$_POST['contenu'],date("Y-m-d H:i:s"));
@@ -165,7 +165,22 @@
        $dao->createNotification(new Notification(NULL,0,$_POST['recipient'],0,"Vous avez reçu un message de ".$userObj->getNomComplet()." : <a href=\"../controler/messages.ctrl.php?id=".$idM."\">Voir</a>"));
      }
      $data['request']['code'] = 200;
-     $data['request']['message'] = "Success";
+     $data['request']['message'] = "Create";
+   }
+
+   if (isset($_GET['send']) && isset($_GET['update'])) {
+     $userObj = $dao->readPersonneById($userid);
+
+     $mess = $dao->readMessageById($_POST['idMessage']);
+     $mess->setEtat($_POST['etat']);
+     $mess->setContenu($_POST['contenu']);
+     $mess->setDate(date("Y-m-d H:i:s"));
+     $dao->updateMessage($mess);
+     if ($_POST['etat']>=5) {
+       $dao->createNotification(new Notification(NULL,0,$_POST['recipient'],0,"Vous avez reçu un message de ".$userObj->getNomComplet()." : <a href=\"../controler/messages.ctrl.php?id=".$mess->getID()."\">Voir</a>"));
+     }
+     $data['request']['code'] = 200;
+     $data['request']['message'] = "Update";
    }
 
    // ------------- DISPLAY -------------

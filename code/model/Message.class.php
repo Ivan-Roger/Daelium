@@ -64,5 +64,13 @@
       function setEtat($etat){
          $this->etat=$etat;
       }
+
+      function setContenu($contenu){
+         $this->contenu=$contenu;
+      }
+
+      function setDate($date){
+         $this->dateenvoi=$date;
+      }
    }
 ?>
