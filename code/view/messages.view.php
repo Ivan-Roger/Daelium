@@ -76,7 +76,7 @@ header("Location:"."../");
                      </colgroup>
                      <tbody>
                         <?php foreach ($data['messageB'] as $key => $message) { ?>
-                           <tr class="showMessage not-shown" data-ID="<?= $message['id'] ?>"><td><?= $message['destinataire'] ?></td><td class="objet"><?= (!$message['origine']?"<span class=\"fa fa-chevron-right\"></span>":"")?><?= $message['objet'] ?></td><td class="text-right"><?= $message['date'] ?></td></tr>
+                           <tr class="editMessage not-shown" data-ID="<?= $message['id'] ?>"><td><?= $message['destinataire'] ?></td><td class="objet"><?= (!$message['origine']?"<span class=\"fa fa-chevron-right\"></span>":"")?><?= $message['objet'] ?></td><td class="text-right"><?= $message['date'] ?></td></tr>
                         <?php }?>
                         </tobdy>
                      </table>
