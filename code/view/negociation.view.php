@@ -54,12 +54,14 @@ header("Location:"."../");
                   <div class="col-lg-6"><b>Heure de fin de test: </b><?= $value["hft"] ?></div>
                   <div class="col-lg-12"><b>Lieu :</b><?= $value["lieu"] ?></div>
                   <div class="pull-right">
-                  <!-- <a href="../controler/creneau.ctrl.php?idmanif=<?= $data['idmanif'] ?>&idgroupe=<?= $data['idgroupe'] ?>&idnego=<?= $data['idnego'] ?>" type="button" class="btn btn-warning">Modifier</a> -->
-                  <a href="../controler/creneau.ctrl.php?action=delete&idmanif=<?= $data['idmanif'] ?>&idgroupe=<?= $data['idgroupe'] ?>&idnego=<?= $data['idnego'] ?>" type="button" class="btn btn-danger">Supprimer</a>
+                    <?php if ($data["orga"]): ?>
+                      <!-- <a href="../controler/creneau.ctrl.php?idmanif=<?= $data['idmanif'] ?>&idgroupe=<?= $data['idgroupe'] ?>&idnego=<?= $data['idnego'] ?>" type="button" class="btn btn-warning">Modifier</a> -->
+                      <a href="../controler/creneau.ctrl.php?action=delete&idmanif=<?= $data['idmanif'] ?>&idgroupe=<?= $data['idgroupe'] ?>&idnego=<?= $data['idnego'] ?>" type="button" class="btn btn-danger">Supprimer</a>
+                    <?php endif; ?>
                 </div>
               </div>
               <?php endforeach; ?>
-              <?php if (empty($data["creneau"])): ?>
+              <?php if (empty($data["creneau"]) && $data["orga"]): ?>
                 <a href="../controler/creneau_new.ctrl.php?idNego=<?= $data['idnego'] ?>" type="button" class="btn btn-primary">Ajouter le creneau</a>
               <?php endif; ?>
 
