@@ -71,12 +71,25 @@ function showMessage(e) {
    }});
 }
 
+function sendMessage(e) {
+  if ($(e.currentTarget).hasClass('shown')) {
+    return;
+  }
+  $.ajax({url: "", success: function(res) {
+
+  }, error: function(a, b, c) {
+    console.warn("AJAX Error: couldn't get Message (\""+b+"\")");
+    $("#messageLoading").removeClass("loading-start");
+    $("#messageLoading").addClass("loading-fail");
+  }});
+}
+
 function addMessageReadListener() {
    $(".showMessage.not-shown").on('click',showMessage);
    console.log("Message Read Listener added !");
 }
 function addEditorListener() {
-   $(".editMessage.not-open").on('click',editMessage);
+   $(".editMessage.not-shown").on('click',sendMessage);
    console.log("Message Edit Listener added !");
 }
 

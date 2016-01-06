@@ -150,7 +150,7 @@ header("Location:"."../");
                         <div class="col-lg-12">
                            <div class="col-sm-8">
                               <div class="col-sm-3">
-                                 <small>à : <input type="text" class="form-control auto-complete" data-complete="users" name="messageRecipient" placeholder="Destinataires"/></small>
+                                 <small>à : <span class="destinataire"><?= (isset($data['recipient'])?$data['recipient']['name']:"") ?></span></small>
                               </div>
                               <ul id="messageTags" class="col-sm-9 list-inline">
                                  <!--<li><a class="btn btn-default" href="#"><span class="glyphicon glyphicon-tag no-margin"></span> Festival du lac</a></li>-->
@@ -180,5 +180,10 @@ header("Location:"."../");
          </div>
    </section>
    <?php include("../view/include/footer.view.php"); ?>
+   <script>
+    <?php if ($data['open']['type']=="edit") { ?>
+      $("#editFrame").collapse('show');
+    <?php } ?>
+   </script>
 </body>
 </html>
