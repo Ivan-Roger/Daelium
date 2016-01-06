@@ -143,7 +143,7 @@
       }
    }
 
-   if (isset($_GET['send']) && isset($_GET['recipient'])) {
+   if (isset($_GET['edit']) && isset($_GET['recipient'])) {
      $data['open']['type'] = "edit";
      $data['recipient']['id'] = $_GET['recipient'];
      $user = $dao->readPersonneById($_GET['recipient']);

@@ -3125,7 +3125,7 @@ class DAO {
         return (isset($res)?$res:null); // retourne le premier resultat s'il existe, sinon null
       }
       function readListeNotificationUseridNoRead($idUser){
-        $sql = "SELECT * FROM Notification WHERE destinataire = ? AND etat!=1 ORDER BY idNotif"; // requête
+        $sql = "SELECT * FROM Notification WHERE destinataire = ? AND etat=0 ORDER BY idNotif"; // requête
         $req = $this->db->prepare($sql);
         $params = array( // paramétres
            $idUser

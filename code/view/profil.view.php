@@ -20,7 +20,7 @@
         <?php if($data["owner"]){ ?>
           <a class="btn btn-primary" href="../controler/profil_edit.ctrl.php">Editer</a>
         <?php } else { ?>
-          <a class="btn btn-primary" href="../controler/messages.ctrl.php?send&recipient=<?= $data['idCompte'] ?>">Contacter</a>
+          <a class="btn btn-primary" href="../controler/messages.ctrl.php?edit&recipient=<?= $data['idCompte'] ?>">Contacter</a>
         <?php } ?>
         </div>
       </div>

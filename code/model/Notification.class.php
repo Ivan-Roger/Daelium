@@ -27,7 +27,7 @@
       return $this->idnotif;
     }
     function getEtat(){
-      return $this->etat;
+      return ($this->etat==0?0:$this->etat);
     }
     function getEtatEcrit(){
       if($this->etat == 0){

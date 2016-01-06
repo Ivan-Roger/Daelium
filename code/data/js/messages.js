@@ -72,10 +72,10 @@ function showMessage(e) {
 }
 
 function sendMessage(e) {
-  if ($(e.currentTarget).hasClass('shown')) {
+  if ($(e.currentTarget).hasClass('shown'))
     return;
-  }
-  $.ajax({url: "", success: function(res) {
+  var recipientId = $(e.currentTarget).data().recipient;
+  $.ajax({url: "../controler/messages.ctrl.php?send", success: function(res) {
 
   }, error: function(a, b, c) {
     console.warn("AJAX Error: couldn't get Message (\""+b+"\")");
