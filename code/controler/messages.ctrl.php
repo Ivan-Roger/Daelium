@@ -152,6 +152,10 @@
      }
    }
 
+   if (isset($_GET['send'])) {
+     $mess = new Message();
+   }
+
    // ------------- DISPLAY -------------
    if (isset($_GET['ajax'])) {
       header("Content-Type:"."application/json");
