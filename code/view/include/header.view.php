@@ -20,7 +20,7 @@
           <li<?php echo($data['page']=="Agenda"?" class='active'":"") ?>><a href="../controler/agenda.ctrl.php"><span class="glyphicon glyphicon-calendar"></span><span class="text">Agenda</span></a></li>
           <li<?php echo($data['page']=="Messages"?" class='active'":"") ?>><a href="../controler/messages.ctrl.php"><span class="glyphicon glyphicon-envelope"></span><span class="text">Messagerie</span></a></li>
           <li<?php echo($data['page']=="Annuaire"?" class='active'":"") ?>><a href="../controler/annuaire.ctrl.php"><span class="fa fa-book"></span><span class="text">Annuaire</span></a></li>
-          <?php if($data["type"] == "booker") { ?>
+          <?php if($data["user-type"] == "booker") { ?>
             <li<?php echo($data['page']=="Groupes"?" class='active'":"") ?>><a href="../controler/groupes.ctrl.php"><span class="fa fa-group"></span><span class="text">Groupes</span></a></li>
           <?php } else { ?>
             <li<?php echo($data['page']=="Evenements"?" class='active'":"") ?>><a href="../controler/evenements.ctrl.php"><span class="glyphicon glyphicon-music"></span><span class="text">Manifestations</span></a></li>
