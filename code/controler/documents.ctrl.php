@@ -6,7 +6,7 @@
   $data = initPage("Documents");
   $dao = new DAO();
   $ROOT = "../data/users/u".$_SESSION['user']['ID']."/files";
-  $WEBSITE = "localhost/Daelium/code";
+  $WEBSITE = parse_ini_file("../data/config_local.ini")['racine'];
 
   if (isset($_GET['file'])) { // Lecture d'un document d'un autre utilisateur
     if (is_file($ROOT.$_GET['file'])) {
