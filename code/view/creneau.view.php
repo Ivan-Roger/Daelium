@@ -60,8 +60,8 @@
       <input type="hidden" name="idgroupe" value="<?= $data['idgroupe'] ?>"/>
       <input type="hidden" name="idmanif" value="<?= $data['idmanif'] ?>"/>
       <div class="pull-right">
-        <input class="btn btn-default" type="button" onclick="alert('Hello World!')" value="Annuler">
-        <input class="btn btn-primary" type="submit" onclick="alert('Hello World!')" value="Créer">
+        <input class="btn btn-default" type="reset" value="Annuler">
+        <input class="btn btn-primary" type="submit" value="Créer">
       </div>
     </form>
     </section>

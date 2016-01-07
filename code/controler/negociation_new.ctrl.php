@@ -18,7 +18,7 @@
         $manif = $dao->readManifestationById($_POST['cible']);
         $groupe = $dao->readGroupeById($_POST["choix"]);
         $organisateur = $manif->getCreateur();
-        $negociation = new Negociation(NULL,$iduser,$_POST['cible'],$_POST["choix"],$organisateur,0);
+        $negociation = new Negociation(NULL,$iduser,$iduser,$_POST['cible'],$_POST["choix"],$organisateur,0);
         $negociation2 = $dao->createNegociation($negociation);
         $nomuser = $user->getNomComplet();
         $nomgroupe = $groupe->getNom();
@@ -47,7 +47,7 @@
         $bookerid = $dao->readBookerByGroupe($_POST["cible"]);
         $manif = $dao->readManifestationById($_POST['choix']);
         $groupe = $dao->readGroupeById($_POST["cible"]);
-        $negociation = new Negociation(NULL,$bookerid,$_POST['choix'],$_POST["cible"],$iduser,0);
+        $negociation = new Negociation(NULL,$iduser,$bookerid,$_POST['choix'],$_POST["cible"],$iduser,0);
         $negociation2 = $dao->createNegociation($negociation);
         $nomuser = $user->getNomComplet();
         $nomgroupe = $groupe->getNom();

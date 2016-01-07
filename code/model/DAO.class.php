@@ -2217,14 +2217,15 @@ class DAO {
       function createNegociation($negociation) {
          $n = $this->readNegociationById($negociation->getIdNegociation());
          if ($n == null) {
-            $sql = "INSERT INTO Negociation(idBooker,idManif,idGroupe,idOrganisateur,etat) VALUES (?,?,?,?,?) RETURNING idNegociation";
+            $sql = "INSERT INTO Negociation(idBooker,idManif,idGroupe,idOrganisateur,etat,idCreateur) VALUES (?,?,?,?,?,?) RETURNING idNegociation";
             $req = $this->db->prepare($sql);
             $params = array(
                $negociation->getIdBooker(),
                $negociation->getIdManif(),
                $negociation->getIdGroupe(),
                $negociation->getIdOrganisateur(),
-               $negociation->getetat()
+               $negociation->getetat(),
+               $negociation->getIdCreateur()
             );
             $res = $req->execute($params);
             if ($res === FALSE) {

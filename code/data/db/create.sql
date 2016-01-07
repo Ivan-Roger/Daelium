@@ -169,9 +169,11 @@ CREATE TABLE Negociation (
   idManif BIGINT,
   idGroupe BIGINT,
   idOrganisateur BIGINT,
+  idCreateur BIGINT,
   etat integer,
   Unique (idBooker,idManif,idGroupe,idOrganisateur),
   FOREIGN KEY (idBooker) references Booker(idBooker),
+  FOREIGN KEY (idCreateur) references Utilisateur(idUtilisateur),
   FOREIGN KEY (idManif) references Manifestation(idManif),
   FOREIGN KEY (idGroupe) references Groupe(idGroupe),
   FOREIGN KEY (idOrganisateur) references Organisateur(idOrganisateur)

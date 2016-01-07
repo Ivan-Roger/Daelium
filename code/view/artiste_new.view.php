@@ -122,8 +122,8 @@ header("Location:"."../");
         </div>
         <input type="hidden" name="idgroupe" value="<?= $data['idgroupe'] ?>"/>
         <div class="pull-right">
-          <input class="btn btn-default" type="button" onclick="alert('Hello World!')" value="Annuler">
-          <input class="btn btn-primary" type="submit" onclick="alert('Hello World!')" value="Ajouter">
+          <input class="btn btn-default" type="reset" value="Annuler">
+          <input class="btn btn-primary" type="submit"  value="Ajouter">
         </div>
 </form>
 </section>

@@ -4,15 +4,19 @@
     private $idbooker;
     private $idmanif;
     private $idgroupe;
+    private $idCreateur;
     private $idorganisateur;
     private $etat;
 
-    function __construct($idnegociation = NULL, $idbooker = NULL, $idmanif = NULL, $idgroupe = NULL, $idorganisateur = NULL, $etat = NULL) {
+    function __construct($idnegociation = NULL,$idcreateur = NULL, $idbooker = NULL, $idmanif = NULL, $idgroupe = NULL, $idorganisateur = NULL, $etat = NULL) {
       if (!isset($this->idnegociation)) {
         $this->idnegociation = $idnegociation;
       }
       if ($idbooker != NULL) {
           $this->idbooker = $idbooker;
+      }
+      if ($idcreateur != NULL) {
+          $this->idcreateur = $idcreateur;
       }
       if ($idmanif != NULL) {
           $this->idmanif = $idmanif;
@@ -42,6 +46,9 @@
     function getIdGroupe() {
         return $this->idgroupe;
     }
+    function getIdCreateur() {
+        return $this->idcreateur;
+    }
     function getIdOrganisateur() {
         return $this->idorganisateur;
     }
@@ -62,6 +69,12 @@
           return "Refusée";
         }elseif ($this->etat == 3) {
           return "Acceptée";
+        }elseif ($this->etat == 4) {
+          return "Annulée";
+        }elseif ($this->etat == 5) { // A partir de refusé
+          return "Annulée";
+        }elseif ($this->etat == 6) { // A partir de Accepter
+          return "Annulée";
         }else {
           return "Erreur Negociation.class";
         }
