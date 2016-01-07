@@ -45,12 +45,12 @@
         $data['errorFields']['inputEmail']=true;
         include("../view/signin.view.php");
       } else {
-        if($user->getMdp() == $_POST["mdp"]){
+        if($user->getMdp() == hash('sha2',$_POST["mdp"])){
           $_SESSION["user"]["mail"]=$mail;
           $_SESSION["user"]["loginTime"]=date("");
           $_SESSION["user"]["ID"]=$user->getIdPersonne();
           $_SESSION["user"]["type"]=$user->getType();
-          
+
           //$_SESSION["userLoginName"]=$user->getNom(); // NOM
           $dao->createConnexionInJournal($user->getIdPersonne(),date("Y-m-d H:i:s"),$_SERVER['REMOTE_ADDR'],$_SERVER['HTTP_USER_AGENT']);
 

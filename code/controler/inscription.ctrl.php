@@ -16,7 +16,7 @@ if((isset($_POST['etape']) && $_POST['etape'] == 0)){ // Si on recoit le premier
         $data["prenom"] = $_POST["prenom"];
         $data["mail"] = $_POST["mailcompte"];
         $data["tel"] = $_POST["ntel"];
-        $_SESSION["signup"]["mdp"] = $_POST["mdp"];
+        $_SESSION["signup"]["mdp"] = hash('sha2',$_POST["mdp"]);
         include("../view/signup_confirm.view.php");
       }else {
         include("../view/signup.view.php");

@@ -11,16 +11,16 @@ INSERT INTO Lieu(noml, description, pays, region, ville, codePostal, adresse, la
 
 
 INSERT INTO Personne(type, nom, prenom, emailcontact, tel, adresse) VALUES(0,'Roger','Ivan','ivan.bob.emile@gmail.com','0607754241',1); -- 0 si booker
-INSERT INTO Utilisateur VALUES(1,'ivan.bob.emile@gmail.com','ploy!');
+INSERT INTO Utilisateur VALUES(1,'ivan.bob.emile@gmail.com','325063010dee10b36a7956c75c13ad0c6ea9287aac9fc6b3a3cf03e55c04c23f'); --ploy!
 INSERT INTO Booker VALUES(1);
 
 
 INSERT INTO Personne(type, nom, prenom, emailcontact, tel, adresse) VALUES(0,'Dupuis','Marc','marc.dupuis@gmail.com','0675757575',2); -- 0 si booker
-INSERT INTO Utilisateur VALUES(2,'marc.dupuis@gmail.com','azerty');
+INSERT INTO Utilisateur VALUES(2,'marc.dupuis@gmail.com','f2d81a260dea8a100dd517984e53c56a7523d96942a834b9cdc249bd4e8c7aa9'); -- azerty
 INSERT INTO Booker VALUES(2);
 
 INSERT INTO Personne(type, nom, prenom, emailcontact, tel, adresse) VALUES(1,'Lopez','Patrick','patrick.lopez@gmail.com','0675757575',3); -- 1 si organ
-INSERT INTO Utilisateur VALUES(3,'plopez@gmail.com','azerty');
+INSERT INTO Utilisateur VALUES(3,'plopez@gmail.com','f2d81a260dea8a100dd517984e53c56a7523d96942a834b9cdc249bd4e8c7aa9'); --azerty
 INSERT INTO Organisateur VALUES(3);
 
 INSERT INTO Personne(type, nom, prenom, emailcontact, tel, adresse) VALUES(2,'Jean','Jack','jean.jack@gmail.com','0675757575',4); -- 2 si artiste
