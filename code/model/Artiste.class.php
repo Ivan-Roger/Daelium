@@ -48,16 +48,25 @@ require_once('../model/DAO.class.php');
     }
     function getListeGroupe() {
       $dao = new Dao();
-      if($listeGroupe == NULL){
-
+      $listeGroupe =array();
+      if($this->listeGroupe == NULL){
         $listeGroupe = $dao->readListGroupeByArtiste($this->getIdPersonne());
       }
       return $listeGroupe;
     }
 
+    public function getnbGroupe()
+    {
+      $i = 0;
+      foreach ($this->getListeGroupe() as $key => $value){
+      $i++;
+      }
+      return $i;
+    }
+
     function estDansGroupe($idGroupe){
-      foreach ($listeGroupe as $key => $value) {
-        if($value == $idGroupe){
+      foreach ($this->getListeGroupe() as $key => $value) {
+        if($value['idgroupe'] == $idGroupe){
           return true;
         }
       }

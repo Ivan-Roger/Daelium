@@ -106,9 +106,14 @@
                       <?php } ?>
                     </tbody>
                   </table>
-                  <div class="pull-right">
+                  <div >
+
+                    <form class="pull-right" action="../controler/artiste_edit.ctrl.php?action=remove" method="post">
+                      <input type="hidden" name="idartiste" value="<?= $art['id']?>">
+                      <input type="hidden" name="idgroupe" value="<?= $data['groupe']['id']?>">
+                      <input class="btn btn-danger" type="submit" value="Suprimer du Groupe">
+                    </form>
                     <a class ="btn btn-warning" href="../controler/artiste_edit.ctrl.php?id=<?= $art['id']?>"> Modifier </a>
-                    <a class ="btn btn-danger" href="#"> Suprimer du Groupe </a>
                   </div>
                 </div>
             </div>

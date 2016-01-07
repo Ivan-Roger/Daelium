@@ -706,6 +706,7 @@ class DAO {
       );
       $res = $req->execute($params);
       if ($res === FALSE) {
+        var_dump($this->db->errorInfo()[2]);
          die("readArtisteById : Requête impossible !"); // erreur dans la requête
       }
       $pers = $this->readPersonneByIdNoClass($id);
@@ -770,7 +771,7 @@ class DAO {
       $b = $this->readArtisteById($idArtiste);
       if ($b != null) {
 
-        $this->db->deleteGroupeArtisteByIdArtiste($idArtiste);
+        $this->deleteGroupeArtisteByIdArtiste($idArtiste);
 
         $sql = "DELETE FROM Artiste where idArtiste = ?";
         $req = $this->db->prepare($sql);

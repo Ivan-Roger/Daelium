@@ -15,7 +15,7 @@ CREATE TABLE Personne (
   type           integer ,
   nom            VARCHAR(255) NOT NULL,
   prenom         VARCHAR(255),
-  emailcontact   VARCHAR(255) NOT NULL,
+  emailcontact   VARCHAR(255),
   tel            VARCHAR(20),
   adresse        BIGINT,
   description    TEXT,

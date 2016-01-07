@@ -18,9 +18,9 @@ header("Location:"."../");
           <div class="panel-heading">Artiste  <?= $data['nom']?></div>
           <div class="panel-body">
             <div class="form-group">
-              <label class="control-label col-sm-3" for="name">Nom de l'artiste :</label>
+              <label class="control-label col-sm-3" for="name">Nom de l'artiste *:</label>
               <div class="col-sm-9">
-                <input type="text" id="name" name="name" class="form-control" placeholder="Nom" value="<?= $data['nom']?>"/>
+                <input type="text" id="name" name="name" class="form-control" required placeholder="Nom" value="<?= $data['nom']?>"/>
               </div>
             </div>
 

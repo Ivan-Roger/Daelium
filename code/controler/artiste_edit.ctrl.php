@@ -23,10 +23,10 @@ if($user != NULL){ // SI booker
         $listegroupeuser = $dao->readListGroupeByBooker($userid);
 
         $present = $user->possedeGroupe($groupeid);
-
+        $nb= $Artiste->getnbGroupe();
         if($present && $Artiste->estDansGroupe($groupeid)){
           $dao->deleteGroupeArtisteByIdArtisteIdGroupe($groupeid,$aristeid);
-          if(count($Artiste->getListeGroupe()) == 1){
+          if($nb == 1){
             $dao->deleteArtisteById($aristeid);
           }
           header("Location: ../controler/groupe.ctrl.php?id=".$groupeid."");
