@@ -7,7 +7,7 @@ header("Location:"."../");
 <head>
   <?php include("../view/include/includes.view.php"); ?>
   <link rel="stylesheet" href="../data/css/artiste.css">
-  <title>Dælium - Artiste - <?= $data['nom']?></title>
+  <title>Dælium - Artiste - Nouvel</title>
 </head>
 <body>
   <?php include("../view/include/header.view.php"); ?>
@@ -15,7 +15,7 @@ header("Location:"."../");
     <form class="form-horizontal" role="form" method="post" action="../controler/artiste_edit.ctrl.php?action=new">
       <div class="col-lg-12">
         <div class="panel panel-default">
-          <div class="panel-heading">Artiste  <?= $data['nom']?></div>
+          <div class="panel-heading">Nouvel Artiste</div>
           <div class="panel-body">
             <div class="form-group">
               <label class="control-label col-sm-3" for="name">Nom de l'artiste *:</label>
@@ -41,14 +41,14 @@ header("Location:"."../");
             <div class="form-group">
               <label class="control-label col-sm-3" for="mail">Email :</label>
               <div class="col-sm-9">
-                <input type="email" id="mail" name="mail" class="form-control"  value="<?= $data['email']?>"/>
+                <input type="email" id="mail" name="mail" class="form-control" placeholder="machin@truc.fr" value="<?= $data['email']?>"/>
               </div>
             </div>
 
             <div class="form-group">
               <label class="control-label col-sm-3" for="ntel">Numero de telephone :</label>
               <div class="col-sm-9">
-                <input type="tel" id="ntel" name="ntel" class="form-control" value="<?= $data['telephone']?>"/>
+                <input type="tel" id="ntel" name="ntel" class="form-control" placeholder="0000000000" value="<?= $data['telephone']?>"/>
               </div>
             </div>
 
