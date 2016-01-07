@@ -25,7 +25,7 @@
 
       $idLieu =$manif->getLieu();
       if($idLieu != NULL){
-        $lieu = $dao->readLieuById();
+        $lieu = $dao->readLieuById($idLieu);
         $data['nego'][$key]['villemanif'] = $lieu->getVille();
       }else {
         $data['nego'][$key]['villemanif'] = "Inconu";

@@ -46,7 +46,12 @@
         return $this->idorganisateur;
     }
     function getetat() {
+      if($this->etat == NULL){
+        return 0;
+      }else {
         return $this->etat;
+      }
+
     }
     function getetatEcrit() {
         if($this->etat == 0 || $this->etat == null){

@@ -43,7 +43,7 @@
     }
     }elseif ($type == 1) {
       if($_POST["choix"] != NULL){
-      if($user->possedeManif($_GET["choix"])){
+      if($user->possedeManif($_POST["choix"])){
         $bookerid = $dao->readBookerByGroupe($_POST["cible"]);
         $manif = $dao->readManifestationById($_POST['choix']);
         $groupe = $dao->readGroupeById($_POST["cible"]);

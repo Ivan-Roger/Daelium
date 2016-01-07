@@ -7,7 +7,7 @@
   <head>
     <?php include("../view/include/includes.view.php"); ?>
     <link rel="stylesheet" href="../data/css/evenements.css">
-    <title>Dælium - Mes evenements</title>
+    <title>Dælium - Mes manifestations</title>
   </head>
   <body>
     <?php include("../view/include/header.view.php"); ?>
@@ -24,7 +24,7 @@
         <div  class="col-xs-2">
           <a href="../controler/evenement_new.ctrl.php" id="pic" class="thumbnail">
             <img class="category-banner img-responsive" src="../data/img/icons/plus.png" alt="...">
-            <div class="OverlayText ">Ajouter un evenement</div>
+            <div class="OverlayText ">Ajouter une manifestation</div>
           </a>
         </div>
       </div>

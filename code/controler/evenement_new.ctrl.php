@@ -65,11 +65,15 @@ if($user != NULL){ // SI c'est un organisateur
 
 
   }else { // On affiche le formulaire pour cree
+    $listeevtdejacree = array();
     $listeevtdejacree = $dao->readIdManifestationByCreateur($userid);
-    foreach ($listeevtdejacree as $key => $value) {
-      $evt = $dao->readManifestationById($value["idmanif"]);
-      $data["evenements"][$key]["nom"]= $evt->getNom();
+    if($listeevtdejacree != null){
+      foreach ($listeevtdejacree as $key => $value) {
+        $evt = $dao->readManifestationById($value["idmanif"]);
+        $data["evenements"][$key]["nom"]= $evt->getNom();
+      }
     }
+
 
     include("../view/evenement_new.view.php");
   }

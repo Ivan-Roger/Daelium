@@ -7,7 +7,7 @@ header("Location:"."../");
 <head>
   <?php include("../view/include/includes.view.php"); ?>
   <link rel="stylesheet" href="../data/css/artiste.css">
-  <title>Dælium - Evenement - <?= $data['evenement']['name']?></title>
+  <title>Dælium - Manifestation - <?= $data['evenement']['name']?></title>
 </head>
 <body>
   <?php include("../view/include/header.view.php"); ?>
@@ -15,10 +15,10 @@ header("Location:"."../");
     <form class="form-horizontal" role="form" method="post" action="../controler/evenement_new.ctrl.php?action=create">
       <div class="col-lg-12">
         <div class="panel panel-default">
-          <div class="panel-heading">Creation evenement</div>
+          <div class="panel-heading">Creation manifestation</div>
           <div class="panel-body">
             <div class="form-group">
-              <label class="control-label col-sm-4" for="before">J'ai deja organisé cet evenement :</label>
+              <label class="control-label col-sm-4" for="before">J'ai deja organisé cette manifestation :</label>
               <div class="col-sm-8">
                 <div class="btn-group" data-toggle="buttons" id="fonction">
                   <label class="btn btn-default active">
@@ -35,7 +35,7 @@ header("Location:"."../");
 
 
           <div class="form-group">
-            <label class="control-label col-sm-4" for="nomevent">Nom de l'évènement *:</label>
+            <label class="control-label col-sm-4" for="nomevent">Nom de la manifestation *:</label>
             <div class="col-sm-8">
               <select name="select" class="form-control">
                 <?php foreach (  $data["evenements"] as $key => $value): ?>
@@ -47,7 +47,7 @@ header("Location:"."../");
 
 
           <div class="form-group">
-            <label class="control-label col-sm-4" for="nomevent">Nom de l'évènement *:</label>
+            <label class="control-label col-sm-4" for="nomevent">Nom de la manifestation *:</label>
             <div class="col-sm-8">
               <input id="nomevent" name="nomevent" class="form-control" required="required" placeholder="Nom de l'evenement"/>
             </div>
@@ -90,7 +90,7 @@ header("Location:"."../");
           <div class="form-group">
             <label class="control-label col-sm-4" for="genre">Genre :</label>
             <div class="col-sm-8">
-              <input type="text" id="genre" name="genre"  class="form-control" />
+              <input type="text" id="genre" name="genre" placeholder="Pop,Rock" class="form-control" />
             </div>
           </div>
 
@@ -147,8 +147,8 @@ header("Location:"."../");
             </div>
 
             <div class="pull-right">
-              <input class="btn btn-default" type="button"  value="Annuler">
-              <input class="btn btn-primary" type="Submit"  value="Ajouter">
+              <input class="btn btn-default" type="reset"  value="Annuler">
+              <input class="btn btn-primary" type="Submit"  value="Créer">
             </div>
           </div>
         </div>

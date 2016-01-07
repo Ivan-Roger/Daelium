@@ -11,8 +11,11 @@
 </head>
 <body>
   <?php include("../view/include/header.view.php"); ?>
-  <section>
-    <article class="col-lg-offset-1 col-lg-10">
+   <section>
+     <div class="text-center" >
+     <h3> En cour de Creation ... </h3>
+   </div>
+    <!--<article class="col-lg-offset-1 col-lg-10">
       <div class="navbar navbar-form navbar-right">
         <div class="input-group">
           <input type="text" class="form-control"/>
@@ -188,7 +191,7 @@
             </div>
           </div>
         </div>
-      </article>
+      </article> -->
     </section>
     <?php include("../view/include/footer.view.php"); ?>
   </body>

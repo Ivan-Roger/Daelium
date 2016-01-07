@@ -53,21 +53,32 @@ if($user != NULL){ // SI c'est un organisateur
         $creneaux = $dao->readCreneauByidManif($evtid);
         $data["passages"] = array();
           $data['groupes'] = array();
+
+
         foreach ($creneaux as $key => $value) {
-          $k = $value->getDate().$value->getHeureDebut();
-          $k2 = $value->getDate().$value->getHeureDebutTest();
-          $data['passages'][$k]['type'] = "Representation";
-          $data['passages'][$k2]['date'] = $data['passages'][$k]['date']  = $value->getDate();
-          $data['passages'][$k]['heured']  = $value->getHeureDebut();
-          $data['passages'][$k]['heuref'] = $value->getHeureFin();
-          $data['passages'][$k2]['lieu'] = $data['passages'][$k]['lieu']  = $value->getLieu();
           $idgroupe = $value->getidGroupe();
-          $groupe = $dao->readGroupeById($idgroupe);
-          $data['groupes'][$k]['nom'] = $data['passages'][$k2]['groupe']['nom'] = $data['passages'][$k]['groupe']['nom'] = $groupe->getNom();
-          $data['groupes'][$k]['id'] = $data['passages'][$k2]['groupe']['id'] = $data['passages'][$k]['groupe']['id'] = $idgroupe;
-          $data['passages'][$k2]['type'] = "Tests";
-          $data['passages'][$k2]['heured'] = $value->getHeureDebutTest();
-          $data['passages'][$k2]['heuref']= $value->getHeureFinTest();
+          $nego = $dao->readNegociationByGroupeManif($idgroupe,$evtid);
+          if($nego[0]->getetat() == 3){
+            $k = $value->getDate().$value->getHeureDebut();
+            $k2 = $value->getDate().$value->getHeureDebutTest();
+            $data['passages'][$k]['type'] = "Representation";
+            $data['passages'][$k]['date']  = $value->getDate();
+            $data['passages'][$k]['heured']  = $value->getHeureDebut();
+            $data['passages'][$k]['heuref'] = $value->getHeureFin();
+            $data['passages'][$k]['lieu']  = $value->getLieu();
+            $groupe = $dao->readGroupeById($idgroupe);
+            $data['groupes'][$k]['nom'] = $data['passages'][$k]['groupe']['nom'] = $groupe->getNom();
+            $data['groupes'][$k]['id'] = $data['passages'][$k]['groupe']['id'] = $idgroupe;
+            if($value->getHeureDebutTest() != NULL){
+              $data['passages'][$k2]['groupe']['nom'] =$groupe->getNom();
+              $data['passages'][$k2]['groupe']['id'] =$idgroupe;
+            $data['passages'][$k2]['type'] = "Tests";
+            $data['passages'][$k2]['heured'] = $value->getHeureDebutTest();
+            $data['passages'][$k2]['heuref']= $value->getHeureFinTest();
+            $data['passages'][$k2]['lieu']   = $value->getLieu();
+            $data['passages'][$k2]['date']  = $value->getDate();
+            }
+          }
         }
         ksort($data['passages']);
         $data['groupes'] = array_unique($data['groupes']);
