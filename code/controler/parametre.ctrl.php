@@ -15,9 +15,9 @@
     header("Location: ../controler/nolog.ctrl.php");
   }
   if(isset($_GET["action"]) && $_GET["action"] == "edit"){
-    if($user->getMdp() == hash('sha2',$_POST["amdp"])){
+    if($user->getMdp() == hash('sha256',$_POST["amdp"])){
       if($_POST["nmdp"] == $_POST["cnmdp"]){
-        $user->setMdp(hash('sha2',$_POST["nmdp"]));
+        $user->setMdp(hash('sha256',$_POST["nmdp"]));
         $dao->updateUtilisateur($user);
       }else {
         $data["erreur"] = "Les deux mots de passe ne sont pas indentique";

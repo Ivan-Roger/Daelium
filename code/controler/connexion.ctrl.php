@@ -45,7 +45,7 @@
         $data['errorFields']['inputEmail']=true;
         include("../view/signin.view.php");
       } else {
-        if($user->getMdp() == hash('sha2',$_POST["mdp"])){
+        if($user->getMdp() == hash('sha256',$_POST["mdp"])){
           $_SESSION["user"]["mail"]=$mail;
           $_SESSION["user"]["loginTime"]=date("");
           $_SESSION["user"]["ID"]=$user->getIdPersonne();
