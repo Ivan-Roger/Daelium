@@ -20,35 +20,35 @@ header("Location:"."../");
             <div class="form-group">
               <label class="control-label col-sm-3" for="name">Nom de l'artiste *:</label>
               <div class="col-sm-9">
-                <input type="text" id="name" name="name" class="form-control" required placeholder="Nom" value="<?= $data['nom']?>"/>
+                <input type="text" id="name" name="name" class="form-control" required placeholder="Nom" />
               </div>
             </div>
 
             <div class="form-group">
               <label class="control-label col-sm-3" for="pname">Prenom de l'artiste :</label>
               <div class="col-sm-9">
-                <input type="text" id="pname" name="pname" class="form-control" placeholder="Prenom" value="<?= $data['prenom']?>"/>
+                <input type="text" id="pname" name="pname" class="form-control" placeholder="Prenom" />
               </div>
             </div>
 
             <div class="form-group">
               <label class="control-label col-sm-3" for="daten">Date de naissance :</label>
               <div class="col-sm-9">
-                <input type="date" id="daten" name="daten" class="form-control" value="<?= $data['dateNaissance']?>" />
+                <input type="date" id="daten" name="daten" class="form-control"  />
               </div>
             </div>
 
             <div class="form-group">
               <label class="control-label col-sm-3" for="mail">Email :</label>
               <div class="col-sm-9">
-                <input type="email" id="mail" name="mail" class="form-control" placeholder="machin@truc.fr" value="<?= $data['email']?>"/>
+                <input type="email" id="mail" name="mail" class="form-control" placeholder="machin@truc.fr" />
               </div>
             </div>
 
             <div class="form-group">
               <label class="control-label col-sm-3" for="ntel">Numero de telephone :</label>
               <div class="col-sm-9">
-                <input type="tel" id="ntel" name="ntel" class="form-control" placeholder="0000000000" value="<?= $data['telephone']?>"/>
+                <input type="tel" id="ntel" name="ntel" class="form-control" placeholder="0000000000" />
               </div>
             </div>
 
@@ -58,31 +58,31 @@ header("Location:"."../");
 
                 <label class="control-label col-sm-2" for="adresse">Adresse :</label>
                 <div class="col-sm-10">
-                  <input type="text" id="adresse" name="adresse"  class="form-control" value="<?= $data['adresse']?>" />
+                  <input type="text" id="adresse" name="adresse"  class="form-control"  />
                 </div>
                 <label class="control-label col-sm-2" for="codepostal">Code postal :</label>
                 <div class="col-sm-2">
-                  <input type="text" id="codepostal" name="codepostal"  class="form-control" value="<?= $data['codepostal']?>" />
+                  <input type="text" id="codepostal" name="codepostal"  class="form-control"  />
                 </div>
                 <label class="control-label col-sm-2" for="ville">Ville * :</label>
                 <div class="col-sm-6">
-                  <input type="text" id="ville" name="ville" required="required" class="form-control"value="<?= $data['ville']?>" />
+                  <input type="text" id="ville" name="ville" required="required" class="form-control"/>
                 </div>
                 <label class="control-label col-sm-2" for="region">Region :</label>
                 <div class="col-sm-4">
-                  <input type="text" id="region" name="region"  class="form-control" value="<?= $data['pays']?>" />
+                  <input type="text" id="region" name="region"  class="form-control"  />
                 </div>
                 <label class="control-label col-sm-2" for="pays">Pays * :</label>
                 <div class="col-sm-4">
-                  <input type="text" id="pays" name="pays" required="required" class="form-control"  value="<?= $data['region']?>"/>
+                  <input type="text" id="pays" name="pays" required="required" class="form-control"  />
                 </div>
                 <label class="control-label col-sm-2" for="latitude">Latitude :</label>
                 <div class="col-sm-4">
-                  <input type="text" id="latitude" name="latitude"  class="form-control" value="<?= $data['latitude']?>" />
+                  <input type="text" id="latitude" name="latitude"  class="form-control"  />
                 </div>
                 <label class="control-label col-sm-2" for="longitude">Longitude :</label>
                 <div class="col-sm-4">
-                  <input type="text" id="longitude" name="longitude" class="form-control"  value="<?= $data['longitude']?>"/>
+                  <input type="text" id="longitude" name="longitude" class="form-control"  />
                 </div>
 
 
@@ -92,29 +92,29 @@ header("Location:"."../");
             <div class="form-group">
               <label class="control-label col-sm-3" for="payment">Paiement :</label>
               <div class="col-sm-9 btn-group" data-toggle="buttons" id="fonction">
-                <label class="btn btn-default <?php if($data['paiement'] == "Cheque"){ echo "active"; } ?>">
-                  <input type="radio" name="payment" id="payment" value="ch" <?php if($data['paiement'] == "Cheque"){ ?> checked <?php } ?>> Chèque
+                <label class="btn btn-default">
+                  <input type="radio" name="payment" id="payment" value="ch" > Chèque
                 </label>
-                <label class="btn btn-default  <?php if($data['paiement'] == "Virement"){ echo "active"; } ?>">
-                  <input type="radio" name="payment" id="payment" value="vi" <?php if($data['paiement'] == "Virement"){ ?> checked <?php } ?>>  Virement
+                <label class="btn btn-default">
+                  <input type="radio" name="payment" id="payment" value="vi" >  Virement
                 </label>
-                <label class="btn btn-default <?php if($data['paiement'] == "Espece"){ echo "active"; } ?>">
-                  <input type="radio" name="payment" id="payment" value="es" <?php if($data['paiement'] == "Espece"){ ?> checked <?php } ?>> Espece
+                <label class="btn btn-default active">
+                  <input type="radio" name="payment" id="payment" value="es" checked> Espece
                 </label>
               </div>
             </div>
 
-            <div class="form-group">
+            <div id="payment-IBAN" class="form-group">
               <label class="control-label col-sm-3" for="vir">IBAN :</label>
               <div class="col-sm-9">
-                <input type="text" id="vir" name="vir" class="form-control" placeholder="Si Virement" value="<?= $data['IBAN']?>" />
+                <input type="text" id="vir" name="vir" class="form-control" placeholder="Si Virement" />
               </div>
             </div>
 
-            <div class="form-group">
+            <div id="payment-Ordre" class="form-group">
               <label class="control-label col-sm-3" for="ord">Ordre :</label>
               <div class="col-sm-9">
-                <input type="text" id="ord" name="ord" class="form-control" placeholder="Si cheque, si vide garde le nom" value="<?= $data['ordre']?>"/>
+                <input type="text" id="ord" name="ord" class="form-control" placeholder="Si cheque, si vide garde le nom" />
               </div>
             </div>
 
@@ -128,5 +128,6 @@ header("Location:"."../");
 </form>
 </section>
 <?php include("../view/include/footer.view.php"); ?>
+<script src="../data/js/artiste_edit.js"></script>
 </body>
 </html>

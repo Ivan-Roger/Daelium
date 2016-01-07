@@ -40,13 +40,14 @@ header("Location:"."../");
                   <label class="btn btn-default <?php if($data['evenement']['type'] == "Fête de village"){echo "active";}  ?>">
                     <input type="radio" name="type" id="option2" value="Fête" <?php if($data['evenement']['type'] =="Fête de village"){echo "checked";}  ?>> Fête de village
                   </label>
-                  <label class="btn btn-default <?php if($data['evenement']['type'] == "Autre"){echo "active";}  ?>">
+                  <label data-toggle="collapse" href="#siautre" toggle="true" aria-expanded="true" aria-controls="siautre" class="btn btn-default <?php if($data['evenement']['type'] == "Autre"){echo "active";}  ?>">
                     <input type="radio" name="type" id="option2" value="Autre" <?php if($data['evenement']['type'] =="Autre"){echo "checked";}  ?>> Autre
                   </label>
                 </div>
               </div>
             </div>
-            <div class="form-group">
+
+            <div id="siautre" class="form-group collapse">
               <label class="control-label col-sm-4" for="autre">Si autre :</label>
               <div class="col-sm-8">
                 <input type="text" id="autre" name="autre" class="form-control" value="<?= $data['evenement']['type'] ?>"/>

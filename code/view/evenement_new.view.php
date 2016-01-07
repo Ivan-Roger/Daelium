@@ -17,7 +17,7 @@ header("Location:"."../");
         <div class="panel panel-default">
           <div class="panel-heading">Creation manifestation</div>
           <div class="panel-body">
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label class="control-label col-sm-4" for="before">J'ai deja organisé cette manifestation :</label>
               <div class="col-sm-8">
                 <div class="btn-group" data-toggle="buttons" id="fonction">
@@ -27,7 +27,7 @@ header("Location:"."../");
                   <label class="btn btn-default" data-toggle="collapse" href="#existe" toggle="true" aria-expanded="true" aria-controls="existe">
                     <input type="radio" name="before" id="option2" value="gr"> Oui
                     <!-- Si oui affiche une liste deroulante.-->
-                  </label>
+                  <!--</label>
                 </label>
               </div>
             </div>
@@ -43,13 +43,13 @@ header("Location:"."../");
                 <?php endforeach; ?>
               </select>
             </div>
-          </div>
+          </div> -->
 
 
           <div class="form-group">
             <label class="control-label col-sm-4" for="nomevent">Nom de la manifestation *:</label>
             <div class="col-sm-8">
-              <input id="nomevent" name="nomevent" class="form-control" required="required" placeholder="Nom de l'evenement"/>
+              <input id="nomevent" name="nomevent" class="form-control" required="required" placeholder="Nom de la manifestation"/>
             </div>
           </div>
 
