@@ -1,0 +1,18 @@
+             ##################################################
+             #                                                #
+             #            Gestionnaire de fichier             #
+             #                                                #
+             ##################################################
+
+
+Bonjour et bienvenue sur Daelium,
+
+Vous êtes actuellement dans le gestionnaire de fichier de votre compte Daelium.
+Ce fichier a été généré automatiquement pour vous présenter le gestionnaire de fichier.
+Une fois sa lecture terminée vous pourez le supprimer.
+D'ici vous pouvez enregistrer des fichiers en ligne et télécharger ceux qui y sont déja.
+
+N'hésitez pas créer des dossier pour mieux vous organiser.
+Vous pouvez également déplacer un fichier et aussi le supprimer (Attention, ceci est une action définitive).
+
+Pour partager un fichier cliquez sur la petite icône correspondante. Vous recupèrerez un lien a transmettre pour accèder a ce fichier.

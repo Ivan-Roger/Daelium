@@ -1,0 +1,175 @@
+.loader {
+   height: 2px;
+   width: 0%;
+   background-color: #29F;
+   overflow: hidden;
+}
+
+@keyframes loadingStart {
+   0%    {width: 0%;}
+   100%  {width: 66%;}
+}
+
+@keyframes loadingEnd {
+   0%    {width: 66%;}
+   99%  {width: 100%;}
+   100%  {width: 0%;}
+}
+
+@keyframes loadingFail {
+   0%    {width: 66%; background-color: #29F;}
+   100%  {width: 100%; background-color: #F42;}
+}
+
+.loader.start {
+   background-color: #29F;
+   animation: loadingStart 3.5s ease-in;
+   width: 66%;
+}
+.loader.end {
+   background-color: #29F;
+   animation: loadingEnd 0.5s ease-out;
+   width: 0%;
+}
+.loader.fail {
+   animation: loadingFail 0.5s ease-out;
+   width: 100%;
+   background-color: #F42;
+}
+
+#calendar thead th {
+  text-align: center;
+  vertical-align: middle;
+}
+
+#calendar td {
+  height: 50px;
+  vertical-align: middle;
+}
+
+#calendar tbody th {
+  text-align: right;
+  vertical-align: middle;
+}
+
+#calendar td:hover {
+  background-color: #E5E5E5;
+  cursor: pointer;
+}
+
+#calendar .not-hover:hover{
+  cursor: auto;
+  background-color: transparent;
+}
+
+#calendar .info:hover{
+  background-color: #B1D3E4;
+}
+
+#calendar .selected {
+  cursor: auto;
+  box-shadow: 0px 0px 5px #B5B5B5 inset;
+  background-color: #E5E5E5;
+}
+
+#calendar .selected:hover {
+  background-color: #EFEFEF;
+}
+
+#calendar .info.selected{
+  background-color: #D9EDF7;
+}
+
+#calendar .info.selected:hover {
+  background-color: #B1D3E4;
+}
+
+#commingNext tr:hover td, #dayPlan tr:hover td {
+  background-color: #E5E5E5;
+}
+
+table tbody td.active {
+  background-color: #EEE;
+}
+
+#calendarArticle .panel-body .table{
+  margin-bottom: 0px;
+}
+#calendarArticle .panel-body .table tbody:last-child {
+  border-bottom: 1px solid #ddd;
+}
+
+#commingNext thead th {
+  text-align: center;
+}
+
+#commingNext tbody tr {
+  cursor: pointer;
+}
+
+#commingNext td.hour, td.date {
+  text-align: center;
+}
+
+#dayPlan {
+  padding-bottom: 20px;
+}
+
+#dayPlan .dayPlanTableHead {
+  margin-right: 15px;
+}
+
+#dayPlan .dayPlanTableHead th:first-child {
+  width: 90px;
+}
+
+#dayPlan .dayPlanTableHead th:last-child {
+  width: calc(100% - 90px);
+}
+
+#dayPlan table {
+  margin-bottom: 0px;
+}
+
+#dayPlan .dayPlanTable {
+  width: 100%;
+  height: 400px;
+  overflow: auto;
+  overflow-x: hidden;
+}
+
+#dayPlan table td.text-center {
+  width: 90px;
+}
+
+#dayPlan table td.content {
+  width: calc(100% - 90px);
+}
+
+#dayPlan table td:hover, #dayPlan table th:hover {
+  background-color: transparent;
+}
+
+#dayPlan td.content span.evenement {
+   cursor: pointer;
+  margin-right: 5px;
+  padding: 3px;
+  border: 1px solid #E0E0E0;
+  border-radius: 5px;
+  background-color: #FFF;
+}
+
+#dayPlan td.content span.evenement:hover {
+  box-shadow: 0px 0px 2px 1px #66AFE9;
+}
+
+.form-inline .form-group, .form-inline .form-group input {
+  width: 100%;
+}
+
+.form-inline .form-group div:first-child {
+  padding-left: 0px;
+}
+.form-inline .form-group div:last-child {
+  padding-right: 0px;
+}

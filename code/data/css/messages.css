@@ -1,0 +1,97 @@
+
+table {
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+tbody > tr:first-of-type > td{
+  border-top: 0px solid ;
+}
+
+#messageList .tab-content {
+  max-height: 300px;
+  overflow: auto;
+}
+
+#messageList .tab-content #inbox tr.info .objet {
+  font-weight: bold;
+}
+
+#messageLoading {
+  height: 2px;
+  width: 0%;
+  background-color: #29F;
+  overflow: hidden;
+}
+
+@keyframes messageLoadingStart {
+  0%    {width: 0%;}
+  100%  {width: 66%;}
+}
+
+@keyframes messageLoadingEnd {
+  0%    {width: 66%;}
+  99%  {width: 100%;}
+  100%  {width: 0%;}
+}
+
+@keyframes messageLoadingFail {
+  0%    {width: 66%; background-color: #29F;}
+  100%  {width: 100%; background-color: #F42;}
+}
+
+.showMessage.shown {
+  background-color: blanchedalmond;
+}
+
+.showMessage.shown:hover {
+  background-color: blanchedalmond;
+}
+
+.showMessage.not-shown {
+  cursor: pointer;
+}
+
+.editMessage.shown {
+  background-color: blanchedalmond;
+}
+
+.editMessage.shown:hover {
+  background-color: blanchedalmond;
+}
+
+.editMessage.not-shown {
+  cursor: pointer;
+}
+
+#messageLoading.loading-start {
+  background-color: #29F;
+  animation: messageLoadingStart 3.5s ease-in;
+  width: 66%;
+}
+#messageLoading.loading-end {
+  background-color: #29F;
+  animation: messageLoadingEnd 0.5s ease-out;
+  width: 0%;
+}
+#messageLoading.loading-fail {
+  animation: messageLoadingFail 0.5s ease-out;
+  width: 100%;
+  background-color: #F42;
+}
+
+#messageFrame #messageContent .content {
+  max-height: 400px;
+  overflow: auto;
+}
+
+#messageFrame #messageAnswerArea {
+  resize: vertical;
+  height: 80px;
+}
+
+#editFrame .message-recipient.hide-selector .selectRecipient {
+  display:none;
+}

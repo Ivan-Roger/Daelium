@@ -1,0 +1,159 @@
+body, html {
+  height: 100%;
+}
+
+footer {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    background-color: #f5f5f5;
+}
+
+nav {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+}
+
+#welcome-page {
+  padding-top: 50px;
+  height: 100%;
+}
+
+#carousel {
+  height: calc(100% - 50px);
+}
+
+.carousel {
+  height: 100%;
+}
+
+.carousel-inner {
+  height: calc(100%);
+}
+
+.carousel-inner > .item{
+  height: 100%;
+  background-color: #727272;
+  background-image: url(../img/fotolia_musique.jpg);
+  background-size: cover;
+  background-position: center;
+}
+
+.btn-down {
+  height: 50px;
+  width: 100%;
+  background-color: #CCC;
+}
+
+.btn-down:hover {
+  background: linear-gradient(to left,#999,#AAA,#CCC,#AAA,#999);
+}
+
+.btn-down a {
+  color: #333;
+  text-shadow: 1px 0px #555;
+  padding-top: 5px;
+  font-size: 25px;
+  width: 100%;
+  height: 100%;
+  display: block;
+  text-align: center;
+}
+
+.btn-down a:hover {
+  text-decoration: none;
+  text-shadow: none;
+}
+
+.btn-down a:focus {
+  text-decoration: none;
+}
+
+#navbar {
+  z-index: 100;
+  width: 100%;
+  height: 50px;
+}
+
+#navbarOrg {
+  height: 0px;
+  overflow: hidden;
+}
+
+.marketing {
+  padding-top: 50px;
+  margin-bottom: 20px;
+}
+
+.marketing .img-circle {
+  margin: 5px;
+  padding: 20px;
+  height: 100px;
+  width: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #353535;
+}
+
+.marketing .img-circle.large {
+  height: 120px;
+  width: 120px;
+}
+
+.marketing .img-circle:hover {
+  box-shadow: 0px 0px 3px 3px #959595;
+}
+
+span.icon-img {
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.marketing .img-circle {
+  color: #DDD;
+  font-size: 30px;
+}
+
+.media-object {
+  padding-left: 10px;
+}
+
+span.icon-img.small {
+  width: 40%;
+  height: 40%;
+}
+
+span.icon-img.icon-tools2 {
+  background-image: url(../img/icons/tools-2_64px.png);
+}
+
+span.icon-img.icon-gift {
+  background-image: url(../img/icons/gift_64px.png);
+}
+
+span.icon-img.icon-adjustments {
+  background-image: url(../img/icons/adjustments_64px.png);
+}
+
+span.icon-img.icon-briefcase {
+  background-image: url(../img/icons/briefcase_64px.png);
+}
+
+span.icon-img.icon-happy {
+  background-image: url(../img/icons/happy_64px.png);
+}
+
+span.icon-img.icon-megaphone {
+  background-image: url(../img/icons/megaphone_64px.png);
+}
+
+.row {
+  margin-bottom: 50px;
+}

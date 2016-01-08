@@ -1,0 +1,53 @@
+.heading {
+  padding-top: 50px;
+  height: 350px;
+  overflow: hidden;
+  position: relative;
+}
+
+.heading img.wall-pic {
+  width: 100%;
+  position: relative;
+  bottom: 90%;
+}
+
+.heading .groupInfo {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  background-color: rgba(190,190,190,0.7);
+  border: 1px solid #AAA;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom: none;
+}
+
+.heading .groupInfo .groupPic img {
+  height: 64px;
+}
+
+.heading .groupInfo .controls {
+  padding-top: 15px;
+}
+
+section {
+  padding-top: 50px;
+}
+
+.infoProfile .row {
+  margin-top: 10px;
+}
+
+.infoProfile .well > h4 {
+  margin-left: 40px;
+}
+
+.groups .list-group-item {
+  height: 50px;
+}
+
+.groupDesc textarea {
+  width: 100%;
+  resize: vertical;
+  height: 200px;
+}

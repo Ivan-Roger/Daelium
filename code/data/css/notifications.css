@@ -1,0 +1,32 @@
+tr.notif-item.new td:nth-child(1) {
+  background-color: #D9EDF7;
+}
+tr.notif-item.new td.notif-item-title {
+  font-weight: bold;
+}
+
+tr.notif-item.old {
+  color: #777;
+}
+tr.notif-item.old td:last-child .close{
+  display: none;
+}
+
+tr.notif-item.old.selected {
+  color: #333;
+  background-color: #FCF8E3;
+}
+tr.notif-item.old.selected td.notif-item-title {
+  font-weight: bold;
+}
+
+tr.notif-item td:last-child .close .loading {
+  display: none;
+  font-size: 15px;
+}
+tr.notif-item td:last-child .close.loading .times {
+  display: none;
+}
+tr.notif-item td:last-child .close.loading .loading {
+  display: inline-block;
+}
