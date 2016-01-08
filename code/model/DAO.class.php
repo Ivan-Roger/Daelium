@@ -37,7 +37,7 @@ class DAO {
       );
       $res = $req->execute($params);
       if ($res === FALSE) {
-        
+
         die("readConnexionsInJournalByUtilisateur : Requête impossible !"); // erreur dans la requête
       }
       $res = $req->fetchAll(PDO::FETCH_ASSOC);
@@ -304,7 +304,6 @@ class DAO {
          );
          $res = $req->execute($params);
          if ($res === FALSE) {
-            echo("Error: ".$this->db->errorInfo()[2]."<br/>\n");
             die("readUserByEmail : Requête impossible !"); // erreur dans la requête
          }
          $res = $req->fetchAll(PDO::FETCH_ASSOC);
