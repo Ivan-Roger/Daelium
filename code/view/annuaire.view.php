@@ -13,7 +13,7 @@
   <?php include("../view/include/header.view.php"); ?>
    <section>
      <div class="text-center" >
-     <h3> En cour de Creation ... </h3>
+     <h3> En cours de création ... </h3>
    </div>
     <!--<article class="col-lg-offset-1 col-lg-10">
       <div class="navbar navbar-form navbar-right">
