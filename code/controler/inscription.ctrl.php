@@ -64,6 +64,8 @@ if(isset($Adresse)){
     $_SESSION["user"]["mail"]=$info["mail"];
     $_SESSION["user"]["loginTime"]=date("");
     $_SESSION["user"]["ID"]=$user->getIdPersonne();
+    $_SESSION["user"]["type"]=$user->getType();
+    $dao->createConnexionInJournal($user->getIdPersonne(),date("Y-m-d H:i:s"),$_SERVER['REMOTE_ADDR'],$_SERVER['HTTP_USER_AGENT']);
   }
 
   // Création du dossier personnel et copie du fichier par défaut.

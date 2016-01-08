@@ -41,7 +41,7 @@ header("Location:"."../");
             <span class="col-sm-4 text-right">Nombre de membres</span><b class="col-sm-8 text-left" id="mailAccount"><?= $data['groupe']['nb'] ?></b>
           </div>
           <div class="row">
-            <span class="col-sm-4 text-right">Genre</span><b class="col-sm-8 text-left" id="mailAccount">A mettre</b>
+            <span class="col-sm-4 text-right">Genre</span><b class="col-sm-8 text-left" id="mailAccount">Inconnu</b>
           </div>
           <div class="row">
             <span class="col-sm-4 text-right">Booker en charge</span>
