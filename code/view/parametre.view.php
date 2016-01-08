@@ -59,14 +59,14 @@
             <?php } ?>
           </table>
         </div>
-        <div class="col-lg-12">
+        <!-- <div class="col-lg-12">
           <div class="pull-right">
             <form class="" action="../controler/parametre.ctrl.php" method="post">
               <input type="hidden" name="action" value="delete">
               <input class="btn btn-danger" type="submit" onclick="confirm('Vous allez supprimer votre compte !')" value="Supprimer mon compte">
             </form>
       </div>
-      </div>
+      </div> -->
 
     </section>
     <?php include("../view/include/footer.view.php"); ?>

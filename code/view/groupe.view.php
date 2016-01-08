@@ -15,13 +15,19 @@
       <h1><?= $data['groupe']['nom']?></h1> <a class ="btn btn-primary" href="../controler/groupe_fiche.ctrl.php?id=<?= $data['groupe']['id'] ?>" > Voir fiche public </a>
       <article class="col-lg-offset-2 col-lg-10">
         <div class="navbar navbar-right">
+          <div class ="col-lg-3">
           <a class ="btn btn-default" href="../controler/groupes.ctrl.php"> Retour </a>
-
-          <form class="" action="../controler/groupe_edit.ctrl.php?action=remove" method="post">
+        </div>
+        <div class ="col-lg-4">
+          <a class ="btn btn-warning" href="../controler/groupe_edit.ctrl.php?id=<?= $data['groupe']['id'] ?>" > Modifier </a>
+        </div>
+<div class ="col-lg-4">
+          <form action="../controler/groupe_edit.ctrl.php?action=remove" method="post">
             <input type="hidden" name="idgroupe" value="<?= $data['groupe']['id'] ?>">
             <input class="btn btn-danger" type="submit" value="Supprimer">
           </form>
-          <a class ="btn btn-warning" href="../controler/groupe_edit.ctrl.php?id=<?= $data['groupe']['id'] ?>" > Modifier </a>
+          </div>
+
         </div>
       </article>
       <article class="col-lg-6 infoProfile">

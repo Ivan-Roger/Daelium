@@ -15,12 +15,19 @@ header("Location:"."../");
     <h1><?= $data['evenement']['nom']?></h1> <a class ="btn btn-primary" href="../controler/evenement_fiche.ctrl.php?id=<?= $data['evenement']['id'] ?>" > Voir fiche public </a>
     <article class="col-lg-offset-2 col-lg-10">
       <div class="navbar navbar-right">
-        <a class ="btn btn-default" href="../controler/evenements.ctrl.php"> Retour </a>
-        <form class="" action="../controler/evenement_edit.ctrl.php?action=remove" method="post">
+        <div class ="col-lg-3">
+        <a class ="btn btn-default " href="../controler/evenements.ctrl.php"> Retour </a>
+      </div>
+
+        <div class ="col-lg-4">
+        <a class ="btn btn-warning" href="../controler/evenement_edit.ctrl.php?id=<?= $data['evenement']['id'] ?>" > Modifier </a>
+      </div>
+      <div class ="col-lg-4">
+        <form  action="../controler/evenement_edit.ctrl.php?action=remove" method="post">
           <input type="hidden" name="idmanif" value="<?= $data['evenement']['id'] ?>">
           <input class="btn btn-danger" type="submit" value="Supprimer">
         </form>
-        <a class ="btn btn-warning" href="../controler/evenement_edit.ctrl.php?id=<?= $data['evenement']['id'] ?>" > Modifier </a>
+      </div>
       </div>
     </article>
 
